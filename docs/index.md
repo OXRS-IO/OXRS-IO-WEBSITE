@@ -28,6 +28,11 @@ required for the intended project.
 
 The convention outlines mechanical dimensions for enclosures including
 front panel cutouts and internal PCB mounts, allowing individual Makers
-and companies to produce components that are at least partly compatible.
+and companies to produce components that are mechanically and electrically
+compatible.
 
 ![OXRS prototype inside](images/OXRS-prototype-2.jpg)
+
+To join in the discussion, see the SuperHouse Discord server at
+
+  https://www.superhouse.tv/discord
