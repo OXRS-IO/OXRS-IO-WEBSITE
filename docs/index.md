@@ -33,6 +33,4 @@ compatible.
 
 ![OXRS prototype inside](images/OXRS-prototype-2.jpg)
 
-To join in the discussion, see the SuperHouse Discord server at
-
-  https://www.superhouse.tv/discord
+To join in the discussion, see the [SuperHouse Discord server](https://www.superhouse.tv/discord)
