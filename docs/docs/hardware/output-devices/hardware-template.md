@@ -5,7 +5,7 @@ tags: ["tag1", "tag2"]
 <p class="maker">by <b>Maker Name goes here</b></p>
 
 <!-- Board Image -->
-![Bedrock Media Designs Universal Input/Output (UIO) 16Port](/images/assets/product-image.jpg)
+![Bedrock Media Designs Universal Input/Output (UIO) 16Port](/images/product-image.jpg)
 
 <!-- Board Description -->
 Shoulder picanha tongue cow kevin. Pig alcatra chicken jowl, turducken flank buffalo bresaola burgdoggen ground round venison shoulder pancetta. Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. Beef ribs hamburger sirloin brisket, capicola drumstick cupim sausage shank burgdoggen swine.

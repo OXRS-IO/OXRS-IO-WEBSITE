@@ -4,7 +4,7 @@
 <p>SKU: OXRS-SHA-RCESP32</p>
 </blockquote>
 <!-- Board Image -->
-<p><img src="/images/rack32.jpg" alt="Bedrock Media Designs Universal Input/Output (UIO) 16Port"></p>
+<p><img src="/images/RACK32.jpg" alt="Bedrock Media Designs Universal Input/Output (UIO) 16Port"></p>
 <!-- Board Description -->
 <p>A general purpose control board for rack mount projects.</p>
 <p>DIY rack-mount projects often require an Ethernet connection, a status display, power regulation, and other features that are not specific to the project.</p>

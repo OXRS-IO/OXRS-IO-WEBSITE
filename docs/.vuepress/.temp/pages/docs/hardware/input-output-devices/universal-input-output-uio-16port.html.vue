@@ -3,7 +3,7 @@
 <blockquote>
 <p>SKU: OXRS-BMD-UIO16</p>
 </blockquote>
-<p><img src="/images/UIO2.jpg" alt="Bedrock Media Designs Universal Input/Output (UIO) 16Port"></p>
+<p><img src="/images/uio2.jpg" alt="Bedrock Media Designs Universal Input/Output (UIO) 16Port"></p>
 <p>The Universal Input/Output (UIO)  Controller initially designed to be integrated into  Clipsal’s Firetek Series smoke alarms using the relay base. The (UIO) can Control output relays and monitor binary inputs all on a single CAT5/6 cable (2x outputs, 1x input per port).</p>
 <p>The (UIO) Uses MCP23017 I2C I/O buffers for controlling relays and to detect digital signals being pulled to GND before publishing events to MQTT.</p>
 <h2 id="features" tabindex="-1"><a class="header-anchor" href="#features" aria-hidden="true">#</a> Features</h2>

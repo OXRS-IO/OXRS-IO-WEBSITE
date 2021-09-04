@@ -100,6 +100,15 @@ export const searchIndex = [
     "extraFields": []
   },
   {
+    "title": "Hardware",
+    "headers": [],
+    "path": "/docs/hardware/",
+    "pathLocale": "/",
+    "extraFields": [
+      ""
+    ]
+  },
+  {
     "title": "Libraries",
     "headers": [],
     "path": "/docs/libraries/",
@@ -114,15 +123,6 @@ export const searchIndex = [
     "path": "/docs/libraries/uio.html",
     "pathLocale": "/",
     "extraFields": []
-  },
-  {
-    "title": "Hardware",
-    "headers": [],
-    "path": "/docs/hardware/",
-    "pathLocale": "/",
-    "extraFields": [
-      ""
-    ]
   },
   {
     "title": "Rack32",
@@ -176,53 +176,6 @@ export const searchIndex = [
       "OXRS-SHA-RCESP32",
       "URC",
       "RACK32"
-    ]
-  },
-  {
-    "title": "Board Name (Blank Template)",
-    "headers": [
-      {
-        "level": 2,
-        "title": "Features",
-        "slug": "features",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Supported Firmware",
-        "slug": "supported-firmware",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Additional Resources",
-        "slug": "additional-resources",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Where to Buy",
-        "slug": "where-to-buy",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "FAQs",
-        "slug": "faqs",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Compatible With",
-        "slug": "compatible-with",
-        "children": []
-      }
-    ],
-    "path": "/docs/hardware/output-devices/hardware-template.html",
-    "pathLocale": "/",
-    "extraFields": [
-      "tag1",
-      "tag2"
     ]
   },
   {
@@ -319,6 +272,53 @@ export const searchIndex = [
       "relays",
       "OXRS-BMD-UIO16",
       "Universal Input/Output (UIO) 16Port"
+    ]
+  },
+  {
+    "title": "Board Name (Blank Template)",
+    "headers": [
+      {
+        "level": 2,
+        "title": "Features",
+        "slug": "features",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Supported Firmware",
+        "slug": "supported-firmware",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Additional Resources",
+        "slug": "additional-resources",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Where to Buy",
+        "slug": "where-to-buy",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "FAQs",
+        "slug": "faqs",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Compatible With",
+        "slug": "compatible-with",
+        "children": []
+      }
+    ],
+    "path": "/docs/hardware/output-devices/hardware-template.html",
+    "pathLocale": "/",
+    "extraFields": [
+      "tag1",
+      "tag2"
     ]
   },
   {

@@ -7,7 +7,7 @@ tags: ["OXRS-SHA-RCESP32", "URC", "RACK32"]
 > SKU: OXRS-SHA-RCESP32
 
 <!-- Board Image -->
-![Bedrock Media Designs Universal Input/Output (UIO) 16Port](/images/RACK32.jpg)
+![Bedrock Media Designs Universal Input/Output (UIO) 16Port](/images/rack32.jpg)
 
 <!-- Board Description -->
 A general purpose control board for rack mount projects.
