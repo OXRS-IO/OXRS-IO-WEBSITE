@@ -1,7 +1,7 @@
 <template><h1 id="board-name-blank-template" tabindex="-1"><a class="header-anchor" href="#board-name-blank-template" aria-hidden="true">#</a> Board Name (Blank Template)</h1>
 <p class="maker">by <b>Maker Name goes here</b></p>
 <!-- Board Image -->
-<p><img src="/images/assets/product-image.jpg" alt="Bedrock Media Designs Universal Input/Output (UIO) 16Port"></p>
+<p><img src="/images/product-image.jpg" alt="Bedrock Media Designs Universal Input/Output (UIO) 16Port"></p>
 <!-- Board Description -->
 <p>Shoulder picanha tongue cow kevin. Pig alcatra chicken jowl, turducken flank buffalo bresaola burgdoggen ground round venison shoulder pancetta. Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. Beef ribs hamburger sirloin brisket, capicola drumstick cupim sausage shank burgdoggen swine.</p>
 <p>Cupim drumstick swine venison short loin capicola bacon picanha spare ribs tongue burgdoggen pork chop cow ham. Shank brisket ball tip tri-tip cow jerky shoulder chicken, corned beef alcatra filet mignon. Biltong jerky picanha ham hock swine. Ham hock shank corned beef, porchetta strip steak venison sirloin turducken hamburger ham rump jerky. Frankfurter pork tri-tip beef ribs meatloaf picanha pastrami doner burgdoggen.</p>
