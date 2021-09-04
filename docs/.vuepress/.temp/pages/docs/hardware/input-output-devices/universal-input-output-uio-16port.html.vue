@@ -37,6 +37,6 @@
 </div>
 <h2 id="compatible-hardware" tabindex="-1"><a class="header-anchor" href="#compatible-hardware" aria-hidden="true">#</a> Compatible Hardware</h2>
 <ul>
-<li>Rack32 <a href="/docs/hardware/controllers/rack32.html" target="_blank" rel="noopener noreferrer">Link<OutboundLink/></a></li>
+<li>Rack32 <RouterLink to="/docs/hardware/controllers/rack32.html">Link</RouterLink></li>
 </ul>
 </template>

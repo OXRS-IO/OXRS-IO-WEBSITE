@@ -100,15 +100,6 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "Hardware",
-    "headers": [],
-    "path": "/docs/hardware/",
-    "pathLocale": "/",
-    "extraFields": [
-      ""
-    ]
-  },
-  {
     "title": "Libraries",
     "headers": [],
     "path": "/docs/libraries/",
@@ -123,6 +114,15 @@ export const searchIndex = [
     "path": "/docs/libraries/uio.html",
     "pathLocale": "/",
     "extraFields": []
+  },
+  {
+    "title": "Hardware",
+    "headers": [],
+    "path": "/docs/hardware/",
+    "pathLocale": "/",
+    "extraFields": [
+      ""
+    ]
   },
   {
     "title": "Rack32",
@@ -179,7 +179,7 @@ export const searchIndex = [
     ]
   },
   {
-    "title": "Universal Input/Output (UIO) 16Port",
+    "title": "Board Name (Blank Template)",
     "headers": [
       {
         "level": 2,
@@ -213,18 +213,16 @@ export const searchIndex = [
       },
       {
         "level": 2,
-        "title": "Compatible Hardware",
-        "slug": "compatible-hardware",
+        "title": "Compatible With",
+        "slug": "compatible-with",
         "children": []
       }
     ],
-    "path": "/docs/hardware/input-output-devices/universal-input-output-uio-16port.html",
+    "path": "/docs/hardware/output-devices/hardware-template.html",
     "pathLocale": "/",
     "extraFields": [
-      "Bedrock Media Design",
-      "relays",
-      "OXRS-BMD-UIO16",
-      "Universal Input/Output (UIO) 16Port"
+      "tag1",
+      "tag2"
     ]
   },
   {
@@ -275,7 +273,7 @@ export const searchIndex = [
     ]
   },
   {
-    "title": "Board Name (Blank Template)",
+    "title": "Universal Input/Output (UIO) 16Port",
     "headers": [
       {
         "level": 2,
@@ -309,16 +307,18 @@ export const searchIndex = [
       },
       {
         "level": 2,
-        "title": "Compatible With",
-        "slug": "compatible-with",
+        "title": "Compatible Hardware",
+        "slug": "compatible-hardware",
         "children": []
       }
     ],
-    "path": "/docs/hardware/output-devices/hardware-template.html",
+    "path": "/docs/hardware/input-output-devices/universal-input-output-uio-16port.html",
     "pathLocale": "/",
     "extraFields": [
-      "tag1",
-      "tag2"
+      "Bedrock Media Design",
+      "relays",
+      "OXRS-BMD-UIO16",
+      "Universal Input/Output (UIO) 16Port"
     ]
   },
   {
@@ -329,16 +329,3 @@ export const searchIndex = [
     "extraFields": []
   }
 ]
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updateSearchIndex) {
-    __VUE_HMR_RUNTIME__.updateSearchIndex(searchIndex)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ searchIndex }) => {
-    __VUE_HMR_RUNTIME__.updateSearchIndex(searchIndex)
-  })
-}

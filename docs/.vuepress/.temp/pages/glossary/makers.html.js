@@ -19,18 +19,14 @@ export const data = {
     }
   ],
   "filePathRelative": "glossary/makers.md",
-  "git": {}
-}
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
+  "git": {
+    "updatedTime": 1630732364000,
+    "contributors": [
+      {
+        "name": "Aaron Knox",
+        "email": "aaron_knox@me.com",
+        "commits": 1
+      }
+    ]
   }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
 }

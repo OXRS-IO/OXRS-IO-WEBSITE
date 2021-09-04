@@ -1,5 +1,5 @@
 module.exports = {
-  base: '/OXRS/',
+  base: '/',
   locales: {
     '/': {
       lang: 'en-US',

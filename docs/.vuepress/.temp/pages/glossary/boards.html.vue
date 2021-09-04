@@ -14,13 +14,13 @@
 <td style="text-align:left">RACK32</td>
 <td style="text-align:left">SuperHouse Automation</td>
 <td style="text-align:left">OXRS-SHA-RCESP32</td>
-<td style="text-align:left"><a href="/docs/hardware/controllers/rack32.html" target="_blank" rel="noopener noreferrer">more info<OutboundLink/></a></td>
+<td style="text-align:left"><RouterLink to="/docs/hardware/controllers/rack32.html">more info</RouterLink></td>
 </tr>
 <tr>
 <td style="text-align:left">Universal Input/Output 16Port</td>
 <td style="text-align:left">Bedrock Media Designs</td>
 <td style="text-align:left">OXRS-BMD-UIO16</td>
-<td style="text-align:left"><a href="/docs/hardware/input-output-devices/universal-input-output-uio-16port.html" target="_blank" rel="noopener noreferrer">more info<OutboundLink/></a></td>
+<td style="text-align:left"><RouterLink to="/docs/hardware/input-output-devices/universal-input-output-uio-16port.html">more info</RouterLink></td>
 </tr>
 </tbody>
 </table>
