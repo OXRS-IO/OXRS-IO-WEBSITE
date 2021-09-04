@@ -39,7 +39,7 @@
 <li>Some hardware name <a href="https://oxrs.com" target="_blank" rel="noopener noreferrer">Link<OutboundLink/></a></li>
 </ul>
 <hr>
-<h1 id="get-started-creating-or-editing-you-first-hardware-page" tabindex="-1"><a class="header-anchor" href="#get-started-creating-or-editing-you-first-hardware-page" aria-hidden="true">#</a> Get started creating or editing you first Hardware Page.</h1>
+<h1 id="get-started-creating-or-editing-your-first-hardware-page" tabindex="-1"><a class="header-anchor" href="#get-started-creating-or-editing-your-first-hardware-page" aria-hidden="true">#</a> Get started creating or editing your first Hardware Page.</h1>
 <div class="custom-container tip"><p class="custom-container-title">Hardware Document Template</p>
 <p>Copy the template syntax below for the above page temaplte</p>
 </div>

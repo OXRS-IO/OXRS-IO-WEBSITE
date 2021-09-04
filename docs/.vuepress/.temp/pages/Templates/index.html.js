@@ -1,7 +1,7 @@
 export const data = {
   "key": "v-1dcff3cf",
   "path": "/templates/",
-  "title": "Creating and Editing Documents & Structure Guide",
+  "title": "Structure Guide for Creating & Editing Documents",
   "lang": "en-US",
   "frontmatter": {
     "tags": [
@@ -13,8 +13,14 @@ export const data = {
   "headers": [],
   "filePathRelative": "templates/README.md",
   "git": {
-    "updatedTime": null,
-    "contributors": []
+    "updatedTime": 1630798596000,
+    "contributors": [
+      {
+        "name": "Aaron Knox",
+        "email": "aaron_knox@me.com",
+        "commits": 1
+      }
+    ]
   }
 }
 

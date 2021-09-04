@@ -21,12 +21,12 @@ export const data = {
   ],
   "filePathRelative": "glossary/makers.md",
   "git": {
-    "updatedTime": 1630737741000,
+    "updatedTime": 1630798596000,
     "contributors": [
       {
         "name": "Aaron Knox",
         "email": "aaron_knox@me.com",
-        "commits": 2
+        "commits": 3
       }
     ]
   }

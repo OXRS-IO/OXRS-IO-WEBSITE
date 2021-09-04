@@ -228,6 +228,6 @@ export default { // Highlighted
 <p>Example image is 1024px wide</p>
 </blockquote>
 <div class="custom-container warning"><p class="custom-container-title">Image Resizing</p>
-<p>Please ensure you resize you images to ensure they are a maximum of <strong>1024px wide</strong> and a sensible file size. Support image extension <strong>.png</strong>, <strong>.jpg</strong>, <strong>.webp</strong></p>
+<p>Please ensure you resize your images to ensure they are a maximum of <strong>1024px wide</strong> and a sensible file size. Support image extension <strong>.png</strong>, <strong>.jpg</strong>, <strong>.webp</strong></p>
 </div>
 </template>

@@ -1,6 +1,12 @@
 export const pagesData = {
   // path: /
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
+  // path: /templates/
+  "v-1dcff3cf": () => import(/* webpackChunkName: "v-1dcff3cf" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/templates/index.html.js").then(({ data }) => data),
+  // path: /templates/hardware-template.html
+  "v-7d709fee": () => import(/* webpackChunkName: "v-7d709fee" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/templates/hardware-template.html.js").then(({ data }) => data),
+  // path: /templates/markdown.html
+  "v-5ebdf5db": () => import(/* webpackChunkName: "v-5ebdf5db" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/templates/markdown.html.js").then(({ data }) => data),
   // path: /glossary/acronyms.html
   "v-5df687d1": () => import(/* webpackChunkName: "v-5df687d1" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/glossary/acronyms.html.js").then(({ data }) => data),
   // path: /glossary/boards.html
@@ -11,10 +17,6 @@ export const pagesData = {
   "v-7ffe0758": () => import(/* webpackChunkName: "v-7ffe0758" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/guides/advanced.html.js").then(({ data }) => data),
   // path: /guides/getting-started.html
   "v-49b36c60": () => import(/* webpackChunkName: "v-49b36c60" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/guides/getting-started.html.js").then(({ data }) => data),
-  // path: /templates/
-  "v-1dcff3cf": () => import(/* webpackChunkName: "v-1dcff3cf" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/templates/index.html.js").then(({ data }) => data),
-  // path: /templates/hardware-template.html
-  "v-7d709fee": () => import(/* webpackChunkName: "v-7d709fee" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/templates/hardware-template.html.js").then(({ data }) => data),
   // path: /docs/firmware/
   "v-dc773b8e": () => import(/* webpackChunkName: "v-dc773b8e" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/docs/firmware/index.html.js").then(({ data }) => data),
   // path: /docs/firmware/uio-fw.html
@@ -35,6 +37,4 @@ export const pagesData = {
   "v-0415c4ae": () => import(/* webpackChunkName: "v-0415c4ae" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/docs/hardware/input-output-devices/universal-input-output-uio-16port.html.js").then(({ data }) => data),
   // path: /404.html
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
-  // path: /templates/markdown.html
-  "v-5ebdf5db": () => import(/* webpackChunkName: "v-5ebdf5db" */"/Users/aaronknox/dev/projects/OXRS/docs/.vuepress/.temp/pages/templates/markdown.html.js").then(({ data }) => data),
 }

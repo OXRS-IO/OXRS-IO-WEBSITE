@@ -20,79 +20,56 @@ export const searchIndex = [
     "extraFields": []
   },
   {
-    "title": "Acronyms",
+    "title": "Creating and Editing Documents & Structure Guide",
     "headers": [],
-    "path": "/glossary/acronyms.html",
+    "path": "/templates/",
     "pathLocale": "/",
     "extraFields": [
-      "OXRS",
-      "LSC"
+      "tag1",
+      "tag2"
     ]
   },
   {
-    "title": "OXRS Compatible Boards",
-    "headers": [],
-    "path": "/glossary/boards.html",
-    "pathLocale": "/",
-    "extraFields": [
-      "OXRS-SHA-RCESP32",
-      "OXRS-BMD-UIO16"
-    ]
-  },
-  {
-    "title": "Makers",
+    "title": "Board Name (Blank Template)",
     "headers": [
       {
         "level": 2,
-        "title": "Registered Maker Designators",
-        "slug": "registered-maker-designators",
+        "title": "Features",
+        "slug": "features",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Supported Firmware",
+        "slug": "supported-firmware",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Additional Resources",
+        "slug": "additional-resources",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Where to Buy",
+        "slug": "where-to-buy",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "FAQs",
+        "slug": "faqs",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Compatible With",
+        "slug": "compatible-with",
         "children": []
       }
     ],
-    "path": "/glossary/makers.html",
-    "pathLocale": "/",
-    "extraFields": [
-      "AC",
-      "BMD",
-      "SHA"
-    ]
-  },
-  {
-    "title": "Advanced Guide",
-    "headers": [],
-    "path": "/guides/advanced.html",
-    "pathLocale": "/",
-    "extraFields": [
-      ""
-    ]
-  },
-  {
-    "title": "Getting Started",
-    "headers": [],
-    "path": "/guides/getting-started.html",
-    "pathLocale": "/",
-    "extraFields": [
-      ""
-    ]
-  },
-  {
-    "title": "Creating new documents & structure guide",
-    "headers": [
-      {
-        "level": 2,
-        "title": "h2 Heading",
-        "slug": "h2-heading",
-        "children": [
-          {
-            "level": 3,
-            "title": "h3 Heading",
-            "slug": "h3-heading",
-            "children": []
-          }
-        ]
-      }
-    ],
-    "path": "/templates/",
+    "path": "/templates/hardware-template.html",
     "pathLocale": "/",
     "extraFields": [
       "tag1",
@@ -181,57 +158,72 @@ export const searchIndex = [
         "title": "Line Highlighting in Code Blocks",
         "slug": "line-highlighting-in-code-blocks",
         "children": []
+      },
+      {
+        "level": 2,
+        "title": "Images",
+        "slug": "images",
+        "children": []
       }
     ],
-    "path": "/templates/example.html",
+    "path": "/templates/markdown.html",
     "pathLocale": "/",
     "extraFields": []
   },
   {
-    "title": "Board Name (Blank Template)",
+    "title": "Acronyms",
+    "headers": [],
+    "path": "/glossary/acronyms.html",
+    "pathLocale": "/",
+    "extraFields": [
+      "OXRS",
+      "LSC"
+    ]
+  },
+  {
+    "title": "OXRS Compatible Boards",
+    "headers": [],
+    "path": "/glossary/boards.html",
+    "pathLocale": "/",
+    "extraFields": [
+      "OXRS-SHA-RCESP32",
+      "OXRS-BMD-UIO16"
+    ]
+  },
+  {
+    "title": "Makers",
     "headers": [
       {
         "level": 2,
-        "title": "Features",
-        "slug": "features",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Supported Firmware",
-        "slug": "supported-firmware",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Additional Resources",
-        "slug": "additional-resources",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Where to Buy",
-        "slug": "where-to-buy",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "FAQs",
-        "slug": "faqs",
-        "children": []
-      },
-      {
-        "level": 2,
-        "title": "Compatible With",
-        "slug": "compatible-with",
+        "title": "Registered Maker Designators",
+        "slug": "registered-maker-designators",
         "children": []
       }
     ],
-    "path": "/templates/hardware-template.html",
+    "path": "/glossary/makers.html",
     "pathLocale": "/",
     "extraFields": [
-      "tag1",
-      "tag2"
+      "AC",
+      "BMD",
+      "SHA"
+    ]
+  },
+  {
+    "title": "Advanced Guide",
+    "headers": [],
+    "path": "/guides/advanced.html",
+    "pathLocale": "/",
+    "extraFields": [
+      ""
+    ]
+  },
+  {
+    "title": "Getting Started",
+    "headers": [],
+    "path": "/guides/getting-started.html",
+    "pathLocale": "/",
+    "extraFields": [
+      ""
     ]
   },
   {

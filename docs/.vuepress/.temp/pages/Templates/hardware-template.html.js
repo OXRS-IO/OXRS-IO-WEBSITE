@@ -50,8 +50,14 @@ export const data = {
   ],
   "filePathRelative": "templates/hardware-template.md",
   "git": {
-    "updatedTime": null,
-    "contributors": []
+    "updatedTime": 1630798596000,
+    "contributors": [
+      {
+        "name": "Aaron Knox",
+        "email": "aaron_knox@me.com",
+        "commits": 1
+      }
+    ]
   }
 }
 

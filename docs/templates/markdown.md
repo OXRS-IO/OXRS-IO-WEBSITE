@@ -312,5 +312,5 @@ All images are to be located in the `.vuepress/public/images` directory. Images 
 > Example image is 1024px wide
 
 :::warning Image Resizing
-Please ensure you resize you images to ensure they are a maximum of **1024px wide** and a sensible file size. Support image extension **.png**, **.jpg**, **.webp**
+Please ensure you resize your images to ensure they are a maximum of **1024px wide** and a sensible file size. Support image extension **.png**, **.jpg**, **.webp**
 :::

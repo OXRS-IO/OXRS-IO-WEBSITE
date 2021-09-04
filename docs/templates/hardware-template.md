@@ -44,7 +44,7 @@ Answer first faq here
 - Some hardware name [Link](https://oxrs.com)
 
 ---
-# Get started creating or editing you first Hardware Page.
+# Get started creating or editing your first Hardware Page.
 ::: tip Hardware Document Template
 Copy the template syntax below for the above page temaplte
 :::
