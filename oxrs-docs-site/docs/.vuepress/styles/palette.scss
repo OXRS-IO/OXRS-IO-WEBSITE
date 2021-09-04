@@ -1,0 +1,40 @@
+div.theme-default-content:not(.custom) {
+  max-width: 1024px;
+}
+
+.home {
+  max-width: 1024px;
+}
+
+:root {
+  // brand colors
+  --c-brand: #48C0C7;
+  --c-brand-light: #48C0C7;
+
+}
+html.dark {
+
+    --c-brand: #48C0C7;
+    --c-brand-light: #48C0C7;
+    //textcolors
+    --c-text: white;
+    --c-text-light: #white;
+    // --c-text-lighter: #white;
+}
+
+table:nth-of-type(1) {
+  display:table;
+  width:100%;
+}
+table:nth-of-type(2) th:nth-of-type(2) {
+  width:33%;
+}
+
+p.maker {
+  margin-top: -15px!important;
+  color: var(--c-brand-light);
+}
+
+.sidebar-item {
+  font-weight: bold;
+}
