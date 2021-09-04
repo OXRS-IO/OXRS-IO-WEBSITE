@@ -24,7 +24,7 @@ footer: Created by 🐿 | Maintained by SuperHouse.tv
 
 It aims to make it easier for anyone to build their own rack-mount devices by providing these foundational pieces in a modular form.
 
-![OXRS-prototype](/images/OXRS-prototype-1.jpg)
+![OXRS-prototype](/images/oxrs-prototype-1.jpg)
 
 
 This convention grew out of DIY home automation systems developed by members of the SuperHouse Automation Discord server, but also has applications for industrial control, networking, audio, video, and data center equipment.
@@ -42,6 +42,6 @@ When individuals undertake DIY rack-mount projects it’s necessary to re-invent
 ### Mechanical and Electrical Compatibility
 The convention outlines mechanical dimensions for enclosures including front panel cutouts and internal PCB mounts, allowing individual Makers and companies to produce components that are mechanically and electrically compatible.
 
-![OXRS-prototype](/images/OXRS-prototype-2.jpg)
+![OXRS-prototype](/images/oxrs-prototype-2.jpg)
 
 To join in the discussion, see the [SuperHouse Discord](https://www.superhouse.tv/discord) server
