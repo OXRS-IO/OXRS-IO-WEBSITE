@@ -55,6 +55,6 @@
 </div>
 <h2 id="compatible-hardware" tabindex="-1"><a class="header-anchor" href="#compatible-hardware" aria-hidden="true">#</a> Compatible Hardware</h2>
 <ul>
-<li>Universal Input/Output (UIO) 16Port <RouterLink to="/docs/hardware/io-boards/universal-input-output-uio-16port.html">Link</RouterLink></li>
+<li>Universal Input/Output (UIO) 16Port <RouterLink to="/docs/hardware/input-output-devices/universal-input-output-uio-16port.html">Link</RouterLink></li>
 </ul>
 </template>

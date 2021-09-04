@@ -41,3 +41,18 @@ p.maker {
 .sidebar-item {
   font-weight: bold;
 }
+
+.custom-container.tip {
+  border-color: #48C0C7;
+  background-color: var(--c-tip-bg);
+  color: var(--c-tip-text);
+}
+
+.badge.tip {
+  background-color: #48C0C7;
+  padding: 5px 10px;
+}
+
+.custom-container.danger a {
+  color: #48C0C7;
+}

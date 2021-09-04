@@ -2,7 +2,7 @@
 tags: ["AC","BMD", "SHA",]
 ---
 # Makers
-If you woul dlike to register to get a unique maker designator please....
+If you would like to register to get a unique maker designator please....
 
 ## Registered Maker Designators
 

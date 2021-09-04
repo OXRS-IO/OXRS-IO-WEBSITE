@@ -61,4 +61,4 @@ TODO - Jon to supply some FAQ's
 :::
 
 ## Compatible Hardware
-- Universal Input/Output (UIO) 16Port [Link](/docs/hardware/io-boards/universal-input-output-uio-16port.html)
+- Universal Input/Output (UIO) 16Port [Link](/docs/hardware/input-output-devices/universal-input-output-uio-16port.html)

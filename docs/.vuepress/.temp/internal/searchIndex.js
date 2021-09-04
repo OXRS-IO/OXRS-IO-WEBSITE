@@ -52,17 +52,9 @@ export const searchIndex = [
     "path": "/glossary/makers.html",
     "pathLocale": "/",
     "extraFields": [
+      "AC",
       "BMD",
       "SHA"
-    ]
-  },
-  {
-    "title": "Hello Docs",
-    "headers": [],
-    "path": "/docs/",
-    "pathLocale": "/",
-    "extraFields": [
-      ""
     ]
   },
   {
@@ -81,6 +73,165 @@ export const searchIndex = [
     "pathLocale": "/",
     "extraFields": [
       ""
+    ]
+  },
+  {
+    "title": "Creating new documents & structure guide",
+    "headers": [
+      {
+        "level": 2,
+        "title": "h2 Heading",
+        "slug": "h2-heading",
+        "children": [
+          {
+            "level": 3,
+            "title": "h3 Heading",
+            "slug": "h3-heading",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "path": "/templates/",
+    "pathLocale": "/",
+    "extraFields": [
+      "tag1",
+      "tag2"
+    ]
+  },
+  {
+    "title": "Markdown Extensions",
+    "headers": [
+      {
+        "level": 2,
+        "title": "Header Anchors",
+        "slug": "header-anchors",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Links",
+        "slug": "links",
+        "children": [
+          {
+            "level": 3,
+            "title": "Internal Links",
+            "slug": "internal-links",
+            "children": []
+          },
+          {
+            "level": 3,
+            "title": "Redirection for URLs",
+            "slug": "redirection-for-urls",
+            "children": []
+          },
+          {
+            "level": 3,
+            "title": "Page Suffix",
+            "slug": "page-suffix",
+            "children": []
+          },
+          {
+            "level": 3,
+            "title": "External Links",
+            "slug": "external-links",
+            "children": []
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "title": "GitHub-Style Tables",
+        "slug": "github-style-tables",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Emoji 🎉",
+        "slug": "emoji",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Custom Containers",
+        "slug": "custom-containers",
+        "children": [
+          {
+            "level": 3,
+            "title": "Default Title",
+            "slug": "default-title",
+            "children": []
+          },
+          {
+            "level": 3,
+            "title": "Custom Title",
+            "slug": "custom-title",
+            "children": []
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Syntax Highlighting in Code Blocks",
+        "slug": "syntax-highlighting-in-code-blocks",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Line Highlighting in Code Blocks",
+        "slug": "line-highlighting-in-code-blocks",
+        "children": []
+      }
+    ],
+    "path": "/templates/example.html",
+    "pathLocale": "/",
+    "extraFields": []
+  },
+  {
+    "title": "Board Name (Blank Template)",
+    "headers": [
+      {
+        "level": 2,
+        "title": "Features",
+        "slug": "features",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Supported Firmware",
+        "slug": "supported-firmware",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Additional Resources",
+        "slug": "additional-resources",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Where to Buy",
+        "slug": "where-to-buy",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "FAQs",
+        "slug": "faqs",
+        "children": []
+      },
+      {
+        "level": 2,
+        "title": "Compatible With",
+        "slug": "compatible-with",
+        "children": []
+      }
+    ],
+    "path": "/templates/hardware-template.html",
+    "pathLocale": "/",
+    "extraFields": [
+      "tag1",
+      "tag2"
     ]
   },
   {
@@ -218,7 +369,7 @@ export const searchIndex = [
         "children": []
       }
     ],
-    "path": "/docs/hardware/output-devices/hardware-template.html",
+    "path": "/docs/hardware/input-devices/hardware-template.html",
     "pathLocale": "/",
     "extraFields": [
       "tag1",
@@ -265,7 +416,7 @@ export const searchIndex = [
         "children": []
       }
     ],
-    "path": "/docs/hardware/input-devices/hardware-template.html",
+    "path": "/docs/hardware/output-devices/hardware-template.html",
     "pathLocale": "/",
     "extraFields": [
       "tag1",
@@ -329,3 +480,16 @@ export const searchIndex = [
     "extraFields": []
   }
 ]
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updateSearchIndex) {
+    __VUE_HMR_RUNTIME__.updateSearchIndex(searchIndex)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ searchIndex }) => {
+    __VUE_HMR_RUNTIME__.updateSearchIndex(searchIndex)
+  })
+}

@@ -1,5 +1,5 @@
 <template><h1 id="makers" tabindex="-1"><a class="header-anchor" href="#makers" aria-hidden="true">#</a> Makers</h1>
-<p>If you woul dlike to register to get a unique maker designator please....</p>
+<p>If you would like to register to get a unique maker designator please....</p>
 <h2 id="registered-maker-designators" tabindex="-1"><a class="header-anchor" href="#registered-maker-designators" aria-hidden="true">#</a> Registered Maker Designators</h2>
 <table>
 <thead>
@@ -10,6 +10,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td style="text-align:left">AC</td>
+<td style="text-align:left">Austin's Creations</td>
+<td style="text-align:left"><a href="https://www.austinscreations.ca/" target="_blank" rel="noopener noreferrer">https://www.austinscreations.ca/<OutboundLink/></a></td>
+</tr>
 <tr>
 <td style="text-align:left">BMD</td>
 <td style="text-align:left">Bedrock Media Designs</td>
