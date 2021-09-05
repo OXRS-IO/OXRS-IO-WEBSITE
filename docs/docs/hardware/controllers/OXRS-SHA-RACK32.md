@@ -1,13 +1,13 @@
 ---
-tags: ["OXRS-SHA-RCESP32", "URC", "RACK32"]
+tags: ["OXRS-SHA-RACK32", "URC", "RACK32"]
 ---
 # Rack32
 <p class="maker">by <b>SuperHouse Automation</b></p>
 
-> SKU: OXRS-SHA-RCESP32
+> SKU: OXRS-SHA-RACK32
 
 <!-- Board Image -->
-![Bedrock Media Designs Universal Input/Output (UIO) 16Port](/images/rack32.jpg)
+![SuperHouse Automation Rack32 ESP32 control board](/images/OXRS-SHA-RACK32.jpg)
 
 <!-- Board Description -->
 A general purpose control board for rack mount projects.
