@@ -1,0 +1,34 @@
+image: node:latest
+
+stages:
+  - build
+  - deploy
+
+generate:
+  stage: build
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - |
+      {
+        npm ci &&
+        npm run build
+      }
+  artifacts:
+    paths:
+      - web
+    expire_in: 1 week
+
+# the 'pages' job will deploy and build your site to the 'public' path
+pages:
+  stage: deploy
+  dependencies:
+    - generate
+  script:
+    - mv web public
+  artifacts:
+    paths:
+      - public
+    expire_in: 1 week
+  only:
+    - master # this job will affect only the 'master' branch
