@@ -4,28 +4,29 @@ stages:
   - build
   - deploy
 
-generate:
+build:
   stage: build
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - |
       {
         npm ci &&
-        npm run build
+        npm run build &&
+        mv ./docs/.vuepress/dist ./dist
       }
   artifacts:
     paths:
-      - web
+      - dist
     expire_in: 1 week
 
 # the 'pages' job will deploy and build your site to the 'public' path
 pages:
   stage: deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   dependencies:
-    - generate
+    - build
   script:
-    - mv web public
+    - mv dist public
   artifacts:
     paths:
       - public
