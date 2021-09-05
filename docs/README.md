@@ -15,7 +15,7 @@ features:
   - title: What
     details: The Open eXtensible Rack System (OXRS) is a convention for building rack-mount devices using standardised chassis designs and modules.
   - title: Why
-    details: The IoT marketplace can oftern be fragmented and difficult to traverse. Devices created under OXRS convention by the community will be standardised to assist in compatibility.
+    details: The IoT marketplace can often be fragmented and difficult to traverse. Devices created under OXRS convention by the community will be standardised to assist in compatibility.
 footer: Created by 🐿 | Maintained by SuperHouse.tv
 ---
 <hr>
