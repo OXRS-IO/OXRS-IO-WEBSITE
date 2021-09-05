@@ -1,4 +1,8 @@
-# Markdown Extensions
+# Markdown Guide
+
+::: tip Support
+Below shows all the supported markdown for the OXRS Docs, if you have any issues or need support please raise an issue on the [OXRS Github](https://github.com/SuperHouse/OXRS/issues)
+:::
 
 ## Header Anchors
 

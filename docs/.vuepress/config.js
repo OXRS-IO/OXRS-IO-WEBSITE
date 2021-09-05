@@ -48,14 +48,31 @@ module.exports = {
             text: 'Advanced',
             link: '/guides/advanced.md',
           },
+          {
+            text: 'Writing Docs',
+            children: [
+              {
+                text: 'Getting Started',
+                link: '/guides/getting-started.md'
+              },
+              {
+                text: 'Markdown Guide',
+                link: '/templates/markdown.md'
+              },
+              {
+                text: 'Doc Templates',
+                link: '/templates/README.md'
+              }
+            ]
+          },
         ],
       },
       {
         text: 'Glossary',
         children: [
           {
-            text: 'Boards',
-            link: '/glossary/boards.md',
+            text: 'SKU\'s',
+            link: '/glossary/skus.md',
           },
           {
             text: 'Makers',
@@ -106,7 +123,12 @@ module.exports = {
           text: 'Firmware',
           link: '/docs/firmware/README.md',
           children: [
-              '/docs/firmware/uio-fw.md',
+            {
+              text: 'ESP32',
+              children: [
+                  '/docs/firmware/state-monitor-esp32.md',
+              ],
+            },
           ],
         }
       ],

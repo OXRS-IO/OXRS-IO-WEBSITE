@@ -56,3 +56,8 @@ p.maker {
 .custom-container.danger a {
   color: #48C0C7;
 }
+
+.language-shell.line-numbers-mode
+  .line-numbers-wrapper {
+    display: none;
+  }
