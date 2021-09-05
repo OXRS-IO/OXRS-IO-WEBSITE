@@ -21,11 +21,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Run Release
-        id: build-and-release
-      - run: npm ci
-      - run: npm run build
-      - run: mv ./docs/.vuepress/dist ./dist
+      - name: NPM I
+        run: npm ci
+
+      - name: NPM Build
+        run: npm run build
+      
+      - name: Move dist dir for release
+        run: mv ./docs/.vuepress/dist ./dist
       
       - name: Deploy to GitHub Pages
         if: success()
