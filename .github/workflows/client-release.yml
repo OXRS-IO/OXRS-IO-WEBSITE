@@ -29,6 +29,9 @@ jobs:
       
       - name: Move dist dir for release
         run: mv ./docs/.vuepress/dist ./dist
+
+      - name: Custom domain - github pages
+        run: echo 'oxrs.io' > ./dist/CNAME
       
       - name: Deploy to GitHub Pages
         if: success()
