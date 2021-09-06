@@ -7,7 +7,7 @@ tags: ["OXRS-SHA-RACK32", "URC", "RACK32"]
 > SKU: OXRS-SHA-RACK32
 
 <!-- Board Image -->
-![SuperHouse Automation Rack32 ESP32 control board](/images/oxrs-sha-rack32.jpg)
+![SuperHouse Automation Rack32 ESP32 control board](/images/oxrs-rack32.jpg)
 
 <!-- Board Description -->
 A general purpose control board for rack mount projects.
