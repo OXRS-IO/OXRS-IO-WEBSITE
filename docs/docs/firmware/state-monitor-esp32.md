@@ -39,11 +39,9 @@ A single I2C bus can only support up to a maximum of 8x MCP23017 chips (addresse
 ## Configuration
 ### Inputs
 Each INPUT can be configured by publishing an MQTT message to this topic:
-
 ```
 [PREFIX/]conf/CLIENTID[/SUFFIX]
 ```
-
 where:
 - `PREFIX`: Optional topic prefix if required
 - `CLIENTID`: Client id of device, defaults to `osm-<MACADDRESS>`
@@ -58,11 +56,11 @@ A null or empty value will reset the configuration to:
 - `type`: `switch`
 - `invert`: `off` <Badge text="non-inverted"/>
 
-#### Examples
+### Examples
 To configure input 4 to be a contact sensor:
 ``` json
 { 
-  "input": 4, 
+  "index": 4, 
   "type": "contact" 
 }
 ```
@@ -70,7 +68,7 @@ To configure input 4 to be a contact sensor:
 To configure input 7 to be an inverted button:
 ``` json
 { 
-  "input": 7, 
+  "index": 7, 
   "type": "button", 
   "invert": "on" 
 }
@@ -80,7 +78,7 @@ A retained message will ensure the device auto-configures on startup.
 
 **NOTE: inverting a normally-open (NO) button input will result in a constant stream of `hold` events!**
 
-### Events
+## Events
 An input EVENT is reported to a topic of the form:
 ```
 [PREFIX/]stat/CLIENTID[/SUFFIX]
@@ -105,7 +103,7 @@ Where `event` can be one of (depending on type):
 - `toggle`:   `toggle`
 
 ### Examples
-A contact opening on `input 7`
+A contact opening on input 7;
 ```json
 { 
   "port": 2, 
@@ -116,7 +114,7 @@ A contact opening on `input 7`
 }
 ```
 
-A triple button click on `input 4`
+A triple button click on input 4;
 ```json
 { 
   "port": 1, 
