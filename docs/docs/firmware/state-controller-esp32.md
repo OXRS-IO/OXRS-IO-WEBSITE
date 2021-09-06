@@ -165,9 +165,9 @@ A timer turning off for output 12;
 
 ## Supported Hardware
 This firmware is compatible with the boards;
-* https://www.superhouse.tv/product/8-channel-relay-driver-shield/
-* https://bmdesigns.com.au/shop/relay128-128-channel-relay-driver/
-* https://bmdesigns.com.au/shop/relay16-16-channel-relay-driver/
+* [8 Channel Relay Driver Shield](https://www.superhouse.tv/product/8-channel-relay-driver-shield/) by SuperHouse
+* [128 Channel Relay Driver](https://bmdesigns.com.au/shop/relay128-128-channel-relay-driver/) by Bedrock Media Designs
+* [16 Channel Relay Driver](https://bmdesigns.com.au/shop/relay16-16-channel-relay-driver/) by Bedrock Media Designs
 
 And is designed to run on the [RACK32](/docs/hardware/controllers/rack32.html) as part of the [OXRS](https://oxrs.io) eco-system.
 
