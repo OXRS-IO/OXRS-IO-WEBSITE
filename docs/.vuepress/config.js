@@ -127,6 +127,7 @@ module.exports = {
               text: 'ESP32',
               children: [
                   '/docs/firmware/state-monitor-esp32.md',
+                  '/docs/firmware/state-controller-esp32.md',
               ],
             },
           ],
