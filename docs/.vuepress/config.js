@@ -17,6 +17,12 @@ module.exports = {
     ],
   ],
   themeConfig: {
+    lastUpdated: true,
+    contributors: true,
+    docsRepo: 'https://github.com/OXRS-IO/OXRS-IO-WEBSITE',
+    docsBranch: 'main',
+    docsDir: 'docs',
+    editLinkPattern: ':repo/-/edit/:branch/:path',
     logo: '/images/hero.png',
     sidebarDepth: 3,
     navbar: [
