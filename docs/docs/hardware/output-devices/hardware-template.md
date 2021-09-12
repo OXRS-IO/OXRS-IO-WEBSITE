@@ -37,8 +37,8 @@ Answer first faq here
 ::: tip Maker Info
 **Maker:** Insert Maker Name
 
-**Link:** [Insert Maker Name](https://oxrs.com)
+**Link:** [Insert Maker Name](https://oxrs.io)
 :::
 
 ## Compatible With
-- Some hardware name [Link](https://oxrs.com)
+- Some hardware name [Link](https://oxrs.io)
