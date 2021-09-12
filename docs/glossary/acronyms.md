@@ -16,3 +16,4 @@ You can use the site search to find an Acronym
 | 🐿  | Steve (Streams That End Very Eventually!) | [Twitter](https://twitter.com/SuperHouseTV/status/1403850202205671425?s=20) |
 | OXRS | Open eXtensible Rack | [http://oxrs.io/](http://oxrs.io/) |
 | LSC | Light Switch Controller | N/A |
+| SDC | Smoke Detector Controller | N/A |
