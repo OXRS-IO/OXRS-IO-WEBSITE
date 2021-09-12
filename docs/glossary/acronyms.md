@@ -13,6 +13,6 @@ You can use the site search to find an Acronym
 <!-- Ensure you add new Acronyms to the tages above for search -->
 | Acronym | Definition | Link      |
 | :-----------------|:----------| :---------|
-| 🐿  | Steve | [Twitter](https://twitter.com/SuperHouseTV/status/1403850202205671425?s=20) |
+| 🐿  | Steve (Streams That End Very Eventually!) | [Twitter](https://twitter.com/SuperHouseTV/status/1403850202205671425?s=20) |
 | OXRS | Open eXtensible Rack | [http://oxrs.io/](http://oxrs.io/) |
 | LSC | Light Switch Controller | N/A |
