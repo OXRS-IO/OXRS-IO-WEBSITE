@@ -19,7 +19,7 @@ jobs:
         run: rm -rfv ./*
 
       - name: Clone repo (needed for contribs)
-        run: git clone https://github.com/OXRS-IO/OXRS-IO-WEBSITE.git
+        run: git clone https://github.com/OXRS-IO/OXRS-IO-WEBSITE.git ./
 
       - name: NPM I
         run: npm ci
