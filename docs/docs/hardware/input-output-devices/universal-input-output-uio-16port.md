@@ -1,10 +1,10 @@
 ---
-tags: ["Bedrock Media Design", "relays", "OXRS-BMD-UIO16", "Universal Input/Output (UIO) 16Port" ]
+tags: ["Bedrock Media Design", "relays", "OXRS-BMD-SD16", "Smoke Detector Controller (SD) 16Port" ]
 ---
-# Universal Input/Output (UIO) 16Port 
+# Smoke Detector (SD) 16Port 
 <p class="maker">by <b>Bedrock Media Designs</b></p>
 
-> SKU: OXRS-BMD-UIO16
+> SKU: OXRS-BMD-SD16
 
 
 ![Bedrock Media Designs Universal Input/Output (UIO) 16Port](/images/uio-16.jpg)
@@ -21,8 +21,8 @@ The (UIO) Uses MCP23017 I2C I/O buffers for controlling relays and to detect dig
 
 ## Supported Firmware
 Requires a Controller to run the following supported firmware:
-- OXRS-SHA-StateController-ESP32-FW  [Github](https://github.com/SuperHouse/OXRS-SHA-StateController-ESP32-FW)
-- OXRS-SHA-StateMonitor-ESP32-FW [Github](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW)
+- OXRS-BMD-SMOKEDETECTOR-ESP32-FW  [Github](https://github.com/SuperHouse/OXRS-SHA-SmokeDetector-ESP32-FW)
+
 
 ## Additional Resources
 - [Bedrock Media Designs Wiki](https://wiki.bmdesigns.com.au/en/BMD-urc-uio)
