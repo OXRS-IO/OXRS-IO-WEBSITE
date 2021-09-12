@@ -15,11 +15,11 @@ jobs:
         node-version: [14.x]
     
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
+      - name: Cleanup working dir
+        run: rm -rfv ./*
+
+      - name: Clone repo (needed for contribs)
+        run: git clone https://github.com/OXRS-IO/OXRS-IO-WEBSITE.git
 
       - name: NPM I
         run: npm ci
