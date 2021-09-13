@@ -59,15 +59,15 @@ module.exports = {
             children: [
               {
                 text: 'Getting Started',
-                link: '/guides/getting-started.md'
+                link: '/guides/writing-docs/getting-started.md'
               },
               {
                 text: 'Markdown Guide',
-                link: '/templates/markdown.md'
+                link: '/guides/writing-docs/markdown.md'
               },
               {
                 text: 'Doc Templates',
-                link: '/templates/README.md'
+                link: '/guides/writing-docs/templates/README.md'
               }
             ]
           },
