@@ -54,8 +54,7 @@ Timers allow an output to automatically turn `off` a set number of seconds after
 If another `on` command is sent while the timer is running, it will reset to zero and being counting down again. If an `off` command is sent the timer will be cancelled and the output turned `off` immediately.
 
 ## Configuration
-### Inputs
-Each INPUT can be configured by publishing an MQTT message to this topic:
+Each INPUT or OUTPUT can be configured by publishing an MQTT message to this topic:
 ```
 [PREFIX/]conf/CLIENTID[/SUFFIX]
 ```
@@ -65,34 +64,21 @@ where:
 - `SUFFIX`: Optional topic suffix if required
     
 The message payload should be JSON and contain:
-- `index`: Mandatory, the index of the input to configure
-- `type`: Optional, either `button`, `contact`, `switch` or `toggle`
-- `invert`: Optional, either `on` or `off`
-    
-A null or empty value will reset the configuration to:
-- `type`: `switch`
-- `invert`: `off` <Badge text="non-inverted"/>
+
+### Inputs
+|Config|Possible Values|Default|
+|------|---------------|-------|
+|`index` |Mandatory, index of the input to configure|N/A|
+|`type` |Optional, either `button`, `contact`, `switch` or `toggle`|`switch`|
+|`invert` |Optional, either `on` or `off`|`off` <Badge text="non-inverted"/>|
 
 ### Outputs
-Each OUTPUT can be configured by publishing an MQTT message to this topic:
-```
-[PREFIX/]conf/CLIENTID[/SUFFIX]
-```
-where:
-- `PREFIX`: Optional topic prefix if required
-- `CLIENTID`: Client id of device, defaults to `osd-<MACADDRESS>`
-- `SUFFIX`: Optional topic suffix if required
-    
-The message payload should be JSON and contain:
-- `index`: Mandatory, the index of the output to configure
-- `type`: Optional, either `motor`, `relay`, or `timer`
-- `interlockIndex`: Optional, index to interlock with (lock the opposite for interlocking both ways)
-- `timerSeconds`: Optional, number of seconds an output stays `on` when type set to `timer`
-
-A null or empty value will reset the configuration to:
-- `type`: `relay`
-- `interlockIndex`: unlocked (i.e. self-interlocked)
-- `timerSeconds`: 60 seconds
+|Config|Possible Values|Default|
+|------|---------------|-------|
+|`index` |Mandatory, index of the output to configure|N/A|
+|`type` |Optional, either `motor`, `relay`, or `timer`|`relay`|
+|`interlockIndex` |Optional, index to interlock with (lock the opposite for interlocking both ways or self-lock to disable interlocking)|No interlock|
+|`timerSeconds` |Optional, number of seconds an output stays `on` when type set to `timer`|60 seconds|
 
 ### Examples
 To configure input 3 to be a contact sensor:
