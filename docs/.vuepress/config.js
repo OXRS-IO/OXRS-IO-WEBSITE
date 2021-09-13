@@ -124,7 +124,13 @@ module.exports = {
               children: [
                   '/docs/hardware/input-output-devices/smoke-detector-sd-16port.md',
               ],
-            }
+            },
+            {
+              text: 'Shields',
+              children: [
+                  '/docs/hardware/shields/rack32-knx-shield.md',
+              ],
+            }            
           ],
         },
       ],
