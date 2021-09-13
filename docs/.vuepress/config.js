@@ -59,15 +59,15 @@ module.exports = {
             children: [
               {
                 text: 'Getting Started',
-                link: '/guides/getting-started.md'
+                link: '/guides/writing-docs/getting-started.md'
               },
               {
                 text: 'Markdown Guide',
-                link: '/templates/markdown.md'
+                link: '/guides/writing-docs/markdown.md'
               },
               {
                 text: 'Doc Templates',
-                link: '/templates/README.md'
+                link: '/guides/writing-docs/templates/README.md'
               }
             ]
           },
@@ -90,6 +90,10 @@ module.exports = {
           },
         ],
       },
+      {
+        text: 'GitHub',
+        link: 'https://github.com/OXRS-IO/',
+      },
     ],
     sidebar: {
       '/docs/hardware': [
@@ -103,24 +107,30 @@ module.exports = {
                   '/docs/hardware/controllers/rack32.md',
               ],
             },
-            {
-              text: 'Input Devices',
-              children: [
-                  '/docs/hardware/input-devices/hardware-template.md',
-              ],
-            },
-            {
-              text: 'Output Devices',
-              children: [
-                  '/docs/hardware/output-devices/hardware-template.md',
-              ],
-            },
+            // {
+            //   text: 'Input Devices',
+            //   children: [
+            //       '/docs/hardware/input-devices/hardware-template.md',
+            //   ],
+            // },
+            // {
+            //   text: 'Output Devices',
+            //   children: [
+            //       '/docs/hardware/output-devices/hardware-template.md',
+            //   ],
+            // },
             {
               text: 'Input & Output Devices',
               children: [
-                  '/docs/hardware/input-output-devices/universal-input-output-uio-16port.md',
+                  '/docs/hardware/input-output-devices/smoke-detector-sd-16port.md',
               ],
-            }
+            },
+            {
+              text: 'Shields',
+              children: [
+                  '/docs/hardware/shields/rack32-knx-shield.md',
+              ],
+            }            
           ],
         },
       ],
@@ -134,6 +144,7 @@ module.exports = {
               children: [
                   '/docs/firmware/state-monitor-esp32.md',
                   '/docs/firmware/state-controller-esp32.md',
+                  '/docs/firmware/smoke-detector-esp32.md',
               ],
             },
           ],

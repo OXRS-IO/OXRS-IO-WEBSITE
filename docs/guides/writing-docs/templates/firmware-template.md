@@ -72,6 +72,9 @@ Cupim drumstick swine venison short loin capicola bacon picanha spare ribs tongu
 
 **NOTE: Sirloin turducken hamburger (NO) Cupim drumstick swine venison short loin capicola bacon `LOOK` burgdoggen!**
 
+## Downloads
+Download the latest version of the firmware on [Github](https://github.com/OXRS-IO/OXRS-IO-WEBSITE).
+
 ## Supported Hardware
 - Buffalo boudin meatball ball tip spare ribs. [OXRS Internal Hardware Link](/docs/hardware/controllers/rack32.html)
 - Buffalo boudin meatball ball tip spare ribs. [OXRS Internal Hardware Link](/docs/hardware/controllers/rack32.html)

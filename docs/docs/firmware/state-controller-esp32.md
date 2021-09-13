@@ -57,15 +57,20 @@ where:
 - `SUFFIX`: Optional topic suffix if required
 
 The message payload should be JSON and contain:
-- `index`:          Mandatory, the index of the output to configure
-- `type`:           Optional, either `motor`, `relay`, or `timer`
-- `interlockIndex`: Optional, index to interlock with (lock the opposite for interlocking both ways)
-- `timerSeconds`:   Number of seconds an output stays `on` when type set to `timer`
-    
-A null or empty value will reset the configuration to:
-- `type`:           `relay`
-- `interlockIndex`: unlocked (i.e. self-interlocked)
-- `timerSeconds`:   60 seconds
+
+|Key|Mandatory|Value|Default|
+|---|---------|-----|-------|
+|`index`|Mandatory|Index of the output to configure|N/A|
+|`type`|Optional|Either `motor`, `relay`, or `timer`|`relay`|
+|`interlockIndex`|Optional|Index to interlock with (lock the opposite for interlocking both ways or self-lock to disable interlocking)|Self-locked|
+|`timerSeconds` |Optional|Number of seconds an output stays `on` when type set to `timer`|60 seconds|
+
+The only difference between `motor` and `relay` outputs is the interlock delay (if an interlock is configured). 
+
+|Output Type |Interlock delay|
+|------------|---------------|
+|`motor`     |2000ms         |
+|`relay`     |500ms          |
 
 #### Examples
 To configure output 4 to be a 60 second timer:
@@ -85,15 +90,9 @@ To configure output 7 to drive a motor:
 }
 ```
 
+::: tip
 A retained message will ensure the device auto-configures on startup.
-
-The only difference between `motor` and `relay` outputs is the interlock delay (if an interlock is configured). 
-
-|Output Type |Interlock delay|
-|------------|---------------|
-|`motor`     |2000ms         |
-|`relay`     |500ms          |
-
+:::
 
 ## Commands
 Each OUTPUT can be controlled by publishing an MQTT message to the topic;
@@ -106,10 +105,15 @@ where;
 - `SUFFIX`:   Optional topic suffix if required
 
 The message payload should be JSON and contain:
-- `index`:    Mandatory, the index of the output to configure
-- `command`:  Either `on`, `off`, or `query`
 
+|Key|Mandatory|Value|Default|
+|---|---------|-----|-------|
+|`index`|Mandatory|Index of the output to switched|N/A|
+|`command`|Mandatory|Either `on`, `off`, or `query`|`query`|
+
+::: tip
 The `query` command will cause an event to be published, with the current state of that output.
+:::
     
 ### Examples
 To turn on output 4:
@@ -139,9 +143,18 @@ where;
 - `SUFFIX`:   Optional topic suffix if required
 
 The message payload is JSON and contains:
-- `index`:    The index of this event (1-128)
-- `type`:     Either `motor`, `relay`, or `timer`
-- `event`:    Either `on` or `off`
+
+|Key|Value|
+|---|-----|
+|`index`|Index of this event (1-128)|
+|`type`|Event type (see below)|
+|`event`|Event (see below)|
+
+|Event Type|Event|
+|----------|-----|
+|`motor`|`on` or `off`|
+|`relay`|`on` or `off`|
+|`timer`|`on` or `off`|
 
 ### Examples
 A relay turning on for output 6;
@@ -161,6 +174,9 @@ A timer turning off for output 12;
   "event": "off"
 }
 ```
+
+## Downloads
+Download the latest version of the firmware on [Github](https://github.com/SuperHouse/OXRS-SHA-StateController-ESP32-FW).
 
 
 ## Supported Hardware
