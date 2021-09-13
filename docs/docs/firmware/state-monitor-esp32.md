@@ -48,13 +48,16 @@ where:
 - `SUFFIX`: Optional topic suffix if required
     
 The message payload should be JSON and contain:
-- `index`: Mandatory, the index of the input to configure
-- `type`: Optional, either `button`, `contact`, `rotary`, `switch` or `toggle`
-- `invert`: Optional, either `on` or `off`
-    
-A null or empty value will reset the configuration to:
-- `type`: `switch`
-- `invert`: `off` <Badge text="non-inverted"/>
+
+|Key|Mandatory|Value|Default|
+|---|---------|-----|-------|
+|`index`|Mandatory|Index of the input to configure|N/A|
+|`type`|Optional|Either `button`, `contact`, `rotary`, `switch` or `toggle`|`switch`|
+|`invert`|Optional|Either `on` or `off`|`off` <Badge text="non-inverted"/>|
+
+::: warning
+Inverting a normally-open (NO) button input will result in a constant stream of `hold` events!
+:::
 
 ### Examples
 To configure input 4 to be a contact sensor:
@@ -74,9 +77,9 @@ To configure input 7 to be an inverted button:
 }
 ```
 
+::: tip
 A retained message will ensure the device auto-configures on startup.
-
-**NOTE: inverting a normally-open (NO) button input will result in a constant stream of `hold` events!**
+:::
 
 ## Events
 An input EVENT is reported to a topic of the form:
@@ -89,18 +92,22 @@ where;
 - `SUFFIX`:   Optional topic suffix if required
 
 The message payload is JSON and contains:
-- `port`:     The port this event occured on (1-32)
-- `channel`:  The channel this event occured on (1-4)
-- `index`:    The index of this event (1-128)
-- `type`:     Either `button`, `contact`, `rotary`, `switch` or `toggle`
-- `event`:    The type of event (see below)
 
-Where `event` can be one of (depending on type):
-- `button`:   `single`, `double`, `triple`, `quad`, `penta`, or `hold`
-- `contact`:  `open` or `closed`
-- `rotary`:   `up` or `down`
-- `switch`:   `on` or `off`
-- `toggle`:   `toggle`
+|Key|Value|
+|---|-----|
+|`port`|Port this event occured on (1-32)|
+|`channel`|Channel this event occured on (1-4)|
+|`index`|Index of this event (1-128)|
+|`type`|Event type (see below)|
+|`event`|Event (see below)|
+
+|Event Type|Event|
+|----------|-----|
+|`button`  | `single`, `double`, `triple`, `quad`, `penta`, or `hold` |
+|`contact` | `open` or `closed` |
+|`rotary`  | `up` or `down` |
+|`switch`  | `on` or `off` |
+|`toggle`  | `toggle` |
 
 ### Examples
 A contact opening on input 7;

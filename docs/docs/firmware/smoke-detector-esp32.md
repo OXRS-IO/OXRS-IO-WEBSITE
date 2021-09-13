@@ -62,23 +62,34 @@ where:
 - `PREFIX`: Optional topic prefix if required
 - `CLIENTID`: Client id of device, defaults to `osd-<MACADDRESS>`
 - `SUFFIX`: Optional topic suffix if required
-    
+
 The message payload should be JSON and contain:
 
-### Inputs
-|Config|Possible Values|Default|
-|------|---------------|-------|
-|`index` |Mandatory, index of the input to configure|N/A|
-|`type` |Optional, either `button`, `contact`, `switch` or `toggle`|`switch`|
-|`invert` |Optional, either `on` or `off`|`off` <Badge text="non-inverted"/>|
+### Input Config
+|Key|Mandatory|Value|Default|
+|---|---------|-----|-------|
+|`index`|Mandatory|Index of the input to configure|N/A|
+|`type`|Optional|Either `button`, `contact`, `switch` or `toggle`|`switch`|
+|`invert`|Optional|Either `on` or `off`|`off` <Badge text="non-inverted"/>|
 
-### Outputs
-|Config|Possible Values|Default|
-|------|---------------|-------|
-|`index` |Mandatory, index of the output to configure|N/A|
-|`type` |Optional, either `motor`, `relay`, or `timer`|`relay`|
-|`interlockIndex` |Optional, index to interlock with (lock the opposite for interlocking both ways or self-lock to disable interlocking)|No interlock|
-|`timerSeconds` |Optional, number of seconds an output stays `on` when type set to `timer`|60 seconds|
+::: warning
+Inverting a normally-open (NO) button input will result in a constant stream of `hold` events!
+:::
+
+### Output Config
+|Key|Mandatory|Value|Default|
+|---|---------|-----|-------|
+|`index`|Mandatory|Index of the output to configure|N/A|
+|`type`|Optional|Either `motor`, `relay`, or `timer`|`relay`|
+|`interlockIndex`|Optional|Index to interlock with (lock the opposite for interlocking both ways or self-lock to disable interlocking)|Self-locked|
+|`timerSeconds` |Optional|Number of seconds an output stays `on` when type set to `timer`|60 seconds|
+
+The only difference between `motor` and `relay` outputs is the interlock delay (if an interlock is configured). 
+
+|Output Type |Interlock delay|
+|------------|---------------|
+|`motor`     |2000ms         |
+|`relay`     |500ms          |
 
 ### Examples
 To configure input 3 to be a contact sensor:
@@ -115,9 +126,9 @@ To configure output 7 to drive a motor:
 }
 ```
 
+::: tip
 A retained message will ensure the device auto-configures on startup.
-
-**NOTE: inverting a normally-open (NO) button input will result in a constant stream of `hold` events!**
+:::
 
 ## Commands
 ### Outputs
@@ -131,11 +142,16 @@ where;
 - `SUFFIX`:   Optional topic suffix if required
 
 The message payload should be JSON and contain:
-- `index`:    Mandatory, the index of the output to configure
-- `command`:  Either `on`, `off`, or `query`
 
+|Key|Mandatory|Value|Default|
+|---|---------|-----|-------|
+|`index`|Mandatory|Index of the output to switched|N/A|
+|`command`|Mandatory|Either `on`, `off`, or `query`|`query`|
+
+::: tip
 The `query` command will cause an event to be published, with the current state of that output.
-    
+:::
+
 ### Examples
 To turn on output 4:
 ``` json
@@ -165,23 +181,26 @@ where;
 - `SUFFIX`:   Optional topic suffix if required
 
 The message payload is JSON and contains:
-- `port`:     The port this event occured on (1-16)
-- `channel`:  The channel this event occured on (1-3)
-- `index`:    The index of this event (1-48)
-- `type`:     The event type (see below)
-- `event`:    The event (see below)
 
-### Inputs
-|Event Type|Possible Events|
-|----------|---------------|
+|Key|Value|
+|---|-----|
+|`port`|Port this event occured on (1-16)|
+|`channel`|Channel this event occured on (1-3)|
+|`index`|Index of this event (1-48)|
+|`type`|Event type (see below)|
+|`event`|Event (see below)|
+
+### Input Events
+|Event Type|Event|
+|----------|-----|
 |`button`  | `single`, `double`, `triple`, `quad`, `penta`, or `hold` |
 |`contact` | `open` or `closed` |
 |`switch`  | `on` or `off` |
 |`toggle`  | `toggle` |
 
-### Outputs
-|Event Type|Possible Events|
-|----------|---------------|
+### Output Events
+|Event Type|Event|
+|----------|-----|
 |`motor`   | `on` or `off` |
 |`relay`   | `on` or `off` |
 |`timer`   | `on` or `off` |
