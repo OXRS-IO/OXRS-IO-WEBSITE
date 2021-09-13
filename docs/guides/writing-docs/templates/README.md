@@ -11,10 +11,10 @@ Please note that the website structure and content is a working progress, if you
 
 ## Hardware Templates
 ::: tip Hardware Document Template
-Default Page template have been created to ensure pages are standardised and easy for visitors to read through. [Hardware Page Template Example](/guides/templates/hardware-template.md)
+Default Page template have been created to ensure pages are standardised and easy for visitors to read through. [Hardware Page Template Example](/guides/writing-docs/templates/hardware-template.html)
 :::
 
 ## Firmware Templates
 ::: tip Firmware Document Template
-Default Page template have been created to ensure pages are standardised and easy for visitors to read through. [Firmware Page Template Example](/guides/templates/firmware-template.md)
+Default Page template have been created to ensure pages are standardised and easy for visitors to read through. [Firmware Page Template Example](/guides/writing-docs/templates/firmware-template.md)
 :::
