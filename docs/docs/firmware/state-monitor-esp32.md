@@ -125,6 +125,11 @@ A triple button click on input 4;
 }
 ```
 
+
+## Downloads
+Download the latest version of the firmware on [Github](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW).
+
+
 ## Supported Hardware
 This firmware is compatible with the [Light Switch Controller](https://github.com/SuperHouse/LSC) (LSC) and is designed to run on the [RACK32](/docs/hardware/controllers/rack32.html) as part of the [OXRS](https://oxrs.io) eco-system.
 

@@ -162,6 +162,9 @@ A timer turning off for output 12;
 }
 ```
 
+## Downloads
+Download the latest version of the firmware on [Github](https://github.com/SuperHouse/OXRS-SHA-StateController-ESP32-FW).
+
 
 ## Supported Hardware
 This firmware is compatible with the boards;
