@@ -60,7 +60,7 @@ The message payload should be JSON and contain:
 - `index`:          Mandatory, the index of the output to configure
 - `type`:           Optional, either `motor`, `relay`, or `timer`
 - `interlockIndex`: Optional, index to interlock with (lock the opposite for interlocking both ways)
-- `timerSeconds`:   Number of seconds an output stays `on` when type set to `timer`
+- `timerSeconds`:   Optional, number of seconds an output stays `on` when type set to `timer`
     
 A null or empty value will reset the configuration to:
 - `type`:           `relay`
