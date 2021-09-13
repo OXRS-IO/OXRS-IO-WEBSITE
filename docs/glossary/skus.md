@@ -24,3 +24,14 @@ Here is a list of the firmware SKUs.
 |State Monitor ESP32 | SuperHouse Automation | OXRS-SHA-STATEMONITOR-ESP32-FW| [more info](/docs/firmware/state-monitor-esp32.html) |
 |State Controller ESP32 | SuperHouse Automation | OXRS-SHA-STATECONTROLLER-ESP32-FW| [more info](/docs/firmware/state-controller-esp32.html) |
 |Smoke Detector ESP32 | Bedrock Media Design | OXRS-BMD-SMOKEDETECTOR-ESP32-FW| [more info](/docs/firmware/smoke-detector-esp32.html) |
+
+
+## Libraries
+
+Here is a list of the library SKUs.
+
+|Name      |Maker    |SKU                             |Link                     |
+|:-------- |:--------|:-------------------------------|:------------------------|
+|ESP32 MQTT library | OXRS Core Team | OXRS-IO-MQTT-ESP32-LIB| [more info](/docs/libraries/esp32-mqtt-library.html) |
+|ESP32 LCD library | OXRS Core Team | OXRS-IO-LCD-ESP32-LIB| [more info](/docs/libraries/esp32-lcd-library.html) |
+|ESP32 I/O handler library | SuperHouse Automation | OXRS-SHA-IOHandler-ESP32-LIB| [more info](/docs/libraries/esp32-io-handler-library.html) |

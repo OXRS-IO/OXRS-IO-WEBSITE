@@ -24,7 +24,7 @@ module.exports = {
     docsDir: 'docs',
     //editLinkPattern: ':repo/-/edit/:branch/:path',
     logo: '/images/hero.png',
-    sidebarDepth: 3,
+    sidebarDepth: 2,
     navbar: [
       {
         text: 'Docs',
@@ -150,12 +150,19 @@ module.exports = {
           ],
         }
       ],
-      '/docs/libraries/': [
+      '/docs/libraries': [
         {
           text: 'Libraries',
           link: '/docs/libraries/README.md',
           children: [
-            '/docs/libraries/uio.md',
+            {
+              text: 'ESP32',
+              children: [
+                  '/docs/libraries/esp32-mqtt-library.md',
+                  '/docs/libraries/esp32-lcd-library.md',
+                  '/docs/libraries/esp32-io-handler-library.md',
+              ],
+            },
           ],
         },
       ],
