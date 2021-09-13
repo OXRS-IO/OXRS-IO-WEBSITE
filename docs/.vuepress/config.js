@@ -103,22 +103,22 @@ module.exports = {
                   '/docs/hardware/controllers/rack32.md',
               ],
             },
-            {
-              text: 'Input Devices',
-              children: [
-                  '/docs/hardware/input-devices/hardware-template.md',
-              ],
-            },
-            {
-              text: 'Output Devices',
-              children: [
-                  '/docs/hardware/output-devices/hardware-template.md',
-              ],
-            },
+            // {
+            //   text: 'Input Devices',
+            //   children: [
+            //       '/docs/hardware/input-devices/hardware-template.md',
+            //   ],
+            // },
+            // {
+            //   text: 'Output Devices',
+            //   children: [
+            //       '/docs/hardware/output-devices/hardware-template.md',
+            //   ],
+            // },
             {
               text: 'Input & Output Devices',
               children: [
-                  '/docs/hardware/input-output-devices/universal-input-output-uio-16port.md',
+                  '/docs/hardware/input-output-devices/smoke-detector-sd-16port.md',
               ],
             }
           ],
