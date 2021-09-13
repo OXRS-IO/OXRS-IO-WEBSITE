@@ -33,7 +33,7 @@ Once firmware for this has been written this page will be updated.
 - Arduino library - [KNX Device Library for Arduino](http://liwan.fr/KnxWithArduino/)
 
 ## Where to Buy
-- Rack32 KNX Shield - contact [Frank McAlinden](frankmc@internode.on.net)
+- Rack32 KNX Shield - contact <frankmc@internode.on.net>
 - KNX BCU - [www.knxtra.co.nz](https://knxtra.co.nz/product/siemens-5wg1117-2ab12-busankopplerknx-up117-12-mit-schraubbefestigung/)
 - KNX BCU - [Amazon DE](https://www.amazon.de/-/en/Siemens-Coupler-Fixing-Hanging-Bracket/dp/B00B7ZI5FO)
 
