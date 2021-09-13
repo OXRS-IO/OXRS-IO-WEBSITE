@@ -1,12 +1,12 @@
 ---
 # Ensure you add new SKUs to Tags
-tags: ["OXRS-SHA-RCESP32", "OXRS-BMD-SMOKE16", "OXRS-SHA-STATEMONITOR-ESP32-FW"]
+tags: ["OXRS-SHA-RACK32", "OXRS-BMD-SMOKE16", "OXRS-SHA-STATEMONITOR-ESP32-FW"]
 ---
 # OXRS Compatible SKUs
 
 ## Hardware
 
-Here is a list of the hardware SKU's.
+Here is a list of the hardware SKUs.
 
 |Name      |Maker    |SKU                             |Link                     |
 |:-------- |:--------|:-------------------------------|:------------------------|
@@ -16,7 +16,7 @@ Here is a list of the hardware SKU's.
 
 ## Firmware
 
-Here is a list of the firmware SKU's.
+Here is a list of the firmware SKUs.
 
 |Name      |Maker    |SKU                             |Link                     |
 |:-------- |:--------|:-------------------------------|:------------------------|
