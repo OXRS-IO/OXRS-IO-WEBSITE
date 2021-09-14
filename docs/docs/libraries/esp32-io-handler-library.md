@@ -7,104 +7,151 @@ tags: ["OXRS-SHA-IOHandler-ESP32-LIB", "TAG2", "TAG3"]
 > SKU: OXRS-SHA-IOHandler-ESP32-LIB
 
 ## Introduction
-Shoulder picanha tongue cow kevin. Pig alcatra chicken jowl, turducken flank buffalo bresaola burgdoggen ground round venison shoulder pancetta. Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. Beef ribs hamburger sirloin brisket, capicola drumstick cupim sausage shank burgdoggen swine.
+This library serves two functions, for input monitoring and output control. It can monitor buttons, switches, contacts, or any binary sensor, and report events back to the caller. It can also listen for binary commands and passes control events back to the caller.
 
-Cupim drumstick swine venison short loin capicola bacon picanha spare ribs tongue burgdoggen pork chop cow ham. Shank brisket ball tip tri-tip cow jerky shoulder chicken, corned beef alcatra filet mignon. Biltong jerky picanha ham hock swine. Ham hock shank corned beef, porchetta strip steak venison sirloin turducken hamburger ham rump jerky. Frankfurter pork tri-tip beef ribs meatloaf picanha pastrami doner burgdoggen.
+Typically used with MCP23017 I2C I/O buffers to detect digital signals being pulled to GND (inputs) and to control relays (outputs).
 
 ---
 
 ### How does it work?
-Shoulder picanha tongue cow kevin. Pig alcatra chicken jowl, turducken flank buffalo bresaola burgdoggen ground round venison shoulder pancetta. Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. 
+The library contains two classes which can be used independently or together, depending on what your firmware is trying to do.
 
-Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. Beef ribs hamburger sirloin brisket, capicola drumstick cupim sausage shank burgdoggen swine.
+### `USM_Input.h`
+Monitors and maintains state for up to 16 inputs. Takes 16 bits of binary data and checks each value against an internal state machine to determine if any input events have occurred.
 
-| Col 1         | Col 2        | Col 3      |
-| :------------ |:-------------| :--------- |
-| Row data     | Row data      |  Row data  |
-| Row data     | Row data      |  Row data  |
-| Row data     | Row data      |  Row data  |
-
-Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. 
+### `USM_Output.h`
+Waits for commands and generates control events for up to 16 outputs. Keeps track of output state and handles interlocking and timers.
 
 ## Configuration
-### Sub Title
-Pig alcatra chicken jowl, turducken flank buffalo bresaola burgdoggen ground round venison shoulder pancetta.
+### `USM_Input.h`
+Each of the 16 inputs can be configured as either `BUTTON`, `CONTACT`, `ROTARY`, `SWITCH` or `TOGGLE`. Different events will be generated depending on the configured type, and the sequence of state changes.
 
-```sh
-command-example.sh
-```
+Each of the 16 inputs can also be inverted, so events are generated on `LOW` -> `HIGH` transitions instead of `HIGH` -> `LOW`.
 
-Some attribute text:
-- `Attribute here`: Explanation Text here
-- `Attribute here`: Explanation Text here
-- `Attribute here`: Explanation Text here
+#### Rotary Encoders
+A pair of inputs can be set as `ROTARY` inputs, and connected to an [incremental rotary encoder](https://lastminuteengineers.com/rotary-encoder-arduino-tutorial/). The library will decode the signals from the encoder and generate `LOW_EVENT` or `HIGH_EVENT` events, depending which way the encoder is turned. 
 
+#### Functions
+- `setType(input, type)`: Set the input type
+- `setInvert(input, invert)`: Invert input handling
 
-#### Code Examples
+#### Code Example
+```cpp
+#include <Adafruit_MCP23X17.h>        // For MCP23017 I/O buffers
+#include <OXRS_Input.h>               // For input handling
 
-Cupim drumstick swine venison short loin capicola bacon picanha spare ribs tongue burgdoggen pork chop cow ham.
+// I/O buffers
+Adafruit_MCP23X17 mcp23017;
 
-```c
+// Input handlers
+OXRS_Input oxrsInput;
+
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  Serial.println("Hello World!");
+  // Initialise the MCP chip (assume at address 0x20)
+  mcp23017.begin_I2C(0x20);
+
+  // Set every pin to be INPUT with internal PULLUPs enabled
+  for (uint8_t pin = 0; pin < 16; pin++) {
+    mcp23017.pinMode(pin, INPUT_PULLUP);
+  }
+
+  // Configurate types and invert state here
+  //oxrsInput.setType(0, BUTTON);
+  //oxrsInput.setInvert(0, 1);
+  
+  // Register our callback handler
+  oxrsInput.onEvent(inputEvent);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // Read the values for all 16 inputs on this MCP in one hit
+  uint16_t io_value = mcp23017.readGPIOAB();
 
+  // Check for any input events
+  oxrsInput.process(0, io_value);
+}
+
+void inputEvent(uint8_t id, uint8_t input, uint8_t type, uint8_t state) {
+  // Code to handle the event goes in here!
 }
 ```
 
+### `USM_Output.h`
+Each of the 16 outputs can be configured as either `MOTOR`, `RELAY`, or `TIMER`. Different control signals will be generated depending on the configured type.
 
-Cupim drumstick swine venison short loin capicola bacon picanha spare ribs tongue burgdoggen pork chop cow ham.
+#### Interlocking
+Interlocking two outputs allows them to control equipment such as roller blinds, garage doors, louvre roofing etc.
 
-```json
-{ 
-  "input": 7, 
-  "type": "button", 
-  "invert": "on" 
+If two outputs are interlocked it means they can't be `on` at the same time. E.g. if output A and B are interlocked, and an `on` command is sent to output B while output A is `on`, output A will automatically turn `off` and after a short delay output B will then turn `on`. 
+
+#### Timers
+Timers allow an output to automatically turn `off` a set number of seconds after being turned `on` (configurable but defaults to 60 seconds).
+
+If another `on` command is sent while the timer is running, it will reset to zero and begin counting down again. If an `off` command is sent the timer will be cancelled and the output turned `off` immediately.
+
+#### Functions
+- `setType(output, type)`: Set the output type
+- `setInterlock(output, interlock)`: Interlock an output with another
+- `setTimer(output, seconds)`: Set the timer duration (in seconds)
+
+::: tip
+The only difference between `MOTOR` and `RELAY` outputs is the interlock delay. For `MOTOR` outputs the delay is 2000ms, for `RELAY` outputs it is only 500ms.
+:::
+
+#### Code Example
+```cpp
+#include <Adafruit_MCP23X17.h>        // For MCP23017 I/O buffers
+#include <OXRS_Output.h>              // For output handling
+
+// I/O buffers
+Adafruit_MCP23X17 mcp23017;
+
+// Input handlers
+OXRS_Output oxrsOutput;
+
+void setup() {
+  // Initialise the MCP chip (assume at address 0x20)
+  mcp23017.begin_I2C(0x20);
+
+  // Set every pin to OUTPUT
+  for (uint8_t pin = 0; pin < 16; pin++) {
+    mcp23017.pinMode(pin, OUTPUT);
+  }
+
+  // Configurate types, interlocks and timers here
+  //oxrsOutput.setInterlock(0, 1);
+  //oxrsOutput.setInterlock(1, 0);
+  
+  // Register our callback handler
+  oxrsOutput.onEvent(outputEvent);
+}
+
+void loop() {
+  // Check for any output events
+  oxrsOutput.process();
+
+  // Need a way to receive commands - e.g. serial input or MQTT messages
+  //oxrsOutput.handleCommand(0, output, RELAY_ON);
+}
+
+void outputEvent(uint8_t id, uint8_t output, uint8_t type, uint8_t state) {
+  // Code to handle the event goes in here!
 }
 ```
-
-Cupim drumstick swine venison short loin capicola bacon picanha spare ribs tongue burgdoggen pork chop cow ham.
-
-**NOTE: Sirloin turducken hamburger (NO) Cupim drumstick swine venison short loin capicola bacon `LOOK` burgdoggen!**
 
 ## Downloads
-Download the latest version of the firmware on [Github](https://github.com/OXRS-IO/OXRS-IO-WEBSITE).
+Download the latest version of the firmware on [Github](https://github.com/SuperHouse/OXRS-SHA-IOHandler-ESP32-LIB).
 
 ## Supported Hardware
-- Buffalo boudin meatball ball tip spare ribs. [OXRS Internal Hardware Link](/docs/hardware/controllers/rack32.html)
-- Buffalo boudin meatball ball tip spare ribs. [OXRS Internal Hardware Link](/docs/hardware/controllers/rack32.html)
-
-Shoulder picanha tongue cow kevin. Pig alcatra chicken jowl, turducken flank buffalo bresaola burgdoggen ground round venison shoulder pancetta. Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. 
-
-Beef ribs hamburger sirloin brisket, capicola drumstick cupim sausage shank burgdoggen swine.
-
-### Pinout Reference
-
-|PIN|DESCRIPTION|
-|:--|:----------|
-|1  |INPUT 1    |
-|2  |INPUT 2    |
-|3  |INPUT 3    |
-|4  |VIN        |
-|5  |VIN        |
-|6  |INPUT 4    |
-|7  |GND        |
-|8  |GND        |
+Designed to run on ESP32 based devices.
+- [Rack32](/docs/hardware/controllers/rack32.html)
 
 ---
 
 #### Credits
- - Makers Name <email address or website\>
- - Makers Name <email address or website\>
- - Makers Name <email address or website\>
+ - [OXRS](https://oxrs.io/) Core Team
 
- ---
-
+---
 
 #### License
-Copyright 2020-2021 Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. 
+Found [here](https://github.com/SuperHouse/OXRS-SHA-IOHandler-ESP32-LIB/blob/main/LICENSE).
