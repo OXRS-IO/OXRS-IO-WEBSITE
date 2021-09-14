@@ -42,7 +42,7 @@ The operation of the interlocked outputs should be verified before connecting to
 ### Timers
 Timers allow an output to automatically turn `off` a set number of seconds after being turned `on` (configurable via `timerSeconds`, which defaults to 60 seconds).
 
-If another `on` command is sent while the timer is running, it will reset to zero and being counting down again. If an `off` command is sent the timer will be cancelled and the output turned `off` immediately.
+If another `on` command is sent while the timer is running, it will reset to zero and begin counting down again. If an `off` command is sent the timer will be cancelled and the output turned `off` immediately.
 
 
 ## Configuration
