@@ -13,3 +13,4 @@ If you would like to register to get a unique maker designator please click the 
 |FMA       |Frank McAlinden                 | <frankmc@internode.on.net> |
 |IO        |Reserved for OXRS Core          | [https://oxrs.io](https://oxrs.io) |
 |SHA       |SuperHouse Automation           | [https://superhouse.tv](https://superhouse.tv) |
+|BC        |BetterCorp                      | [https://bettercorp.co.za](https://bettercorp.co.za) |
