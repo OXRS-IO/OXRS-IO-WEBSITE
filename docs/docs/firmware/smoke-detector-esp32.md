@@ -70,7 +70,7 @@ The message payload should be JSON and contain:
 |---|---------|-----|-------|
 |`index`|Mandatory|Index of the input to configure|N/A|
 |`type`|Optional|Either `button`, `contact`, `switch` or `toggle`|`switch`|
-|`invert`|Optional|Either `on` or `off`|`off` <Badge text="non-inverted"/>|
+|`invert`|Optional|Either `true` or `false`|`false` <Badge text="non-inverted"/>|
 
 ::: warning
 Inverting a normally-open (NO) button input will result in a constant stream of `hold` events!
@@ -105,7 +105,7 @@ To configure input 7 to be an inverted button:
 { 
   "index": 6, 
   "type": "button", 
-  "invert": "on" 
+  "invert": true 
 }
 ```
 
