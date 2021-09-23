@@ -41,8 +41,8 @@ However if you are planning to control a motor of any sort then it is important 
 Example payload to confingure outputs 4 & 5 to control a set of roller blinds;
 ``` json
 [
-  { "index": 4, "type": "motor", "lock": 5 },
-  { "index": 5, "type": "motor", "lock": 4 }
+  { "index": 4, "type": "motor", "interlockIndex": 5 },
+  { "index": 5, "type": "motor", "interlockIndex": 4 }
 ]
 ```
 
@@ -109,21 +109,26 @@ To configure input 7 to be an inverted button:
 }
 ```
 
-To configure output 4 to be a 60 second timer:
+To configure output 4 to be a 30 second timer:
 ``` json
 { 
   "index": 4, 
   "type": "timer",
-  "timerSeconds": 60
+  "timerSeconds": 30
 }
 ```
 
-To configure output 7 to drive a motor:
+To configure outputs 7 & 8 to drive a motor and be interlocked:
 ``` json
-{ 
-  "index": 7, 
-  "type": "motor"
-}
+[{ 
+  "index": 7,
+  "type": "motor",
+  "interlockIndex": 8
+},{
+  "index": 8, 
+  "type": "motor",
+  "interlockIndex": 7
+}]
 ```
 
 ::: tip
