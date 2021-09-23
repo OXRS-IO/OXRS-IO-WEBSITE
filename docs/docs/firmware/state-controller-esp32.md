@@ -32,8 +32,8 @@ However if you are planning to control a motor of any sort then it is important 
 Example payload to confingure outputs 4 & 5 to control a set of roller blinds;
 ``` json
 [
-  { "index": 4, "type": "motor", "lock": 5 },
-  { "index": 5, "type": "motor", "lock": 4 }
+  { "index": 4, "type": "motor", "interlockIndex": 5 },
+  { "index": 5, "type": "motor", "interlockIndex": 4 }
 ]
 ```
 
@@ -73,21 +73,26 @@ The only difference between `motor` and `relay` outputs is the interlock delay (
 |`relay`     |500ms          |
 
 #### Examples
-To configure output 4 to be a 60 second timer:
+To configure output 4 to be a 30 second timer:
 ``` json
 { 
   "index": 4, 
   "type": "timer",
-  "timerSeconds": 60
+  "timerSeconds": 30
 }
 ```
 
-To configure output 7 to drive a motor:
+To configure outputs 6 & 7 to drive a motor and be interlocked:
 ``` json
-{ 
+[{ 
+  "index": 6,
+  "type": "motor",
+  "interlockIndex": 7
+},{
   "index": 7, 
-  "type": "motor"
-}
+  "type": "motor",
+  "interlockIndex": 6
+}]
 ```
 
 ::: tip
