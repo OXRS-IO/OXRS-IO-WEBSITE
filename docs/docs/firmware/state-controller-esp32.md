@@ -58,10 +58,6 @@ where:
 
 The message payload should be JSON.
 
-::: tip
-You can configure multiple outputs in a single message by publishing a JSON array of configuration payloads.
-:::
-
 |Key|Mandatory|Value|Default|
 |---|---------|-----|-------|
 |`index`|Mandatory|Index of the output to configure|N/A|
@@ -98,6 +94,10 @@ To configure outputs 6 & 7 to drive a motor and be interlocked:
   "interlockIndex": 6
 }]
 ```
+
+::: tip
+You can configure multiple outputs in a single message by publishing a JSON array of configuration payloads.
+:::
 
 ::: tip
 A retained message will ensure the device auto-configures on startup.

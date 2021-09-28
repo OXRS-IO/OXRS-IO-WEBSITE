@@ -49,10 +49,6 @@ where:
     
 The message payload should be JSON.
 
-::: tip
-You can configure multiple inputs in a single message by publishing a JSON array of configuration payloads.
-:::
-
 |Key|Mandatory|Value|Default|
 |---|---------|-----|-------|
 |`index`|Mandatory|Index of the input to configure|N/A|
@@ -80,6 +76,10 @@ To configure input 7 to be an inverted button:
   "invert": true
 }
 ```
+
+::: tip
+You can configure multiple inputs in a single message by publishing a JSON array of configuration payloads.
+:::
 
 ::: tip
 A retained message will ensure the device auto-configures on startup.

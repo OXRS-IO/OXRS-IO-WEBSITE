@@ -65,10 +65,6 @@ where:
 
 The message payload should be JSON.
 
-::: tip
-You can configure multiple inputs/outputs in a single message by publishing a JSON array of configuration payloads.
-:::
-
 ### Input Config
 |Key|Mandatory|Value|Default|
 |---|---------|-----|-------|
@@ -134,6 +130,10 @@ To configure outputs 7 & 8 to drive a motor and be interlocked:
   "interlockIndex": 7
 }]
 ```
+
+::: tip
+You can configure multiple inputs/outputs in a single message by publishing a JSON array of configuration payloads.
+:::
 
 ::: tip
 A retained message will ensure the device auto-configures on startup.
