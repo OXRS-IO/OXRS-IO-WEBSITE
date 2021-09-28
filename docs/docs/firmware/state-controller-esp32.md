@@ -56,7 +56,11 @@ where:
 - `CLIENTID`: Client id of device, defaults to `osc-<MACADDRESS>`
 - `SUFFIX`: Optional topic suffix if required
 
-The message payload should be JSON and contain:
+The message payload should be JSON.
+
+::: tip
+You can configure multiple outputs in a single message by publishing a JSON array of configuration payloads.
+:::
 
 |Key|Mandatory|Value|Default|
 |---|---------|-----|-------|
