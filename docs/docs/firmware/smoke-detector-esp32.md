@@ -92,20 +92,20 @@ The only difference between `motor` and `relay` outputs is the interlock delay (
 |`relay`     |500ms          |
 
 ### Examples
-To configure input 3 to be a contact sensor:
+To configure input 3 to be an inverted contact sensor:
 ``` json
 { 
   "index": 3, 
-  "type": "contact" 
+  "type": "contact",
+  "invert": true
 }
 ```
 
-To configure input 7 to be an inverted button:
+To configure input 6 to be a button:
 ``` json
 { 
   "index": 6, 
-  "type": "button", 
-  "invert": true 
+  "type": "button"
 }
 ```
 
