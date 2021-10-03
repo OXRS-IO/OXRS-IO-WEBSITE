@@ -60,7 +60,7 @@ Each INPUT or OUTPUT can be configured by publishing an MQTT message to this top
 ```
 where:
 - `PREFIX`: Optional topic prefix if required
-- `CLIENTID`: Client id of device, defaults to `osd-<MACADDRESS>`
+- `CLIENTID`: Client id of device, defaults to `<MACADDRESS>`
 - `SUFFIX`: Optional topic suffix if required
 
 The message payload should be JSON.
@@ -147,7 +147,7 @@ Each OUTPUT can be controlled by publishing an MQTT message to the topic;
 ```
 where;
 - `PREFIX`:   Optional topic prefix if required
-- `CLIENTID`: Client id of device, defaults to `osc-<MACADDRESS>`
+- `CLIENTID`: Client id of device, defaults to `<MACADDRESS>`
 - `SUFFIX`:   Optional topic suffix if required
 
 The message payload should be JSON and contain:
@@ -186,7 +186,7 @@ An input EVENT or output STATE CHANGE is reported to a topic of the form:
 ```
 where; 
 - `PREFIX`:   Optional topic prefix if required
-- `CLIENTID`: Client id of device, defaults to `osd-<MACADDRESS>`
+- `CLIENTID`: Client id of device, defaults to `<MACADDRESS>`
 - `SUFFIX`:   Optional topic suffix if required
 
 The message payload is JSON and contains:
