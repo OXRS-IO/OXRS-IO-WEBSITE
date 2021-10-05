@@ -46,7 +46,6 @@ If another `on` command is sent while the timer is running, it will reset to zer
 
 
 ## Configuration
-### Outputs
 Each OUTPUT can be configured by publishing an MQTT message to this topic;
 ```
 [PREFIX/]conf/CLIENTID[/SUFFIX]
@@ -58,6 +57,7 @@ where:
 
 The message payload should be JSON.
 
+### Output Config
 |Key|Mandatory|Value|Default|
 |---|---------|-----|-------|
 |`index`|Mandatory|Index of the output to configure|N/A|

@@ -37,7 +37,7 @@ The firmware is designed to run on hardware using MCP23017 I/O buffer chips via 
 A single I2C bus can only support up to a maximum of 8x MCP23017 chips (addresses `0x20-0x27`). Therefore the maximum number of supported inputs is 128 (i.e. 8x MCP23017s * 16x I/O pins), or 32 ports.
 
 ## Configuration
-The device can be configured by publishing an MQTT message to this topic:
+Each INPUT can be configured by publishing an MQTT message to this topic;
 ```
 [PREFIX/]conf/CLIENTID[/SUFFIX]
 ```
@@ -48,20 +48,7 @@ where:
     
 The message payload should be JSON.
 
-### Device
-Some hardware may have external pull-ups (resistors) hard-wired on each MCP input. Others (like the earlier versions of the SuperHouse LSC boards) will have no external pull-ups, meaning we have to use the internal pull-ups in the MCP chips themselves.
-
-By default the firmware assumes there are external pull-ups, since this is what the current versions of the SuperHouse LSC boards have. To use the internal pull-ups on the MCP chips publish the following message to the configuration topic;
-
-```json
-{
-  "mcpInternalPullups": true
-}
-```
-
-### Inputs
-The `type` and `invert` state can be configured for each individual INPUT.
-
+### Input Config
 |Key|Mandatory|Value|Default|
 |---|---------|-----|-------|
 |`index`|Mandatory|Index of the input to configure|N/A|
