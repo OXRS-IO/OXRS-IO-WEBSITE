@@ -8,16 +8,34 @@ tags: ["OXRS-IO-LCD-ESP32-LIB", "TAG2", "TAG3"]
 
 ## Introduction
 This library serves a common status display for OXRS compatible controller with a LCD.
+The screen shots show examples for 
+  - State Monitor     (input only, 128 inputs, switches, buttons, ...) 
+  - State Controller  (output only, 128 outpus, relais)
+  - Smoke Detector    (input and output, 16 inputs, 32 outputs, special use case smoke detector)
+
+For most of the fields the displayed information is the same for all three different I/O-boards, except the port animation is dedicated to the specific I/O.
+
+The header shows the maker logo together with FW related information (details on the logo are below). 
+
+The second block shows 
+  - the DHCP supplied IP-address. The virtual LED to the left shows the ethernet link status up/down in green/red. This information is self discovered by the lib.
+  - the MAC address of the ethernet controller. Self discovered by the lib.
+  - the wild card MQTT topic for publish and subscribe. The two virtual LEDs to the left show MQTT activity (RX top, TX bottom) Flash when message is received or sent. Self discovered by the lib.
+  - the temperature measured by a sensor on the RACK32 controller. This has to be supplied by the FW with suitable repeat frequency.Can be any temperature.
+  
+The third block shows the port animation. The layout of this field depends on the I/O-board and it's functionality. The lib reads the I/O-pins of the MCP23017 I/O-expander chips on the I/O-boards in it's loop() and reacts on any change by changing the shape and/or color of the associated virtual LED. Input LEDs are shown in yellow, output LEDs are shown in red if active. Not detected MCP23017 chips are indicated by a gray outline.
+
+The bottom row is reserved to show events published over MQTT. The latest event is shown for 3 seconds and the display dimms after 10 seconds of inactivity (defaults)
 
 
 ---
 
-### How does it work?
+## Configuration
+### General
+
 Library is written to support a ST7789 based 240x240 pixel display.
 
-
-## Configuration
-Requires ```TFT_eSPI``` by Bodmer to be installed and configured for the target MCU.
+Requires ```TFT_eSPI library``` by Bodmer to be installed and configured for the target MCU.
 
 Installation can be done with the ```Arduino Library Manager``` or download from Github : https://github.com/Bodmer/TFT_eSPI 
 
@@ -67,13 +85,19 @@ At startup the LCD lib searches for a logo in the following order and stops afte
 
 ---
 
+## Downloads
+Download the latest version of the firmware on [Github](https://github.com/OXRS-IO/OXRS-IO-LCD-ESP32-LIB).
+
+## Supported Hardware
+Designed to run on ESP32 based devices.
+- [Rack32](/docs/hardware/controllers/rack32.html)
+
+---
+
 #### Credits
- - Makers Name <email address or website\>
- - Makers Name <email address or website\>
- - Makers Name <email address or website\>
+ - [OXRS](https://oxrs.io/) Core Team
 
- ---
-
+---
 
 #### License
-Copyright 2020-2021 Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. 
+Found [here](https://github.com/OXRS-IO/OXRS-IO-LCD-ESP32-LIB/blob/main/LICENSE).
