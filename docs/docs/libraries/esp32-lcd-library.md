@@ -8,7 +8,10 @@ tags: ["OXRS-IO-LCD-ESP32-LIB", "TAG2", "TAG3"]
 
 ## Introduction
 This library serves a common status display for OXRS compatible controller with a LCD.
-The screen shots show examples for 
+
+![Image Alt Text](/images/LCD-ScreenShots.jpg)
+
+The screen shots above show examples for 
   - State Monitor     (input only, 128 inputs, switches, buttons, ...) 
   - State Controller  (output only, 128 outpus, relais)
   - Smoke Detector    (input and output, 16 inputs, 32 outputs, special use case smoke detector)
