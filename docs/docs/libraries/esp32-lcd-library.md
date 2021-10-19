@@ -21,10 +21,10 @@ For most of the fields the displayed information is the same for all three diffe
 The header shows the maker logo together with FW related information (details on the logo are below). 
 
 The second block shows 
-  - the IP-address of the device. The virtual LED to the left shows the IP link status up/down in green/red. This information is self discovered by the lib.
+  - the IP-address of the device. The virtual LED to the left shows the IP link status up/down in green/red. Self discovered by the lib.
   - the MAC address of the device. Self discovered by the lib.
   - the wild card MQTT topic for publish and subscribe. The two virtual LEDs to the left show MQTT activity (RX top, TX bottom) and flash when a message is received or sent. Self discovered by the lib.
-  - a temperature. The shown value has to be supplied and updated periodically by the FW. The lib serves an API call `OXRS_lcd::show_temp (float temperature)` for this purpose. The RACK32 controller uses this for on-board temperatur monitoring.
+  - a temperature. The shown value has to be supplied and updated periodically by the FW. The lib serves an API call `OXRS_lcd::show_temp (float temperature)` for this purpose. The RACK32 controller uses this for on-board temperature monitoring.
   
 The third block shows the port animation. The layout of this field depends on the I/O-board and it's functionality. The lib reads the I/O-pins of the MCP23017 I/O-expander chips on the I/O-boards in it's loop() and reacts on any change by changing the shape and/or color of the associated virtual LED. Input LEDs are shown in yellow, output LEDs are shown in red if active. Not detected MCP23017 chips are indicated by a gray outline.
 
@@ -71,7 +71,7 @@ Following steps are required:
 
 *
   * Convert the logo.bmp to a C header file.
-You can use the convert.py script supplied in the tools folder of the lib. 
+You can use the `convert.py` script supplied in the tools folder of the lib. 
 Type `convert.py -i logo.bmp -o logo.h -v FW_LOGO` to create the `logo.h` header file that contains the `logo.bmp` as an array stored in PROGMEM.
 Any other method to convert the .bmp to an array can be used. Make sure the array is declared as `const uint8_t FW_LOGO[] PROGMEM = { ... };`
   * the `logo.h` file has to be copied into the sketch folder
@@ -81,7 +81,7 @@ Any other method to convert the .bmp to an array can be used. Make sure the arra
 
 At startup the LCD lib searches for a logo in the following order and stops after the first logo found
 1. check if there is a valid `/logo.bmp` stored in SPIFFS
-1. if 1. is not successful check if there is a `fwLogo reference` passed to the LCDlib by the `OXRS_lcd::draw_header()` .
+1. if 1. is not successful check if there is a `fwLogo` reference passed to the LCDlib by the `OXRS_lcd::draw_header()` .
 1. if 2. is not successful load the default `embedded OXRS_logo` from PROGMEM
 
 
