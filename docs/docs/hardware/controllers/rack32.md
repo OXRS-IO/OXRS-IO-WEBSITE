@@ -40,8 +40,7 @@ This board fits into a rack-mount case and provides those common features so the
 - OXRS-SHA-StateMonitor-ESP32-FW [Github](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW)
 
 ## Supported Libraries
-- OXRS-SHA-MQTT-ESP32-LIB [Github](https://github.com/SuperHouse/OXRS-SHA-MQTT-ESP32-LIB)
-- OXRS-SHA-IOHandler-ESP32-LIB  [Github](https://github.com/SuperHouse/OXRS-SHA-IOHandler-ESP32-LIB)
+- OXRS-SHA-Rack32-ESP32-LIB [Github](https://github.com/SuperHouse/OXRS-SHA-Rack32-ESP32-LIB)
 
 ## Additional Resources
 - More info [Github](https://github.com/SuperHouse/RACK32)
