@@ -13,7 +13,7 @@ This library serves a common status display for OXRS compatible controller with 
 
 The screen shots above show examples for 
   - State Monitor     (input only, 128 inputs, switches, buttons, ...) 
-  - State Controller  (output only, 128 outpus, relais)
+  - State Controller  (output only, 128 outpus, relays)
   - Smoke Detector    (input and output, 16 inputs, 32 outputs, special use case smoke detector)
 
 For most of the fields the displayed information is the same for all three different I/O-boards, except the port animation is dedicated to the specific I/O.
@@ -21,10 +21,10 @@ For most of the fields the displayed information is the same for all three diffe
 The header shows the maker logo together with FW related information (details on the logo are below). 
 
 The second block shows 
-  - the IP-address of the device. The virtual LED to the left shows the IP link status up/down in green/red. Self discovered by the lib.
-  - the MAC address of the device. Self discovered by the lib.
-  - the wild card MQTT topic for publish and subscribe. The two virtual LEDs to the left show MQTT activity (RX top, TX bottom) and flash when a message is received or sent. Self discovered by the lib.
-  - a temperature. The shown value has to be supplied and updated periodically by the FW. The lib serves an API call `OXRS_lcd::show_temp (float temperature)` for this purpose. The RACK32 controller uses this for on-board temperature monitoring.
+  - IP-address of the device. The virtual LED to the left shows the IP link status up/down in green/red. Self discovered by the lib.
+  - MAC address of the device. Self discovered by the lib.
+  - Wildcard MQTT topic for publish and subscribe. The two virtual LEDs to the left show MQTT activity (RX top, TX bottom) and flash when a message is received or sent. Self discovered by the lib.
+  - Temperature. The value shown has to be supplied and updated periodically by the FW. The lib serves an API call `OXRS_lcd::show_temp (float temperature)` for this purpose. E.g. the RACK32 controller uses this for on-board temperature monitoring.
   
 The third block shows the port animation. The layout of this field depends on the I/O-board and it's functionality. The lib reads the I/O-pins of the MCP23017 I/O-expander chips on the I/O-boards in it's loop() and reacts on any change by changing the shape and/or color of the associated virtual LED. Input LEDs are shown in yellow, output LEDs are shown in red if active. Not detected MCP23017 chips are indicated by a gray outline.
 
@@ -58,32 +58,28 @@ The first step to create your own logo is to prepare a 40x40 pixel 24-bit-bitmap
 * create/crop a quadratic extract of the desired content (width = height).
 * change the image size to 40 x 40 pixel and save it as 24-bit-bitmap file named logo.bmp.
 
-#### There are two different ways to deploy your logo
-* logo from SPIFFS
-
+#### Deploy logo from SPIFFS
 To use this method upload the logo.bmp file to the SPIFFS of your target MCU.
 If you are using the Arduino IDE, copy your logo.bmp to the data folder of your sketch and use `ESP32 Sketch Data Upload` from the tools menu to upload everything located in the data folder.
 
-* logo embedded in FW binary
-
+#### Deploy logo embedded in FW binary
 Using this method embeds your maker logo in the binary of your sketch. This guaranties the availability of your logo at runtime independent of the availability of the SPIFFS and without having to do the extra upload.
-Following steps are required:
 
-*
-  * Convert the logo.bmp to a C header file.
-You can use the `convert.py` script supplied in the tools folder of the lib. 
-Type `convert.py -i logo.bmp -o logo.h -v FW_LOGO` to create the `logo.h` header file that contains the `logo.bmp` as an array stored in PROGMEM.
-Any other method to convert the .bmp to an array can be used. Make sure the array is declared as `const uint8_t FW_LOGO[] PROGMEM = { ... };`
-  * the `logo.h` file has to be copied into the sketch folder
-  * `logo.h` has to be included in your FW.ino file `#include "logo.h"`
+Following steps are required:
+* convert your `logo.bmp` to a C header file using the `convert.py` script supplied in the tools folder of the lib
+* copy `logo.h` into your sketch folder
+* include `logo.h` in your FW.ino file, e.g. `#include "logo.h"`
+
+::: tip
+Use `convert.py -i logo.bmp -o logo.h -v FW_LOGO` to create a `logo.h` header file from `logo.bmp`
+:::
 
 #### Logo selection at start up
 
-At startup the LCD lib searches for a logo in the following order and stops after the first logo found
-1. check if there is a valid `/logo.bmp` stored in SPIFFS
-1. if 1. is not successful check if there is a `fwLogo` reference passed to the LCDlib by the `OXRS_lcd::draw_header()` .
-1. if 2. is not successful load the default `embedded OXRS_logo` from PROGMEM
-
+At startup the LCD lib searches for a logo in the following order, stopping once one is found;
+1. check for `/logo.bmp` stored in SPIFFS
+1. check for `fwLogo` reference passed by `OXRS_lcd::draw_header()`
+1. use default `OXRS_logo` from PROGMEM (embedded in library)
 
 
 ---
