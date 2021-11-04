@@ -46,7 +46,7 @@ If another `on` command is sent while the timer is running, it will reset to zer
 
 
 ## Configuration
-Each OUTPUT can be configured by publishing an MQTT message to this topic;
+The firmware can be configured by publishing an MQTT message to this topic;
 ```
 [PREFIX/]conf/CLIENTID[/SUFFIX]
 ```
@@ -54,10 +54,16 @@ where:
 - `PREFIX`: Optional topic prefix if required
 - `CLIENTID`: Client id of device, defaults to `<MACADDRESS>`
 - `SUFFIX`: Optional topic suffix if required
-
-The message payload should be JSON.
+    
+The message payload should be JSON and it's format is defined in a JSON schema document included in the adoption payload published here;
+```
+[PREFIX/]stat/CLIENTID[/SUFFIX]/adopt
+```
+See the `config` value in the `/adopt` payload.
 
 ### Output Config
+Each OUTPUT can be configured via the following properties;
+
 |Key|Mandatory|Value|Default|
 |---|---------|-----|-------|
 |`index`|Mandatory|Index of the output to configure|N/A|
@@ -73,31 +79,16 @@ The only difference between `motor` and `relay` outputs is the interlock delay (
 |`relay`     |500ms          |
 
 #### Examples
-To configure output 4 to be a 30 second timer:
+To configure output 4 to be a 30 second timer and outputs 6 & 7 to drive a motor and be interlocked;
 ``` json
 { 
-  "index": 4, 
-  "type": "timer",
-  "timerSeconds": 30
+  "outputs": [
+    { "index": 4, "type": "timer", "timerSeconds": 30 },
+    { "index": 6, "type": "motor", "interlockIndex": 7 },
+    { "index": 7, "type": "motor", "interlockIndex": 6 }
+  ]
 }
 ```
-
-To configure outputs 6 & 7 to drive a motor and be interlocked:
-``` json
-[{ 
-  "index": 6,
-  "type": "motor",
-  "interlockIndex": 7
-},{
-  "index": 7, 
-  "type": "motor",
-  "interlockIndex": 6
-}]
-```
-
-::: tip
-You can configure multiple outputs in a single message by publishing a JSON array of configuration payloads.
-:::
 
 ::: tip
 A retained message will ensure the device auto-configures on startup.

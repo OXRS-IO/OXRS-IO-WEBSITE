@@ -34,10 +34,10 @@ Each port can monitor up to 4 channels and are numbered:
 
 The firmware is designed to run on hardware using MCP23017 I/O buffer chips via I2C, e.g. the [Light Switch Controller](https://github.com/SuperHouse/LSC).
 
-A single I2C bus can only support up to a maximum of 8x MCP23017 chips (addresses `0x20-0x27`). Therefore the maximum number of supported inputs is 128 (i.e. 8x MCP23017s * 16x I/O pins), or 32 ports.
+A single I2C bus can support up to a maximum of 8x MCP23017 chips (addresses `0x20-0x27`). Therefore the maximum number of supported inputs is 128 (i.e. 8x MCP23017s * 16x I/O pins), or 32 ports.
 
 ## Configuration
-Each INPUT can be configured by publishing an MQTT message to this topic;
+The firmware can be configured by publishing an MQTT message to this topic;
 ```
 [PREFIX/]conf/CLIENTID[/SUFFIX]
 ```
@@ -46,9 +46,15 @@ where:
 - `CLIENTID`: Client id of device, defaults to `<MACADDRESS>`
 - `SUFFIX`: Optional topic suffix if required
     
-The message payload should be JSON.
+The message payload should be JSON and it's format is defined in a JSON schema document included in the adoption payload published here;
+```
+[PREFIX/]stat/CLIENTID[/SUFFIX]/adopt
+```
+See the `config` value in the `/adopt` payload.
 
 ### Input Config
+Each INPUT can be configured via the following properties;
+
 |Key|Mandatory|Value|Default|
 |---|---------|-----|-------|
 |`index`|Mandatory|Index of the input to configure|N/A|
@@ -60,26 +66,15 @@ Inverting a normally-open (NO) button input will result in a constant stream of 
 :::
 
 ### Examples
-To configure input 4 to be a contact sensor:
-``` json
+To configure input 4 to be a contact sensor, and input 7 to be an inverted button;
+```json
 { 
-  "index": 4, 
-  "type": "contact" 
+  "inputs": [
+    { "index": 4, "type": "contact" },
+    { "index": 7, "type": "button", "invert": true }
+  ]
 }
 ```
-
-To configure input 7 to be an inverted button:
-``` json
-{ 
-  "index": 7, 
-  "type": "button", 
-  "invert": true
-}
-```
-
-::: tip
-You can configure multiple inputs in a single message by publishing a JSON array of configuration payloads.
-:::
 
 ::: tip
 A retained message will ensure the device auto-configures on startup.

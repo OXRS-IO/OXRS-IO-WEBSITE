@@ -54,7 +54,7 @@ Timers allow an output to automatically turn `off` a set number of seconds after
 If another `on` command is sent while the timer is running, it will reset to zero and begin counting down again. If an `off` command is sent the timer will be cancelled and the output turned `off` immediately.
 
 ## Configuration
-Each INPUT or OUTPUT can be configured by publishing an MQTT message to this topic:
+The firmware can be configured by publishing an MQTT message to this topic;
 ```
 [PREFIX/]conf/CLIENTID[/SUFFIX]
 ```
@@ -62,10 +62,16 @@ where:
 - `PREFIX`: Optional topic prefix if required
 - `CLIENTID`: Client id of device, defaults to `<MACADDRESS>`
 - `SUFFIX`: Optional topic suffix if required
-
-The message payload should be JSON.
+    
+The message payload should be JSON and it's format is defined in a JSON schema document included in the adoption payload published here;
+```
+[PREFIX/]stat/CLIENTID[/SUFFIX]/adopt
+```
+See the `config` value in the `/adopt` payload.
 
 ### Input Config
+Each INPUT can be configured via the following properties;
+
 |Key|Mandatory|Value|Default|
 |---|---------|-----|-------|
 |`index`|Mandatory|Index of the input to configure|N/A|
@@ -77,6 +83,8 @@ Inverting a normally-open (NO) button input will result in a constant stream of 
 :::
 
 ### Output Config
+Each OUTPUT can be configured via the following properties;
+
 |Key|Mandatory|Value|Default|
 |---|---------|-----|-------|
 |`index`|Mandatory|Index of the output to configure|N/A|
@@ -92,48 +100,30 @@ The only difference between `motor` and `relay` outputs is the interlock delay (
 |`relay`     |500ms          |
 
 ### Examples
-To configure input 3 to be an inverted contact sensor:
-``` json
+To configure input 3 to be an inverted contact sensor and output 2 to be a 30 second timer;
+```json
 { 
-  "index": 3, 
-  "type": "contact",
-  "invert": true
+  "inputs": [
+    { "index": 3, "type": "contact", "invert": true }
+  ],
+  "outputs": [
+    { "index": 2, "type": "timer", "timerSeconds": 30 }
+  ]
 }
 ```
 
-To configure input 6 to be a button:
-``` json
+To configure input 9 to be a button and outputs 7 & 8 to drive a motor and be interlocked;
+```json
 { 
-  "index": 6, 
-  "type": "button"
+  "inputs": [
+    { "index": 9, "type": "button" }
+  ],
+  "outputs": [
+    { "index": 7, "type": "motor", "interlockIndex": 8 },
+    { "index": 8, "type": "motor", "interlockIndex": 7 }
+  ]
 }
 ```
-
-To configure output 4 to be a 30 second timer:
-``` json
-{ 
-  "index": 4, 
-  "type": "timer",
-  "timerSeconds": 30
-}
-```
-
-To configure outputs 7 & 8 to drive a motor and be interlocked:
-``` json
-[{ 
-  "index": 7,
-  "type": "motor",
-  "interlockIndex": 8
-},{
-  "index": 8, 
-  "type": "motor",
-  "interlockIndex": 7
-}]
-```
-
-::: tip
-You can configure multiple inputs/outputs in a single message by publishing a JSON array of configuration payloads.
-:::
 
 ::: tip
 A retained message will ensure the device auto-configures on startup.
