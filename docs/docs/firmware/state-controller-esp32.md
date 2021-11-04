@@ -29,7 +29,7 @@ Interlocking two outputs allows them to control equipment such as roller blinds,
 
 However if you are planning to control a motor of any sort then it is important that the two outputs are configured as type `motor` and that both are interlocked with each other. This is to ensure that both outputs will not be commanded to operate at the same time and adds a 2 second delay between any changes of output.
 
-Example payload to confingure outputs 4 & 5 to control a set of roller blinds;
+Example payload to configure outputs 4 & 5 to control a set of roller blinds;
 ``` json
 {
   "outputs": [
