@@ -31,10 +31,12 @@ However if you are planning to control a motor of any sort then it is important 
 
 Example payload to confingure outputs 4 & 5 to control a set of roller blinds;
 ``` json
-[
-  { "index": 4, "type": "motor", "interlockIndex": 5 },
-  { "index": 5, "type": "motor", "interlockIndex": 4 }
-]
+{
+  "outputs": [
+    { "index": 4, "type": "motor", "interlockIndex": 5 },
+    { "index": 5, "type": "motor", "interlockIndex": 4 }
+  ]
+}
 ```
 
 The operation of the interlocked outputs should be verified before connecting to any external equipment. External interlocking equipment may be required for some equipment. Most importantly, the manufacturers wiring and installation guides must be adhered to.
