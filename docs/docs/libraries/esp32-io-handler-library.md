@@ -54,13 +54,13 @@ void setup() {
   for (uint8_t pin = 0; pin < 16; pin++) {
     mcp23017.pinMode(pin, INPUT_PULLUP);
   }
+  
+  // Initialise the input handler
+  oxrsInput.begin(inputEvent);
 
   // Configurate types and invert state here
   //oxrsInput.setType(0, BUTTON);
   //oxrsInput.setInvert(0, 1);
-  
-  // Register our callback handler
-  oxrsInput.onEvent(inputEvent);
 }
 
 void loop() {
@@ -117,13 +117,13 @@ void setup() {
   for (uint8_t pin = 0; pin < 16; pin++) {
     mcp23017.pinMode(pin, OUTPUT);
   }
+  
+  // Initialise the output handler
+  oxrsOutput.begin(outputEvent);
 
   // Configurate types, interlocks and timers here
   //oxrsOutput.setInterlock(0, 1);
   //oxrsOutput.setInterlock(1, 0);
-  
-  // Register our callback handler
-  oxrsOutput.onEvent(outputEvent);
 }
 
 void loop() {
