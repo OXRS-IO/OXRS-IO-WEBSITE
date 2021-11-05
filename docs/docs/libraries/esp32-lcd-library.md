@@ -30,23 +30,24 @@ The third block shows the port animation. The layout of this field depends on th
 
 The bottom row is reserved to show events published over MQTT. The latest event is shown for 3 seconds and the display dimms after 10 seconds of inactivity (defaults)
 
-
 ---
 
 ## Configuration
 ### General
 
-Library is written to support a ST7789 based 240x240 pixel display.
+This library is designed to support a ST7789 based 240x240 pixel display.
 
-Requires ```TFT_eSPI library``` by Bodmer to be installed and configured for the target MCU.
+It requires the `TFT_eSPI` library by Bodmer to be installed and configured for the target MCU + display.
 
-Installation can be done with the ```Arduino Library Manager``` or download from Github : https://github.com/Bodmer/TFT_eSPI 
+You can install this library a number of ways;
 
-For your convenience an OXRS compatible configuration file ```Setup000_RACK32_ST7789.h``` is provided in the ```User_Setup folder``` of this library. Instructions how to install and activate this setup can be found on the top of ```Setup000_RACK32_ST7789.h```.
+1. Install via Arduino Library Manager (search for `TFT_eSPI`)
+2. Download [original](https://github.com/Bodmer/TFT_eSPI) version from GitHub
+3. Download [this](https://github.com/OXRS-IO/TFT_eSPI) version from GitHub which has been pre-configured for use with the ST7789 display **(recommended)**
 
+If you choose options (1) or (2) you will need to make some changes to the `TFT_eSPI` library source files to configure it for the ST7789 display. For your convenience a suitable configuration file (`Setup000_RACK32_ST7789.h`) can be found in the `\User_Setup` folder of this library. Instructions on how to install and activate this setup can be found in the header of `Setup000_RACK32_ST7789.h`.
 
 ### Maker logo displayed on LCD
-
 This lib has the ability to display a maker supplied logo in the top/left corner of the LCD.
 
 The reserved space for a logo is 40 pixel high and 40 pixel wide at the top/left corner of the LCD.
@@ -75,12 +76,10 @@ Use `convert.py -i logo.bmp -o logo.h -v FW_LOGO` to create a `logo.h` header fi
 :::
 
 #### Logo selection at start up
-
 At startup the LCD lib searches for a logo in the following order, stopping once one is found;
 1. check for `/logo.bmp` stored in SPIFFS
 1. check for `fwLogo` reference passed by `OXRS_lcd::draw_header()`
 1. use default `OXRS_logo` from PROGMEM (embedded in library)
-
 
 ---
 
