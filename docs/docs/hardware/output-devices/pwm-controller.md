@@ -12,7 +12,8 @@ Basic I2C Controller baord that allows for 16bit PWM Control of N-Channel MOSFET
 
 ## Features
 - **Requires Compatible Controller to run firmware** see below for options
-- 16 Channels control
+- 16 Channels control **expandable**
+- Expandable up to 62 boards - 992 Channels
 - 6-PIN IDC I2C oxrs compatible connection
 - 12-24v common andode led strip compatibility
 - 30 volt 8 amp MOSFET per channel
