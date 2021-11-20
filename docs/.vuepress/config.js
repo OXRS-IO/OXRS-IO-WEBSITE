@@ -41,6 +41,10 @@ module.exports = {
             text: 'Libraries',
             link: '/docs/libraries',
           },
+          {
+            text: 'Cases',
+            link: '/docs/cases',
+          },
         ],
       },
       {
@@ -52,7 +56,11 @@ module.exports = {
           },
           {
             text: 'Advanced',
-            link: '/guides/advanced.md',
+            link: '/guides/advanced',
+          },
+          {
+            text: 'Standards',
+            link: '/guides/standards',
           },
           {
             text: 'Writing Docs',
@@ -96,6 +104,38 @@ module.exports = {
       },
     ],
     sidebar: {
+      '/docs/guides/advanced': [
+        {
+          text: 'Advanced',
+          link: '/docs/guides/advanced/README.md',
+        },
+      ],
+      '/docs/guides/standards': [
+        {
+          text: 'Standards',
+          link: '/docs/guides/standards/README.md',
+          children: [
+            {
+              text: 'IDC',
+              children: [
+                  '/docs/guides/standards/IDC.md',
+              ],
+            },
+            {
+              text: 'IO Ethernet',
+              children: [
+                  '/docs/guides/standards/IO-ethernet.md',
+              ],
+            },
+            {
+              text: 'Versioning',
+              children: [
+                  '/docs/guides/standards/versioning.md',
+              ],
+            },
+          ],
+        },
+      ],
       '/docs/hardware': [
         {
           text: 'Hardware',
@@ -105,20 +145,23 @@ module.exports = {
               text: 'Controllers',
               children: [
                   '/docs/hardware/controllers/rack32.md',
+                  '/docs/hardware/controllers/room8266.md',
               ],
             },
-            // {
-            //   text: 'Input Devices',
-            //   children: [
-            //       '/docs/hardware/input-devices/hardware-template.md',
-            //   ],
-            // },
-            // {
-            //   text: 'Output Devices',
-            //   children: [
-            //       '/docs/hardware/output-devices/hardware-template.md',
-            //   ],
-            // },
+            {
+              text: 'Input Devices',
+              children: [
+                  '/docs/hardware/input-devices/I2CRJ45.md',
+//                   '/docs/hardware/input-devices/hardware-template.md',
+              ],
+            },
+            {
+              text: 'Output Devices',
+              children: [
+                  '/docs/hardware/output-devices/pwm-controller.md',
+//                   '/docs/hardware/output-devices/hardware-template.md',
+              ],
+            },
             {
               text: 'Input & Output Devices',
               children: [
