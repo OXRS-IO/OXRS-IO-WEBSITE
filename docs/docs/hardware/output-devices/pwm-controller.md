@@ -25,7 +25,7 @@ Basic I2C Controller board that allows for 16bit PWM Control of N-Channel MOSFET
 - Additional Resource 1 [GITHUB](https://github.com/austinscreations/PWM-LED-Controller)
 
 ## Where to Buy
-- Conatact on Discord or website [WEBSITE](https://www.austinscreations.ca/)
+- Contact on Discord or website [WEBSITE](https://www.austinscreations.ca/)
 
 ## FAQs
 :::
