@@ -2,7 +2,7 @@
 tags: [""]
 ---
 # Getting Started Guide
- A great adventure awaits those using the OXRS platform, and with teh help of this Guide you'll be able to pick you adventure.
+ A great adventure awaits those using the OXRS platform, and with the help of this Guide you'll be able to pick you adventure.
  
 ::: tip Notice
 These docs are work in progress, if you have any issues getting things setup drop us a message on the SuperHouse [Discord](https://discord.gg/H6bbrAtS)
