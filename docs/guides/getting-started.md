@@ -8,7 +8,7 @@ tags: [""]
 These docs are work in progress, if you have any issues getting things setup drop us a message on the SuperHouse [Discord](https://discord.gg/H6bbrAtS)
 :::
 
-# Choose Your Adventure
+## Choose Your Adventure
  Pick Your 
  - IO options
  - Controller(s)
@@ -16,12 +16,12 @@ These docs are work in progress, if you have any issues getting things setup dro
  - Cases --- rack mount or 3D printed?
  - Firmware, the basic flashing / updating guide
 
-# IO Options
+## IO Options
 
-# Controllers
+## Controllers
 
-# Displays
+## Displays
 
-# Cases
+## Cases
 
-# Firmware
+## Firmware

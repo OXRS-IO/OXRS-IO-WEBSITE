@@ -117,21 +117,15 @@ module.exports = {
           children: [
             {
               text: 'IDC',
-              children: [
-                  '/guides/standards/IDC.md',
-              ],
+              link: '/guides/standards/IDC.md',
             },
             {
               text: 'IO Ethernet',
-              children: [
-                  '/guides/standards/IO-ethernet.md',
-              ],
+              link: '/guides/standards/IO-ethernet.md',
             },
             {
               text: 'Versioning',
-              children: [
-                  '/guides/standards/versioning.md',
-              ],
+              link: '/guides/standards/versioning.md',
             },
           ],
         },
@@ -218,7 +212,7 @@ module.exports = {
             {
               text: 'Rack Mount',
               children: [
-                  '/docs/cases/rack-mount/README.md',
+                  '/docs/cases/rack-mount/rack-mount.md',
               ],
             },
             {
