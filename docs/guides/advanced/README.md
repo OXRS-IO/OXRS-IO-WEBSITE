@@ -4,15 +4,15 @@ tags: [""]
 # Advanced Guide
  Includes:
 
-# Software
+## Software
  - node red
  - mqtt
 
-# Building Firmware
+## Building Firmware
  - Arduino
  - PlatformIO
 
-# Ethernet Cabling
+## Ethernet Cabling
 
 ::: tip TODO
 Content to be created for this page
