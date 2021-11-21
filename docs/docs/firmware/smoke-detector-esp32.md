@@ -74,11 +74,11 @@ See the `config` value in the `/adopt` payload.
 ### Input Config
 Each INPUT can be configured via the following properties;
 
-|Key|Mandatory|Value|Default|
-|---|---------|-----|-------|
+|Key|Mandatory|Value|
+|---|---------|-----|
 |`index`|Mandatory|Index of the input to configure|N/A|
-|`type`|Optional|Either `button`, `contact`, `switch` or `toggle`|`switch`|
-|`invert`|Optional|Either `true` or `false`|`false` <Badge text="non-inverted"/>|
+|`type`|Optional|Either `button`, `contact`, `switch` or `toggle`|
+|`invert`|Optional|Either `true` or `false`|
 
 ::: warning
 Inverting a normally-open (NO) button input will result in a constant stream of `hold` events!
@@ -87,12 +87,12 @@ Inverting a normally-open (NO) button input will result in a constant stream of 
 ### Output Config
 Each OUTPUT can be configured via the following properties;
 
-|Key|Mandatory|Value|Default|
-|---|---------|-----|-------|
-|`index`|Mandatory|Index of the output to configure|N/A|
-|`type`|Optional|Either `motor`, `relay`, or `timer`|`relay`|
-|`interlockIndex`|Optional|Index to interlock with (lock the opposite for interlocking both ways or self-lock to disable interlocking)|Self-locked|
-|`timerSeconds` |Optional|Number of seconds an output stays `on` when type set to `timer`|60 seconds|
+|Key|Mandatory|Value|
+|---|---------|-----|
+|`index`|Mandatory|Index of the output to configure|
+|`type`|Optional|Either `motor`, `relay`, or `timer`|
+|`interlockIndex`|Optional|Index to interlock with (lock the opposite for interlocking both ways or self-lock to disable interlocking)|
+|`timerSeconds` |Optional|Number of seconds an output stays `on` when type set to `timer` (defaults to 60 seconds)|
 
 The only difference between `motor` and `relay` outputs is the interlock delay (if an interlock is configured). 
 
@@ -142,34 +142,31 @@ where;
 - `CLIENTID`: Client id of device, defaults to `<MACADDRESS>`
 - `SUFFIX`:   Optional topic suffix if required
 
-The message payload should be JSON and contain:
+The message payload should be JSON and it's format is defined in a JSON schema document included in the adoption payload published here;
+```
+[PREFIX/]stat/CLIENTID[/SUFFIX]/adopt
+```
+See the `command` value in the `/adopt` payload.
 
-|Key|Mandatory|Value|Default|
-|---|---------|-----|-------|
-|`index`|Mandatory|Index of the output to switched|N/A|
-|`command`|Mandatory|Either `on`, `off`, or `query`|`query`|
+|Key|Mandatory|Value|
+|---|---------|-----|
+|`index`|Mandatory|Index of the output to switched|
+|`command`|Mandatory|Either `on`, `off`, or `query`|
 
 ::: tip
 The `query` command will cause an event to be published, with the current state of that output.
 :::
 
 ### Examples
-To turn on output 4:
+To turn on output 4 and query the state of output 7;
 ``` json
 { 
-  "index": 4, 
-  "command": "on" 
+  "outputs": [
+    { "index": 4, "command": "on" },
+    { "index": 7, "command": "query" }
+  ]
 }
 ```
-
-To query the state of output 7:
-``` json
-{ 
-  "index": 7, 
-  "command": "query"
-}
-```
-
 
 ## Events
 An input EVENT or output STATE CHANGE is reported to a topic of the form:

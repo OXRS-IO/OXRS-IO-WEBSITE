@@ -55,11 +55,11 @@ See the `config` value in the `/adopt` payload.
 ### Input Config
 Each INPUT can be configured via the following properties;
 
-|Key|Mandatory|Value|Default|
-|---|---------|-----|-------|
-|`index`|Mandatory|Index of the input to configure|N/A|
-|`type`|Optional|Either `button`, `contact`, `rotary`, `switch` or `toggle`|`switch`|
-|`invert`|Optional|Either `true` or `false`|`false` <Badge text="non-inverted"/>|
+|Key|Mandatory|Value|
+|---|---------|-----|
+|`index`|Mandatory|Index of the input to configure|
+|`type`|Optional|Either `button`, `contact`, `rotary`, `switch` or `toggle`|
+|`invert`|Optional|Either `true` or `false`|
 
 ::: warning
 Inverting a normally-open (NO) button input will result in a constant stream of `hold` events!
