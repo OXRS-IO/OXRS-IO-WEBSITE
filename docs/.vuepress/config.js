@@ -104,33 +104,33 @@ module.exports = {
       },
     ],
     sidebar: {
-      '/docs/guides/advanced': [
+      '/guides/advanced': [
         {
           text: 'Advanced',
-          link: '/docs/guides/advanced/README.md',
+          link: '/guides/advanced/README.md',
         },
       ],
-      '/docs/guides/standards': [
+      '/guides/standards': [
         {
           text: 'Standards',
-          link: '/docs/guides/standards/README.md',
+          link: '/guides/standards/README.md',
           children: [
             {
               text: 'IDC',
               children: [
-                  '/docs/guides/standards/IDC.md',
+                  '/guides/standards/IDC.md',
               ],
             },
             {
               text: 'IO Ethernet',
               children: [
-                  '/docs/guides/standards/IO-ethernet.md',
+                  '/guides/standards/IO-ethernet.md',
               ],
             },
             {
               text: 'Versioning',
               children: [
-                  '/docs/guides/standards/versioning.md',
+                  '/guides/standards/versioning.md',
               ],
             },
           ],
@@ -205,6 +205,26 @@ module.exports = {
                   '/docs/libraries/esp32-mqtt-library.md',
                   '/docs/libraries/esp32-lcd-library.md',
                   '/docs/libraries/esp32-io-handler-library.md',
+              ],
+            },
+          ],
+        },
+      ],
+      '/docs/cases': [
+        {
+          text: 'Cases',
+          link: '/docs/cases/README.md',
+          children: [
+            {
+              text: 'Rack Mount',
+              children: [
+                  '/docs/cases/rack-mount/README.md',
+              ],
+            },
+            {
+              text: '3D Printed',
+              children: [
+                  '/docs/cases/3D-printed/README.md',
               ],
             },
           ],
