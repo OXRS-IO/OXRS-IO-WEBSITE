@@ -117,15 +117,15 @@ module.exports = {
           children: [
             {
               text: 'IDC',
-              '/guides/standards/IDC.md',
+              link: '/guides/standards/IDC.md',
             },
             {
               text: 'IO Ethernet',
-              '/guides/standards/IO-ethernet.md',
+              link: '/guides/standards/IO-ethernet.md',
             },
             {
               text: 'Versioning',
-              '/guides/standards/versioning.md',
+              link: '/guides/standards/versioning.md',
             },
           ],
         },
