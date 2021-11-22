@@ -22,7 +22,7 @@ I'm personally using a tower light as an accesability device because I'm hard of
 - **ESP8266** microcontroller with **WiFi**.
 - **10/100Mbps** Ethernet.
 - 2.1mm power jack
-- Screw Terminal taht can be used for power input and output for your light
+- Screw Terminal that can be used for power input and output for your light
 - 2x 4 pin jst sh connectors to match the Stemma / qwiic connector I2C standard.
 
 ## Supported Firmware
