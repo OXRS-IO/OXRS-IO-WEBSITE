@@ -191,9 +191,7 @@ module.exports = {
            text: 'Accessibility',
            link: '/addons/accessibility/README.md',
            children: [
-            {
               '/addons/accessibility/ac-tower-controller.md',
-            },
           ],
         },
       ],
@@ -202,9 +200,7 @@ module.exports = {
            text: 'Displays',
            link: '/addons/displays/README.md',
            children: [
-             {
                '/addons/displays/IPS-display.md',
-             },
            ],
         },
       ],
@@ -213,9 +209,7 @@ module.exports = {
            text: 'Switches',
            link: '/addons/switches/README.md',
            children: [
-             {
                '/addons/switches/ac-smart-switch.md',
-             },
            ],
          },
        ],
