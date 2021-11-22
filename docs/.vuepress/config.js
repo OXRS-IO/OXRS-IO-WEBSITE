@@ -52,23 +52,23 @@ module.exports = {
         children: [
           {
             text: 'Accessibility',
-            link: '/addons/accessibility',
+            link: '/add-ons/accessibility',
           },
           {
             text: 'Displays',
-            link: '/addons/displays',
+            link: '/add-ons/displays',
           },
 //           {
 //             text: 'Relays',
-//             link: '/addons/relays',
+//             link: '/add-ons/relays',
 //           },
 //           {
 //             text: 'Sensors',
-//             link: '/addons/sensors',
+//             link: '/add-ons/sensors',
 //           },
           {
             text: 'Switches',
-            link: '/addons/switches',
+            link: '/add-ons/switches',
           },
         ],
       },
@@ -77,7 +77,7 @@ module.exports = {
         children: [
           {
             text: 'Getting started',
-            link: '/guides',
+            link: '/guides/start',
           },
           {
             text: 'Advanced',
@@ -129,10 +129,10 @@ module.exports = {
       },
     ],
     sidebar: {
-      '/guides': [
+      '/guides/start': [
         {
           text: 'Getting Started',
-          link: '/guides/getting-started.md',
+          link: '/guides/start/README.md',
         },
         {
           text: 'Advanced',
@@ -146,7 +146,7 @@ module.exports = {
       '/guides/advanced': [
         {
           text: 'Getting Started',
-          link: '/guides/',
+          link: '/guides/start',
         },
         {
           text: 'Advanced',
@@ -160,7 +160,7 @@ module.exports = {
       '/guides/standards': [
         {
           text: 'Getting Started',
-          link: '/guides/',
+          link: '/guides/start',
         },
         {
           text: 'Advanced',
@@ -186,33 +186,131 @@ module.exports = {
           
         },
       ],
-      '/addons/accessibility': [
+      '/add-ons/accessibility': [
         {
-           text: 'Accessibility',
-           link: '/addons/accessibility/README.md',
-           children: [
-              '/addons/accessibility/ac-tower-controller.md',
+          text: 'Accessibility',
+          link: '/add-ons/accessibility/README.md',
+          children: [
+            '/add-ons/Accessibility/ac-tower-controller.md',
+         ],
+        },
+        {
+          text: 'Displays',
+          link: '/add-ons/displays',
+        },
+        // {
+        //   text: 'Relays',
+        //   link: '/add-ons/relays',
+        // },
+        // {
+        //   text: 'Sensors',
+        //   link: '/add-ons/sensors',
+        // },
+        {
+          text: 'Switches',
+          link: '/add-ons/switches',
+        },
+      ],
+      '/add-ons/displays': [
+        {
+          text: 'Accessibility',
+          link: '/add-ons/accessibility',
+        },        
+        {
+          text: 'Displays',
+          link: '/add-ons/displays/README.md',
+          children: [
+            '/add-ons/displays/IPS-display.md',
           ],
         },
-      ],
-      '/addons/displays': [
+        // {
+        //   text: 'Relays',
+        //   link: '/add-ons/relays',
+        // },
+        // {
+        //   text: 'Sensors',
+        //   link: '/add-ons/sensors',
+        // },
         {
-           text: 'Displays',
-           link: '/addons/displays/README.md',
-           children: [
-               '/addons/displays/IPS-display.md',
-           ],
+          text: 'Switches',
+          link: '/add-ons/switches',
         },
       ],
-      '/addons/switches': [
+      // '/add-ons/relays': [
+      //   {
+      //     text: 'Accessibility',
+      //     link: '/add-ons/accessibility',
+      //   }, 
+      //   {
+      //     text: 'Displays',
+      //     link: '/add-ons/displays',
+      //   },
+      //   {
+      //     text: 'Relays',
+      //     link: '/add-ons/relays',
+      //     children: [
+      //       // '/add-ons/displays/IPS-display.md',
+      //     ],
+      //     {
+      //       text: 'Sensors',
+      //       link: '/add-ons/sensors',
+      //     }, 
+      //     {
+      //       text: 'Switches',
+      //       link: '/add-ons/switches',
+      //     },
+      //   },
+      // ],
+      // '/add-ons/sensors': [
+      //   {
+      //     text: 'Accessibility',
+      //     link: '/add-ons/accessibility',
+      //   }, 
+      //   {
+      //     text: 'Displays',
+      //     link: '/add-ons/displays',
+      //   },
+      //   {
+      //     text: 'Relays',
+      //     link: '/add-ons/relays',
+      //   },
+      //   {
+      //     text: 'Sensors',
+      //     link: '/add-ons/sensors',
+      //     children: [
+      //       // '/add-ons/sensors/some-sensor.md',
+      //     ],
+      //     {
+      //       text: 'Switches',
+      //       link: '/add-ons/switches',
+      //     },
+      //   },
+      // ],
+      '/add-ons/switches': [
+         {
+           text: 'Accessibility',
+           link: '/add-ons/accessibility',
+         }, 
+         {
+           text: 'Displays',
+           link: '/add-ons/displays',
+         },
+        //  {
+        //   text: 'Relays',
+        //   link: '/add-ons/relays',
+        // },
+        // {
+        //   text: 'Sensors',
+        //   link: '/add-ons/sensors',
+        // },
          {
            text: 'Switches',
-           link: '/addons/switches/README.md',
+           link: '/add-ons/switches/README.md',
            children: [
-               '/addons/switches/ac-smart-switch.md',
-           ],
-         },
-       ],
+               '/add-ons/switches/ac-smart-switch.md',
+            ],
+          },
+        ],
       '/docs/hardware': [
         {
           text: 'Hardware',
