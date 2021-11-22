@@ -48,11 +48,36 @@ module.exports = {
         ],
       },
       {
+        text: 'Add-ons',
+        children: [
+          {
+            text: 'Accessibility',
+            link: '/addons/accessibility',
+          },
+          {
+            text: 'Displays',
+            link: '/addons/displays',
+          },
+//           {
+//             text: 'Relays',
+//             link: '/addons/relays',
+//           },
+//           {
+//             text: 'Sensors',
+//             link: '/addons/sensors',
+//           },
+          {
+            text: 'Switches',
+            link: '/addons/switches',
+          },
+        ],
+      },
+      {
         text: 'Guides',
         children: [
           {
             text: 'Getting started',
-            link: '/guides/getting-started.md',
+            link: '/guides/',
           },
           {
             text: 'Advanced',
@@ -104,30 +129,201 @@ module.exports = {
       },
     ],
     sidebar: {
+      '/guides': [
+        {
+          text: 'Getting Started',
+          link: '/guides/getting-started.md',
+        },
+        {
+          text: 'Advanced',
+          link: '/guides/advanced',
+        },
+        {
+          text: 'Standards',
+          link: '/guides/standards',
+        },
+      ],
       '/guides/advanced': [
+        {
+          text: 'Getting Started',
+          link: '/guides/',
+        },
         {
           text: 'Advanced',
           link: '/guides/advanced/README.md',
         },
+        {
+          text: 'Standards',
+          link: '/guides/standards',
+        },
       ],
       '/guides/standards': [
         {
-          text: 'Standards',
-          link: '/guides/standards/README.md',
-          children: [
-            {
-              text: 'IDC',
-              link: '/guides/standards/IDC.md',
-            },
-            {
-              text: 'IO Ethernet',
-              link: '/guides/standards/IO-ethernet.md',
-            },
-            {
-              text: 'Versioning',
-              link: '/guides/standards/versioning.md',
-            },
-          ],
+          text: 'Getting Started',
+          link: '/guides/',
+        },
+        {
+          text: 'Advanced',
+          link: '/guides/advanced',
+        },
+        {
+           text: 'Standards',
+           link: '/guides/standards/README.md',
+           children: [
+             {
+               text: 'IDC',
+               link: '/guides/standards/IDC.md',
+             },
+             {
+               text: 'IO Ethernet',
+               link: '/guides/standards/IO-ethernet.md',
+             },
+             {
+               text: 'Versioning',
+               link: '/guides/standards/versioning.md',
+             },
+           ],
+          
+        },
+      ],
+      '/addons/accessibility': [
+         {
+           text: 'Accessibility',
+           link: '/addons/accessibility/README.md',
+           children: [
+             {
+               text: 'Tower Controller',
+               link: '/addons/accessibility/ac-tower-controller.md',
+             },
+           ],
+        },
+        {
+           text: 'Displays',
+           link: '/addons/displays',
+        },
+//         {
+//            text: 'Relays',
+//            link: '/addons/relays',
+//         },
+//         {
+//            text: 'Sensors',
+//            link: '/addons/sensors',
+//         },
+        {
+           text: 'Switches',
+           link: '/addons/switches',
+        },
+      ],
+      '/addons/displays': [
+         {
+           text: 'Accessibility',
+           link: '/addons/accessibility',
+        },
+        {
+           text: 'Displays',
+           link: '/addons/displays/README.md',
+           children: [
+             {
+               text: 'IPS Display',
+               link: '/addons/displays/IPS-display.md',
+             },
+           ],
+        },
+//         {
+//            text: 'Relays',
+//            link: '/addons/relays',
+//         },
+//         {
+//            text: 'Sensors',
+//            link: '/addons/sensors',
+//         },
+        {
+           text: 'Switches',
+           link: '/addons/switches',
+        },
+      ],
+//       '/addons/relays': [
+//        {
+//             text: 'Accessibility',
+//             link: '/addons/accessibility',
+//        },  
+//        {
+//            text: 'Displays',
+//            link: '/addons/displays',
+//        }, 
+//        {
+//            text: 'Relays',
+//            link: '/addons/relays/README.md',
+//            children: [
+//              {
+//                text: 'TEXT',
+//                link: '/addons/relays/SUMSUM',
+//              },
+//            ],
+//         },
+//         {
+//            text: 'Sensors',
+//            link: '/addons/sensors',
+//         },
+//         {
+//            text: 'Switches',
+//            link: '/addons/switches',
+//         },
+//       ],
+//       '/addons/sensors': [
+//         {
+//            text: 'Accessibility',
+//            link: '/addons/accessibility',
+//         },
+//         {
+//            text: 'Displays',
+//            link: '/addons/displays',
+//         },
+//         {
+//            text: 'Relays',
+//            link: '/addons/relays',
+//         }, 
+//         {
+//            text: 'Sensors',
+//            link: '/addons/sensors/README.md',
+//            children: [
+//              {
+//                text: 'TEXT',
+//                link: '/addons/sensors/SUMSUM',
+//              },
+//            ],
+//          },
+//         {
+//            text: 'Switches',
+//            link: '/addons/switches',
+//         },
+//       ],
+       '/addons/switches': [
+         {
+           text: 'Accessibility',
+           link: '/addons/accessibility',
+        },
+        {
+           text: 'Displays',
+           link: '/addons/displays',
+        },
+//         {
+//            text: 'Relays',
+//            link: '/addons/relays',
+//         }, 
+//          {
+//            text: 'Sensors',
+//            link: '/addons/sensors',
+//         },
+         {
+           text: 'Switches',
+           link: '/addons/switches/README.md',
+           children: [
+             {
+               text: 'AC Smart Switch',
+               link: '/addons/displays/ac-smart-switch.md',
+             },
+           ],
         },
       ],
       '/docs/hardware': [
