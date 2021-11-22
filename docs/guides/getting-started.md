@@ -26,10 +26,12 @@ These docs are work in progress, if you have any issues getting things setup dro
 
 ## Firmware
 *WIP - to be updated soon*
-For basic laoding of firmware, it's recomended that if firmwware is already laoded to use OTA. 
+
+For basic loading of firmware, it's recomended that if firmwware is already loaded to use OTA. 
 otherwise it's recomended to use esptooy.py or espflasher and with those 2 programs you can flash teh required bin file. for editing and uploading the raw firmware with arduino or platformIO check out the advanced guide
 
-with esptool.py the cmd lien is listed below: (this is an example for esp32)
+with esptool.py the cmd line is listed below: (this is an example for esp32)
+
 The last item in the cmd is the name of the bin file to load.
 ```cmd
 esptool.py --chip esp32 --port "COM9" --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size detect 0x10000 OXRS-SHA-StateMonitor-ESP32-FW.ino.esp32.bin
