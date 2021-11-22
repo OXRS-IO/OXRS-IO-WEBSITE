@@ -77,7 +77,7 @@ module.exports = {
         children: [
           {
             text: 'Getting started',
-            link: '/guides/',
+            link: '/guides',
           },
           {
             text: 'Advanced',
@@ -187,145 +187,32 @@ module.exports = {
         },
       ],
       '/addons/accessibility': [
-         {
+        {
            text: 'Accessibility',
            link: '/addons/accessibility/README.md',
            children: [
-             {
-               text: 'Tower Controller',
-               link: '/addons/accessibility/ac-tower-controller.md',
-             },
-           ],
-        },
-        {
-           text: 'Displays',
-           link: '/addons/displays',
-        },
-//         {
-//            text: 'Relays',
-//            link: '/addons/relays',
-//         },
-//         {
-//            text: 'Sensors',
-//            link: '/addons/sensors',
-//         },
-        {
-           text: 'Switches',
-           link: '/addons/switches',
+              '/addons/accessibility/ac-tower-controller.md',
+          ],
         },
       ],
       '/addons/displays': [
-         {
-           text: 'Accessibility',
-           link: '/addons/accessibility',
-        },
         {
            text: 'Displays',
            link: '/addons/displays/README.md',
            children: [
-             {
-               text: 'IPS Display',
-               link: '/addons/displays/IPS-display.md',
-             },
+               '/addons/displays/IPS-display.md',
            ],
         },
-//         {
-//            text: 'Relays',
-//            link: '/addons/relays',
-//         },
-//         {
-//            text: 'Sensors',
-//            link: '/addons/sensors',
-//         },
-        {
-           text: 'Switches',
-           link: '/addons/switches',
-        },
       ],
-//       '/addons/relays': [
-//        {
-//             text: 'Accessibility',
-//             link: '/addons/accessibility',
-//        },  
-//        {
-//            text: 'Displays',
-//            link: '/addons/displays',
-//        }, 
-//        {
-//            text: 'Relays',
-//            link: '/addons/relays/README.md',
-//            children: [
-//              {
-//                text: 'TEXT',
-//                link: '/addons/relays/SUMSUM',
-//              },
-//            ],
-//         },
-//         {
-//            text: 'Sensors',
-//            link: '/addons/sensors',
-//         },
-//         {
-//            text: 'Switches',
-//            link: '/addons/switches',
-//         },
-//       ],
-//       '/addons/sensors': [
-//         {
-//            text: 'Accessibility',
-//            link: '/addons/accessibility',
-//         },
-//         {
-//            text: 'Displays',
-//            link: '/addons/displays',
-//         },
-//         {
-//            text: 'Relays',
-//            link: '/addons/relays',
-//         }, 
-//         {
-//            text: 'Sensors',
-//            link: '/addons/sensors/README.md',
-//            children: [
-//              {
-//                text: 'TEXT',
-//                link: '/addons/sensors/SUMSUM',
-//              },
-//            ],
-//          },
-//         {
-//            text: 'Switches',
-//            link: '/addons/switches',
-//         },
-//       ],
-       '/addons/switches': [
-         {
-           text: 'Accessibility',
-           link: '/addons/accessibility',
-        },
-        {
-           text: 'Displays',
-           link: '/addons/displays',
-        },
-//         {
-//            text: 'Relays',
-//            link: '/addons/relays',
-//         }, 
-//          {
-//            text: 'Sensors',
-//            link: '/addons/sensors',
-//         },
+      '/addons/switches': [
          {
            text: 'Switches',
            link: '/addons/switches/README.md',
            children: [
-             {
-               text: 'AC Smart Switch',
-               link: '/addons/displays/ac-smart-switch.md',
-             },
+               '/addons/switches/ac-smart-switch.md',
            ],
-        },
-      ],
+         },
+       ],
       '/docs/hardware': [
         {
           text: 'Hardware',
