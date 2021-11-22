@@ -7,7 +7,7 @@ actions:
     link: /docs/hardware/readme.md
     type: primary
   - text: Guides
-    link: /guides/getting-started.md
+    link: /guides/start
     type: secondary
 features:
   - title: Who
