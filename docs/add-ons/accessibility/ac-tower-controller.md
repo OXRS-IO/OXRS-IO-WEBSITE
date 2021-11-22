@@ -15,7 +15,7 @@ A Cutsom Tower Controller
 
 This basic controller lets you control 12-24v analog common anode LED tower lights.
 
-I'm personally using a tower light as an accesability device because I'm hard of hearing.
+I'm personally using a tower light as an accessibility device because I'm hard of hearing.
 
 ## Features
 
