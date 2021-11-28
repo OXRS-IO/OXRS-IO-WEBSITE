@@ -5,6 +5,7 @@ tags: [""]
  Includes:
 
 ## Software
+ - [Home Assistant](/guides/advanced/home_assistant.html) Sample automations to work with StateMonitor
  - node red
  - mqtt
 
