@@ -25,7 +25,7 @@ The library will automatically publish and subscribe to various topics, dependin
 
 |Topic|Description|
 |:----|:----------|
-|`stat/<clientid>/lwt`|Publishes `{"online":true|false}` to this topic when connected/disconnected from the MQTT broker|
+|`stat/<clientid>/lwt`|Publishes `{"online":true\|false}` to this topic when connected/disconnected from the MQTT broker|
 |`stat/<clientid>`|Publishes JSON status messages to this topic via `publishStatus()`|
 |`tele/<clientid>`|Publishes JSON telemetry messages to this topic via `publishTelemetry()`|
 |`stat/<clientid>/adopt`|Publishes JSON adoption messages to this topic via `publishAdopt()`|
