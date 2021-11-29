@@ -32,6 +32,10 @@ The library will automatically publish and subscribe to various topics, dependin
 |`conf/<clientid>`|Subscribes to this topic for JSON config messages and passes them on to your `onConfig` callback|
 |`cmnd/<clientid>`|Subscribes to this topic for JSON command messages and passes them on to your `onCommand` callback|
 
+::: tip
+These topics will be different if you set a topic prefix or suffix. E.g. a topic prefix of `home` and suffix of `oxrs` would result in a LWT topic of `home/stat/<clientid>/oxrs/lwt`.
+:::
+
 ## Configuration
 ### Setup
 The library needs to be initialised with an instance of `PubSubClient`, which can be created for either WiFi or Ethernet connections. You also need to register a callback on your `PubSubClient` for incoming MQTT messages, and pass these events down to the MQTT library;
