@@ -33,7 +33,7 @@ The library will automatically publish and subscribe to various topics, dependin
 |`cmnd/<clientid>`|Subscribes to this topic for JSON command messages and passes them on to your `onCommand` callback|
 
 ::: tip
-These topics will be different if you set a topic prefix or suffix. E.g. a topic prefix of `home` and suffix of `oxrs` would result in a LWT topic of `home/stat/<clientid>/oxrs/lwt`.
+These topics will be different if you set a topic prefix or suffix. E.g. a topic prefix of `home` and suffix of `oxrs` would result in a LWT topic of `home/stat/<clientid>/oxrs/lwt`
 :::
 
 ## Configuration
@@ -41,6 +41,10 @@ These topics will be different if you set a topic prefix or suffix. E.g. a topic
 The library needs to be initialised with an instance of `PubSubClient`, which can be created for either WiFi or Ethernet connections. You also need to register a callback on your `PubSubClient` for incoming MQTT messages, and pass these events down to the MQTT library;
 
 ``` c
+// MQTT client
+PubSubClient _mqttClient(_client);
+OXRS_MQTT _mqtt(_mqttClient);
+
 void _mqttCallback(char * topic, byte * payload, int length) 
 {
   // Pass down to our MQTT handler and check it was processed ok
@@ -98,18 +102,22 @@ Finally your firmware needs to call the MQTT library `.loop()` method as often a
 ### Publishing
 The library makes it very easy to publish JSON data by providing a set of simple APIs;
 
-|Publish API|Description|
-|:----------|:----------|
-|`publishStatus`|Publish a JSON **status** message to `stat/<clientid>`|
-|`publishTelemetry`|Publish a JSON **telemetry** message to `tele/<clientid>`|
-|`publishAdopt`|Publish a JSON **adoption** message to `stat/<clientid>/adopt`|
+|Publish API|Topic|Retained|Description|
+|:----------|:----|:-------|:----------|
+|`publishStatus`|`stat/<clientid>`|false|Publish a JSON **status** message, e.g. when a button event is detected|
+|`publishTelemetry`|`tele/<clientid>`|false|Publish a JSON **telemetry** message, e.g. when publishing regular sensor data|
+|`publishAdopt`|`stat/<clientid>/adopt`|true|Publish a JSON **adoption** message, typically firmware and network details plus JSON config/command schemas|
 
 The adoption message is optional but is used by downstream systems in the OXRS eco-system to identify the device and provide a means for building self-describing configuration and control systems/UIs.
 
----
+::: tip
+Typically you publish your adoption message in the `onConnected` callback so anything listening is alerted to your presence as soon as you come online
+:::
 
 ## Downloads
 Download the latest version of the library on [Github](https://github.com/OXRS-IO/OXRS-IO-MQTT-ESP32-LIB).
+
+A good place to look for an example of how to use this MQTT library is in the [Rack32](/docs/hardware/controllers/rack32.html) library found [here](https://github.com/SuperHouse/OXRS-SHA-Rack32-ESP32-LIB).
 
 ## Supported Hardware
 This library is compatible with any Arduino-based hardware, including ESP32, ESP8266 and AVR microprocessors.
