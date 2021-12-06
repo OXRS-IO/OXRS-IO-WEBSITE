@@ -134,7 +134,7 @@ Update the current MQTT configuration, and persist to SPIFFS so it can be restor
 The only mandatory field is `broker`, everything else is optional. The `clientId` will typically default to the last 3 bytes of the device MAC address, but this is configurable in your firmware code when initialising the [`OXRS_MQTT`](/docs/libraries/esp32-mqtt-library.html) library.
 
 ### GET `/config`
-Retrieves the current device config. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor.html) firmware);
+Retrieves the current device config. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.html) firmware);
 ``` json
 {
     "temperatureUpdateMillis": 60000,
@@ -161,7 +161,7 @@ Retrieves the current device config. Depends on the firmware (example below is f
 ```
 
 ### POST `/config`
-Update the current device config, and persist to SPIFFS so it can be restored on restart. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor.html) firmware);
+Update the current device config, and persist to SPIFFS so it can be restored on restart. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.html) firmware);
 ``` json
 {
     "temperatureUpdateMillis": 60000,
