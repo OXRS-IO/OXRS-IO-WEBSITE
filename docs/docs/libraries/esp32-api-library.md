@@ -14,7 +14,7 @@ Using this library allows you to release pre-compiled versions of your firmware.
 ---
 
 ### How does it work?
-This library use the Arduino [aWOT](https://github.com/lasselukkari/aWOT) library by Lasse Lukkari. It also uses the SPIFFS file system, if available, for persisting configuration and restoring on startup.
+This library uses the Arduino [aWOT](https://github.com/lasselukkari/aWOT) library by Lasse Lukkari. It also makes use of the SPIFFS file system, if available, for persisting configuration and restoring on startup.
 
 The library will expose the following REST API endpoints on the device;
 
@@ -41,7 +41,11 @@ There is no authentication on any of the REST API endpoints or HTML pages. **DO 
 ## Usage
 The library needs to be initialised with an instance of [`OXRS_MQTT`](/docs/libraries/esp32-mqtt-library.html), since we need to initialise that with the MQTT configuration provisioned by the API on startup.
 
+The API library will also pass any device configuration, provisioned via the `/config` REST API, down to the MQTT library for handling, since that already has all the config callbacks used by the firmware. This ensures that all configuration is handled by your firmware in the same place, regardless of whether it was provisioned by the API, or received via MQTT on the `conf/<deviceid>` topic.
+
 You can optionally provide the device firmware details using `.setFirmware()` (see below in the code example). This will mean these details are available via the `/firmware` REST API endpoint. If they are not provided the REST API will return `404` for this endpoint.
+
+The following code is all you need to enable the OXRS REST API and HTML pages on your device;
 
 ``` c
 // MQTT client
@@ -50,7 +54,6 @@ OXRS_MQTT _mqtt(_mqttClient);
 
 // REST API
 EthernetServer _server(80);
-//WiFiServer _server(80);
 OXRS_API _api(_mqtt);
 
 void setup()
@@ -65,18 +68,12 @@ void loop()
   // Handle any Ethernet REST API requests
   EthernetClient client = _server.available();
   _api.checkEthernet(&client);
-
-  // Handle any WiFi REST API requests
-  //WiFiClient client = _server.available();
-  //_api.checkWifi(&client);
 }
 ```
 
 ::: tip
-You can use this library with a WiFi connected device as well. See commented code in the snippet above.
+You can use this library with a WiFi connected device as well. Use `WifiServer`, `WiFiClient` and `_api.checkWifi()` in place of the Ethernet versions in the code snippet above.
 :::
-
-The API library will also pass any device configuration, provisioned via the `/config` REST API, down to the MQTT library for handling, since that already has all the config callbacks used by the firmware. This ensures that all configuration is handled by your firmware in the same place, regardless of whether it was provisioned by the API, or received via MQTT on the `conf/<deviceid>` topic.
 
 ## Screenshots
 ### Bootstrap page
