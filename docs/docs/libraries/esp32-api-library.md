@@ -81,10 +81,12 @@ The API library will also pass any device configuration, provisioned via the `/c
 ## Screenshots
 ### Bootstrap page
 The main page showing firmware details and fields for entering your MQTT configuration. It provides buttons to submit your config changes, restart or factory reset the device.
+
 ![Bootstrap Page](/images/oxrs-api-library-bootstrap.png)
 
 ### OTA page
 The OTA page showing firmware details and a file picker for selecting a new firmware binary for uploading and re-flashing. 
+
 ![OTA Page](/images/oxrs-api-library-ota.png)
 
 ## Downloads
