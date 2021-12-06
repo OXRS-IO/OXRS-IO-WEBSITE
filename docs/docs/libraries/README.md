@@ -4,9 +4,9 @@ tags: [""]
 # Libraries
 
 ## Introduction
-Several Libraries have been created to support the OXRS eco-system with the goal to minimize the effort in writing new firmware for OXRS compatible hardware.
+Several libraries have been created to support the OXRS eco-system with the goal to minimise the effort in writing new firmware for OXRS compatible hardware.
 
-The diagram below shows how the libraries relate to each other.
+The diagram below shows how the libraries relate to each other;
 
 ![OXRS Libraries](/images/OXRS-SW-Structure.jpg)
 
