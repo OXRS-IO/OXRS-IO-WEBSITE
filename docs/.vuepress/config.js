@@ -378,6 +378,7 @@ module.exports = {
               text: 'ESP32',
               children: [
                   '/docs/libraries/esp32-mqtt-library.md',
+                  '/docs/libraries/esp32-api-library.md',
                   '/docs/libraries/esp32-lcd-library.md',
                   '/docs/libraries/esp32-io-handler-library.md',
               ],

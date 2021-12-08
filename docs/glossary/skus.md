@@ -34,5 +34,6 @@ Here is a list of the library SKUs.
 |Name      |Maker    |SKU                             |Link                     |
 |:-------- |:--------|:-------------------------------|:------------------------|
 |ESP32 MQTT library | OXRS Core Team | OXRS-IO-MQTT-ESP32-LIB| [more info](/docs/libraries/esp32-mqtt-library.html) |
+|ESP32 API library | OXRS Core Team | OXRS-IO-API-ESP32-LIB| [more info](/docs/libraries/esp32-api-library.html) |
 |ESP32 LCD library | OXRS Core Team | OXRS-IO-LCD-ESP32-LIB| [more info](/docs/libraries/esp32-lcd-library.html) |
 |ESP32 I/O handler library | SuperHouse Automation | OXRS-SHA-IOHandler-ESP32-LIB| [more info](/docs/libraries/esp32-io-handler-library.html) |
