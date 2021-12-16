@@ -362,6 +362,7 @@ module.exports = {
               children: [
                   '/docs/firmware/state-monitor-esp32.md',
                   '/docs/firmware/state-controller-esp32.md',
+                  '/docs/firmware/state-io-esp32.md',
                   '/docs/firmware/smoke-detector-esp32.md',
                   '/docs/firmware/led-controller-esp32.md',
               ],
