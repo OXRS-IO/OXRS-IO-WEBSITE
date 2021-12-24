@@ -13,6 +13,7 @@ Here is a list of the hardware SKUs.
 |Rack32 | SuperHouse Automation | OXRS-SHA-RACK32 | [more info](/docs/hardware/controllers/rack32.html) |
 |Smoke Detect Input/Output 16Port | Bedrock Media Designs | OXRS-BMD-SD16| [more info](/docs/hardware/input-output-devices/smoke-detector-sd-16port.html) |
 |Rack32 KNX Shield | Frank McAlinden | OXRS-FMA-RACK32KNXSHIELD | [more info](/docs/hardware/shields/rack32-knx-shield.html) |
+|Sense To RJ45 | Bedrock Media Designs | OXRS-BMD-SRJ45| [more info](/docs/hardware/input-output-devices/SenseRJ45.html) |
 
 
 ## Firmware
