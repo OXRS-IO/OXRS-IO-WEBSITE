@@ -5,8 +5,9 @@ tags: ["CBUS", "URC", "CBUStoRJ45"]
 <p class="maker">by <b>Bedrock Media Design</b></p>
 
 <!-- Board Image -->
-![Bedrock Media Design CBUS to RJ45 board](/images/cbusrj45.jpg)
-![Bedrock Media Design CBUS to RJ45 board](/images/cbusrj45duo.jpg)
+![Bedrock Media Design CBUS to RJ45 board](/images/cbus-to-rj45.jpg)
+<!-- ![Bedrock Media Design CBUS to RJ45 board](/images/cbusrj45.jpg) -->
+<!-- ![Bedrock Media Design CBUS to RJ45 board](/images/cbusrj45duo.jpg) -->
 
 
 <!-- Board Description -->

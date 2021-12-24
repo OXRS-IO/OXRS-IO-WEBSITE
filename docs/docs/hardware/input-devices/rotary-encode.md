@@ -5,7 +5,8 @@ tags: ["Encoder", "URC", "Rotary Encode"]
 <p class="maker">by <b>Bedrock Media Design</b></p>
 
 <!-- Board Image -->
-![Bedrock Media Design rotary Encode](/images/rotaryencode.jpg)
+![Bedrock Media Design rotary Encode](/images/rotary-encoder.jpg)
+<!-- ![Bedrock Media Design rotary Encode](/images/rotaryencode.jpg) -->
 
 
 

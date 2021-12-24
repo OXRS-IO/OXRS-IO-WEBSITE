@@ -7,7 +7,8 @@ tags: ["Bedrock Media Design", "IO", "OXRS-BMD-SRJ45", "Sense to Rj45 (SRJ45)" ]
 > SKU: OXRS-BMD-SRJ45
 
 
-![Bedrock Media Designs Sense to RJ45](/images/SRJ45.jpg)
+![Bedrock Media Designs Sense to RJ45](/images/sense-to-rj45.jpg)
+<!-- ![Bedrock Media Designs Sense to RJ45](/images/SRJ45.jpg) -->
 
 The Sense to RJ45 is a Universal Tiny IO device that allows you to intergrate just about any device that has exposed IO into the OXRS Ecosystem. The PCB has a rj45 connecter for connecting to the I2CRJ45
 

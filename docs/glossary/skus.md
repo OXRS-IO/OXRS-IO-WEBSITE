@@ -1,6 +1,6 @@
 ---
 # Ensure you add new SKUs to Tags
-tags: ["OXRS-SHA-RACK32", "OXRS-BMD-SD16", "OXRS-SHA-STATEMONITOR-ESP32-FW"]
+tags: ["OXRS-SHA-RACK32", "OXRS-BMD-SD16", "OXRS-SHA-STATEMONITOR-ESP32-FW", "OXRS-FMA-RACK32KNXSHIELD", "OXRS-BMD-SRJ45", "OXRS-BMD-CBUSRJ45", "OXRS-BMD-RE45", "OXRS-BMD-RE", "OXRS-BMD-DRD4CH", "OXRS-SHA-STATECONTROLLER-ESP32-FW", "OXRS-BMD-SMOKEDETECTOR-ESP32-FW", "OXRS-AC-LEDCONTROLLER-ESP32-FW", "OXRS-IO-MQTT-ESP32-LIB", "OXRS-IO-API-ESP32-LIB", "OXRS-IO-LCD-ESP32-LIB", "OXRS-SHA-IOHandler-ESP32-LIB"]
 ---
 # OXRS Compatible SKUs
 
@@ -17,7 +17,7 @@ Here is a list of the hardware SKUs.
 |CBUS to RJ45 | Bedrock Media Designs | OXRS-BMD-CBUSRJ45| [more info](/docs/hardware/input-devices/CBUS-to-RJ45.html) |
 |Rotary Encoder to RJ45 | Bedrock Media Designs | OXRS-BMD-RE45| [more info](/docs/hardware/input-devices/rotary-encode-to-rj45.html) |
 |Rotary Encode| Bedrock Media Designs | OXRS-BMD-RE| [more info](/docs/hardware/input-devices/rotary-encode.html) |
-|DIN Relay Driver (4Ch)| Bedrock Media Designs | OXRS-BMD-DRD4ch| [more info](/docs/hardware/output-devices/DIN-Relay-Driver-4ch.html) |
+|DIN Relay Driver (4Ch)| Bedrock Media Designs | OXRS-BMD-DRD4CH| [more info](/docs/hardware/output-devices/DIN-Relay-Driver-4ch.html) |
 
 
 ## Firmware
