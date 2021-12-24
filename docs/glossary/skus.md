@@ -14,6 +14,10 @@ Here is a list of the hardware SKUs.
 |Smoke Detect Input/Output 16Port | Bedrock Media Designs | OXRS-BMD-SD16| [more info](/docs/hardware/input-output-devices/smoke-detector-sd-16port.html) |
 |Rack32 KNX Shield | Frank McAlinden | OXRS-FMA-RACK32KNXSHIELD | [more info](/docs/hardware/shields/rack32-knx-shield.html) |
 |Sense To RJ45 | Bedrock Media Designs | OXRS-BMD-SRJ45| [more info](/docs/hardware/input-output-devices/SenseRJ45.html) |
+|CBUS to RJ45 | Bedrock Media Designs | OXRS-BMD-CBUSRJ45| [more info](/docs/hardware/input-devices/CBUS-to-RJ45.html) |
+|Rotary Encoder to RJ45 | Bedrock Media Designs | OXRS-BMD-RE45| [more info](/docs/hardware/input-devices/rotary-encode-to-rj45.html) |
+|Rotary Encode| Bedrock Media Designs | OXRS-BMD-RE| [more info](/docs/hardware/input-devices/rotary-encode.html) |
+|DIN Relay Driver (4Ch)| Bedrock Media Designs | OXRS-BMD-DRD4ch| [more info](/docs/hardware/output-devices/DIN-Relay-Driver-4ch.html) |
 
 
 ## Firmware
