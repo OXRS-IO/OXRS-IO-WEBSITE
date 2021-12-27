@@ -33,6 +33,9 @@ This board fits into a rack-mount case and provides those common features so the
 - Header for front-panel power LED.
 - Can be built with onboard PCB antenna or external WiFi antenna.
 
+## Warnings
+- The PoE bypass jumper headers are 'Red' for a reason. **DO NOT** insert jumpers to close these connections if you are intending to power the Rack32 via **802.3af PoE**. ONLY insert the 'Red' header bridges if you intend using DIY (12V) PoE, otherwise you will apply 48VDC from the **802.3af PoE** source to the L78S05CV linear 5V regulator (25Vdc max i/p voltage) and destroy it.
+- **DO NOT** connect any external supported hardware to the 'I2CBreakout' socket while the Rack32 is powered up as this will likely cause of failure of the AP2112K LDO 3.3V regulator. **ONLY connect external supported hardware to the 'I2CBreakout' socket when the Rack32 is powered down.**
 
 ## Supported Firmware
 - OXRS-SHA-SmokeDetector-ESP32-FW [Github](https://github.com/SuperHouse/OXRS-SHA-SmokeDetector-ESP32-FW)
