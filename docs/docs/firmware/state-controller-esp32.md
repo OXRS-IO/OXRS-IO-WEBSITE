@@ -70,6 +70,8 @@ This firmware is compatible with I/O boards with MCPs driving 8 or 16 output rel
 |---|---------|-----|
 |`outputsPerMcp`|Optional|Number of outputs connected to each MCP (either 8 or 16, defaults to 16)|
 
+Your device **MUST** be restarted after any changes to this configuration, before it will take effect.
+
 #### Examples
 To configure for use with [8 Channel Relay Driver Shield](https://www.superhouse.tv/product/8-channel-relay-driver-shield/);
 ``` json
