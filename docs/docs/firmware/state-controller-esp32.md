@@ -63,6 +63,32 @@ The message payload should be JSON and it's format is defined in a JSON schema d
 ```
 See the `config` value in the `/adopt` payload.
 
+### MCP Config
+This firmware is compatible with I/O boards with MCPs driving 8 or 16 output relays (see **Supported Hardware** links below). If you are using a board which is only driving 8 output relays you need to tell the firmware to ignore pins 9-16 on each MCP.
+
+|Key|Mandatory|Value|
+|---|---------|-----|
+|`outputsPerMcp`|Optional|Number of outputs connected to each MCP (either 8 or 16, defaults to 16)|
+
+#### Examples
+To configure for use with [8 Channel Relay Driver Shield](https://www.superhouse.tv/product/8-channel-relay-driver-shield/);
+``` json
+{ 
+  "outputsPerMcp": 8
+}
+```
+
+::: warning
+This config should be set using the REST API and **NOT** a retained MQTT message. This config is used when initialising the device and is needed by the firmware before a connection to the MQTT broker is made. Setting this via the REST API will ensure it is persisted to SPIFFS and loaded early enough in the boot sequence.
+:::
+
+::: tip
+You can set this config via the REST API using `curl` (substitute your device IP address);
+```
+curl -X POST http://<DEVICE_IP>/config -H 'Content-Type: application/json' -d '{"outputsPerMcp":8}'
+```
+:::
+
 ### Output Config
 Each OUTPUT can be configured via the following properties;
 
