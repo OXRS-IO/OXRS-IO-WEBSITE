@@ -140,7 +140,8 @@ Retrieves the adoption details for the device;
       }
     }
   }
-}```
+}
+```
 
 ### POST `/restart`
 Empty payload. Soft-restarts the device.
