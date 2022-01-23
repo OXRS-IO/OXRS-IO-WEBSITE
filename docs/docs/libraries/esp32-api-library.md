@@ -7,7 +7,7 @@ tags: ["OXRS-IO-API-ESP32-LIB", "TAG2", "TAG3"]
 > SKU: OXRS-IO-API-ESP32-LIB
 
 ## Introduction
-This library adds a REST API to OXRS compatible devices, providing a means to bootstrap MQTT configuration, check firmware details, and perform over-the-air (OTA) updates. It even serves a few simple HTML pages allowing you access to these features directly in your web browser.
+This library adds a REST API to OXRS compatible devices, providing a means to bootstrap MQTT configuration, retrieve adoption details, and perform over-the-air (OTA) updates. It even serves a few simple HTML pages allowing you access to these features directly in your web browser.
 
 Using this library allows you to release pre-compiled versions of your firmware. Users don't need to manually type in their MQTT broker details, compile the library, and then flash their devices. It can all be done via the OXRS API making releasing and distributing the firmware much easier.
 
@@ -20,7 +20,7 @@ The library will expose the following REST API endpoints on the device;
 
 |REST API|Supports|Description|
 |:-------|:-------|:----------|
-|`/firmware`|GET|Returns the firmware details of the device, in JSON format|
+|`/adopt`|GET|Gets firmware and network details and configuration/command schemas, in JSON format|
 |`/restart`|POST|Force a soft-reset|
 |`/factoryReset`|POST|Format SPIFFS and force a soft-reset|
 |`/mqtt`|GET & POST|Get or set MQTT configuration, in JSON format, and persist to SPIFFS|
@@ -41,9 +41,9 @@ There is no authentication on any of the REST API endpoints or HTML pages. **DO 
 ## Usage
 The library needs to be initialised with an instance of [`OXRS_MQTT`](/docs/libraries/esp32-mqtt-library.html), since we need to initialise that with the MQTT configuration provisioned by the API on startup.
 
-The API library will also pass any device configuration, provisioned via the `/config` REST API, down to the MQTT library for handling, since that already has all the config callbacks used by the firmware. This ensures that all configuration is handled by your firmware in the same place, regardless of whether it was provisioned by the API, or received via MQTT on the `conf/<deviceid>` topic.
+The API library will also pass any device configuration, provisioned via the `/config` REST API, down to the MQTT library for handling, since that already has all the config callbacks used by the firmware. This ensures that all configuration is handled by your firmware in the same place, regardless of whether it was provisioned by the API, or received via MQTT on the `conf/<clientid>` topic.
 
-You can optionally provide the device firmware details using `.setFirmware()` (see below in the code example). This will mean these details are available via the `/firmware` REST API endpoint. If they are not provided the REST API will return `404` for this endpoint.
+You can optionally provide the adoption details for the device by setting the `.onAdopt()` callback. This callback will be called any time the API or MQTT libraries are required to generate the adoption payload. The adoption payload is available via the `/adopt` REST API endpoint or published via MQTT to `stat/<deviceid>/adopt`, upon successful connection to your MQTT broker. 
 
 The following code is all you need to enable the OXRS REST API and HTML pages on your device;
 
@@ -60,7 +60,6 @@ void setup()
 {
   // Set up the REST API
   _api.begin();
-  _api.setFirmware("Firmware Name", "Firmware Short Name", "Firmware Maker", "0.0.1");
 }
 
 void loop()
@@ -78,14 +77,69 @@ You can use this library with a WiFi connected device as well. Use `WifiServer`,
 ## REST API
 Listed below are the REST API endpoints supported by this library, including example payloads.
 
-### GET `/firmware`
-Retrieves the firmware details currently running on the device;
+### GET `/adopt`
+Retrieves the adoption details for the device;
 ``` json
 {
+  "firmware": {
     "name": "OXRS-SHA-StateMonitor-ESP32-FW",
     "shortName": "State Monitor",
     "maker": "SuperHouse Automation",
-    "version": "3.3.1-KNX"
+    "version": "3.5.0"
+  },
+  "network": {
+    "ip": "192.168.40.64",
+    "mac": "94:B9:7E:F1:D2:5B"
+  },
+  "configSchema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "OXRS-SHA-StateMonitor-ESP32-FW",
+    "type": "object",
+    "properties": {
+      "inputs": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "index": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 128
+            },
+            "type": {
+              "enum": [
+                "button",
+                "contact",
+                "rotary",
+                "switch",
+                "toggle"
+              ]
+            },
+            "invert": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "index"
+          ]
+        }
+      },
+      "temperatureUpdateMillis": {
+        "type": "integer",
+        "minimum": 0
+      }
+    }
+  },
+  "commandSchema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "OXRS-SHA-StateMonitor-ESP32-FW",
+    "type": "object",
+    "properties": {
+      "restart": {
+        "type": "boolean"
+      }
+    }
+  }
 }
 ```
 

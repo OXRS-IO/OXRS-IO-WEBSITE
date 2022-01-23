@@ -5,9 +5,10 @@ tags: ["I2CRJ45", "URC", "I2CRJ45"]
 <p class="maker">by <b>SuperHouse Automation</b></p>
 
 <!-- Board Image -->
-![SuperHouse Automation I2CRJ45x8 board](/images/oxrs-I2CRJ45X8.jpg)
-![SuperHouse Automation I2CRJ45x16 board](/images/oxrs-I2CRJ45X16.jpg)
-![SuperHouse Automation I2CRJ45x24 board](/images/oxrs-I2CRJ45X24.jpg)
+![SuperHouse Automation I2CRJ45x8 board](/images/i2crj45.jpg)
+<!-- ![SuperHouse Automation I2CRJ45x8 board](/images/oxrs-I2CRJ45X8.jpg) -->
+<!-- ![SuperHouse Automation I2CRJ45x16 board](/images/oxrs-I2CRJ45X16.jpg) -->
+<!-- ![SuperHouse Automation I2CRJ45x24 board](/images/oxrs-I2CRJ45X24.jpg) -->
 
 <!-- Board Description -->
 I2C compatible board that handles multiple inputs via an RJ45 connection
