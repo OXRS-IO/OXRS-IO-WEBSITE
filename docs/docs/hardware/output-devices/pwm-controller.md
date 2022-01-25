@@ -8,24 +8,24 @@ tags: ["PWM", "LED","OXRS-AC-PWMcontroller"]
 ![Austin's Creations PWM Controller](/images/oxrs-pwm-controller.jpg)
 
 <!-- Board Description -->
-Basic I2C Controller board that allows for 16bit PWM Control of N-Channel MOSFETS
+I2C controller board that provides 16bit PWM control of N-Channel MOSFETS using PCA9685 chips.
 
 ## Features
 - **Requires Compatible Controller to run firmware** see below for options
-- 16 Channels control
-- 6-PIN IDC I2C oxrs compatible connection
-- 12-24v common andode led strip compatibility
-- 30 volt 8 amp MOSFET per channel
+- 16 channel control
+- 6-PIN IDC I2C OXRS compatible connection
+- 12-24V common andode led strip compatibility
+- 30V 8A MOSFET per channel
 
 ## Supported Firmware
-- OXRS-AC-LedController-ESP8266-FW [Github](https://github.com/austinscreations/OXRS-AC-LedController-ESP8266-FW)
-- OXRS-AC-LedController-ESP32-FW  [Github](https://github.com/austinscreations/OXRS-AC-LedController-ESP32-FW)
+- ESP8266 firmware on [Github](https://github.com/austinscreations/OXRS-AC-PCALedController-ESP8266-FW)
+- ESP32 firmware on [Github](https://github.com/austinscreations/OXRS-AC-PCALedController-ESP32-FW)
 
 ## Additional Resources
-- Additional Resource 1 [GITHUB](https://github.com/austinscreations/PWM-LED-Controller)
+- Schematics and design files on [Github](https://github.com/austinscreations/PWM-LED-Controller)
 
 ## Where to Buy
-- Contact on Discord or website [WEBSITE](https://www.austinscreations.ca/)
+- Contact on Discord or [website](https://www.austinscreations.ca/)
 
 ## FAQs
 :::
@@ -39,5 +39,5 @@ TODO - to supply some FAQ's
 :::
 
 ## Compatible With
-- room8266 [Link](https://oxrs.io/docs/hardware/controllers/room8266.html)
-- rack32  [Link](https://oxrs.io/docs/hardware/controllers/rack32.html)
+- [Room8266](https://oxrs.io/docs/hardware/controllers/room8266.html)
+- [Rack32](https://oxrs.io/docs/hardware/controllers/rack32.html)
