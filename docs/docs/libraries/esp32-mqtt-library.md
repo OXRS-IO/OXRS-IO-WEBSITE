@@ -123,7 +123,7 @@ A good place to look for an example of how to use this MQTT library is in the [R
 This library is compatible with any Arduino-based hardware, including ESP32, ESP8266 and AVR microprocessors.
 
 ::: warning
-When running on AVR MCUs the max MQTT message size is reduced to only 256 bytes, due to memory constraints on these devices. However for ESP32 and ESP8266 devices the max MQTT message size is 4096 bytes.
+When running on AVR MCUs the max MQTT message size is reduced to only 256 bytes, due to memory constraints on these devices. However for ESP32 and ESP8266 devices the max MQTT message size is 16384 bytes.
 :::
 
 ---
