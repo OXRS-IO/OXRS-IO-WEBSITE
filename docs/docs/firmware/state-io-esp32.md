@@ -22,7 +22,7 @@ Currently there are 5 supported configurations, with different partition sizes.
 The [AdminUI-WEB-APP](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP) is the ideal tool to set your desired configuration. 
 
 
-![IO split configurations](/images/IO-config.png)
+![IO split configurations](/images/io-config.png)
 
 
 In the example above the FW is configured for 32x inputs and 96x outputs. The user has to make sure that the connected MCPs are configured properly (correct MCP address). Not all output MCPs need to be populated. The FW will automatically scan for installed MCPs and only allows configuration of existing MCPs.
