@@ -91,6 +91,25 @@ curl -X POST http://<DEVICE_IP>/config -H 'Content-Type: application/json' -d '{
 ```
 :::
 
+### Default Output Type
+By default all outputs are initialised as type `relay`. Individual outputs can then be configured as required (see below). However it is also possible to change this default. For example, if you are intending to control roller blinds throughout your home, instead of setting individual config for each output, you can simply set the `defaultOutputType` to `motor` and be done with it.
+
+|Key|Mandatory|Value|
+|---|---------|-----|
+|`defaultOutputType`|Optional|Either `motor`, `relay`, or `timer`|
+
+### Examples
+To configure the default output type to be `motor`;
+```json
+{ 
+  "defaultOutputType": "motor"
+}
+```
+
+::: tip
+You can still override the default output type with specific configuration for individual outputs, see below.
+:::
+
 ### Output Config
 Each OUTPUT can be configured via the following properties;
 

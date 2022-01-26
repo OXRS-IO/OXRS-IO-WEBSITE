@@ -52,6 +52,25 @@ The message payload should be JSON and it's format is defined in a JSON schema d
 ```
 See the `config` value in the `/adopt` payload.
 
+### Default Input Type
+By default all inputs are initialised as type `toggle`. Individual inputs can then be configured as required (see below). However it is also possible to change this default. For example, if you are intending to use bi-stable light switches throughout your home, instead of setting individual config for each input, you can simply set the `defaultInputType` to `switch` and be done with it.
+
+|Key|Mandatory|Value|
+|---|---------|-----|
+|`defaultInputType`|Optional|Either `button`, `contact`, `rotary`, `switch` or `toggle`|
+
+### Examples
+To configure the default input type to be `switch`;
+```json
+{ 
+  "defaultInputType": "switch"
+}
+```
+
+::: tip
+You can still override the default input type with specific configuration for individual inputs, see below.
+:::
+
 ### Input Config
 Each INPUT can be configured via the following properties;
 
