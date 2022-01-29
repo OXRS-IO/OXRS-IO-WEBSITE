@@ -1,0 +1,17 @@
+{
+  "firmware": [{
+      "name": "OXRS-SHA-StateMonitor-ESP32-FW",
+      "otaUrl": "https://api.github.com/repos/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW/releases/latest"
+    }, {
+      "name": "OXRS-SHA-StateController-ESP32-FW",
+      "otaUrl": "https://api.github.com/repos/SuperHouse/OXRS-SHA-StateController-ESP32-FW/releases/latest"
+    }, {
+      "name": "OXRS-SHA-StateIO-ESP32-FW",
+      "otaUrl": "https://api.github.com/repos/SuperHouse/OXRS-SHA-StateIO-ESP32-FW/releases/latest"
+    }, {
+      "name": "OXRS-BMD-SmokeDetector-ESP32-FW",
+      "otaUrl": "https://api.github.com/repos/Bedrock-Media-Designs/OXRS-BMD-SmokeDetector-ESP32-FW/releases/latest"
+    }
+
+  ]
+}
