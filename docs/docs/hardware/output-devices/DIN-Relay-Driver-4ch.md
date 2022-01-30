@@ -6,8 +6,8 @@ tags: ["Bedrock Media Design", "Output", "OXRS-BMD-DRD4CH", "DinRelayDriver (DRD
 
 > SKU: OXRS-BMD-DRD4CH
 
-
-![Bedrock Media Designs DIN Relay Driver 4ch](/images/DRD4CH.jpg)
+<!-- Commented out as these images dont exsist and was breaking the dev server. Any images specified must be uploaded to the directory /OXRS-IO-WEBSITE/docs/.vuepress/public/images -->
+<!-- ![Bedrock Media Designs DIN Relay Driver 4ch](/images/DRD4CH.jpg) -->
 
 The DIN Relay Driver 4ch is a special Relay Driver packed with some cool features. the PCB was designed to be the same formfactor as a standard DIN Circuit breaker, this allow for a nicer mounting soultion and a cleaner overall install.
 The DIN Relay Driver has a power led, 4 test buttons, a switch for changing input power from the RJ45/ External power. and a 5 way 3.81mm pitch Terminal block. 

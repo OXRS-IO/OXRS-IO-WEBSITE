@@ -5,8 +5,9 @@ tags: ["Encoder", "URC", "rotarytoRJ45"]
 <p class="maker">by <b>Bedrock Media Design</b></p>
 
 <!-- Board Image -->
-![Bedrock Media Design rotary to RJ45 board](/images/rotaryencoder.jpg)
-![Bedrock Media Design rotary to RJ45 board](/images/rotaryencoderduo.jpg)
+<!-- Commented out as these images dont exsist and was breaking the dev server. Any images specified must be uploaded to the directory /OXRS-IO-WEBSITE/docs/.vuepress/public/images -->
+<!-- ![Bedrock Media Design rotary to RJ45 board](/images/rotaryencoder.jpg) -->
+<!-- ![Bedrock Media Design rotary to RJ45 board](/images/rotaryencoderduo.jpg) -->
 
 
 <!-- Board Description -->
