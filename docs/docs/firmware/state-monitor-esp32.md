@@ -55,9 +55,9 @@ See the `config` value in the `/adopt` payload.
 ### Default Input Type
 By default all inputs are initialised as type `switch`. Individual inputs can then be configured as required ([see below](./state-monitor-esp32.md#input-config)). However it is also possible to change this default. For example, if you are intending to use push buttons throughout your home, instead of setting individual config for each input, you can simply set the `defaultInputType` to `button` and be done with it.
 
-|Key|Value|  
-|:--|:----|
-|`defaultInputType` |Either&nbsp;`button`,&nbsp;`contact`,&nbsp;`press`,&nbsp;`rotary`,&nbsp;`switch`&nbsp;or&nbsp;`toggle`|
+|Key|Mandatory|Value|  
+|:--|:--------|:----|
+|`defaultInputType`|Optional|Either `button`, `contact`, `press`, `rotary`, `switch` or `toggle`|
 
 ### Examples
 To configure the default input type to be `button`;
@@ -100,19 +100,15 @@ A retained message will ensure the device auto-configures on startup.
 :::
 
 ### Recommended Configurations
-Below is a table showing possible **Connected Devices** and the supported `input types`. Check marks are indicating the recommended combinations to ensure intended behavior.
+Below is a table showing possible **Connected Device** and the supported `input types`. Check marks are indicating the recommended combinations to ensure intended behavior.
 
 |Connected Devices|`button`|`contact`|`press`|`rotary`|`switch`|`toggle`| 
 |:----------------|:------:|:-------:|:-----:|:------:|:------:|:------:|
-|**bi-stable Switches**   |:x:|:x:|:x:|:x:|:white_check_mark:|:white_check_mark:|
+|**Bi-Stable Switch**   |:x:|:x:|:x:|:x:|:white_check_mark:|:white_check_mark:|
 |**Door / Window Contact**|:x:|:white_check_mark:|:x:|:x:|:x:|:x:|
 |**PIR**                  |:x:|:x:|:white_check_mark:|:x:|:x:|:x:|
 |**Push Button**          |:white_check_mark:|:x:|:white_check_mark:|:x:|:x:|:x:|
-|**Rotary Encoder**       |:x:|:x:|:x:|:white_check_mark:|:x:|:x:|
-
-> **Recommended:**  :white_check_mark:
->
-> **Not Recommended:**   :x:
+|**Rotary Encoder**       |:x:|:white_check_mark:|:x:|:x:|:x:|:x:|
 
 
 ## Events
