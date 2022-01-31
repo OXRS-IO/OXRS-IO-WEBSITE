@@ -13,8 +13,8 @@ A single CAT5/6 cable can be used to monitor the alarm state, as well as trigger
 
 Each port on a Smoke Detector 16-port (SD16) can control 2 outputs and monitor 1 input and are numbered;
 
-|INDEX|PORT|CHANNEL|TYPE  |RJ45 Pin|
-|-----|----|-------|------|--------|
+|Index|Port|Channel|Type  |RJ45 Pin|
+|:----|:---|:------|:-----|:-------|
 |1    |1   |1      |Output|2       |
 |2    |1   |2      |Output|3       |
 |3    |1   |3      |Input |6       |
@@ -75,9 +75,9 @@ See the `config` value in the `/adopt` payload.
 Each INPUT can be configured via the following properties;
 
 |Key|Mandatory|Value|
-|---|---------|-----|
+|:--|:--------|:----|
 |`index`|Mandatory|Index of the input to configure|N/A|
-|`type`|Optional|Either `button`, `contact`, `switch` or `toggle`|
+|`type`|Optional|Either `button`, `contact`, `press`, `switch` or `toggle`|
 |`invert`|Optional|Either `true` or `false`|
 
 ::: warning
@@ -88,7 +88,7 @@ Inverting a normally-open (NO) button input will result in a constant stream of 
 Each OUTPUT can be configured via the following properties;
 
 |Key|Mandatory|Value|
-|---|---------|-----|
+|:--|:--------|:----|
 |`index`|Mandatory|Index of the output to configure|
 |`type`|Optional|Either `motor`, `relay`, or `timer`|
 |`interlockIndex`|Optional|Index to interlock with (lock the opposite for interlocking both ways or self-lock to disable interlocking)|
@@ -97,7 +97,7 @@ Each OUTPUT can be configured via the following properties;
 The only difference between `motor` and `relay` outputs is the interlock delay (if an interlock is configured). 
 
 |Output Type |Interlock delay|
-|------------|---------------|
+|:-----------|:--------------|
 |`motor`     |2000ms         |
 |`relay`     |500ms          |
 
@@ -131,6 +131,16 @@ To configure input 9 to be a button and outputs 7 & 8 to drive a motor and be in
 A retained message will ensure the device auto-configures on startup.
 :::
 
+### Recommended Configurations
+Below is a table showing possible connected devices and the supported input types. Check marks indicate the recommended configurations to ensure intended behavior.
+
+|Connected Device|`button`|`contact`|`press`|`rotary`|`switch`|`toggle`| 
+|:---------------|:------:|:-------:|:-----:|:------:|:------:|:------:|
+|**Bi-Stable Switch**   |:x:|:x:|:x:|:x:|:white_check_mark:|:white_check_mark:|
+|**Door / Window Contact**|:x:|:white_check_mark:|:x:|:x:|:x:|:x:|
+|**PIR**                  |:x:|:white_check_mark:|:x:|:x:|:x:|:x:|
+|**Push Button**          |:white_check_mark:|:x:|:white_check_mark:|:x:|:x:|:x:|
+
 ## Commands
 ### Outputs
 Each OUTPUT can be controlled by publishing an MQTT message to the topic;
@@ -149,7 +159,7 @@ The message payload should be JSON and it's format is defined in a JSON schema d
 See the `command` value in the `/adopt` payload.
 
 |Key|Mandatory|Value|
-|---|---------|-----|
+|:--|:--------|:----|
 |`index`|Mandatory|Index of the output to switched|
 |`command`|Mandatory|Either `on`, `off`, or `query`|
 
@@ -181,7 +191,7 @@ where;
 The message payload is JSON and contains:
 
 |Key|Value|
-|---|-----|
+|:--|:----|
 |`port`|Port this event occured on (1-16)|
 |`channel`|Channel this event occured on (1-3)|
 |`index`|Index of this event (1-48)|
@@ -190,15 +200,16 @@ The message payload is JSON and contains:
 
 ### Input Events
 |Event Type|Event|
-|----------|-----|
+|:---------|:----|
 |`button`  | `single`, `double`, `triple`, `quad`, `penta`, or `hold` |
 |`contact` | `open` or `closed` |
+|`press`   | `press` |
 |`switch`  | `on` or `off` |
 |`toggle`  | `toggle` |
 
 ### Output Events
 |Event Type|Event|
-|----------|-----|
+|:---------|:----|
 |`motor`   | `on` or `off` |
 |`relay`   | `on` or `off` |
 |`timer`   | `on` or `off` |
@@ -262,7 +273,7 @@ The SD16 hardware has physical pull up resistors to pull the INPUT wires high an
 The RJ45 pinout for each port is;
 
 |PIN|DESCRIPTION|
-|---|-----------|
+|:--|:----------|
 |1  |OUTPUT CMN |
 |2  |OUTPUT 1   |
 |3  |OUTPUT 2   |

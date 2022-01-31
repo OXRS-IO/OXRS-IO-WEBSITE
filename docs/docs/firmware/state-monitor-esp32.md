@@ -20,8 +20,8 @@ When an input state change is detected an MQTT message is published to the confi
 
 Each port can monitor up to 4 channels and are numbered:
 
-|INDEX|PORT|CHANNEL|TYPE |RJ45 Pin|
-|:-----|:----|:-------|:-----|:--------|
+|Index|Port|Channel|Type  |RJ45 Pin|
+|:----|:---|:------|:-----|:-------|
 |1    |1   |1      |Input|1       |
 |2    |1   |2      |Input|2       |
 |3    |1   |3      |Input|3       |
@@ -100,10 +100,10 @@ A retained message will ensure the device auto-configures on startup.
 :::
 
 ### Recommended Configurations
-Below is a table showing possible **Connected Devices** and the supported `input types`. Check marks are indicating the recommended combinations to ensure intended behavior.
+Below is a table showing possible connected devices and the supported input types. Check marks indicate the recommended configurations to ensure intended behavior.
 
 |Connected Device|`button`|`contact`|`press`|`rotary`|`switch`|`toggle`| 
-|:----------------|:------:|:-------:|:-----:|:------:|:------:|:------:|
+|:---------------|:------:|:-------:|:-----:|:------:|:------:|:------:|
 |**Bi-Stable Switch**   |:x:|:x:|:x:|:x:|:white_check_mark:|:white_check_mark:|
 |**Door / Window Contact**|:x:|:white_check_mark:|:x:|:x:|:x:|:x:|
 |**PIR**                  |:x:|:white_check_mark:|:x:|:x:|:x:|:x:|
