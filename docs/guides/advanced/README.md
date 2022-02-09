@@ -6,7 +6,7 @@ tags: [""]
 
 ## Software
  - [Home Assistant](/guides/advanced/home_assistant.html) Sample automations to work with StateMonitor
- - node red
+ - [Node Red](/guides/advanced/node_red.html) Sample flows to work with StateMonitor
  - mqtt
 
 ## Building Firmware
