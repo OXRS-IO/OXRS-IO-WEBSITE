@@ -211,19 +211,20 @@ The RJ45 pinout for each port is;
 ## Further Information
 
 ### Downloads
-Download the [latest binary](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW/releases) of the firmware from GitHub
+Download the [latest binary](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW/releases) of the firmware from GitHub.
 
-Download the [source code](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW) of the firmware from GitHub
+Download the [source code](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW) of the firmware from GitHub.
 
 ### Flash Binary
 How to [flash the binary](/guides/getting-started.html#Firmware).
 
 ### Home Automation Integration
-examples how to integrate StateMonitor into Home Automation systems
+Below are some examples of how you could integrate with various home automation systems.
 
-[Home Assistant integration examples](/guides/advanced/home_assistant.html)
+[Home Assistant](https://www.home-assistant.io/) integration [examples](/guides/advanced/home_assistant.html).
 
-[Node Red integration examples](/guides/advanced/node_red.html)
+[Node-RED](https://nodered.org/) integration [examples](/guides/advanced/node_red.html).
+
 
 
 
