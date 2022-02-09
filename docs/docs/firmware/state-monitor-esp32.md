@@ -7,11 +7,11 @@ tags: ["OXRS-SHA-RCESP32", "URC", "RACK32"]
 > SKU: OXRS-SHA-STATEMONITOR-ESP32-FW
 
 ## Introduction
-A binary state monitor for DIY home automation projects.
+A state monitor for DIY home automation projects.
 
-This system uses UTP cable (typically Cat-5e because it's cheap) to connect binary sensors to a central controller. The sensors can be buttons or switches mounted in wall plates for lighting control, reed sensors attached to doors or windows, PIR sensors for motion detection, or anything else that reports a binary state.
+This system uses UTP cable (typically Cat-5e because it's cheap) to connect sensors to a central controller. The sensors can be buttons or switches mounted in wall plates for lighting control, reed sensors attached to doors or windows, PIR sensors for motion detection, or anything else that reports a digital state.
 
-It also supports rotary encoders (using 2 data lines) to allow up/down control for media player volume, light dimming, etc.
+It also supports rotary encoders (using 2 data lines) to allow up/down control for media player volume, light dimming, etc. And security sensors with end-of-line (EOL) resistance detection (using 4 data lines). 
 
 ---
 
@@ -36,6 +36,25 @@ The firmware is designed to run on hardware using MCP23017 I/O buffer chips via 
 
 A single I2C bus can support up to a maximum of 8x MCP23017 chips (addresses `0x20-0x27`). Therefore the maximum number of supported inputs is 128 (i.e. 8x MCP23017s * 16x I/O pins), or 32 ports.
 
+### Security Sensors
+The new 4 state monitor module (**Monimod**) allows you to connect security devices such as PIR sensors or door/window reed switches to your state monitor and provide a high level of security. Using all 4 inputs on a single RJ45 port the **Monimod** will report one of 5 states for a single security device. It achieves this by using two resistors connected to each security sensor.
+
+<insert circuit diagram>
+
+Resistor 1 (10k) is connected in series with the security alarm wiring, and resistor 2 (4k7) is connected across the alarm contact.
+  
+Currently a test version is being producted which is a single inline device, but plans are underway to produce a multi-port device (8 ports, 4-in 4-out) so multiple security sensors can be connected to your state monitor. 
+
+The **Monimod** will detect the following states for a security sensor wired up with the necessary resistors;
+
+|State|LCD Display|Description|
+|:----|:----------|:----------|
+|Normal|Green|The sensor is in a safe state, e.g. no movement detected or door/window is closed|
+|Alarm|Red|The sensor has been tripped, e.g. movement detected or door/window is opened|
+|Tamper|Magenta (flashing)|The sensor wiring has been compromised (open circuited), e.g. a sensor cover has been removed or a cable has been cut|
+|Short|Magenta (flashing)|The sensor wiring has been compromised (shorted), e.g. intential attempt to bypass the sensor, or a nail/screw through the cable|
+|Fault|Cyan (flashing)|The sensor has been unplugged or a system fault has been detected|
+
 ## Configuration
 The firmware can be configured by publishing an MQTT message to this topic;
 ```
@@ -57,7 +76,7 @@ By default all inputs are initialised as type `switch`. Individual inputs can th
 
 |Key|Mandatory|Value|  
 |:--|:--------|:----|
-|`defaultInputType`|Optional|Either `button`, `contact`, `press`, `rotary`, `switch` or `toggle`|
+|`defaultInputType`|Optional|Either `button`, `contact`, `press`, `rotary`, `security`, `switch` or `toggle`|
 
 ### Examples
 To configure the default input type to be `button`;
@@ -77,7 +96,7 @@ Each INPUT can be configured via the following properties;
 |Key|Mandatory|Value|
 |:--|:--------|:----|
 |`index`|Mandatory|Index of the input to configure|
-|`type`|Optional|Either `button`, `contact`, `press`, `rotary`, `switch` or `toggle`|
+|`type`|Optional|Either `button`, `contact`, `press`, `rotary`, `security`, `switch` or `toggle`|
 |`invert`|Optional|Either `true` or `false`|
 
 ::: warning
@@ -102,14 +121,15 @@ A retained message will ensure the device auto-configures on startup.
 ### Recommended Configurations
 Below is a table showing possible connected devices and the supported input types. Check marks indicate the recommended configurations to ensure intended behavior.
 
-|Connected Device|`button`|`contact`|`press`|`rotary`|`switch`|`toggle`| 
-|:---------------|:------:|:-------:|:-----:|:------:|:------:|:------:|
-|**Bi-Stable Switch**   |:x:|:x:|:x:|:x:|:white_check_mark:|:white_check_mark:|
-|**Door / Window Contact**|:x:|:white_check_mark:|:x:|:x:|:x:|:x:|
-|**PIR**                  |:x:|:white_check_mark:|:x:|:x:|:x:|:x:|
-|**Push Button**          |:white_check_mark:|:x:|:white_check_mark:|:x:|:x:|:x:|
-|**Rotary Encoder**       |:x:|:x:|:x:|:white_check_mark:|:x:|:x:|
+|Connected Device|`button`|`contact`|`press`|`rotary`|`security`|`switch`|`toggle`| 
+|:---------------|:------:|:-------:|:-----:|:------:|:--------:|:------:|:------:|
+|**Bi-Stable Switch**     |:x:|:x:|:x:|:x:|:x:|:white_check_mark:|:white_check_mark:|
+|**Door / Window Contact**|:x:|:white_check_mark:|:x:|:x:|:white_check_mark:|:x:|:x:|
+|**PIR**                  |:x:|:white_check_mark:|:x:|:x:|:white_check_mark:|:x:|:x:|
+|**Push Button**          |:white_check_mark:|:x:|:white_check_mark:|:x:|:x:|:x:|:x:|
+|**Rotary Encoder**       |:x:|:x:|:x:|:white_check_mark:|:x:|:x:|:x:|
 
+A rotary encoder requires two inputs, and a security sensor requires four inputs. You must configure each of the inputs connected to these devices the same, i.e. both inputs for a rotary encoder should be set to `rotary`, and all four inputs for a security sensor should be set to `security`. The status of the device is reported using the index of the last input.
 
 ## Events
 An input EVENT is reported to a topic of the form:
@@ -137,6 +157,7 @@ The message payload is JSON and contains:
 |`contact` | `open` or `closed` |
 |`press`   | `press` |
 |`rotary`  | `up` or `down` |
+|`security`| `normal`, `alarm`, `tamper`, `short` or `fault` |
 |`switch`  | `on` or `off` |
 |`toggle`  | `toggle` |
 
