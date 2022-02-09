@@ -52,7 +52,7 @@ The **Monimod** will detect the following states for a security sensor wired up 
 |Normal|Green|The sensor is in a safe state, e.g. no movement detected or door/window is closed|
 |Alarm|Red|The sensor has been tripped, e.g. movement detected or door/window is opened|
 |Tamper|Magenta (flashing)|The sensor wiring has been compromised (open circuited), e.g. a sensor cover has been removed or a cable has been cut|
-|Short|Magenta (flashing)|The sensor wiring has been compromised (shorted), e.g. intential attempt to bypass the sensor, or a nail/screw through the cable|
+|Short|Magenta (flashing)|The sensor wiring has been compromised (shorted), e.g. intentional attempt to bypass the sensor, or a nail/screw through the cable|
 |Fault|Cyan (flashing)|The sensor has been unplugged or a system fault has been detected|
 
 ## Configuration
