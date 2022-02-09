@@ -1,4 +1,4 @@
-# OXRS StateMonitor Home Assistant integration
+# OXRS Home Assistant integrations
 
 
 ## Introduction
