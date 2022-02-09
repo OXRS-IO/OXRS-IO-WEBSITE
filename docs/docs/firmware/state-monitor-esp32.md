@@ -37,15 +37,19 @@ The firmware is designed to run on hardware using MCP23017 I/O buffer chips via 
 A single I2C bus can support up to a maximum of 8x MCP23017 chips (addresses `0x20-0x27`). Therefore the maximum number of supported inputs is 128 (i.e. 8x MCP23017s * 16x I/O pins), or 32 ports.
 
 ### Security Sensors
-The new security monitor module (**Monimod**) allows you to connect security devices such as PIR sensors or door/window reed switches to your state monitor and provide a high level of security. Using all 4 inputs on a single RJ45 port the **Monimod** will report one of 5 states for a single security device. It achieves this by using two resistors connected to each security sensor.
+The new security monitor module (**Monimod**) allows you to connect security devices such as PIR sensors or door/window reed switches to your state monitor and provide a high level of security. Using all 4 inputs on a single RJ45 port the **Monimod** will report one of 5 states for a single security device. It achieves this by using two end-of-line (EOL) resistors connected to each security sensor.
 
 ![State Monitor Security Sensor circuit diagram](/images/security-circuit-diagram.png)
 
 Resistor 1 (10K) is connected in series with the security alarm wiring, and resistor 2 (4K7) is connected across the alarm contact.
   
+The **Monimod** connects between your sensor and state monitor hardware (e.g. the [LSC](https://github.com/SuperHouse/LSC)) and detects changes in voltage on the sensor cable. It translates the different voltage levels to binary signals which are sent to the state monitor via the 4 inputs, where the firmware will generate the necessary security events (see [events](./state-monitor-esp32.md#events)). 
+
+```[Sensor] <-----CAT5/6-----> [Monimod] <-----CAT5/6-----> [LSC]```
+
 Currently a test version is being producted which is a single inline device, but plans are underway to produce a multi-port device (8 ports, 4-in 4-out) so multiple security sensors can be connected to your state monitor. 
 
-The **Monimod** will detect the following states for a security sensor wired up with the necessary resistors;
+The **Monimod** will detect the following states for a security sensor wired up with EOL resistors;
 
 |State|LCD Display|Description|
 |:----|:----------|:----------|
