@@ -37,7 +37,7 @@ The firmware is designed to run on hardware using MCP23017 I/O buffer chips via 
 A single I2C bus can support up to a maximum of 8x MCP23017 chips (addresses `0x20-0x27`). Therefore the maximum number of supported inputs is 128 (i.e. 8x MCP23017s * 16x I/O pins), or 32 ports.
 
 ### Security Sensors
-The new 4 state monitor module (**Monimod**) allows you to connect security devices such as PIR sensors or door/window reed switches to your state monitor and provide a high level of security. Using all 4 inputs on a single RJ45 port the **Monimod** will report one of 5 states for a single security device. It achieves this by using two resistors connected to each security sensor.
+The new security monitor module (**Monimod**) allows you to connect security devices such as PIR sensors or door/window reed switches to your state monitor and provide a high level of security. Using all 4 inputs on a single RJ45 port the **Monimod** will report one of 5 states for a single security device. It achieves this by using two resistors connected to each security sensor.
 
 `<insert circuit diagram>`
 

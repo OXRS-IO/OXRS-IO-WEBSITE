@@ -37,16 +37,17 @@ A pair of inputs can be set as `ROTARY` inputs, and connected to an [incremental
 |Counter Clockwise|`HIGH_EVENT`|
 
 #### Security Sensors
-A set of 4 inputs can be set as `SECURITY` inputs, and connected to a module capable of reading the EOL resistance of your sensor and detecting the 4 possible states; `normal`, `alarm`, `tamper` or `short`. The library will decode the signals from the sense module and generate `HIGH_EVENT` (normal), `LOW_EVENT` (alarm), `DEBOUNCE_LOW` (tamper), or `DEBOUNCE_HIGH` (short) events, depending on what state the sensor is in. 
+A set of 4 inputs can be set as `SECURITY` inputs, and connected to a security monitor module (**Monimod**). This module is capable of reading the end-of-line (EOL) resistance of your security sensor and detecting one of 5 possible states; `normal`, `alarm`, `tamper`, `short` or `fault`. The library will decode the 4 inputs from the **Monimod** and generate the appropriate event, ready for your firmware to act upon.
 
-The table below shows the state of the 4 channels from the security sense module for each sensor state, and what I/O event is generated as a result. We re-purpose the `DEBOUNCE_XXX` events as signals for the `tamper` and `short` states so your firmware needs to apply the appropriate mappings.
+The table below shows the state of the 4 inputs from the **Monimod** for each sensor state, and what I/O event is generated as a result;
 
 |Sensor State|CH1 |CH2 |CH3 |CH4 |I/O Event|
 |:-----------|:---|:---|:---|:---|:--------|
 |Normal      |OFF |ON  |OFF |ON  |`HIGH_EVENT`|
 |Alarm       |OFF |ON  |ON  |ON  |`LOW_EVENT`|
-|Tamper      |ON  |OFF |ON  |ON  |`DEBOUNCE_LOW`|
-|Short       |OFF |ON  |OFF |OFF |`DEBOUNCE_HIGH`|
+|Tamper      |ON  |OFF |ON  |ON  |`TAMPER_EVENT`|
+|Short       |OFF |ON  |OFF |OFF |`SHORT_EVENT`|
+|Fault       |?   |?   |?   |?   |`FAULT_EVENT`|
 
 #### Functions
 - `setType(input, type)`: Set the input type
