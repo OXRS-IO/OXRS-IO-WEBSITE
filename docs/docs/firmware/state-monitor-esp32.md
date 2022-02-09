@@ -189,9 +189,6 @@ A triple button click on input 4;
 ```
 
 
-## Downloads
-Download the latest version of the firmware on [Github](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW).
-
 
 ## Supported Hardware
 This firmware is compatible with the [Light Switch Controller](https://github.com/SuperHouse/LSC) (LSC) and is designed to run on the [RACK32](/docs/hardware/controllers/rack32.html) as part of the [OXRS](https://oxrs.io) eco-system.
@@ -214,6 +211,27 @@ The RJ45 pinout for each port is;
 |6  |INPUT 4    |
 |7  |GND        |
 |8  |GND        |
+
+## Further Information
+
+### Downloads
+Download the [latest binary](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW/releases) of the firmware from GitHub.
+
+Download the [source code](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW) of the firmware from GitHub.
+
+### Flash Binary
+How to [flash the binary](/guides/getting-started.html#Firmware).
+
+### Home Automation Integration
+Below are some examples of how you could integrate with various home automation systems.
+
+[Home Assistant](https://www.home-assistant.io/) integration [examples](/guides/advanced/home_assistant.html).
+
+[Node-RED](https://nodered.org/) integration [examples](/guides/advanced/node_red.html).
+
+
+
+
 
 
 #### Credits

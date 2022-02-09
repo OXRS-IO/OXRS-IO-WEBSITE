@@ -1,22 +1,23 @@
-# OXRS StateMonitor Home Assistant integration
+# OXRS Home Assistant integrations
 
 
 ## Introduction
-This guide shows `automation` samples to be used in Home Assistant. They make use of the event structure that is sent by the StateMonitor via MQTT
+This guide shows `automation` samples to be used in Home Assistant. They make use of the event structure that is sent by the StateMonitor via MQTT.
 
 For details on `configuration` and `events` see the [StateMonitor](/docs/firmware/state-monitor-esp32.html) documentation.
 
 The following samples are using the config topic `conf/58391f` and the state topic `stat/58391f`. Those are the defaults as allocated by the FW using the MAC address of the device. Index numbers need to be replaced according to your set up.
 
-All samples are based on Home Assistant [MQTT triggers](https://www.home-assistant.io/docs/automation/trigger/#mqtt-trigger) were a template filters the payload sent by the StateMonitor via `stat/..` for the desired `index` and `event`
+All samples are based on Home Assistant [MQTT triggers](https://www.home-assistant.io/docs/automation/trigger/#mqtt-trigger) were a template filters the payload sent by the StateMonitor via `stat/..` for the desired `index` and `event`.
+
+## Example set 1 (inputs), related to State Monitor, State IO and Smoke Detector
 
 
-
-### Example 1: Use a `switch` to turn light on and off 
+### Example 1.1: Use a `switch` to turn light on and off 
 ---
 #### Typical use case : standard wall switch. 
 
-to configure input `index: 5`  as `switch` publish : 
+To configure input `index: 5`  as `switch` publish : 
 ```
  -t conf/58391f  -m '{"inputs": [{ "index": 5 , "type": "switch"}]}'
  ```
@@ -53,11 +54,11 @@ automation:
 
 
 
-### Example 2: Use two `toggle` buttons to toggle a light state from several locations
+### Example 1.2: Use two `toggle` buttons to toggle a light state from several locations
 ---
 #### Typical use cases: hallway lighting or bedroom lighting.
 
-to configure inputs `index: 1` and `index: 2`  as `toggle` publish : 
+To configure inputs `index: 1` and `index: 2`  as `toggle` publish : 
 ```
  -t conf/58391f  -m '{"inputs": [{"index": 2, "type": "toggle"},{"index": 1, "type": "toggle" }]}'
 ```
@@ -94,11 +95,11 @@ Can be as many buttons as you like, just add more conditions:
 
 
 
-### Example 3: Use two `buttons` to control brightness and state of a light bulb
+### Example 1.3: Use two `buttons` to control brightness and state of a light bulb
 ---
-#### Typical use case: control of lights with variable brightness with up and down buttons
+#### Typical use case: control of lights with variable brightness with up and down buttons.
 
-to configure inputs `index: 1` and `index: 2`  as `buttons` publish : 
+To configure inputs `index: 1` and `index: 2`  as `buttons` publish : 
 ```
  -t conf/58391f  -m '{"inputs": [{"index": 2, "type": "button"},{"index": 1, "type": "button" }]}'
 ```
@@ -177,9 +178,9 @@ automation:
         brightness_step_pct: 5     
 ```
 
-### Example 4: Use a rotary encoder with integrated button to control brightness and state of a light bulb
+### Example 1.4: Use a rotary encoder with integrated button to control brightness and state of a light bulb
 ---
-#### Typical use case: single knob control of lights with variable brightness via a rotary encoder
+#### Typical use case: single knob control of lights with variable brightness via a rotary encoder.
 The outputs `A` and `B` of the `rotary encoder` are connected to `index: 1` and `index: 2` . The integrated `push button` of the `rotary encoder` is connected to `index: 3` .
 
 To configure inputs `index: 1` and `index: 2`  as `rotary` and `index:3` as `toggle` publish : 
@@ -260,4 +261,17 @@ automation:
     - service: light.toggle
       target:
         entity_id: light.light_bulb
+```
+
+
+## Example set 2 (outputs), related to State Controller, State IO and Smoke Detector
+
+### Example 2.1: Turn light bulb on and off 
+---
+#### Typical use case : standard light bulb controlled by wall switch. 
+
+```
+
+To Do
+
 ```
