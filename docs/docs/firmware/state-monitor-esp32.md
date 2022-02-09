@@ -39,9 +39,9 @@ A single I2C bus can support up to a maximum of 8x MCP23017 chips (addresses `0x
 ### Security Sensors
 The new security monitor module (**Monimod**) allows you to connect security devices such as PIR sensors or door/window reed switches to your state monitor and provide a high level of security. Using all 4 inputs on a single RJ45 port the **Monimod** will report one of 5 states for a single security device. It achieves this by using two resistors connected to each security sensor.
 
-`<insert circuit diagram>`
+![State Monitor Security Sensor circuit diagram](/images/security-circuit-diagram.png)
 
-Resistor 1 (10k) is connected in series with the security alarm wiring, and resistor 2 (4k7) is connected across the alarm contact.
+Resistor 1 (10K) is connected in series with the security alarm wiring, and resistor 2 (4K7) is connected across the alarm contact.
   
 Currently a test version is being producted which is a single inline device, but plans are underway to produce a multi-port device (8 ports, 4-in 4-out) so multiple security sensors can be connected to your state monitor. 
 
