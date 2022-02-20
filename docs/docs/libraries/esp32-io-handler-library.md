@@ -1,10 +1,10 @@
 ---
-tags: ["OXRS-SHA-IOHandler-ESP32-LIB", "TAG2", "TAG3"]
+tags: ["OXRS-IO-IOHandler-ESP32-LIB", "TAG2", "TAG3"]
 ---
 # ESP32 I/O handler library
 <p class="maker">by <b>SuperHouse Automation</b></p>
 
-> SKU: OXRS-SHA-IOHandler-ESP32-LIB
+> SKU: OXRS-IO-IOHandler-ESP32-LIB
 
 ## Introduction
 This library serves two functions, for input monitoring and output control. It can monitor buttons, switches, contacts, or any binary sensor, and report events back to the caller. It can also listen for binary commands and passes control events back to the caller.
@@ -158,7 +158,7 @@ void outputEvent(uint8_t id, uint8_t output, uint8_t type, uint8_t state) {
 ```
 
 ## Downloads
-Download the latest version of the firmware on [Github](https://github.com/SuperHouse/OXRS-SHA-IOHandler-ESP32-LIB).
+Download the latest version of the firmware on [Github](https://github.com/OXRS-IO/OXRS-IO-IOHandler-ESP32-LIB).
 
 ## Supported Hardware
 Designed to run on ESP32 based devices.
@@ -172,4 +172,4 @@ Designed to run on ESP32 based devices.
 ---
 
 #### License
-Found [here](https://github.com/SuperHouse/OXRS-SHA-IOHandler-ESP32-LIB/blob/main/LICENSE).
+Found [here](https://github.com/OXRS-IO/OXRS-IO-IOHandler-ESP32-LIB/blob/main/LICENSE).

@@ -16,7 +16,7 @@ The diagram below shows how the libraries relate to each other;
 - Handles initialisation and polling for ethernet, MQTT, API and LCD libraries
 
 
-### [OXRS-SHA-IOHandler-ESP32-LIB](/docs/libraries/esp32-io-handler-library.html)
+### [OXRS-IO-IOHandler-ESP32-LIB](/docs/libraries/esp32-io-handler-library.html)
 - Decodes inputs from various devices like switches, buttons, rotary encoders and more
 - Keeps track of output state and handles interlocking and timers
 - Typically used with MCP23017 I/O expanders

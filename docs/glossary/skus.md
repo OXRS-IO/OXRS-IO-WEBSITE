@@ -1,6 +1,6 @@
 ---
 # Ensure you add new SKUs to Tags
-tags: ["OXRS-SHA-RACK32", "OXRS-BMD-SD16", "OXRS-SHA-STATEMONITOR-ESP32-FW", "OXRS-FMA-RACK32KNXSHIELD", "OXRS-BMD-SRJ45", "OXRS-BMD-CBUSRJ45", "OXRS-BMD-RE45", "OXRS-BMD-RE", "OXRS-BMD-DRD4CH", "OXRS-SHA-STATECONTROLLER-ESP32-FW", "OXRS-BMD-SMOKEDETECTOR-ESP32-FW", "OXRS-AC-LEDCONTROLLER-ESP32-FW", "OXRS-IO-MQTT-ESP32-LIB", "OXRS-IO-API-ESP32-LIB", "OXRS-IO-LCD-ESP32-LIB", "OXRS-SHA-IOHandler-ESP32-LIB"]
+tags: ["OXRS-SHA-RACK32", "OXRS-BMD-SD16", "OXRS-SHA-STATEMONITOR-ESP32-FW", "OXRS-FMA-RACK32KNXSHIELD", "OXRS-BMD-SRJ45", "OXRS-BMD-CBUSRJ45", "OXRS-BMD-RE45", "OXRS-BMD-RE", "OXRS-BMD-DRD4CH", "OXRS-SHA-STATECONTROLLER-ESP32-FW", "OXRS-BMD-SMOKEDETECTOR-ESP32-FW", "OXRS-AC-LEDCONTROLLER-ESP32-FW", "OXRS-IO-MQTT-ESP32-LIB", "OXRS-IO-API-ESP32-LIB", "OXRS-IO-LCD-ESP32-LIB", "OXRS-IO-IOHandler-ESP32-LIB"]
 ---
 # OXRS Compatible SKUs
 
@@ -41,4 +41,4 @@ Here is a list of the library SKUs.
 |ESP32 MQTT library | OXRS Core Team | OXRS-IO-MQTT-ESP32-LIB| [more info](/docs/libraries/esp32-mqtt-library.html) |
 |ESP32 API library | OXRS Core Team | OXRS-IO-API-ESP32-LIB| [more info](/docs/libraries/esp32-api-library.html) |
 |ESP32 LCD library | OXRS Core Team | OXRS-IO-LCD-ESP32-LIB| [more info](/docs/libraries/esp32-lcd-library.html) |
-|ESP32 I/O handler library | SuperHouse Automation | OXRS-SHA-IOHandler-ESP32-LIB| [more info](/docs/libraries/esp32-io-handler-library.html) |
+|ESP32 I/O handler library | OXRS Core Team | OXRS-IO-IOHandler-ESP32-LIB| [more info](/docs/libraries/esp32-io-handler-library.html) |
