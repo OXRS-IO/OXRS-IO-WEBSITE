@@ -1,3 +1,7 @@
+const {
+  path
+} = require('@vuepress/utils')
+
 module.exports = {
   base: '/',
   locales: {
@@ -9,6 +13,9 @@ module.exports = {
   },
   plugins: [
     [
+      '@vuepress/register-components', {
+        componentsDir: path.resolve(__dirname, './components'),
+      },
       '@vuepress/plugin-search',
       {
         // allow searching the `tags` frontmatter

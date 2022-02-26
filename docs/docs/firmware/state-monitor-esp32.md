@@ -188,6 +188,7 @@ A triple button click on input 4;
 }
 ```
 
+<index-calculator />
 
 
 ## Supported Hardware
