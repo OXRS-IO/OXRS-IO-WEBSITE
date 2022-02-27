@@ -1,9 +1,8 @@
 <template>
-	<h2 id="index-calculator" tabindex="-1"><a class="header-anchor" href="#index-calculator" aria-hidden="true">#</a> Index Calculator</h2>
 	<p>Use the index calculator below by selecting the 'Port' and 'Channel' you intend to configure, the calculator will display the 'Index' required in your configuration.</p>
 	<div class="container">
 		<div class="sub-container">
-			<label for="port" class="token punctuation">Choose Port:</label>
+			<label for="port" class="token punctuation">Port:</label>
 			<select v-model="port" @change="onChange($event)">
 				<option v-for="port in ports" :value="port.value">
 					{{ port.text }}
@@ -11,7 +10,7 @@
 			</select>
 		</div>
 		<div class="sub-container">
-			<label for="channel" class="token punctuation">Choose Channel:</label>
+			<label for="channel" class="token punctuation">Channel:</label>
 			<select v-model="channel" @change="onChange($event)">
 				<option v-for="channel in channels" :value="channel.value">
 					{{ channel.text }}
