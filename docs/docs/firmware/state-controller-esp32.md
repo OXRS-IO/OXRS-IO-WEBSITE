@@ -232,7 +232,7 @@ This firmware is compatible with the boards;
 * [128 Channel Relay Driver](https://bmdesigns.com.au/shop/relay128-128-channel-relay-driver/) by Bedrock Media Designs
 * [16 Channel Relay Driver](https://bmdesigns.com.au/shop/relay16-16-channel-relay-driver/) by Bedrock Media Designs
 
-And is designed to run on the [RACK32](/docs/hardware/controllers/rack32.html) as part of the [OXRS](https://oxrs.io) eco-system.
+And is designed to run on the [RACK32](/docs/hardware/controllers/rack32.md) as part of the [OXRS](https://oxrs.io) eco-system.
 
 
 #### Credits

@@ -31,7 +31,7 @@ The Pinout for the JST is as followed Left to (Right)
 
 ## Supported Firmware
 Requires a Controller to run the following supported firmware:
-- OXRS-BMD-SmokeDetector-ESP32-FW  [Link](/docs/firmware/smoke-detector-esp32.html)
+- OXRS-BMD-SmokeDetector-ESP32-FW  [Link](/docs/firmware/smoke-detector-esp32.md)
 
 
 ## Where to Buy
@@ -48,4 +48,4 @@ This tiny PCB is a universal device that allows you to connect any type of IO de
 :::
 
 ## Compatible Hardware
-- Rack32 [Link](/docs/hardware/controllers/rack32.html)
+- Rack32 [Link](/docs/hardware/controllers/rack32.md)

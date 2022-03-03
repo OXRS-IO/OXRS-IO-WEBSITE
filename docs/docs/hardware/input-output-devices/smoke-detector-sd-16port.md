@@ -23,7 +23,7 @@ The SD16 ses MCP23017 I2C I/O buffers for controlling relays and to detect digit
 
 ## Supported Firmware
 Requires a Controller to run the following supported firmware:
-- OXRS-BMD-SmokeDetector-ESP32-FW  [Link](/docs/firmware/smoke-detector-esp32.html)
+- OXRS-BMD-SmokeDetector-ESP32-FW  [Link](/docs/firmware/smoke-detector-esp32.md)
 
 ## Additional Resources
 - [Bedrock Media Designs Wiki](https://wiki.bmdesigns.com.au/en/BMD-urc-uio)
@@ -43,4 +43,4 @@ This is an answer to your query!
 :::
 
 ## Compatible Hardware
-- Rack32 [Link](/docs/hardware/controllers/rack32.html)
+- Rack32 [Link](/docs/hardware/controllers/rack32.md)

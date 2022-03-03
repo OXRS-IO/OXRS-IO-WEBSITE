@@ -67,4 +67,4 @@ TODO - Jon to supply some FAQ's
 :::
 
 ## Compatible Hardware
-- Universal Input/Output (UIO) 16Port [Link](/docs/hardware/input-output-devices/smoke-detector-sd-16port.html)
+- Universal Input/Output (UIO) 16Port [Link](/docs/hardware/input-output-devices/smoke-detector-sd-16port.md)

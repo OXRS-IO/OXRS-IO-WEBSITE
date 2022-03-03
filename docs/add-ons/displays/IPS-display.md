@@ -18,7 +18,7 @@ While there is a slightly smaller version of this display, this one was choosen 
 - OXRS-SHA-StateMonitor-ESP32-FW [Github](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW)
 
 ## Supported Libraries
-- ESP32 LCD Library  [Link](https://oxrs.io/docs/libraries/esp32-lcd-library.html)
+- ESP32 LCD Library  [Link](/docs/libraries/esp32-lcd-library.md)
 
 
 ## Where to Buy
@@ -36,4 +36,4 @@ TODO - to supply some FAQ's
 :::
 
 ## Compatible Hardware
-- rack32  [Link](https://oxrs.io/docs/hardware/controllers/rack32.html)
+- rack32  [Link](/docs/hardware/controllers/rack32.md)

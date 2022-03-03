@@ -34,7 +34,7 @@ The Rotary Encoder to Rj45 is similar in its design to our CBUS to RJ45 PCB but 
 :::
 
 ## Compatible Hardware
-- Rack32 [Link](/docs/hardware/controllers/rack32.html)
+- Rack32 [Link](/docs/hardware/controllers/rack32.md)
 
 ## Required Hardware
-- Rotary Encode [Link](/docs/hardware/input-devices/rotaryencode.html)
+- Rotary Encode [Link](/docs/hardware/input-devices/rotaryencode.md)

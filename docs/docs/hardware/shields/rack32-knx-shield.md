@@ -12,7 +12,7 @@ tags: ["OXRS-FMA-RACK32KNXSHIELD", "RACK32", "KNX"]
 <!-- Board Description -->
 Provides direct control and monitoring of [KNX](https://www.knx.org/) devices over the KNX bus. Requires a KNX Bus Coupling Unit (BCU) similar to [this](https://knxtra.co.nz/product/siemens-5wg1117-2ab12-busankopplerknx-up117-12-mit-schraubbefestigung/). 
 
-By using this shield and a KNX BCU you can program your [Rack32](/docs/hardware/controllers/rack32.html) to communicate directly with the KNX bus. This allows direct control of actuators without the need for any infrastructure (i.e. TCP/IP network, MQTT broker, automation rules engine).
+By using this shield and a KNX BCU you can program your [Rack32](/docs/hardware/controllers/rack32.md) to communicate directly with the KNX bus. This allows direct control of actuators without the need for any infrastructure (i.e. TCP/IP network, MQTT broker, automation rules engine).
 
 The original intent for this was to provide a failover system in the case of network or MQTT failure.
 
@@ -23,7 +23,7 @@ The original intent for this was to provide a failover system in the case of net
 - 5x2 pin header for direct fixing of [Siemens KNX BCU](https://knxtra.co.nz/product/siemens-5wg1117-2ab12-busankopplerknx-up117-12-mit-schraubbefestigung/)
 
 ## Supported Firmware
-There is a branch of the [State Monitor](/docs/firmware/state-monitor-esp32.html) firmware [here](https://github.com/sumnerboy12/OXRS-SHA-StateMonitor-ESP32-FW/tree/knx-failover) which includes support for this shield. 
+There is a branch of the [State Monitor](/docs/firmware/state-monitor-esp32.md) firmware [here](https://github.com/sumnerboy12/OXRS-SHA-StateMonitor-ESP32-FW/tree/knx-failover) which includes support for this shield. 
 
 This branch adds the option to set a KNX group address in config for each input. If the device enters failover mode it will publish KNX telegrams to the configured KNX group address directly on the KNX bus. This has been tested and works well.
 
@@ -45,8 +45,8 @@ How is the KNX BCU powered? Answer: It is powered directly from the KNX bus
 ::: tip Maker Info
 **Maker:** Frank McAlinden
 
-**Link:** [Frank McAlinden](/glossary/makers.html)
+**Link:** [Frank McAlinden](/glossary/makers.md)
 :::
 
 ## Compatible With
-- Rack32 [Link](/docs/hardware/controllers/rack32.html)
+- Rack32 [Link](/docs/hardware/controllers/rack32.md)

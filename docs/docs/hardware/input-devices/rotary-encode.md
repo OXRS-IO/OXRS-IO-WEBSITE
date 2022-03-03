@@ -33,7 +33,7 @@ The Rotary Encode is a required PCB if your wanting to use Encoders for Control 
 :::
 
 ## Compatible Hardware
-- Rack32 [Link](/docs/hardware/controllers/rack32.html)
+- Rack32 [Link](/docs/hardware/controllers/rack32.md)
 
 ## Required Hardware
-- Rotary Encoder to RJ45 [Link](/docs/hardware/input-devices/rotary-encode-to-rj45.html)
+- Rotary Encoder to RJ45 [Link](/docs/hardware/input-devices/rotary-encode-to-rj45.md)
