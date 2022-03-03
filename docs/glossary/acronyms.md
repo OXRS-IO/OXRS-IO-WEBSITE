@@ -1,6 +1,5 @@
 ---
 tags: ["OXRS", "LSC"]
-sidebar: false
 ---
 # Acronyms
 

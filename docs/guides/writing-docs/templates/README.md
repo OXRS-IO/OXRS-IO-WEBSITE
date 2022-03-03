@@ -11,7 +11,7 @@ Please note that the website structure and content is a working progress, if you
 
 ## Hardware Templates
 ::: tip Hardware Document Template
-Default Page template have been created to ensure pages are standardised and easy for visitors to read through. [Hardware Page Template Example](/guides/writing-docs/templates/hardware-template.html)
+Default Page template have been created to ensure pages are standardised and easy for visitors to read through. [Hardware Page Template Example](/guides/writing-docs/templates/hardware-template.md)
 :::
 
 ## Firmware Templates

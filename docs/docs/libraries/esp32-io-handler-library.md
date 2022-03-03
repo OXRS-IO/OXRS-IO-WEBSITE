@@ -162,7 +162,7 @@ Download the latest version of the firmware on [Github](https://github.com/OXRS-
 
 ## Supported Hardware
 Designed to run on ESP32 based devices.
-- [Rack32](/docs/hardware/controllers/rack32.html)
+- [Rack32](/docs/hardware/controllers/rack32.md)
 
 ---
 

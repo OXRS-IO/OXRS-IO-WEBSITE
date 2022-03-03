@@ -1,6 +1,5 @@
 ---
 tags: [""]
-sidebar: auto
 ---
 # Writing Docs
 

@@ -39,5 +39,5 @@ TODO - to supply some FAQ's
 :::
 
 ## Compatible With
-- [Room8266](https://oxrs.io/docs/hardware/controllers/room8266.html)
-- [Rack32](https://oxrs.io/docs/hardware/controllers/rack32.html)
+- [Room8266](/docs/hardware/controllers/room8266.md)
+- [Rack32](/docs/hardware/controllers/rack32.md)

@@ -33,7 +33,7 @@ There is no authentication on any of the REST API endpoints. **DO NOT** expose y
 :::
 
 ## Usage
-The library needs to be initialised with an instance of [`OXRS_MQTT`](/docs/libraries/esp32-mqtt-library.html), since we need to initialise that with the MQTT configuration provisioned by the API on startup.
+The library needs to be initialised with an instance of [`OXRS_MQTT`](/docs/libraries/esp32-mqtt-library.md), since we need to initialise that with the MQTT configuration provisioned by the API on startup.
 
 The API library will pass any device configuration, provisioned via the `/api/config` REST API, down to the MQTT library for handling, since that already has all the config callbacks used by the firmware. This ensures that all configuration is handled by your firmware in the same place, regardless of whether it was provisioned by the API, or received via MQTT on the `conf/<clientid>` topic.
 
@@ -181,10 +181,10 @@ Update the current MQTT configuration, and persist to SPIFFS so it can be restor
     "topicSuffix": ""
 }
 ```
-The only mandatory field is `broker`, everything else is optional. The `clientId` will typically default to the last 3 bytes of the device MAC address, but this is configurable in your firmware code when initialising the [`OXRS_MQTT`](/docs/libraries/esp32-mqtt-library.html) library.
+The only mandatory field is `broker`, everything else is optional. The `clientId` will typically default to the last 3 bytes of the device MAC address, but this is configurable in your firmware code when initialising the [`OXRS_MQTT`](/docs/libraries/esp32-mqtt-library.md) library.
 
 ### GET `/api/config`
-Retrieves the current device config. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.html) firmware);
+Retrieves the current device config. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.md) firmware);
 ``` json
 {
     "temperatureUpdateMillis": 60000,
@@ -211,7 +211,7 @@ Retrieves the current device config. Depends on the firmware (example below is f
 ```
 
 ### POST `/api/config`
-Update the current device config, and persist to SPIFFS so it can be restored on restart. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.html) firmware);
+Update the current device config, and persist to SPIFFS so it can be restored on restart. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.md) firmware);
 ``` json
 {
     "temperatureUpdateMillis": 60000,
@@ -238,7 +238,7 @@ Update the current device config, and persist to SPIFFS so it can be restored on
 ```
 
 ### POST `/api/command`
-Send a command to the device. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.html) firmware);
+Send a command to the device. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.md) firmware);
 ``` json
 {
     "restart": true
@@ -251,7 +251,7 @@ Upload and reflash the device with the firmware binary sent in the request paylo
 ## Downloads
 Download the latest version of the library on [Github](https://github.com/OXRS-IO/OXRS-IO-API-ESP32-LIB).
 
-A good place to look for an example of how to use this MQTT library is in the [Rack32](/docs/hardware/controllers/rack32.html) library found [here](https://github.com/SuperHouse/OXRS-SHA-Rack32-ESP32-LIB).
+A good place to look for an example of how to use this MQTT library is in the [Rack32](/docs/hardware/controllers/rack32.md) library found [here](https://github.com/SuperHouse/OXRS-SHA-Rack32-ESP32-LIB).
 
 ## Supported Hardware
 This library is compatible with any ESP-based hardware, including ESP32 and ESP8266 microprocessors.

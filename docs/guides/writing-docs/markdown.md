@@ -46,7 +46,7 @@ And providing you are in `hardware/controllers.md`:
 [hardware](/hardware/) <!-- Sends the user to index.html of directory hardware -->
 [hardware heading](./#heading) <!-- Anchors user to a heading in the hardware README file -->
 [firmware - software](../firmware/software.md) <!-- You can append .md (recommended) -->
-[firmware - libraries](../firmware/libraries.html) <!-- Or you can append .html -->
+[firmware - libraries](../firmware/libraries) <!-- Or you can leave the file extension blank and it will rewrite the url accordingly -->
 ```
 
 ### Redirection for URLs
@@ -60,6 +60,7 @@ Your relative path should be defined by the current file structure. In the above
 ### Page Suffix
 
 Pages and internal links get generated with the `.html` suffix by default.
+However referencing within the site itself should rather be done either with `.md` or without the extension defined.
 
 
 ### External Links

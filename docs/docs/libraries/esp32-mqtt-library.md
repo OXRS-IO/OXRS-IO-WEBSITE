@@ -94,7 +94,7 @@ Next add your callbacks for the various events supported by the library and regi
 |`onConfig`|JSON configuration payload received on the `conf/<clientid>` topic|
 |`onCommand`|JSON command payload received on the `cmnd/<clientid>` topic|
 
-These are all optional, for example the [State Monitor](/docs/firmware/state-monitor-esp32.html) firmware has no need for the `onCommand` callback.
+These are all optional, for example the [State Monitor](/docs/firmware/state-monitor-esp32.md) firmware has no need for the `onCommand` callback.
 
 ### Program Loop
 Finally your firmware needs to call the MQTT library `.loop()` method as often as possible, e.g. typically inside your main program `loop()` method. This allows the library to check for incoming MQTT messages, process outgoing messages, and do any other internal housekeeping.
@@ -117,7 +117,7 @@ Typically you publish your adoption message in the `onConnected` callback so any
 ## Downloads
 Download the latest version of the library on [Github](https://github.com/OXRS-IO/OXRS-IO-MQTT-ESP32-LIB).
 
-A good place to look for an example of how to use this MQTT library is in the [Rack32](/docs/hardware/controllers/rack32.html) library found [here](https://github.com/SuperHouse/OXRS-SHA-Rack32-ESP32-LIB).
+A good place to look for an example of how to use this MQTT library is in the [Rack32](/docs/hardware/controllers/rack32.md) library found [here](https://github.com/SuperHouse/OXRS-SHA-Rack32-ESP32-LIB).
 
 ## Supported Hardware
 This library is compatible with any Arduino-based hardware, including ESP32, ESP8266 and AVR microprocessors.
