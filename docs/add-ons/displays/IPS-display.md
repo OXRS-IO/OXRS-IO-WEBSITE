@@ -22,18 +22,13 @@ While there is a slightly smaller version of this display, this one was choosen 
 
 
 ## Where to Buy
+- Superhouse [WEBSITE](https://www.superhouse.tv/product/tft-display-breakout/) **<-- Best Choice**
 - AliExpress [WEBSITE](https://www.aliexpress.com/item/1005002413707032.html)
 
-## FAQs
+<!-- ## FAQs
 :::
 TODO - to supply some FAQ's
-:::
-
-::: tip Maker Info
-**Maker:** Austin's Creations
-
-**Link:** [https://www.austinscreations.ca/](https://www.austinscreations.ca/)
-:::
+::: -->
 
 ## Compatible Hardware
 - rack32  [Link](/docs/hardware/controllers/rack32.md)

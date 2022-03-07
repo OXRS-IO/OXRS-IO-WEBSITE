@@ -33,11 +33,11 @@ extra functions such as Temperature, Humidity, LUX, LED control require wifi / e
 - LUX sensor (BH1750)
 - Temp / Humidity sensor (BME280)
 
-## Supported Firmware
- - TODO
+<!-- ## Supported Firmware
+ - TODO -->
 
 ## Supported Libraries
- - TODO
+ - ESP SENSOR Library  [Link](/docs/libraries/esp-sensor-library.md)
 
 ## Additional Resources
 - More info [Github](https://github.com/austinscreations/Button-panel)
@@ -45,16 +45,13 @@ extra functions such as Temperature, Humidity, LUX, LED control require wifi / e
 ## Where to Buy
 - Contact on Discord or website [WEBSITE](https://www.austinscreations.ca/)
 
-## FAQs
+<!-- ## FAQs
 :::
 TODO - to supply some FAQ's
-:::
+::: -->
 
 ::: tip Maker Info
 **Maker:** Austin's Creations
 
 **Link:** [https://www.austinscreations.ca/](https://www.austinscreations.ca/)
 :::
-
-## Compatible Hardware
-- TODO

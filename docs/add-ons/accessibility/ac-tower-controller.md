@@ -2,7 +2,7 @@
 tags: [""]
 ---
 
-# AC Smart Switch
+# AC Tower Controller
 <p class="maker">by <b>Austin's Creations</b></p>
 
 > SKU: OXRS-AC-towercontroller
@@ -26,10 +26,12 @@ I'm personally using a tower light as an accessibility device because I'm hard o
 - 2x 4 pin jst sh connectors to match the Stemma / qwiic connector I2C standard.
 
 ## Supported Firmware
- - TODO
+ - Firmware comes preloaded and can be configured via OXRS web UI
+versions or firmware and nodered exampels can be found here: [Github](https://github.com/austinscreations/Tower-Controller)
+V1.0.2 supports wifi or ethernet, wifi can be used by setting a define at the top of the code - be sure to update the config file with wifi credentials
 
 ## Supported Libraries
- - TODO
+ - [OXRS Sensor Library](/docs/libraries/esp-sensor-library.md), or veiw on [Github](https://github.com/austinscreations/OXRS-AC-I2CSensors-ESP-LIB)
 
 ## Additional Resources
 - More info [Github](https://github.com/austinscreations/Tower-Controller)
@@ -37,16 +39,13 @@ I'm personally using a tower light as an accessibility device because I'm hard o
 ## Where to Buy
 - Contact on Discord or website [WEBSITE](https://www.austinscreations.ca/)
 
-## FAQs
+<!-- ## FAQs
 :::
 TODO - to supply some FAQ's
-:::
+::: -->
 
 ::: tip Maker Info
 **Maker:** Austin's Creations
 
 **Link:** [https://www.austinscreations.ca/](https://www.austinscreations.ca/)
 :::
-
-## Compatible Hardware
-- TODO

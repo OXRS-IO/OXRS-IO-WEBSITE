@@ -79,8 +79,8 @@ module.exports = {
       {
         text: 'Guides',
         children: [{
-            text: 'Getting started',
-            link: '/guides/start'
+            text: 'Getting Started',
+            link: '/guides/getting-started/'
           },
           {
             text: 'Advanced',
@@ -92,7 +92,7 @@ module.exports = {
           },
           {
             text: 'Writing Docs',
-            link: '/guides/writing-docs/getting-started'
+            link: '/guides/writing-docs/'
           },
         ],
       },
@@ -119,8 +119,12 @@ module.exports = {
     ],
     sidebar: {
       '/guides': [{
-          text: 'Getting Started',
-          link: '/guides/start',
+        text: 'Getting Started',
+        link: '/guides/getting-started/',
+          // children: [{
+          //     text: 'Getting Started 2',
+          //     // link: '/guides/getting-started/getting-started.md',
+          //   },
         },
         {
           text: 'Advanced',
@@ -154,7 +158,7 @@ module.exports = {
         },
         {
           text: 'Writing Docs',
-          link: '/guides/writing-docs/getting-started.md'
+          link: '/guides/writing-docs/'
         },
       ],
       '/add-ons': [{
@@ -169,6 +173,8 @@ module.exports = {
           link: '/add-ons/displays',
           children: [
             '/add-ons/displays/IPS-display.md',
+            '/add-ons/displays/128x32-OLED-display.md',
+            '/add-ons/displays/WT32-SC01-display.md',
           ],
         },
         // {
@@ -195,6 +201,7 @@ module.exports = {
             children: [
               '/docs/hardware/controllers/rack32.md',
               '/docs/hardware/controllers/room8266.md',
+              '/docs/hardware/controllers/rack-fan-controller.md',
             ],
           },
           {
@@ -210,7 +217,7 @@ module.exports = {
           {
             text: 'Output Devices',
             children: [
-              '/docs/hardware/output-devices/pwm-controller.md',
+              '/docs/hardware/output-devices/pwm-controllers.md',
               '/docs/hardware/output-devices/DIN-Relay-Driver-4ch.md',
               //                   '/docs/hardware/output-devices/hardware-template.md',
             ],
@@ -239,7 +246,7 @@ module.exports = {
             '/docs/firmware/state-controller-esp32.md',
             '/docs/firmware/state-io-esp32.md',
             '/docs/firmware/smoke-detector-esp32.md',
-            '/docs/firmware/led-controller-esp32.md',
+            // '/docs/firmware/led-controller-esp32.md',
           ],
         }, ],
       }, {
@@ -253,7 +260,13 @@ module.exports = {
             '/docs/libraries/esp32-lcd-library.md',
             '/docs/libraries/esp32-io-handler-library.md',
           ],
-        }, ],
+        }, 
+        {
+          text: 'ESP',
+          children: [
+            '/docs/libraries/esp-sensor-library.md',
+          ],
+        },],
       }, {
         text: 'Cases',
         link: '/docs/cases/README.md',

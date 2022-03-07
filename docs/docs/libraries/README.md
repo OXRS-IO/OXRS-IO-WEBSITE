@@ -38,3 +38,6 @@ The diagram below shows how the libraries relate to each other;
 - Common status display for OXRS compatible controller with a LCD
 - Animated display of the I/O port status
 
+### [OXRS-AC-SENSORS-ESP-LIB](/docs/libraries/esp-sensor-library.md)
+- Allows quick easy code intergration for devices with qwiic jst connection support
+- allows the use of 5 different qwiic devices
