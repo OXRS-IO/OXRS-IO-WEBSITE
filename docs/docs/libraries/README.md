@@ -24,7 +24,6 @@ The diagram below shows how the libraries relate to each other;
 
 ### [OXRS-IO-API-ESP32-LIB](/docs/libraries/esp32-api-library.md)
 - REST API for device configuration
-- Web UI for device configuration
 - OTA upload of firmware updates
 
 
@@ -40,4 +39,4 @@ The diagram below shows how the libraries relate to each other;
 
 ### [OXRS-AC-SENSORS-ESP-LIB](/docs/libraries/esp-sensor-library.md)
 - Allows quick easy code intergration for devices with qwiic jst connection support
-- allows the use of 5 different qwiic devices
+- Allows the use of 5 different qwiic devices
