@@ -22,9 +22,11 @@ The library will expose the following REST API endpoints on the device;
 |:-------|:-------|:----------|
 |`/api/adopt`|GET|Gets firmware and network details and configuration/command schemas, in JSON format|
 |`/api/restart`|POST|Force a soft-reset|
-|`/api/factoryReset`|POST|Format SPIFFS and force a soft-reset|
+|`/api/resetWifi`|POST|Erase WiFi credentials and force a soft-reset|
+|`/api/resetConfig`|POST|Format SPIFFS and force a soft-reset|
+|`/api/factoryReset`|POST|Erase WiFi credentials and format SPIFFS, then force a soft-reset|
 |`/api/mqtt`|GET & POST|Get or set MQTT configuration, in JSON format, and persist to SPIFFS|
-|`/api/config`|GET & POST|Get or set device configuration, in JSON format based on the `commandSchema` in the adoption payload, and persist to SPIFFS|
+|`/api/config`|GET & POST|Get or set device configuration, in JSON format based on the `configSchema` in the adoption payload, and persist to SPIFFS|
 |`/api/command`|POST|Send device commands, in JSON format based on the `commandSchema` in the adoption payload|
 |`/api/ota`|POST|Update device firmware with a new binary provided in the request body|
 
@@ -141,16 +143,16 @@ Retrieves the adoption details for the device;
 ```
 
 ### POST `/api/restart`
-Empty payload. Soft-restarts the device.
+Empty payload. Soft-reset the device.
 
 ### POST `/api/resetWifi`
-Empty payload. Erases any WiFi credentials and soft-restarts the device.
+Empty payload. Erases any WiFi credentials and soft-reset the device.
 
 ### POST `/api/resetConfig`
-Empty payload. Formats the SPIFFS (if present) and soft-restarts the device.
+Empty payload. Formats the SPIFFS (if present) and soft-reset the device.
 
 ### POST `/api/factoryReset`
-Empty payload. Erases any WiFi credentials and formats the SPIFFS (if present) and soft-restarts the device.
+Empty payload. Erases any WiFi credentials and formats the SPIFFS (if present) and soft-reset the device.
 
 ### GET `/api/mqtt`
 Retrieves the current MQTT configuration, excluding any password (if set);
