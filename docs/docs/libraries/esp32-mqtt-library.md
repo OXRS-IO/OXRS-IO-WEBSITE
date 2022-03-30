@@ -29,6 +29,7 @@ The library will automatically publish and subscribe to various topics, dependin
 |`stat/<clientid>`|Publishes JSON status messages to this topic via `publishStatus()`|
 |`tele/<clientid>`|Publishes JSON telemetry messages to this topic via `publishTelemetry()`|
 |`stat/<clientid>/adopt`|Publishes JSON adoption messages to this topic via `publishAdopt()`|
+|`stat/<clientid>/log`|Log messages can be published to this topic (get topic via `getLogTopic()`)|
 |`conf/<clientid>`|Subscribes to this topic for JSON config messages and passes them on to your `onConfig` callback|
 |`cmnd/<clientid>`|Subscribes to this topic for JSON command messages and passes them on to your `onCommand` callback|
 
