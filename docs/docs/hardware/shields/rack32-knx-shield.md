@@ -23,7 +23,7 @@ The original intent for this was to provide a failover system in the case of net
 - 5x2 pin header for direct fixing of [Siemens KNX BCU](https://knxtra.co.nz/product/siemens-5wg1117-2ab12-busankopplerknx-up117-12-mit-schraubbefestigung/)
 
 ## Supported Firmware
-There is a branch of the [State Monitor](/docs/firmware/state-monitor-esp32.md) firmware [here](https://github.com/sumnerboy12/OXRS-SHA-StateMonitor-ESP32-FW/tree/knx-failover) which includes support for this shield. 
+There is a fork of the [State Monitor](/docs/firmware/state-monitor-esp32.md) firmware [here](https://github.com/sumnerboy12/OXRS-SHA-StateMonitor-ESP32-FW) which includes support for this shield.
 
 This branch adds the option to set a KNX group address in config for each input. If the device enters failover mode it will publish KNX telegrams to the configured KNX group address directly on the KNX bus. This has been tested and works well.
 
