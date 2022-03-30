@@ -84,12 +84,13 @@ Retrieves the adoption details for the device;
     "version": "3.5.0"
   },
   "network": {
+    "mode": "ethernet",
     "ip": "192.168.40.64",
     "mac": "94:B9:7E:F1:D2:5B"
   },
   "configSchema": {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "OXRS-SHA-StateMonitor-ESP32-FW",
+    "title": "State Monitor",
     "type": "object",
     "properties": {
       "inputs": {
@@ -128,7 +129,7 @@ Retrieves the adoption details for the device;
   },
   "commandSchema": {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "OXRS-SHA-StateMonitor-ESP32-FW",
+    "title": "State Monitor",
     "type": "object",
     "properties": {
       "restart": {
@@ -142,8 +143,14 @@ Retrieves the adoption details for the device;
 ### POST `/api/restart`
 Empty payload. Soft-restarts the device.
 
-### POST `/api/factoryReset`
+### POST `/api/resetWifi`
+Empty payload. Erases any WiFi credentials and soft-restarts the device.
+
+### POST `/api/resetConfig`
 Empty payload. Formats the SPIFFS (if present) and soft-restarts the device.
+
+### POST `/api/factoryReset`
+Empty payload. Erases any WiFi credentials and formats the SPIFFS (if present) and soft-restarts the device.
 
 ### GET `/api/mqtt`
 Retrieves the current MQTT configuration, excluding any password (if set);
