@@ -22,8 +22,12 @@ This board allows for the control of 8 fans. It can control 3-4 wire fans that a
 - allows the use of 5v or VDD to be sent to any given fan (selectable)
 - has optional 2.1mm or terminal block power injection, to reduce current limits from IDC cable
 
+## Library
+- Fan Control library on [Github](https://github.com/austinscreations/OXRS-AC-FanControl-ESP-LIB)
+
 ## Supported Firmware
 - Fan Controller firmware on [Github](https://github.com/austinscreations/OXRS-AC-FanController-ESP32-FW) **<-- Firmware incomplete -->**
+- Power Distribution Unit (PDU) firmware on [Github](https://github.com/Bedrock-Media-Designs/OXRS-BMD-PDU-ESP32-FW)
 
 ## Additional Resources
 - Schematics and design files on [Github](https://github.com/austinscreations/Rack-Fan-Controller)
