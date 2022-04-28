@@ -10,6 +10,9 @@ tags: [""]
  
  - mqtt
 
+## Maintenance
+ - [Backup/Restore](/guides/advanced/backup-restore.md) your OXRS configuration
+
 ## Building Firmware
  - Arduino
  - PlatformIO
