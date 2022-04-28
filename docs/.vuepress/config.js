@@ -136,6 +136,10 @@ module.exports = {
             {
               text: 'Node-RED',
               link: '/guides/advanced/node_red.md',
+            },
+            {
+              text: 'Backup/Restore',
+              link: '/guides/advanced/backup-restore.md',
             }
           ],
         },
