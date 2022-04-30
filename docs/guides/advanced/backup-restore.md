@@ -60,11 +60,12 @@ Import the flow (below) into your Node-RED instance and give it a try!
         "rap": true,
         "rh": 0,
         "inputs": 1,
-        "x": 170,
-        "y": 860,
+        "x": 130,
+        "y": 900,
         "wires": [
             [
-                "cc23751093fa7e87"
+                "cc23751093fa7e87",
+                "12c6c6cc42879632"
             ]
         ]
     },
@@ -72,15 +73,11 @@ Import the flow (below) into your Node-RED instance and give it a try!
         "id": "69b501fa856af3ba",
         "type": "inject",
         "z": "df151d7fdd900632",
-        "name": "",
+        "name": "subscribe",
         "props": [
             {
                 "p": "action",
                 "v": "subscribe",
-                "vt": "str"
-            },
-            {
-                "p": "topic",
                 "vt": "str"
             }
         ],
@@ -88,12 +85,12 @@ Import the flow (below) into your Node-RED instance and give it a try!
         "crontab": "00 01 * * *",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "stat/+/adopt",
-        "x": 140,
+        "topic": "",
+        "x": 130,
         "y": 820,
         "wires": [
             [
-                "fce939553f15dc79"
+                "ecce5d52223e71bc"
             ]
         ]
     },
@@ -802,10 +799,64 @@ Import the flow (below) into your Node-RED instance and give it a try!
         "wires": []
     },
     {
+        "id": "12c6c6cc42879632",
+        "type": "change",
+        "z": "df151d7fdd900632",
+        "name": "unsubscribe",
+        "rules": [
+            {
+                "t": "set",
+                "p": "action",
+                "pt": "msg",
+                "to": "unsubscribe",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 130,
+        "y": 960,
+        "wires": [
+            [
+                "ecce5d52223e71bc"
+            ]
+        ]
+    },
+    {
+        "id": "ecce5d52223e71bc",
+        "type": "change",
+        "z": "df151d7fdd900632",
+        "name": "stat/+/adopt",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "stat/+/adopt",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 130,
+        "y": 860,
+        "wires": [
+            [
+                "fce939553f15dc79"
+            ]
+        ]
+    },
+    {
         "id": "1480b452.05e9ac",
         "type": "mqtt-broker",
         "name": "mosquitto",
-        "broker": "mosquitto_app",
+        "broker": "mqtt.home",
         "port": "1883",
         "clientid": "nodered",
         "autoConnect": true,
