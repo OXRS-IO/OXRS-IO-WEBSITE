@@ -26,9 +26,8 @@ I'm personally using a tower light as an accessibility device because I'm hard o
 - 2x 4 pin jst sh connectors to match the Stemma / qwiic connector I2C standard.
 
 ## Supported Firmware
- - Firmware comes preloaded and can be configured via OXRS web UI
-versions or firmware and nodered exampels can be found here: [Github](https://github.com/austinscreations/Tower-Controller)
-V1.0.2 supports wifi or ethernet, wifi can be used by setting a define at the top of the code - be sure to update the config file with wifi credentials
+ - Firmware can be found on [Github](https://github.com/austinscreations/OXRS-AC-TowerController-ESP8266-FW)
+ - Compatible with the OXRS web admin UI [Github](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
 
 ## Supported Libraries
  - [OXRS Sensor Library](/docs/libraries/esp-sensor-library.md), or veiw on [Github](https://github.com/austinscreations/OXRS-AC-I2CSensors-ESP-LIB)
@@ -37,7 +36,7 @@ V1.0.2 supports wifi or ethernet, wifi can be used by setting a define at the to
 - More info [Github](https://github.com/austinscreations/Tower-Controller)
 
 ## Where to Buy
-- Contact on Discord or website [WEBSITE](https://www.austinscreations.ca/)
+- Contact on Discord or [WEBSITE](https://www.austinscreations.ca/)
 
 <!-- ## FAQs
 :::

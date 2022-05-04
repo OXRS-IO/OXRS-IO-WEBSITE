@@ -20,12 +20,15 @@ These controllers are designed for controlling common anode 12-24v LED strips.
 - 30V 8A MOSFET per channel
 
 ## Choose Your Adventure
-| Controller    | LED features  | Firmware |
+| Controller    | LED Features  | MCU / Flash Size |
 | :------------ | :------------ | :------- |
-| 16CH I2C PWM Controller | 16ch - I2C control and Expandble (requires extra controller) | ESP8266 [Github](https://github.com/austinscreations/OXRS-AC-PCALedController-ESP8266-FW) <br> ESP32 [Github](https://github.com/austinscreations/OXRS-AC-PCALedController-ESP32-FW) |
-| LilyGO PWM Shield       | 5CH LED controller + I2C QWIIC             |   ESP32 [Github](https://github.com/austinscreations/OXRS-AC-GPIOLedController-ESP32-FW) |
-| D1 Mini PWM             | 5CH LED controller + I2C QWIIC             |   ESP8266 [Github](https://github.com/austinscreations/OXRS-AC-GPIOLedController-ESP8266-FW)|
+| 16CH I2C PWM Controller | 16ch - I2C control and Expandble (requires extra controller) | ESP8266 or ESP32 - 4MB for both |
+| LilyGO PWM Shield       | 5CH LED controller + I2C QWIIC             |   ESP32 4MB |
+| D1 Mini PWM             | 5CH LED controller + I2C QWIIC             |   ESP8266 4MB |
+| Athom Tasmota Wifi Bulb | 5CH LED Controller running wifi only + OTA |   ESP8285 2MB |
 
+All firmware can be found: [Github](https://github.com/austinscreations/OXRS-AC-LEDController-ESP-FW)
+The firmware is now built using platformIO and github actions - all bin files can be found in the releases section for the various device configurations
 
 ## Notes
 D1 Mini
@@ -33,6 +36,9 @@ D1 Mini
 
 LilyGO
 - The LilyGO can be powered from POE or it's on board usb c connection. The LED strip can be pwoered via teh 2.1mm jack or the terminal block. The sheild will **NOT** power the LilyGO
+
+Athom Tasmota Bulb
+- the bulb only supports wifi operation and has no exposed serial terminal, while the firmware works; caution should be heeded as the device could brick and be difficult to repair
 
 Required to Run the 16Ch PWM Board
 - [Room8266](/docs/hardware/controllers/room8266.md)
@@ -49,7 +55,7 @@ Cases can be found on [Github](https://github.com/austinscreations/PWM-Controlle
 - Schematics and design files on [Github](https://github.com/austinscreations/PWM-Controllers)
 
 ## Where to Buy
-- Contact on Discord or [website](https://www.austinscreations.ca/)
+- Contact on Discord or [Website](https://www.austinscreations.ca/)
 
 <!-- ## FAQs
 :::
