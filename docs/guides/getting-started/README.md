@@ -28,7 +28,7 @@ These docs are work in progress, if you have any issues getting things setup dro
 *WIP - to be updated soon*
 
 For basic loading of firmware, it's recomended that if firmwware is already loaded to use OTA. 
-otherwise it's recomended to use esptooy.py or espflasher and with those 2 programs you can flash teh required bin file. for editing and uploading the raw firmware with arduino or platformIO check out the advanced guide
+otherwise it's recomended to use esptool.py or espflasher and with those 2 programs you can flash teh required bin file. for editing and uploading the raw firmware with arduino or platformIO check out the advanced guide
 
 with esptool.py the cmd line is listed below: (this is an example for esp32)
 
