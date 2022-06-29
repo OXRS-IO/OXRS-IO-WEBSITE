@@ -76,8 +76,8 @@ Cupim drumstick swine venison short loin capicola bacon picanha spare ribs tongu
 Download the latest version of the firmware on [Github](https://github.com/OXRS-IO/OXRS-IO-WEBSITE).
 
 ## Supported Hardware
-- Buffalo boudin meatball ball tip spare ribs. [OXRS Internal Hardware Link](/docs/hardware/controllers/rack32.html)
-- Buffalo boudin meatball ball tip spare ribs. [OXRS Internal Hardware Link](/docs/hardware/controllers/rack32.html)
+- Buffalo boudin meatball ball tip spare ribs. [OXRS Internal Hardware Link](/docs/hardware/controllers/rack32.md)
+- Buffalo boudin meatball ball tip spare ribs. [OXRS Internal Hardware Link](/docs/hardware/controllers/rack32.md)
 
 Shoulder picanha tongue cow kevin. Pig alcatra chicken jowl, turducken flank buffalo bresaola burgdoggen ground round venison shoulder pancetta. Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. 
 

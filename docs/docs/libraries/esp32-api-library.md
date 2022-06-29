@@ -22,9 +22,11 @@ The library will expose the following REST API endpoints on the device;
 |:-------|:-------|:----------|
 |`/api/adopt`|GET|Gets firmware and network details and configuration/command schemas, in JSON format|
 |`/api/restart`|POST|Force a soft-reset|
-|`/api/factoryReset`|POST|Format SPIFFS and force a soft-reset|
+|`/api/resetWifi`|POST|Erase WiFi credentials and force a soft-reset|
+|`/api/resetConfig`|POST|Format SPIFFS and force a soft-reset|
+|`/api/factoryReset`|POST|Erase WiFi credentials and format SPIFFS, then force a soft-reset|
 |`/api/mqtt`|GET & POST|Get or set MQTT configuration, in JSON format, and persist to SPIFFS|
-|`/api/config`|GET & POST|Get or set device configuration, in JSON format based on the `commandSchema` in the adoption payload, and persist to SPIFFS|
+|`/api/config`|GET & POST|Get or set device configuration, in JSON format based on the `configSchema` in the adoption payload, and persist to SPIFFS|
 |`/api/command`|POST|Send device commands, in JSON format based on the `commandSchema` in the adoption payload|
 |`/api/ota`|POST|Update device firmware with a new binary provided in the request body|
 
@@ -33,7 +35,7 @@ There is no authentication on any of the REST API endpoints. **DO NOT** expose y
 :::
 
 ## Usage
-The library needs to be initialised with an instance of [`OXRS_MQTT`](/docs/libraries/esp32-mqtt-library.html), since we need to initialise that with the MQTT configuration provisioned by the API on startup.
+The library needs to be initialised with an instance of [`OXRS_MQTT`](/docs/libraries/esp32-mqtt-library.md), since we need to initialise that with the MQTT configuration provisioned by the API on startup.
 
 The API library will pass any device configuration, provisioned via the `/api/config` REST API, down to the MQTT library for handling, since that already has all the config callbacks used by the firmware. This ensures that all configuration is handled by your firmware in the same place, regardless of whether it was provisioned by the API, or received via MQTT on the `conf/<clientid>` topic.
 
@@ -84,12 +86,13 @@ Retrieves the adoption details for the device;
     "version": "3.5.0"
   },
   "network": {
+    "mode": "ethernet",
     "ip": "192.168.40.64",
     "mac": "94:B9:7E:F1:D2:5B"
   },
   "configSchema": {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "OXRS-SHA-StateMonitor-ESP32-FW",
+    "title": "State Monitor",
     "type": "object",
     "properties": {
       "inputs": {
@@ -128,7 +131,7 @@ Retrieves the adoption details for the device;
   },
   "commandSchema": {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "OXRS-SHA-StateMonitor-ESP32-FW",
+    "title": "State Monitor",
     "type": "object",
     "properties": {
       "restart": {
@@ -140,10 +143,16 @@ Retrieves the adoption details for the device;
 ```
 
 ### POST `/api/restart`
-Empty payload. Soft-restarts the device.
+Empty payload. Soft-reset the device.
+
+### POST `/api/resetWifi`
+Empty payload. Erases any WiFi credentials and soft-reset the device.
+
+### POST `/api/resetConfig`
+Empty payload. Formats the SPIFFS (if present) and soft-reset the device.
 
 ### POST `/api/factoryReset`
-Empty payload. Formats the SPIFFS (if present) and soft-restarts the device.
+Empty payload. Erases any WiFi credentials and formats the SPIFFS (if present) and soft-reset the device.
 
 ### GET `/api/mqtt`
 Retrieves the current MQTT configuration, excluding any password (if set);
@@ -181,10 +190,10 @@ Update the current MQTT configuration, and persist to SPIFFS so it can be restor
     "topicSuffix": ""
 }
 ```
-The only mandatory field is `broker`, everything else is optional. The `clientId` will typically default to the last 3 bytes of the device MAC address, but this is configurable in your firmware code when initialising the [`OXRS_MQTT`](/docs/libraries/esp32-mqtt-library.html) library.
+The only mandatory field is `broker`, everything else is optional. The `clientId` will typically default to the last 3 bytes of the device MAC address, but this is configurable in your firmware code when initialising the [`OXRS_MQTT`](/docs/libraries/esp32-mqtt-library.md) library.
 
 ### GET `/api/config`
-Retrieves the current device config. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.html) firmware);
+Retrieves the current device config. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.md) firmware);
 ``` json
 {
     "temperatureUpdateMillis": 60000,
@@ -211,7 +220,7 @@ Retrieves the current device config. Depends on the firmware (example below is f
 ```
 
 ### POST `/api/config`
-Update the current device config, and persist to SPIFFS so it can be restored on restart. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.html) firmware);
+Update the current device config, and persist to SPIFFS so it can be restored on restart. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.md) firmware);
 ``` json
 {
     "temperatureUpdateMillis": 60000,
@@ -238,7 +247,7 @@ Update the current device config, and persist to SPIFFS so it can be restored on
 ```
 
 ### POST `/api/command`
-Send a command to the device. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.html) firmware);
+Send a command to the device. Depends on the firmware (example below is from the [State Monitor](/docs/firmware/state-monitor-esp32.md) firmware);
 ``` json
 {
     "restart": true
@@ -251,7 +260,7 @@ Upload and reflash the device with the firmware binary sent in the request paylo
 ## Downloads
 Download the latest version of the library on [Github](https://github.com/OXRS-IO/OXRS-IO-API-ESP32-LIB).
 
-A good place to look for an example of how to use this MQTT library is in the [Rack32](/docs/hardware/controllers/rack32.html) library found [here](https://github.com/SuperHouse/OXRS-SHA-Rack32-ESP32-LIB).
+A good place to look for an example of how to use this MQTT library is in the [Rack32](/docs/hardware/controllers/rack32.md) library found [here](https://github.com/SuperHouse/OXRS-SHA-Rack32-ESP32-LIB).
 
 ## Supported Hardware
 This library is compatible with any ESP-based hardware, including ESP32 and ESP8266 microprocessors.

@@ -30,7 +30,7 @@ The Pinout for the Terminal block is as followed is as followed Left to (Right)
 
 ## Supported Firmware
 Requires a Controller to run the following supported firmware:
-- OXRS-SHA-StateController-ESP32-FW  [Link](/docs/firmware/state-controller-esp32.html)
+- OXRS-SHA-StateController-ESP32-FW  [Link](/docs/firmware/state-controller-esp32.md)
 
 
 ## Where to Buy
@@ -47,4 +47,4 @@ This is a relay driver PCB that can be mounted inside your switchboard to contro
 :::
 
 ## Compatible Hardware
-- Rack32 [Link](/docs/hardware/controllers/rack32.html)
+- Rack32 [Link](/docs/hardware/controllers/rack32.md)

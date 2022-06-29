@@ -42,10 +42,35 @@ It requires the `TFT_eSPI` library by Bodmer to be installed and configured for 
 You can install this library a number of ways;
 
 1. Install via Arduino Library Manager (search for `TFT_eSPI`)
-2. Download [original](https://github.com/Bodmer/TFT_eSPI) version from GitHub
-3. Download [this](https://github.com/OXRS-IO/TFT_eSPI) version from GitHub which has been pre-configured for use with the ST7789 display **(recommended)**
+2. Install via PlatformIO (using `bodmer/TFT_eSPI`)
+3. Download [original](https://github.com/Bodmer/TFT_eSPI) version from GitHub
 
-If you choose options (1) or (2) you will need to make some changes to the `TFT_eSPI` library source files to configure it for the ST7789 display. For your convenience a suitable configuration file (`Setup000_RACK32_ST7789.h`) can be found in the `\User_Setup` folder of this library. Instructions on how to install and activate this setup can be found in the header of `Setup000_RACK32_ST7789.h`.
+The following configuration is required;
+```
+USER_SETUP_LOADED=1
+
+ST7789_2_DRIVER=1
+
+TFT_RGB_ORDER=TFT_RGB
+
+TFT_WIDTH=240
+TFT_HEIGHT=240
+
+TFT_MOSI=23
+TFT_SCLK=18
+TFT_CS=25
+TFT_DC=2
+TFT_RST=4
+TFT_BL=14
+
+SPI_FREQUENCY=40000000
+
+LOAD_GLCD=1   ; Font 1. Original Adafruit 8 pixel font needs ~1820 bytes in FLASH
+LOAD_FONT2=1 	; Font 2. Small 16 pixel high font, needs ~3534 bytes in FLASH, 96 characters
+LOAD_GFXFF=1  ; FreeFonts. Include access to the 48 Adafruit_GFX free fonts FF1 to FF48 and custom fonts
+```
+
+You can specify these in your PlatformIO build file (`platform.ini`) or if using the Arduino IDE you will need to create a custom setup file and place in the `\User_Setup` folder of the TFT_eSPI library folder in your Arduino library. See the TFT_eSPI Github repo for instructions on how to configure this.
 
 ### Maker logo displayed on LCD
 This lib has the ability to display a maker supplied logo in the top/left corner of the LCD.
@@ -88,7 +113,7 @@ Download the latest version of the firmware on [Github](https://github.com/OXRS-
 
 ## Supported Hardware
 Designed to run on ESP32 based devices.
-- [Rack32](/docs/hardware/controllers/rack32.html)
+- [Rack32](/docs/hardware/controllers/rack32.md)
 
 ---
 

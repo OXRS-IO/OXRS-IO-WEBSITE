@@ -34,4 +34,4 @@ The CBUS to Rj45 Board was designed too adapt Clipsal CBUS slave switch to use w
 :::
 
 ## Compatible Hardware
-- Rack32 [Link](/docs/hardware/controllers/rack32.html)
+- Rack32 [Link](/docs/hardware/controllers/rack32.md)

@@ -41,5 +41,5 @@ TODO - Jon to supply some FAQ's
 :::
 
 ## Compatible With
-- rack32  [Link](https://oxrs.io/docs/hardware/controllers/rack32.html) **<-- Best Choice**
-- room8266 [Link](https://oxrs.io/docs/hardware/controllers/room8266.html)
+- rack32  [Link](/docs/hardware/controllers/rack32.md) **<-- Best Choice**
+- room8266 [Link](/docs/hardware/controllers/room8266.md)

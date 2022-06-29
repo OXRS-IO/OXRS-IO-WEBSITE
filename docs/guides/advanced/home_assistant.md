@@ -4,7 +4,7 @@
 ## Introduction
 This guide shows `automation` samples to be used in Home Assistant. They make use of the event structure that is sent by the StateMonitor via MQTT.
 
-For details on `configuration` and `events` see the [StateMonitor](/docs/firmware/state-monitor-esp32.html) documentation.
+For details on `configuration` and `events` see the [StateMonitor](/docs/firmware/state-monitor-esp32) documentation.
 
 The following samples are using the config topic `conf/58391f` and the state topic `stat/58391f`. Those are the defaults as allocated by the FW using the MAC address of the device. Index numbers need to be replaced according to your set up.
 
