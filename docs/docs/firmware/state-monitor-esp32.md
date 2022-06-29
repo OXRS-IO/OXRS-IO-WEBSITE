@@ -190,7 +190,7 @@ A triple button click on input 4;
 
 ## Index Calculator
 
-<index-calculator />
+<IndexCalculator />
 
 ## Supported Hardware
 This firmware is compatible with the [Light Switch Controller](https://github.com/SuperHouse/LSC) (LSC) and is designed to run on the [RACK32](/docs/hardware/controllers/rack32.md) as part of the [OXRS](https://oxrs.io) eco-system.
