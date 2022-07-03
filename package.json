@@ -5,15 +5,19 @@
   "main": "index.js",
   "scripts": {
     "dev": "vuepress dev docs",
-    "build": "node node_modules/vuepress/bin/vuepress.js build docs"
+    "build": "node node_modules/vuepress/bin/vuepress.js build docs",
+    "validate": "node ./docs/.vuepress/validate.js"
   },
   "author": "Aaron Knox <aaron@makerdock.io>",
   "license": "ISC",
+  "dependencies": {
+    "@vuepress/plugin-git": "^2.0.0-beta.48",
+    "@vuepress/plugin-register-components": "^2.0.0-beta.48",
+    "@vuepress/plugin-search": "^2.0.0-beta.48",
+    "@vuepress/utils": "^2.0.0-beta.48",
+    "vuepress": "^2.0.0-beta.48"
+  },
   "devDependencies": {
-    "@vuepress/plugin-git": "^2.0.0-beta.36",
-    "@vuepress/plugin-register-components": "^2.0.0-beta.36",
-    "@vuepress/plugin-search": "^2.0.0-beta.36",
-    "@vuepress/utils": "^2.0.0-beta.35",
-    "vuepress": "^2.0.0-beta.36"
+    "@bettercorp/tools": "^2.0.20220613145514"
   }
 }

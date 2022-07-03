@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [16.x]
     
     steps:
       - name: Cleanup working dir
@@ -23,6 +23,9 @@ jobs:
 
       - name: NPM I
         run: npm ci
+
+      - name: NPM Validate
+        run: npm run validate
 
       - name: NPM Build
         run: npm run build
