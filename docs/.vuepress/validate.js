@@ -23,16 +23,22 @@ const validateNavItemLink = (nav, baseBath = "") => {
     return `Nav ${text} has an invalid link url, only https://* are supported`;
   }
 
-  if (pathUi.toLowerCase().endsWith(".md")) {
-    return `Link ${pathUi} should not end with .md or /`;
+  if (pathUi.toLowerCase().endsWith("/README")) {
+    return `Link ${pathUi} should not end with README`;
   }
-  if (pathUi.toLowerCase().endsWith("/")) {
-    return `Link ${pathUi} should not end with .md or /`;
+  if (pathUi.toLowerCase().endsWith(".md")) {
+    return `Link ${pathUi} should not end with .md`;
+  }
+  if (!pathUi.toLowerCase().endsWith("/")) {
+    if (pathUi.toLowerCase().indexOf("/#") > 0) {
+      return true;
+    }
+    return `Link ${pathUi} should end with /`;
   }
 
   const corePath = path.join(__dirname, `..${baseBath}${pathUi}`);
   const defaultMdPath = path.join(corePath, "./README.md");
-  const directFilePath = `${corePath}.md`;
+  const directFilePath = `${corePath.substring(0, corePath.length - 1)}.md`;
   if (fs.existsSync(defaultMdPath)) {
     console.log(`   -> ${defaultMdPath} : Folder path`);
     return true;
@@ -79,32 +85,28 @@ const validateNavItem = (nav) => {
   }
 
   if (!Tools.isNullOrUndefined(nav.children)) {
+    let failedList = [];
     for (let navChild of nav.children) {
       const validationResult = validateNavItem(navChild);
       if (validationResult !== true) {
-        return validationResult;
+        if (Tools.isArray(validationResult))
+          failedList = failedList.concat(validationResult);
+        else failedList.push(validationResult);
       }
     }
+    return failedList.length === 0 ? true : failedList;
   }
 
   return true;
 };
 
+let validationFailed = [];
 console.log("--------------------------------");
 console.log("NAV : Running validation");
 for (let nav of navbar) {
   const validationResult = validateNavItem(nav);
   if (validationResult !== true) {
-    console.error("");
-    console.error("");
-    console.error("++++++++++++++++++++++++++++++++++");
-    console.error("");
-    console.error(validationResult);
-    console.error("");
-    console.error("++++++++++++++++++++++++++++++++++");
-    console.error("");
-    console.error("");
-    process.exit(10);
+    validationFailed.push({ type: "nav", data: validationResult });
   }
 }
 console.log("NAV : Running validation : OKAY");
@@ -115,32 +117,40 @@ console.log("SIDEBAR : Running validation");
 for (let nav of Object.keys(sidebar)) {
   const validationResult = validateNavItemLink(nav);
   if (validationResult !== true) {
-    console.error("");
-    console.error("");
-    console.error("++++++++++++++++++++++++++++++++++");
-    console.error("");
-    console.error(validationResult);
-    console.error("");
-    console.error("++++++++++++++++++++++++++++++++++");
-    console.error("");
-    console.error("");
-    process.exit(10);
+    validationFailed.push({ type: "sidebar-link", data: validationResult });
   }
   for (let inav of sidebar[nav]) {
     const ivalidationResult = validateNavItem(inav);
     if (ivalidationResult !== true) {
-      console.error("");
-      console.error("");
-      console.error("++++++++++++++++++++++++++++++++++");
-      console.error("");
-      console.error(ivalidationResult);
-      console.error("");
-      console.error("++++++++++++++++++++++++++++++++++");
-      console.error("");
-      console.error("");
-      process.exit(10);
+      validationFailed.push({ type: "sidebar", data: ivalidationResult });
     }
   }
 }
 console.log("SIDEBAR : Running validation : OKAY");
 console.log("--------------------------------");
+
+if (validationFailed.length > 0) {
+  console.error("");
+  console.error("");
+  console.error("++++++++++++++++++++++++++++++++++");
+  console.error("");
+  console.error("THE FOLLOWING FAILED VALIDATION:");
+  console.error("");
+  for (let failure of validationFailed) {
+    for (let failureItem of Tools.isArray(failure.data)
+      ? failure.data
+      : [failure.data])
+      console.error(`${failure.type}: ${failureItem}`);
+  }
+  console.error("");
+  console.error("++++++++++++++++++++++++++++++++++");
+  console.error("");
+  console.error("");
+  process.exit(10);
+} else {
+  console.error("");
+  console.error("");
+  console.error("VALIDATION SUCCESSFUL, NO ISSUES FOUND");
+  console.error("");
+  console.error("");
+}

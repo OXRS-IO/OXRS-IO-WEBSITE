@@ -100,6 +100,13 @@ The development server can run slowly. Be aware that every change you make the d
 :::
 
 
+#### Step 3.1 - Validate changes to the NAV or Sidebar
+
+If you have made any changes to the `config.nav.js` or `config.sidebar.js` files, validate your changes before commiting.  
+```sh
+npm run validate
+```
+It will run and validate all items conform to link standards.
 
 #### Step 4 - Commit and Push your changes
 ----

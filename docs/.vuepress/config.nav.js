@@ -4,19 +4,19 @@ module.exports = [
     children: [
       {
         text: "Hardware",
-        link: "/docs/hardware",
+        link: "/docs/hardware/",
       },
       {
         text: "Firmware",
-        link: "/docs/firmware",
+        link: "/docs/firmware/",
       },
       {
         text: "Libraries",
-        link: "/docs/libraries",
+        link: "/docs/libraries/",
       },
       {
         text: "Cases",
-        link: "/docs/cases",
+        link: "/docs/cases/",
       },
     ],
   },
@@ -25,11 +25,11 @@ module.exports = [
     children: [
       {
         text: "Accessibility",
-        link: "/add-ons/accessibility",
+        link: "/add-ons/accessibility/",
       },
       {
         text: "Displays",
-        link: "/add-ons/displays",
+        link: "/add-ons/displays/",
       },
       //           {
       //             text: 'Relays',
@@ -41,7 +41,7 @@ module.exports = [
       //           },
       {
         text: "Switches",
-        link: "/add-ons/switches",
+        link: "/add-ons/switches/",
       },
     ],
   },
@@ -50,19 +50,19 @@ module.exports = [
     children: [
       {
         text: "Getting Started",
-        link: "/guides/getting-started",
+        link: "/guides/getting-started/",
       },
       {
         text: "Advanced",
-        link: "/guides/advanced",
+        link: "/guides/advanced/",
       },
       {
         text: "Standards",
-        link: "/guides/standards",
+        link: "/guides/standards/",
       },
       {
         text: "Writing Docs",
-        link: "/guides/writing-docs",
+        link: "/guides/writing-docs/",
       },
     ],
   },
@@ -71,15 +71,15 @@ module.exports = [
     children: [
       {
         text: "SKU's",
-        link: "/glossary/skus",
+        link: "/glossary/skus/",
       },
       {
         text: "Makers",
-        link: "/glossary/makers",
+        link: "/glossary/makers/",
       },
       {
         text: "Acronyms",
-        link: "/glossary/acronyms",
+        link: "/glossary/acronyms/",
       },
     ],
   },
