@@ -147,4 +147,10 @@ if (validationFailed.length > 0) {
   console.error("");
   console.error("");
   process.exit(10);
+} else {
+  console.error("");
+  console.error("");
+  console.error("VALIDATION SUCCESSFUL, NO ISSUES FOUND");
+  console.error("");
+  console.error("");
 }
