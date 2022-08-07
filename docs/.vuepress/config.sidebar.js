@@ -61,9 +61,15 @@ module.exports = {
       children: [
         "/add-ons/displays/IPS-display/",
         "/add-ons/displays/128x32-OLED-display/",
-        "/add-ons/displays/WT32-SC01-display/",
       ],
     },
+        {
+          text: "Touch Displays",
+          link: "/add-ons/touch-displays/",
+          children: [
+            "/add-ons/touch-displays/WT32-SC01-display/",
+          ],
+        },
     // {
     //   text: 'Relays',
     //   link: '/add-ons/relays',
@@ -98,7 +104,7 @@ module.exports = {
             "/docs/hardware/input-devices/CBUS-to-RJ45/",
             "/docs/hardware/input-devices/rotary-encode-to-rj45/",
             "/docs/hardware/input-devices/rotary-encode/",
-            //                   '/docs/hardware/input-devices/hardware-template',
+            //'/docs/hardware/input-devices/hardware-template',
           ],
         },
         {
@@ -106,7 +112,7 @@ module.exports = {
           children: [
             "/docs/hardware/output-devices/pwm-controllers/",
             "/docs/hardware/output-devices/DIN-Relay-Driver-4ch/",
-            //                   '/docs/hardware/output-devices/hardware-template',
+            //'/docs/hardware/output-devices/hardware-template',
           ],
         },
         {
@@ -133,7 +139,8 @@ module.exports = {
             "/docs/firmware/state-controller-esp32/",
             "/docs/firmware/state-io-esp32/",
             "/docs/firmware/smoke-detector-esp32/",
-            // '/docs/firmware/led-controller-esp32',
+            //"/docs/firmware/tp32/", // Will be added once docs are completed
+            //'/docs/firmware/led-controller-esp32',
           ],
         },
       ],

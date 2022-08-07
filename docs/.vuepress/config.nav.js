@@ -31,6 +31,10 @@ module.exports = [
         text: "Displays",
         link: "/add-ons/displays/",
       },
+      {
+        text: "Touch Displays",
+        link: "/add-ons/touch-displays/",
+      },
       //           {
       //             text: 'Relays',
       //             link: '/add-ons/relays',

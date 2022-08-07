@@ -66,3 +66,14 @@ p.maker {
   .line-numbers-wrapper {
     display: none;
   }
+ 
+.sidebar-item:not(.sidebar-heading) + .sidebar-item-children {
+  padding-left: 2rem !important;
+}
+
+.custom-container.details summary {
+	outline: none;
+	cursor: pointer;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}

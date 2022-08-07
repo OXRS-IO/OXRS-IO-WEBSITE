@@ -2,7 +2,7 @@
 tags: [""]
 ---
 
-# IPS Display
+# 1.54″ 240×240 IPS
 
 <!-- Board Image -->
 ![IPS Display](/images/addons/ips-display.jpg)

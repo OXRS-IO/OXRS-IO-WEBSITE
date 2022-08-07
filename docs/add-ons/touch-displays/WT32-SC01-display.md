@@ -2,7 +2,7 @@
 tags: [""]
 ---
 
-# WT32-SC01 Display
+# 3.5" 320x480 TFT
 
 <!-- Board Image -->
 ![I2C Display](/images/addons/wt32-sc01.jpg)

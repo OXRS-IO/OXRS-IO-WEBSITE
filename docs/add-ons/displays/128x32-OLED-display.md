@@ -2,7 +2,7 @@
 tags: [""]
 ---
 
-# 128x32 OLED Display
+# 0.91" 128x32 OLED
 
 <!-- Board Image -->
 ![I2C Display](/images/addons/128x32-oled.jpg)

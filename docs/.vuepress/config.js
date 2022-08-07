@@ -25,7 +25,7 @@ module.exports = {
         // allow searching the `tags` frontmatter
         getExtraFields: (page) => page.frontmatter.tags || [],
       }),
-    ],
+    ]
   ],
   theme: defaultTheme({
     lastUpdated: true,
@@ -35,7 +35,7 @@ module.exports = {
     docsDir: "docs",
     //editLinkPattern: ':repo/-/edit/:branch/:path',
     logo: "/images/hero.png",
-    sidebarDepth: 2,
+    sidebarDepth: 0,
     navbar: navbar,
     sidebar: sidebar,
   }),
