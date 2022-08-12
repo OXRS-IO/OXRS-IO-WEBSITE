@@ -91,4 +91,13 @@ module.exports = [
     text: "GitHub",
     link: "https://github.com/OXRS-IO/",
   },
+  // {
+  //   text: "Tools",
+  //   children: [{
+  //       text: "Icon Generator",
+  //       link: "/tools/icon-generator/",
+  //     },
+
+  //   ]
+  // }
 ];
