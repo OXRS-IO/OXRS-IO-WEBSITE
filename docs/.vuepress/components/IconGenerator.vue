@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="sub-container">
         <label for="icon">Icon Name:</label><br><br>
-        <input type="text" id="icon-name" name="icon" v-model="iconName"><br><br>
+        <input v-bind:class="{ 'text-danger': hasError }" type="text" id="icon-name" name="icon" v-model="iconName" @input="inputHandler" placeholder="enter icon" required ><br><br>
 				<label for="selectAvatar">Upload Image:</label><br><br>
         <input id="selectAvatar" type="file" @change="onChange($event)"/><br><br>
 		</div>
@@ -28,22 +28,27 @@ export default {
 	data() {
 		return {
 			iconName: "",
-			iconJson: ""		
+			iconJson: "",
+			hasError: false,
 		}
 	},
 	methods: {
 		async onChange(event) {
-			  const file = event.target.files[0];
-  			const base64 = await this.convertBase64(file);
-				const icon = base64.split(",")[1]
-				//console.log(base64)
-  			avatar.src = base64;
-				this.iconJson = {
-					"addIcon": { 
-						"name": this.iconName, 
-						"image": icon 
-						}
-				}
+			if(this.iconName === ""){
+				this.hasError = true
+				event.target.value = '';
+				return
+			}
+			const file = event.target.files[0];
+			const base64 = await this.convertBase64(file);
+			const icon = base64.split(",")[1]
+			avatar.src = base64;
+			this.iconJson = {
+				"addIcon": { 
+					"name": this.iconName, 
+					"image": icon 
+					}
+			}
 		},
 
 		convertBase64(file) {
@@ -64,9 +69,22 @@ export default {
 		copy(e) {
 			let data = JSON.stringify(this.iconJson);
 			navigator.clipboard.writeText(data)
+		},
+
+		inputHandler(e){
+			if(this.iconName == "" && selectAvatar.files.length == 1){
+				let poo = JSON.parse(JSON.stringify(this.iconJson)) 
+				this.hasError = true
+				poo.addIcon.name = ""
+				this.iconJson = poo
+			}
+			if(this.iconName !== "" && selectAvatar.files.length !== 0){
+				let poo = JSON.parse(JSON.stringify(this.iconJson)) 
+				this.hasError = false
+				poo.addIcon.name = this.iconName
+				this.iconJson = poo
+			}
 		}
-
-
 	}
 }
 </script>
@@ -111,6 +129,12 @@ body {
 	width: 50px;
 	height: 30px;
 	text-align: center;
+}
+
+.text-danger {
+	border: 1px red solid;
+	border-radius: 2px;
+	padding: 2px;
 }
 
 </style>

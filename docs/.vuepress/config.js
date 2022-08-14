@@ -24,6 +24,7 @@ module.exports = {
       searchPlugin({
         // allow searching the `tags` frontmatter
         getExtraFields: (page) => page.frontmatter.tags || [],
+        hotKeys: []
       }),
     ]
   ],
