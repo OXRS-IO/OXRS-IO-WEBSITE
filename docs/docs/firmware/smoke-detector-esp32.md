@@ -260,7 +260,7 @@ Download the latest version of the firmware on [Github](https://github.com/Bedro
 
 
 ## Supported Hardware
-This firmware is compatible with the [Smoke Detector](https://bmdesigns.com.au/shop/universal-input-output-uio/) and is designed to run on the [Universal Rack Controller](https://www.superhouse.tv/product/rack32) (URC).
+This firmware is compatible with the [Smoke Detector](https://bmdesigns.com.au/shop/universal-input-output-uio/) and is designed to run on the [Rack32](https://www.superhouse.tv/product/rack32-universal-rack-controller-board/).
 
 The SD16 hardware provides 12V down the line, which can be used for powering sensors (e.g. PIRs), or illuminating LEDs. 
 
