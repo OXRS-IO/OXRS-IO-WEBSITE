@@ -44,4 +44,4 @@ The convention outlines mechanical dimensions for enclosures including front pan
 
 ![OXRS-prototype](/images/oxrs-prototype-b.jpg)
 
-To join in the discussion, see the [SuperHouse Discord](https://www.superhouse.tv/discord) server
+To join in the discussion, see the [Discord](https://discord.gg/jsFjaPzB)

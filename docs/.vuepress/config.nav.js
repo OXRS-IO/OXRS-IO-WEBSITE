@@ -91,6 +91,10 @@ module.exports = [
     text: "GitHub",
     link: "https://github.com/OXRS-IO/",
   },
+  {
+    text: "Discord",
+    link: "https://discord.gg/jsFjaPzB",
+  },
   // {
   //   text: "Tools",
   //   children: [{
