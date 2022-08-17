@@ -102,18 +102,24 @@ Each INPUT can be configured via the following properties;
 |`index`|Mandatory|Index of the input to configure|
 |`type`|Optional|Either `button`, `contact`, `press`, `rotary`, `security`, `switch` or `toggle`|
 |`invert`|Optional|Either `true` or `false`|
+|`disabled`|Optional|Either `true` or `false`|
 
 ::: warning
 Inverting a normally-open (NO) button input will result in a constant stream of `hold` events!
 :::
 
+::: warning
+Disabling an input will stop any events being emitted!
+:::
+
 ### Examples
-To configure input 4 to be a contact sensor, and input 7 to be an inverted button;
+To configure input 4 to be a bi-stable switch, input 7 to be an inverted button, and input 8 to be a disabled contact sensor;
 ```json
 { 
   "inputs": [
-    { "index": 4, "type": "contact" },
+    { "index": 4, "type": "switch" },
     { "index": 7, "type": "button", "invert": true }
+    { "index": 8, "type": "contact", "disabled": true }
   ]
 }
 ```
