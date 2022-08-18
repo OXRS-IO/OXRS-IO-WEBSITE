@@ -52,6 +52,7 @@ The table below shows the state of the 4 inputs from the **Monimod** for each se
 #### Functions
 - `setType(input, type)`: Set the input type
 - `setInvert(input, invert)`: Invert input handling
+- `setDisabled(input, disabled)`: Disable an input (stop processing events)
 
 #### Code Example
 ```cpp
@@ -111,6 +112,7 @@ If another `on` command is sent while the timer is running, it will reset to zer
 - `setType(output, type)`: Set the output type
 - `setInterlock(output, interlock)`: Interlock an output with another
 - `setTimer(output, seconds)`: Set the timer duration (in seconds)
+- `setDisabled(output, disabled)`: Disable an output (stop processing events)
 
 ::: tip
 The only difference between `MOTOR` and `RELAY` outputs is the interlock delay. For `MOTOR` outputs the delay is 2000ms, for `RELAY` outputs it is only 500ms.
