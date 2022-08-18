@@ -1,5 +1,5 @@
 ---
-tags: ["OXRS-SHA-RCESP32", "URC", "RACK32"]
+tags: ["OXRS-SHA-RACK32", "RACK32"]
 ---
 # State Monitor ESP32
 <p class="maker">by <b>Ben Jones</b></p>
