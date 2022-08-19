@@ -1,7 +1,7 @@
 ---
 tags: ["TAG1", "TAG2", "TAG3"]
 ---
-# Touch Display ESP32 
+# Touch Panel ESP32 
 <p class="maker">by <b>OXRS Core Team</b></p>
 
 > SKU:  OXRS-IO-TouchPanel-ESP32-FW
@@ -54,6 +54,14 @@ Configuration, State and Commands
 
 ```cmnd/<your-device-topic>```
 
+
+::: tip Recommendation:
+[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
+The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
+
+Further documentation and some example Node Red Flows will be made available to get you started. 
+:::
+
 ---
 
 # Tile Styles
@@ -62,27 +70,29 @@ Tile Styles explanation text goes here...
 
 |Tile Style| Tile Example| Get Started |
 | :---- |:----|:----|
-| button | ![TP32 Image Alt Text](/images/button-tile-not-active.png)|[Get Started](/docs/firmware/tp32/#button-tile) |
-| buttonLevelUp | ![TP32 Image Alt Text](/images/buttonLevelUp-tile.png)|[Get Started](/docs/firmware/tp32/#buttonlevelup-tile) |
-| buttonLevelDown | ![TP32 Image Alt Text](/images/buttonLevelDown-tile.png)|[Get Started](/docs/firmware/tp32/#buttonleveldown-tile) |
-| buttonUpDown | ![TP32 Image Alt Text](/images/buttonUpDown-tile.png)|[Get Started](/docs/firmware/tp32/#buttonupdown-tile) |
-| buttonLeftRight | ![TP32 Image Alt Text](/images/buttonLeftRight.png)|[Get Started](/docs/firmware/tp32/#buttonleftright-tile) |
-| buttonPrevNext | ![TP32 Image Alt Text](/images/buttonPrevNext.png)|[Get Started](/docs/firmware/tp32/#buttonprevnext-tile) |
-| indicator | ![TP32 Image Alt Text](/images/indicator-tile.png)|[Get Started](/docs/firmware/tp32/#indicator-tile) |
-| colorPickerRgbCct | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/tp32/#colorpickerrgbcct-tile) |
-| colorPickerRgb | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/tp32/#colorpickerrgb-tile) |
-| colorPickerCct | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/tp32/#colorpickercct-tile) |
-| dropDown | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/tp32/#dropdown-tile) |
-| keyPad | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/tp32/#keypad-tile) |
-| keyPadBlocking | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/tp32/#keypadblocking-tile) |
-| remote | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/tp32/#remote-tile) |
-| link | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/tp32/#link-tile) |
+| button | ![TP32 Image Alt Text](/images/button-tile-not-active.png)|[Get Started](/docs/firmware/touch-panel-esp32/#button-tile) |
+| buttonLevelUp | ![TP32 Image Alt Text](/images/buttonLevelUp-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonlevelup-tile) |
+| buttonLevelDown | ![TP32 Image Alt Text](/images/buttonLevelDown-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonleveldown-tile) |
+| buttonUpDown | ![TP32 Image Alt Text](/images/buttonUpDown-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonupdown-tile) |
+| buttonLeftRight | ![TP32 Image Alt Text](/images/buttonLeftRight-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonleftright-tile) |
+| buttonPrevNext | ![TP32 Image Alt Text](/images/buttonPrevNext.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonprevnext-tile) |
+| indicator | ![TP32 Image Alt Text](/images/indicator-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#indicator-tile) |
+| colorPickerRgbCct | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgbcct-tile) |
+| colorPickerRgb | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgb-tile) |
+| colorPickerCct | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#colorpickercct-tile) |
+| dropDown | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#dropdown-tile) |
+| keyPad | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypad-tile) |
+| keyPadBlocking | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypadblocking-tile) |
+| remote | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#remote-tile) |
+| link | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#link-tile) |
 
----
+
 
 # Tile Payloads
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
+
+---
 
 
 # button Tile
@@ -100,10 +110,10 @@ Explanation text goes here...
 
 ```json
 {
-  "tile":<number>,            // Enter your tile number e.g. 1  
-  "style":"button",
-  "icon":"<icon_name>",       // Enter icon name e.g."_bulb"
-  "label":"<label_text>"      // Enter label text e.g."Lamps"
+  "tile": <number>,            // Enter your tile number e.g. 1  
+  "style": "button",
+  "icon": "<icon_name>",       // Enter icon name e.g."_bulb"
+  "label": "<label_text>"      // Enter label text e.g."Lamps"
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -114,12 +124,12 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "screen":<number>,          // Screen number triggering state event  
-  "tile":<number>,            // Tile number triggering state event  
-  "style":"button",
-  "type":"button",
-  "event":"single"|"hold",
-  "state":"on"|"off"
+  "screen": <number>,          // Screen number triggering state event  
+  "tile": <number>,            // Tile number triggering state event  
+  "style": "button",
+  "type": "button",
+  "event": "single"|"hold",
+  "state": "on"|"off"
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -143,12 +153,9 @@ Explanation text goes here...
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # buttonLevelUp Tile
 
@@ -169,8 +176,8 @@ Further documentation and some example Node Red Flows will be made available to 
   "style": "buttonLevelUp",
   "icon": "<icon_name>",                  // Enter icon name e.g."_bulb"
   "label": "<label_text>",                // Enter label text e.g."Light"
-  "leveStart": <number>,                  // Defaults to 0
-  "leveStop": <number>                    // Defaults to 100
+  "levelStart": <number>,                  // Defaults to 0
+  "levelStop": <number>                    // Defaults to 100
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -209,12 +216,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # buttonLevelDown Tile
 
@@ -235,8 +239,8 @@ Further documentation and some example Node Red Flows will be made available to 
   "style": "buttonLevelDown",
   "icon": "<icon_name>",        // Enter icon name e.g."_blind"
   "label": "<label_text>",      // Enter label text e.g."Blinds"
-  "leveStart": <number>,        // Defaults to 0
-  "leveStop": <number>          // Defaults to 100
+  "levelStart": <number>,        // Defaults to 0
+  "levelStop": <number>          // Defaults to 100
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -275,12 +279,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # buttonUpDown Tile
 
@@ -339,16 +340,13 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # buttonLeftRight Tile
 
-![TP32 Image Alt Text](/images/buttonLeftRight.png)
+![TP32 Image Alt Text](/images/buttonLeftRight-tile.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
@@ -363,8 +361,8 @@ Further documentation and some example Node Red Flows will be made available to 
 {
   "tile": <number>,               // Enter your tile number e.g. 1  
   "style": "buttonLeftRight",
-  "icon": "<icon_name>",          // Enter icon name e.g."_music"
-  "label": "<label_text>",        // Enter label text e.g."Speakers"
+  "icon": "<icon_name>",          // Enter icon name e.g."_slider"
+  "label": "<label_text>",        // Enter label text e.g."Audio Balance"
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -403,12 +401,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # buttonPrevNext Tile
 
@@ -467,12 +462,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # indicator Tile
 
@@ -527,12 +519,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # colorPickerRgbCct Tile
 
@@ -581,12 +570,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # colorPickerRgb Tile
 
@@ -635,12 +621,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # colorPickerCct Tile
 
@@ -689,12 +672,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # dropDown Tile
 
@@ -743,12 +723,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # keyPad Tile
 
@@ -797,12 +774,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # keyPadBlocking Tile
 
@@ -851,12 +825,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # remote Tile
 
@@ -905,12 +876,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
+---
+
 
 # link Tile
 
@@ -959,14 +927,9 @@ Further documentation and some example Node Red Flows will be made available to 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
-
-Further documentation and some example Node Red Flows will be made available to get you started. 
-:::
 
 ---
+
 
 # Global Command Payloads
 [comment]: <> ([TODO] Commands explanation)
@@ -1009,6 +972,8 @@ Set Footer explanation text goes here...
 
 ::: tip
 
+---
+
 ``<text>`` supports coloring using``"#RRGGBB <text>#"`` tags where RRGGBB are hex, e.g. ``“#FF0000 RED#”``. 
 
 Missing key shows the default icon/string (empty) hides the default icon/string ``"<any text>"`` replaces the default icon/string with ``"<any text>"`` an empty list ``"footer":{}`` resets all to default
@@ -1047,6 +1012,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ::: tip
 ``<number>``  value between 0 .. 255  [r, g, b]
 :::
@@ -1080,6 +1047,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ::: tip
 ``<name>``  name of icon as stored in list (built-in or custom)
 :::
@@ -1113,6 +1082,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ## Set a background image
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1124,15 +1095,16 @@ Explanation text goes here...
 {
   "tiles":[
     {
-      "screen": <number>,
-      "tile": <number>,
-      "bgImage": {
-        "base64": "<encodeBase64(.png)>",
-        "zoom": <number>,
-        "angle": <number>,
-        "offset":[
-          <x number>,
-          <y number>
+      "screen":"<number>",
+      "tile":"<number>",
+      "image":"<encodeBase64(.png)>",
+      "bgImage":{
+        "base64":"<encodeBase64(.png)>",
+        "zoom":"<number>",
+        "angle":"<number>",
+        "posOffset":[
+          "<x number>",
+          "<y number>"
         ]
       }
     }
@@ -1147,6 +1119,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 
 ##  Set text to replace the icon
 [comment]: <> ([TODO] Explanation)
@@ -1176,6 +1150,8 @@ Explanation text goes here...
 
 
 
+---
+
 ## Set a number and units to replace the icon
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1204,6 +1180,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ## Set a level value
 [comment]: <> ([TODO] Explanation)
 (for buttonLevelUp and buttonLevelDown)
@@ -1236,6 +1214,8 @@ Explanation text goes here...
 
 
 
+---
+
 ## Set items in drop down list
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1264,6 +1244,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 
 
 ::: tip
@@ -1301,6 +1283,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ::: tip
 ``<number>`` index to selected list item
 :::
@@ -1334,6 +1318,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ::: tip
 ``<text>`` shows fixed text instead of selection in top row
 :::
@@ -1367,6 +1353,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ::: tip
 ``<list-item>`` list items separated with ``\n``
 
@@ -1383,6 +1371,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ::: tip
 ``<text>`` shows fixed text instead of selection in top row
 :::
@@ -1416,6 +1406,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ::: tip
 ``<number>`` index to selected list item
 :::
@@ -1444,7 +1436,6 @@ Explanation text goes here...
         },
         "colorKelvin": <number>,
         "brightness": <number>
-        "mode": "colorRgb"|"colorKelvin"
       }
     }
   ]
@@ -1458,6 +1449,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 
 ## Load a screen
 [comment]: <> ([TODO] Explanation)
@@ -1482,6 +1475,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 
 ::: tip
 ``<number>`` screen number between 1 .. 32    
@@ -1514,6 +1509,8 @@ Explanation text goes here...
 
 
 
+---
+
 ## Send feedback to open keyPad
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1537,6 +1534,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ## Add a custom icon
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1562,6 +1561,8 @@ Explanation text goes here...
 
 
 
+---
+
 ## Control the backlight
 [comment]: <> ([TODO] Explanation)
 The backlight level can be set via the slider on the settings screen or with an MQTT Payload.
@@ -1585,6 +1586,8 @@ The backlight level can be set via the slider on the settings screen or with an 
 [comment]: <> (END of JSON Example)
 
 ::: tip
+
+---
 ``<number>`` number between 1 .. 100 [%]
 :::
 
@@ -1609,6 +1612,8 @@ The backlight state can be set to on or off. Additionally a "Screen Sleep Timeou
 [comment]: <> (END of JSON Example)
 
 
+
+---
 
 # State and Event Payloads
 [comment]: <> ([TODO] Explanation)
@@ -1646,6 +1651,8 @@ Explanation text goes here...
 
 
 
+---
+
 ## DropDown :
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1674,6 +1681,8 @@ Explanation text goes here...
 
 
 
+---
+
 ## Selector :
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1700,6 +1709,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 
 ## KeyPad :
 [comment]: <> ([TODO] Explanation)
@@ -1730,6 +1741,8 @@ Explanation text goes here...
 
 
 
+---
+
 
 ## PrevNext , UpDown, LeftRight :
 [comment]: <> ([TODO] Explanation)
@@ -1757,6 +1770,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 
 ::: tip
 ``<type>`` depends on the ``<style>`` chosen see table below:
@@ -1797,6 +1812,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ::: tip
 |Type| Event | |
 | :---- |:----|:---|
@@ -1842,6 +1859,8 @@ Explanation text goes here...
 
 
 
+---
+
 
 ## ScreenChange :
 [comment]: <> ([TODO] Explanation)
@@ -1871,6 +1890,8 @@ Explanation text goes here...
 
 
 
+---
+
 ## Backlight Change:
 [comment]: <> ([TODO] Explanation)
 Changing the backlight level or state will generate a change event message containing the backlight state and brightness level. Sleep state events will return a brightness of 0.
@@ -1898,6 +1919,8 @@ Changing the backlight level or state will generate a change event message conta
 [comment]: <> (END of JSON Example)
 
 
+
+---
 ## Message popup:
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1925,6 +1948,8 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+
+---
 
 ## Best practice
 ## Custom Icons
@@ -1989,3 +2014,4 @@ Copyright 2020-2022 SuperHouse Automation Pty Ltd www.superhouse.tv
 
 The software portion of this project is licensed under the Simplified BSD License. The "licence" folder within this project contains a copy of this license in plain text format.
 
+192.168.1.173/api/snapshot.bmp?tile=1

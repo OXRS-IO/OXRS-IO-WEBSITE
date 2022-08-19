@@ -140,7 +140,7 @@ module.exports = {
             "/docs/firmware/state-io-esp32/",
             "/docs/firmware/security-monitor-esp32/",
             "/docs/firmware/smoke-detector-esp32/",
-            //"/docs/firmware/tp32/", // Will be added once docs are completed
+            "/docs/firmware/touch-panel-esp32/",
             //'/docs/firmware/led-controller-esp32',
           ],
         },
