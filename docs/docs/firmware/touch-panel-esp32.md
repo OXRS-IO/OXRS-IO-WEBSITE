@@ -14,12 +14,6 @@ tags: ["TAG1", "TAG2", "TAG3"]
 Introduction text goes here...
 
 
----
-
-
-
-
-
 ## Getting Started
 [comment]: <> ([TODO] Getting started text)
 Getting started text goes here...
@@ -928,8 +922,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
----
-
 
 # Global Command Payloads
 [comment]: <> ([TODO] Commands explanation)
@@ -972,13 +964,10 @@ Set Footer explanation text goes here...
 
 ::: tip
 
----
-
 ``<text>`` supports coloring using``"#RRGGBB <text>#"`` tags where RRGGBB are hex, e.g. ``“#FF0000 RED#”``. 
 
 Missing key shows the default icon/string (empty) hides the default icon/string ``"<any text>"`` replaces the default icon/string with ``"<any text>"`` an empty list ``"footer":{}`` resets all to default
 :::
-
 
 
 ## Set icon color
@@ -1012,8 +1001,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 ::: tip
 ``<number>``  value between 0 .. 255  [r, g, b]
 :::
@@ -1046,9 +1033,6 @@ Explanation text goes here...
 ::::
 [comment]: <> (END of JSON Example)
 
-
-
----
 ::: tip
 ``<name>``  name of icon as stored in list (built-in or custom)
 :::
@@ -1083,7 +1067,6 @@ Explanation text goes here...
 
 
 
----
 ## Set a background image
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1102,7 +1085,7 @@ Explanation text goes here...
         "base64":"<encodeBase64(.png)>",
         "zoom":"<number>",
         "angle":"<number>",
-        "posOffset":[
+        "offset":[
           "<x number>",
           "<y number>"
         ]
@@ -1119,8 +1102,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 
 ##  Set text to replace the icon
 [comment]: <> ([TODO] Explanation)
@@ -1149,8 +1130,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 
 ## Set a number and units to replace the icon
 [comment]: <> ([TODO] Explanation)
@@ -1181,7 +1160,6 @@ Explanation text goes here...
 
 
 
----
 ## Set a level value
 [comment]: <> ([TODO] Explanation)
 (for buttonLevelUp and buttonLevelDown)
@@ -1214,8 +1192,6 @@ Explanation text goes here...
 
 
 
----
-
 ## Set items in drop down list
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1242,10 +1218,6 @@ Explanation text goes here...
 :::
 ::::
 [comment]: <> (END of JSON Example)
-
-
-
----
 
 
 ::: tip
@@ -1283,8 +1255,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 ::: tip
 ``<number>`` index to selected list item
 :::
@@ -1318,8 +1288,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 ::: tip
 ``<text>`` shows fixed text instead of selection in top row
 :::
@@ -1353,8 +1321,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 ::: tip
 ``<list-item>`` list items separated with ``\n``
 
@@ -1371,8 +1337,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 ::: tip
 ``<text>`` shows fixed text instead of selection in top row
 :::
@@ -1406,8 +1370,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 ::: tip
 ``<number>`` index to selected list item
 :::
@@ -1450,8 +1412,6 @@ Explanation text goes here...
 
 
 
----
-
 ## Load a screen
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1474,9 +1434,6 @@ Explanation text goes here...
 ::::
 [comment]: <> (END of JSON Example)
 
-
-
----
 
 ::: tip
 ``<number>`` screen number between 1 .. 32    
@@ -1509,8 +1466,6 @@ Explanation text goes here...
 
 
 
----
-
 ## Send feedback to open keyPad
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1535,7 +1490,6 @@ Explanation text goes here...
 
 
 
----
 ## Add a custom icon
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1561,8 +1515,6 @@ Explanation text goes here...
 
 
 
----
-
 ## Control the backlight
 [comment]: <> ([TODO] Explanation)
 The backlight level can be set via the slider on the settings screen or with an MQTT Payload.
@@ -1586,8 +1538,6 @@ The backlight level can be set via the slider on the settings screen or with an 
 [comment]: <> (END of JSON Example)
 
 ::: tip
-
----
 ``<number>`` number between 1 .. 100 [%]
 :::
 
@@ -1613,8 +1563,6 @@ The backlight state can be set to on or off. Additionally a "Screen Sleep Timeou
 
 
 
----
-
 # State and Event Payloads
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1626,7 +1574,6 @@ Explanation text goes here...
 ## Remote :
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
-
 
 
 [comment]: <> (START of JSON Example)
@@ -1650,8 +1597,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 
 ## DropDown :
 [comment]: <> ([TODO] Explanation)
@@ -1681,8 +1626,6 @@ Explanation text goes here...
 
 
 
----
-
 ## Selector :
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1709,8 +1652,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 
 ## KeyPad :
 [comment]: <> ([TODO] Explanation)
@@ -1741,9 +1682,6 @@ Explanation text goes here...
 
 
 
----
-
-
 ## PrevNext , UpDown, LeftRight :
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1769,9 +1707,6 @@ Explanation text goes here...
 ::::
 [comment]: <> (END of JSON Example)
 
-
-
----
 
 ::: tip
 ``<type>`` depends on the ``<style>`` chosen see table below:
@@ -1812,8 +1747,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 ::: tip
 |Type| Event | |
 | :---- |:----|:---|
@@ -1859,9 +1792,6 @@ Explanation text goes here...
 
 
 
----
-
-
 ## ScreenChange :
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1889,8 +1819,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 
 ## Backlight Change:
 [comment]: <> ([TODO] Explanation)
@@ -1920,7 +1848,6 @@ Changing the backlight level or state will generate a change event message conta
 
 
 
----
 ## Message popup:
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -1948,8 +1875,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
----
 
 ## Best practice
 ## Custom Icons
@@ -1999,7 +1924,6 @@ Download the latest version of the firmware on [Github](https://github.com/OXRS-
 ## Supported Hardware
 - WT32-SC01 Display [Check it out](/add-ons/touch-displays/WT32-SC01-display)
 
----
 
 ### Credits
  - Moin [Github](https://github.com/moinmoin-sh)
@@ -2013,5 +1937,3 @@ Download the latest version of the firmware on [Github](https://github.com/OXRS-
 Copyright 2020-2022 SuperHouse Automation Pty Ltd www.superhouse.tv
 
 The software portion of this project is licensed under the Simplified BSD License. The "licence" folder within this project contains a copy of this license in plain text format.
-
-192.168.1.173/api/snapshot.bmp?tile=1
