@@ -1080,7 +1080,6 @@ Explanation text goes here...
     {
       "screen":"<number>",
       "tile":"<number>",
-      "image":"<encodeBase64(.png)>",
       "bgImage":{
         "base64":"<encodeBase64(.png)>",
         "zoom":"<number>",
