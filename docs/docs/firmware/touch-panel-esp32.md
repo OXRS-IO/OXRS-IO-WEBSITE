@@ -19,9 +19,9 @@ Introduction text goes here...
 Getting started text goes here...
 
 
-- [Tile Payloads](/docs/firmware/tp32.html#tile-payloads)
-- [Global Command Payloads](/docs/firmware/tp32.html#global-command-payloads)
-- [State / Event Payloads](/docs/firmware/tp32.html#state-and-event-payloads)
+- [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
+- [Global Command Payloads](/docs/firmware/touch-panel-esp32.html#global-command-payloads)
+- [State / Event Payloads](/docs/firmware/touch-panel-esp32.html#state-and-event-payloads)
 
 Prerequisites:
 - OXRS-IO-TouchPanel-ESP32-FW - [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases)
@@ -984,7 +984,7 @@ Explanation text goes here...
     {
       "screen": <number>,
       "tile": <number>,
-      "color":[
+      "colorRgb":[
         "r": <number>,
         "g": <number>,
         "b": <number>
@@ -1391,12 +1391,13 @@ Explanation text goes here...
       "screen": <number>,
       "tile": <number>,
       "colorPicker":{
+        "mode": "colorKelvin"|"colorRgb",
+        "colorKelvin": <number>,
         "colorRgb":{
           "r": <number>,
           "g": <number>,
           "b": <number>
         },
-        "colorKelvin": <number>,
         "brightness": <number>
       }
     }
