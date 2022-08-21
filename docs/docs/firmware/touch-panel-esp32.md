@@ -466,7 +466,7 @@ Explanation text goes here...
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The xxx tile style allows you to simply...
+ The indicator tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -519,11 +519,11 @@ Explanation text goes here...
 
 # colorPickerRgbCct Tile
 
-![TP32 Image Alt Text](/images/tile-img-placeholder.png) ![TP32 Image Alt Text](/images/tile-img-placeholder.png)
+![TP32 Image Alt Text](/images/colorPickerRgbCct-tile.png) ![TP32 Image Alt Text](/images/colorPickerRgbCct-tile-active.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The xxx tile style allows you to simply...
+ The colorPickerRgbCct tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -532,7 +532,10 @@ Explanation text goes here...
 
 ```json
 {
-  "example": "Config",
+  "tile": <number>,                 // Enter your tile number e.g. 1  
+  "style": "colorPickerRgbCct",     // Enter icon name e.g."_bulb"
+  "icon": "<icon_name>",
+  "label": "<label_text>"           // Enter label text e.g."Office light" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -543,7 +546,20 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "example": "State"
+  "screen": <number>,               // Screen number e.g. 1 
+  "tile": <number>,                 // Tile number e.g. 1 
+  "style":"colorPickerRgbCct",
+  "type": "button"|"colorPicker",   // Indicates if touch event was 'button'
+  "event": "single"|"change",
+  "state": "on"|"off"| {            // "on"|"off" state only used when type is "button" otherwise colorRgb Object 
+    "colorRgb":{
+      "r": <number>,
+      "g": <number>,
+      "b": <number>
+    },
+    "colorKelvin": <number>,
+    "brightness": <number>
+  }
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -554,7 +570,10 @@ Explanation text goes here...
 ::: code-group-item Command
 ```json
 {
-  "example": "Command"
+  "screen": <number>,                     // Screen number sending command to 
+  "tile": <number>,                       // Tile number sending command to  
+  "state": "on"|"off",
+  "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -563,6 +582,13 @@ Explanation text goes here...
 :::
 ::::
 [comment]: <> (END of JSON Example)
+
+### Control Screen:
+
+When you press and hold the tile button the controls screen will appear. The controls screen has two tabs to choose from ``Color`` and ``Temperature``. The color tab gives you the ability to adjust the ``RGB Color`` via the color wheel and ``Brightness Color`` via the slider. The temperature tab gives you the ability to adjust the ``Color Temperature`` and ``Brightness White`` via the sliders.
+
+![TP32 Image Alt Text](/images/colorPicker-both-color-tab.png) ![TP32 Image Alt Text](/images/colorPicker-both-temp-tab.png)
+
 
 
 ---
@@ -570,11 +596,11 @@ Explanation text goes here...
 
 # colorPickerRgb Tile
 
-![TP32 Image Alt Text](/images/tile-img-placeholder.png) ![TP32 Image Alt Text](/images/tile-img-placeholder.png)
+![TP32 Image Alt Text](/images/colorPicker-tile.png) ![TP32 Image Alt Text](/images/colorPicker-tile-active.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The xxx tile style allows you to simply...
+ The colorPickerRgb tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -583,7 +609,10 @@ Explanation text goes here...
 
 ```json
 {
-  "example": "Config",
+  "tile": <number>,                 // Enter your tile number e.g. 1  
+  "style": "colorPickerRgb",        // Enter icon name e.g."_bulb"
+  "icon": "<icon_name>",
+  "label": "<label_text>"           // Enter label text e.g."Office light" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -594,7 +623,18 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "example": "State"
+  "screen": <number>,               // Screen number e.g. 1 
+  "tile": <number>,                 // Tile number e.g. 1 
+  "style":"colorPickerRgb",
+  "type": "button"|"colorPicker",   // Indicates if touch event was 'button'
+  "event": "single"|"change",
+  "state": "on"|"off"| {            // "on"|"off" state only used when type is "button" otherwise colorRgb Object 
+    "colorRgb":{
+      "r": <number>,
+      "g": <number>,
+      "b": <number>
+    }
+  }
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -605,7 +645,10 @@ Explanation text goes here...
 ::: code-group-item Command
 ```json
 {
-  "example": "Command"
+  "screen": <number>,               // Screen number sending command to 
+  "tile": <number>,                 // Tile number sending command to  
+  "state": "on"|"off",
+  "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -614,6 +657,13 @@ Explanation text goes here...
 :::
 ::::
 [comment]: <> (END of JSON Example)
+
+### Control Screen:
+
+When you press and hold the tile button the controls screen will appear giving you the ability to adjust the ``RGB Color`` via the color wheel and ``Brightness Color`` via the slider.
+
+![TP32 Image Alt Text](/images/colorPicker-color-tab.png)
+
 
 
 ---
@@ -621,11 +671,11 @@ Explanation text goes here...
 
 # colorPickerCct Tile
 
-![TP32 Image Alt Text](/images/tile-img-placeholder.png) ![TP32 Image Alt Text](/images/tile-img-placeholder.png)
+![TP32 Image Alt Text](/images/colorPicker-tile.png) ![TP32 Image Alt Text](/images/colorPicker-tile-active.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The xxx tile style allows you to simply...
+ The colorPickerCct tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -634,7 +684,10 @@ Explanation text goes here...
 
 ```json
 {
-  "example": "Config",
+  "tile": <number>,                 // Enter your tile number e.g. 1  
+  "style": "colorPickerCct",        // Enter icon name e.g."_bulb"
+  "icon": "<icon_name>",
+  "label": "<label_text>"           // Enter label text e.g."Office light" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -645,7 +698,14 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "example": "State"
+  "screen": <number>,               // Screen number e.g. 1 
+  "tile": <number>,                 // Tile number e.g. 1 
+  "style":"colorPickerRgb",
+  "type": "button"|"colorPicker",   // Indicates if touch event was 'button'
+  "event": "single"|"change",
+  "state": "on"|"off",
+  "colorKelvin": <number>,
+  "brightness": <number>
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -656,7 +716,10 @@ Explanation text goes here...
 ::: code-group-item Command
 ```json
 {
-  "example": "Command"
+  "screen": <number>,               // Screen number sending command to 
+  "tile": <number>,                 // Tile number sending command to  
+  "state": "on"|"off",
+  "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -665,6 +728,12 @@ Explanation text goes here...
 :::
 ::::
 [comment]: <> (END of JSON Example)
+
+### Control Screen:
+
+When you press and hold the tile button the controls screen will appear giving you the ability to adjust the ``Color Temperature`` and ``Brightness White`` via the sliders.
+
+![TP32 Image Alt Text](/images/colorPicker-temp-tab.png)
 
 
 ---
