@@ -984,11 +984,11 @@ Explanation text goes here...
     {
       "screen": <number>,
       "tile": <number>,
-      "colorRgb":[
+      "colorRgb":{
         "r": <number>,
         "g": <number>,
         "b": <number>
-      ]
+      }
     }
   ]
 }
