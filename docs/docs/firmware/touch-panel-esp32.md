@@ -71,16 +71,14 @@ Tile Styles explanation text goes here...
 | buttonLeftRight | ![TP32 Image Alt Text](/images/buttonLeftRight-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonleftright-tile) |
 | buttonPrevNext | ![TP32 Image Alt Text](/images/buttonPrevNext.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonprevnext-tile) |
 | indicator | ![TP32 Image Alt Text](/images/indicator-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#indicator-tile) |
-| colorPickerRgbCct | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgbcct-tile) |
-| colorPickerRgb | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgb-tile) |
-| colorPickerCct | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#colorpickercct-tile) |
+| colorPickerRgbCct <br><br> colorPickerRgb <br><br> colorPickerCct | ![TP32 Image Alt Text](/images/colorPicker-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgbcct-tile)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgb-tile)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickercct-tile) |
 | dropDown | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#dropdown-tile) |
 | keyPad | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypad-tile) |
 | keyPadBlocking | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypadblocking-tile) |
 | remote | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#remote-tile) |
 | link | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#link-tile) |
 
-
+http://localhost:8080/docs/firmware/touch-panel-esp32.html#colorpickerrgbcct-tile
 
 # Tile Payloads
 [comment]: <> ([TODO] Explanation)
