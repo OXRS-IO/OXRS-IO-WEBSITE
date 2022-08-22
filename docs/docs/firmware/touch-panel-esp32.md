@@ -2051,8 +2051,6 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
-## Best practice
 ## Custom Icons
 * Custom icons have to be downloaded before they can be used
 * Configure a tile after the custom icons have been loaded
@@ -2075,11 +2073,13 @@ Explanation text goes here...
 
 
 ## API
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
+The Touch Panel firmware implements the standard [OXRS REST API](/docs/libraries/esp32-api-library.html) endpoints. This allows you to configure the device, send commands, as well as perform OTA updates, restarts and factory resets.
 
-## Custom APIs
-Some extra REST API endpoints have been added to the Touch Panel firmware, in addition to the standard [OXRS API](/docs/libraries/esp32-api-library.html) endpoints. These are listed below with a brief explanation;
+The [OXRS Admin UI](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP) uses this REST API and is a great place to start with when setting up your device for the first time.
+
+
+### Custom APIs
+Some extra REST API endpoints have been added to the Touch Panel firmware, these are listed below with a brief explanation;
 
 HTTP <Badge type="tip" text="GET" vertical="middle" /> 
 
@@ -2088,6 +2088,7 @@ download a snapshot (approx. 450kB) of the current display, to your computer
 
 ``/api/snapshot.bmp?tile=<1-6>``
 download a snapshot (approx. 60kB) of the selected tile (1-6) in the current display, to your computer
+
 
 ## Downloads
 Download the latest version of the firmware on [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases).
