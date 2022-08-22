@@ -64,18 +64,18 @@ Tile Styles explanation text goes here...
 
 |Tile Style| Tile Example| Get Started |
 | :---- |:----|:----|
-| button | ![TP32 Image Alt Text](/images/button-tile-not-active.png)|[Get Started](/docs/firmware/touch-panel-esp32/#button-tile) |
-| buttonLevelUp | ![TP32 Image Alt Text](/images/buttonLevelUp-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonlevelup-tile) |
-| buttonLevelDown | ![TP32 Image Alt Text](/images/buttonLevelDown-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonleveldown-tile) |
-| buttonUpDown | ![TP32 Image Alt Text](/images/buttonUpDown-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonupdown-tile) |
-| buttonLeftRight | ![TP32 Image Alt Text](/images/buttonLeftRight-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonleftright-tile) |
-| buttonPrevNext | ![TP32 Image Alt Text](/images/buttonPrevNext.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonprevnext-tile) |
-| indicator | ![TP32 Image Alt Text](/images/indicator-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#indicator-tile) |
-| colorPickerRgbCct <br><br> colorPickerRgb <br><br> colorPickerCct | ![TP32 Image Alt Text](/images/colorPicker-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgbcct-tile)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgb-tile)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickercct-tile) |
-| dropDown | ![TP32 Image Alt Text](/images/dropdown-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#dropdown-tile) |
-| keyPad <br><br> keyPadBlocking  | ![TP32 Image Alt Text](/images/keypad-tile-2.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypad-tile)<br><br> [Get Started](/docs/firmware/touch-panel-esp32/#keypadblocking-tile) |
-| remote | ![TP32 Image Alt Text](/images/remote-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#remote-tile) |
-| link | ![TP32 Image Alt Text](/images/link-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#link-tile) |
+| button | ![TP32 Image Alt Text](/images/button-tile-not-active.png)|[Get Started](/docs/firmware/touch-panel-esp32/#button) |
+| buttonLevelUp | ![TP32 Image Alt Text](/images/buttonLevelUp-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonlevelup) |
+| buttonLevelDown | ![TP32 Image Alt Text](/images/buttonLevelDown-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonleveldown) |
+| buttonUpDown | ![TP32 Image Alt Text](/images/buttonUpDown-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonupdown) |
+| buttonLeftRight | ![TP32 Image Alt Text](/images/buttonLeftRight-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonleftright) |
+| buttonPrevNext | ![TP32 Image Alt Text](/images/buttonPrevNext.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonprevnext) |
+| indicator | ![TP32 Image Alt Text](/images/indicator-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#indicator) |
+| colorPickerRgbCct <br><br> colorPickerRgb <br><br> colorPickerCct | ![TP32 Image Alt Text](/images/colorPicker-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgbcct)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgb)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickercct) |
+| dropDown | ![TP32 Image Alt Text](/images/dropdown-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#dropdown) |
+| keyPad <br><br> keyPadBlocking  | ![TP32 Image Alt Text](/images/keypad-tile-2.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypad)<br><br> [Get Started](/docs/firmware/touch-panel-esp32/#keypadblocking) |
+| remote | ![TP32 Image Alt Text](/images/remote-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#remote) |
+| link | ![TP32 Image Alt Text](/images/link-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#link) |
 
 
 # Tile Payloads
