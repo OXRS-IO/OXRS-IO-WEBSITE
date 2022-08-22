@@ -132,7 +132,7 @@ Explanation text goes here...
 {
   "screen": <number>,               // Screen number sending command to 
   "tile": <number>,                 // Tile number sending command to
-  "state": "on"|"off",
+  "state": "on"|"off",              // Update the tile state
   "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -181,8 +181,8 @@ Explanation text goes here...
   "screen": <number>,                     // Screen number e.g. 1 
   "tile": <number>,                       // Tile number e.g. 1 
   "style": "buttonLevelUp",
-  "type": "button"|"level",               // Indicates if touch event was a button press of level press
-  "event": "single"|"hold"|"up"|"down",
+  "type": "button"|"level",               // Indicates if touch event was a button press or level change
+  "event": "single"|"hold"|"up"|"down",   // Indicates if a button press was single or hold, or if a level change was up or down
   "state": <number>                       // Indicates the current level state
 }
 ```
@@ -196,6 +196,8 @@ Explanation text goes here...
 {
   "screen": <number>,                     // Screen number sending command to 
   "tile": <number>,                       // Tile number sending command to
+  "state": "on"|"off",                    // Update the tile state
+  "level": <number>,                      // Update the current level state
   "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -244,8 +246,8 @@ Explanation text goes here...
   "screen": <number>,                         // Screen number e.g. 1 
   "tile": <number>,                           // Tile number e.g. 1 
   "style": "buttonLevelDown",
-  "type": "button"|"level",                   // Indicates if touch event was a button press of level press
-  "event": "single"|"hold"|"up"|"down",
+  "type": "button"|"level",                   // Indicates if touch event was a button press or level change
+  "event": "single"|"hold"|"up"|"down",       // Indicates if a button press was single or hold, or if a level change was up or down
   "state": <number>                           // Indicates the current level state
 }
 ```
@@ -259,6 +261,8 @@ Explanation text goes here...
 {
   "screen": <number>,                     // Screen number sending command to 
   "tile": <number>,                       // Tile number sending command to
+  "state": "on"|"off",                    // Update the tile state
+  "level": <number>,                      // Update the current level state
   "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -305,9 +309,9 @@ Explanation text goes here...
   "screen": <number>,           // Screen number e.g. 1 
   "tile": <number>,             // Tile number e.g. 1 
   "style": "buttonUpDown",
-  "type": "up"|"down"|"button", // Indicates if touch event was an 'up', 'down' or 'button'
-  "event": "single"|"hold",
-  "state": "on"|"off"           // 'on' / 'off' state shown only with type 'button' press
+  "type": "up"|"down"|"button", // Indicates if touch event was a button press or up/down press
+  "event": "single"|"hold",     // Was the touch event a short or long press
+  "state": "on"|"off"           // The current tile state, included only for button press events
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -320,6 +324,7 @@ Explanation text goes here...
 {
   "screen": <number>,                     // Screen number sending command to 
   "tile": <number>,                       // Tile number sending command to
+  "state": "on"|"off",                    // Update the tile state
   "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -366,9 +371,9 @@ Explanation text goes here...
   "screen": <number>,                 // Screen number e.g. 1 
   "tile": <number>,                   // Tile number e.g. 1 
   "style": "buttonLeftRight",
-  "type": "left"|"right"|"button",    // Indicates if touch event was an 'left', 'right' or 'button'
-  "event": "single"|"hold",
-  "state": "on"|"off"                 // 'on' / 'off' state shown only with type 'button' press
+  "type": "left"|"right"|"button",    // Indicates if touch event was a button press or left/right press
+  "event": "single"|"hold",           // Was the touch event a short or long press
+  "state": "on"|"off"                 // The current tile state, included only for button press events
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -381,6 +386,7 @@ Explanation text goes here...
 {
   "screen": <number>,                     // Screen number sending command to 
   "tile": <number>,                       // Tile number sending command to
+  "state": "on"|"off",                    // Update the tile state
   "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -427,9 +433,9 @@ Explanation text goes here...
   "screen": <number>,               // Screen number e.g. 1 
   "tile": <number>,                 // Tile number e.g. 1 
   "style": "buttonPrevNext",
-  "type": "prev"|"next"|"button",   // Indicates if touch event was an 'prev', 'next' or 'button'
-  "event": "single"|"hold",
-  "state": "on"|"off"               // 'on' / 'off' state shown only with type 'button' press
+  "type": "prev"|"next"|"button",   // Indicates if touch event was a button press or prev/next press
+  "event": "single"|"hold",         // Was the touch event a short or long press
+  "state": "on"|"off"               // The current tile state, included only for button press events
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -442,6 +448,7 @@ Explanation text goes here...
 {
   "screen": <number>,                     // Screen number sending command to 
   "tile": <number>,                       // Tile number sending command to
+  "state": "on"|"off",                    // Update the tile state
   "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -545,9 +552,9 @@ Explanation text goes here...
   "screen": <number>,               // Screen number e.g. 1 
   "tile": <number>,                 // Tile number e.g. 1 
   "style":"colorPickerRgbCct",
-  "type": "button"|"colorPicker",   // Indicates if touch event was 'button'
-  "event": "single"|"change",
-  "state": "on"|"off"| {            // "on"|"off" state only used when type is "button" otherwise colorRgb Object 
+  "type": "button"|"colorPicker",   // Indicates if touch event was a button press or long-press to launch the color picker popup
+  "event": "single"|"change",       // "single" for a button press or "change" when the color picker popup is closed
+  "state": "on"|"off"| {            // "on"|"off" for a button press or the selected color when the color picker popup is closed
     "colorRgb":{
       "r": <number>,
       "g": <number>,
@@ -568,7 +575,17 @@ Explanation text goes here...
 {
   "screen": <number>,                     // Screen number sending command to 
   "tile": <number>,                       // Tile number sending command to  
-  "state": "on"|"off",
+  "state": "on"|"off",                    // Update the tile state
+  "colorPicker": {
+    "mode": "colorRgb"|"colorKelvin",     // Update the color picker mode
+    "colorRgb": {                         // For RGB mode, update the selected color (in RGB)
+      "r": <number>,
+      "g": <number>,
+      "b": <number>
+    },
+    "colorKelvin": <number>,              // For temperature mode, update the selected color temp (in kelvin)
+    "brightness": <number>                // For either mode, update the selected color brightness
+  },
   "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -622,9 +639,9 @@ When you press and hold the tile button the controls screen will appear. The con
   "screen": <number>,               // Screen number e.g. 1 
   "tile": <number>,                 // Tile number e.g. 1 
   "style":"colorPickerRgb",
-  "type": "button"|"colorPicker",   // Indicates if touch event was 'button'
-  "event": "single"|"change",
-  "state": "on"|"off"| {            // "on"|"off" state only used when type is "button" otherwise colorRgb Object 
+  "type": "button"|"colorPicker",   // Indicates if touch event was a button press or long-press to launch the color picker popup
+  "event": "single"|"change",       // "single" for a button press or "change" when the color picker popup is closed
+  "state": "on"|"off"| {            // "on"|"off" for a button press or the selected color when the color picker popup is closed
     "colorRgb":{
       "r": <number>,
       "g": <number>,
@@ -643,7 +660,15 @@ When you press and hold the tile button the controls screen will appear. The con
 {
   "screen": <number>,               // Screen number sending command to 
   "tile": <number>,                 // Tile number sending command to  
-  "state": "on"|"off",
+  "state": "on"|"off",              // Update the tile state
+  "colorPicker": {
+    "colorRgb": {                   // Update the selected color (in RGB)
+      "r": <number>,
+      "g": <number>,
+      "b": <number>
+    },
+    "brightness": <number>          // Update the selected color brightness
+  },
   "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -697,11 +722,12 @@ When you press and hold the tile button the controls screen will appear giving y
   "screen": <number>,               // Screen number e.g. 1 
   "tile": <number>,                 // Tile number e.g. 1 
   "style":"colorPickerRgb",
-  "type": "button"|"colorPicker",   // Indicates if touch event was 'button'
-  "event": "single"|"change",
-  "state": "on"|"off",
-  "colorKelvin": <number>,
-  "brightness": <number>
+  "type": "button"|"colorPicker",   // Indicates if touch event was a button press or long-press to launch the color picker popup
+  "event": "single"|"change",       // "single" for a button press or "change" when the color picker popup is closed
+  "state": "on"|"off"| {            // "on"|"off" for a button press or the selected color when the color picker popup is closed
+    "colorKelvin": <number>,
+    "brightness": <number>
+  }
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -714,7 +740,11 @@ When you press and hold the tile button the controls screen will appear giving y
 {
   "screen": <number>,               // Screen number sending command to 
   "tile": <number>,                 // Tile number sending command to  
-  "state": "on"|"off",
+  "state": "on"|"off",              // Update the tile state
+  "colorPicker": {
+    "colorKelvin": <number>,        // Update the selected color temp (in kelvin)
+    "brightness": <number>          // Update the selected color brightness
+  },
   "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -783,6 +813,7 @@ When you press and hold the tile button the controls screen will appear giving y
   "screen": <number>,               // Screen number sending command to  
   "tile": <number>,                 // Tile number sending command to  
   "dropDownList": <list-items>,     // List of items Strings seperated by \n
+  "dropDownSelect": <number>,       // Update the selected item in the dropdown list
   "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -836,7 +867,7 @@ When you press the tile button the dropdown list screen will appear giving you t
   "style": "keyPad",
   "type": "button",
   "event": "key",
-  "state": "on"|"off",
+  "state": "on"|"off",              // The current tile state
   "keyCode": <code>                 // Code entered - NOTE: this is plain text
 }
 ```
@@ -849,8 +880,8 @@ When you press the tile button the dropdown list screen will appear giving you t
 ```json
 {
   "keyPad":{
-    "state": "failed",
-    "text": <label_text>,         // Keypad status label text
+    "state": "close"|"failed"|"unlocked"|"locked",
+    "text": <label_text>,         // Keypad status label (optional, displays "state" if omitted)
     "colorRgb":{                  // Keypad icon color
       "r": <number>,
       "g": <number>,
@@ -910,7 +941,7 @@ When you press the tile button the keypad screen will appear giving you the abil
   "style": "keyPadBlocking",
   "type": "button",
   "event": "key",
-  "state": "on"|"off",
+  "state": "on"|"off",              // The current tile state
   "keyCode": <code>                 // Code entered - NOTE: this is plain text
 }
 ```
@@ -923,8 +954,8 @@ When you press the tile button the keypad screen will appear giving you the abil
 ```json
 {
   "keyPad":{
-    "state": "failed",
-    "text": <label_text>,         // Keypad status label text
+    "state": "close"|"failed"|"unlocked"|"locked",
+    "text": <label_text>,         // Keypad status label (optional, displays "state" if omitted)
     "colorRgb":{                  // Keypad icon color
       "r": <number>,
       "g": <number>,
