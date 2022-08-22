@@ -16,17 +16,14 @@ Most OXRS firmware has some form of support for this display, showing firmware a
 
 ![Image Alt Text](/images/LCD-ScreenShots.jpg)
 
-
 ## Supported Firmware
 - OXRS-SHA-StateController-ESP32-FW  [Github](https://github.com/SuperHouse/OXRS-SHA-StateController-ESP32-FW)
 - OXRS-SHA-StateMonitor-ESP32-FW [Github](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW)
 - OXRS-BMD-SmokeDetector-ESP32-FW [Github](https://github.com/Bedrock-Media-Designs/OXRS-BMD-SmokeDetector-ESP32-FW)
 - OXRS-IO-SecurityMonitor-ESP32-FW [Github](https://github.com/austinscreations/OXRS-AC-SecurityMonitor-ESP32-FW)
 
-
 ## Supported Libraries
 - ESP32 LCD Library  [Link](/docs/libraries/esp32-lcd-library.md)
-
 
 ## Where to Buy
 - Superhouse [WEBSITE](https://www.superhouse.tv/product/tft-display-breakout/) **<-- Best Choice**

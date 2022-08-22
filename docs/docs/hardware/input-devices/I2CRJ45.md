@@ -22,6 +22,8 @@ I2C compatible board that handles multiple inputs via an RJ45 connection
 ## Supported Firmware
 - OXRS-SHA-StateController-ESP32-FW  [Github](https://github.com/SuperHouse/OXRS-SHA-StateController-ESP32-FW)
 - OXRS-SHA-StateMonitor-ESP32-FW [Github](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW)
+- OXRS-BMD-SmokeDetector-ESP32-FW [Github](https://github.com/Bedrock-Media-Designs/OXRS-BMD-SmokeDetector-ESP32-FW)
+- OXRS-IO-SecurityMonitor-ESP32-FW [Github](https://github.com/austinscreations/OXRS-AC-SecurityMonitor-ESP32-FW)
 
 ## Additional Resources
 - More info [Github](https://github.com/SuperHouse/I2CRJ45)
@@ -41,5 +43,5 @@ TODO - Jon to supply some FAQ's
 :::
 
 ## Compatible With
-- rack32  [Link](/docs/hardware/controllers/rack32.md) **<-- Best Choice**
-- room8266 [Link](/docs/hardware/controllers/room8266.md)
+- Rack32 [Link](/docs/hardware/controllers/rack32.md) **<-- Best Choice**
+- Room8266 [Link](/docs/hardware/controllers/room8266.md)
