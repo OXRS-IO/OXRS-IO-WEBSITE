@@ -33,4 +33,4 @@ TODO - to supply some FAQ's
 
 ## Compatible Hardware
 - Room8266  [Link](/docs/hardware/controllers/room8266.md)
-- Tower Controller [Link](/docs/addons/accessibility/ac-tower-controller.md)
+- Tower Controller [Link](/docs/hardware/controllers/tower-controller.md)

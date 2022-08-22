@@ -51,11 +51,6 @@ module.exports = {
   ],
   "/add-ons/": [
     {
-      text: "Accessibility",
-      link: "/add-ons/accessibility/",
-      children: ["/add-ons/accessibility/ac-tower-controller/"],
-    },
-    {
       text: "Displays",
       link: "/add-ons/displays/",
       children: [
@@ -95,6 +90,7 @@ module.exports = {
             "/docs/hardware/controllers/rack32/",
             "/docs/hardware/controllers/room8266/",
             "/docs/hardware/controllers/rack-fan-controller/",
+            "/docs/hardware/controllers/tower-controller/",
           ],
         },
         {
@@ -141,7 +137,7 @@ module.exports = {
             "/docs/firmware/security-monitor-esp32/",
             "/docs/firmware/smoke-detector-esp32/",
             "/docs/firmware/touch-panel-esp32/",
-            //'/docs/firmware/led-controller-esp32',
+            //'/docs/firmware/led-controller-esp32/',
           ],
         },
       ],

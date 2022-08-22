@@ -1,10 +1,11 @@
 ---
 tags: ["OXRS-AC-rackfancontroller", "fan"]
 ---
+
 # Rack Fan Controller
 <p class="maker">by <b>Austin's Creations</b></p>
 
-> SKU: OXRS-AC-rackfancontroller
+> SKU: OXRS-AC-RACKFANCONTROLLER
 
 <!-- Board Image -->
 ![Austin's Creations Rack Fan Controller](/images/oxrs-rack-fan-controller.jpg)
