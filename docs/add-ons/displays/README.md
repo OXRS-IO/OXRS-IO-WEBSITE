@@ -7,5 +7,5 @@ Sometimes you need visual representation of information to interact with a syste
 
 
 Displays:
-- [1.54" IPS Display](/add-ons/displays/IPS-display.md)
-- [128x32 OLED](/add-ons/displays/128x32-OLED-display.md)
+- [1.54" 240x240 IPS](/add-ons/displays/IPS-display.md)
+- [0.91" 128x32 OLED](/add-ons/displays/128x32-OLED-display.md)
