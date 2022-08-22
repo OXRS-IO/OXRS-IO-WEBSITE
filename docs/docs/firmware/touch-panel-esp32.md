@@ -2084,10 +2084,10 @@ Some extra REST API endpoints have been added to the Touch Panel firmware, in ad
 HTTP <Badge type="tip" text="GET" vertical="middle" /> 
 
 ``/api/snapshot.bmp``
-download a raw 1:1 snapshot (approx. 450kB) of the current display, to your computer
+download a snapshot (approx. 450kB) of the current display, to your computer
 
 ``/api/snapshot.bmp?tile=<1-6>``
-download a raw 1:1 snapshot (approx. 60kB) of the selected tile (1-6) in the current display, to your computer
+download a snapshot (approx. 60kB) of the selected tile (1-6) in the current display, to your computer
 
 ## Downloads
 Download the latest version of the firmware on [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases).
