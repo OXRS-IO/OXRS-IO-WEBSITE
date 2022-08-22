@@ -85,7 +85,7 @@ Explanation text goes here...
 ---
 
 
-# button Tile
+## button
 
 ![TP32 Image Alt Text](/images/button-tile-not-active.png) ![TP32 Image Alt Text](/images/button-tile-active.png)
  
@@ -147,7 +147,7 @@ Explanation text goes here...
 ---
 
 
-# buttonLevelUp Tile
+## buttonLevelUp
 
 ![TP32 Image Alt Text](/images/buttonLevelUp-tile.png) ![TP32 Image Alt Text](/images/buttonLevelUp-tile-active.png)
  
@@ -212,7 +212,7 @@ Explanation text goes here...
 ---
 
 
-# buttonLevelDown Tile
+## buttonLevelDown
 
 ![TP32 Image Alt Text](/images/buttonLevelDown-tile.png) ![TP32 Image Alt Text](/images/buttonLevelDown-tile-active.png)
  
@@ -277,7 +277,7 @@ Explanation text goes here...
 ---
 
 
-# buttonUpDown Tile
+## buttonUpDown
 
 ![TP32 Image Alt Text](/images/buttonUpDown-tile.png)
  
@@ -339,7 +339,7 @@ Explanation text goes here...
 ---
 
 
-# buttonLeftRight Tile
+## buttonLeftRight
 
 ![TP32 Image Alt Text](/images/buttonLeftRight-tile.png)
  
@@ -401,7 +401,7 @@ Explanation text goes here...
 ---
 
 
-# buttonPrevNext Tile
+## buttonPrevNext
 
 ![TP32 Image Alt Text](/images/buttonPrevNext.png)
  
@@ -463,7 +463,7 @@ Explanation text goes here...
 ---
 
 
-# indicator Tile
+## indicator
 
 ![TP32 Image Alt Text](/images/indicator-tile.png)
  
@@ -520,7 +520,7 @@ Explanation text goes here...
 ---
 
 
-# colorPickerRgbCct Tile
+## colorPickerRgbCct
 
 ![TP32 Image Alt Text](/images/colorPicker-tile.png) ![TP32 Image Alt Text](/images/colorPicker-tile-active.png)
  
@@ -607,7 +607,7 @@ When you press and hold the tile button the controls screen will appear. The con
 ---
 
 
-# colorPickerRgb Tile
+## colorPickerRgb
 
 ![TP32 Image Alt Text](/images/colorPicker-tile.png) ![TP32 Image Alt Text](/images/colorPicker-tile-active.png)
  
@@ -690,7 +690,7 @@ When you press and hold the tile button the controls screen will appear giving y
 ---
 
 
-# colorPickerCct Tile
+## colorPickerCct
 
 ![TP32 Image Alt Text](/images/colorPicker-tile.png) ![TP32 Image Alt Text](/images/colorPicker-tile-active.png)
  
@@ -765,7 +765,7 @@ When you press and hold the tile button the controls screen will appear giving y
 ---
 
 
-# dropDown Tile
+## dropDown
 
 ![TP32 Image Alt Text](/images/dropdown-tile.png)
  
@@ -833,7 +833,7 @@ When you press the tile button the dropdown list screen will appear giving you t
 ---
 
 
-# keyPad Tile
+## keyPad
 
 ![TP32 Image Alt Text](/images/keypad-tile-1.png) ![TP32 Image Alt Text](/images/keypad-tile-2.png)
  
@@ -907,7 +907,7 @@ When you press the tile button the keypad screen will appear giving you the abil
 ---
 
 
-# keyPadBlocking Tile
+## keyPadBlocking
 
 ![TP32 Image Alt Text](/images/keypad-screen-1.png)![TP32 Image Alt Text](/images/keypad-screen-2.png)
  
@@ -975,7 +975,7 @@ When you press the tile button the keypad screen will appear giving you the abil
 ---
 
 
-# remote Tile
+## remote
 
 ![TP32 Image Alt Text](/images/remote-tile.png)
  
@@ -1041,7 +1041,7 @@ When you press the tile button the remote screen will appear giving you the abil
 ---
 
 
-# link Tile
+## link
 
 ![TP32 Image Alt Text](/images/link-tile.png)
  
