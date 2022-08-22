@@ -72,13 +72,11 @@ Tile Styles explanation text goes here...
 | buttonPrevNext | ![TP32 Image Alt Text](/images/buttonPrevNext.png)|[Get Started](/docs/firmware/touch-panel-esp32/#buttonprevnext-tile) |
 | indicator | ![TP32 Image Alt Text](/images/indicator-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#indicator-tile) |
 | colorPickerRgbCct <br><br> colorPickerRgb <br><br> colorPickerCct | ![TP32 Image Alt Text](/images/colorPicker-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgbcct-tile)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgb-tile)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickercct-tile) |
-| dropDown | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#dropdown-tile) |
-| keyPad | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypad-tile) |
-| keyPadBlocking | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypadblocking-tile) |
-| remote | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#remote-tile) |
-| link | ![TP32 Image Alt Text](/images/tile-img-placeholder.png)|[Get Started](/docs/firmware/touch-panel-esp32/#link-tile) |
+| dropDown | ![TP32 Image Alt Text](/images/dropdown-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#dropdown-tile) |
+| keyPad <br><br> keyPadBlocking  | ![TP32 Image Alt Text](/images/keypad-tile-2.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypad-tile)<br><br> [Get Started](/docs/firmware/touch-panel-esp32/#keypadblocking-tile) |
+| remote | ![TP32 Image Alt Text](/images/remote-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#remote-tile) |
+| link | ![TP32 Image Alt Text](/images/link-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#link-tile) |
 
-http://localhost:8080/docs/firmware/touch-panel-esp32.html#colorpickerrgbcct-tile
 
 # Tile Payloads
 [comment]: <> ([TODO] Explanation)
@@ -753,8 +751,8 @@ When you press and hold the tile button the controls screen will appear giving y
 ```json
 {
   "tile": <number>,                 // Enter your tile number e.g. 1  
-  "style": "dropDown",              // Enter icon name e.g."_music"
-  "icon": "<icon_name>",
+  "style": "dropDown",              
+  "icon": "<icon_name>",            // Enter icon name e.g."_music"
   "label": "<label_text>"           // Enter label text e.g."Select Album" 
 }
 ```
@@ -806,11 +804,11 @@ When you press the tile button the dropdown list screen will appear giving you t
 
 # keyPad Tile
 
-![TP32 Image Alt Text](/images/tile-img-placeholder.png) ![TP32 Image Alt Text](/images/tile-img-placeholder.png)
+![TP32 Image Alt Text](/images/keypad-tile-1.png) ![TP32 Image Alt Text](/images/keypad-tile-2.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The xxx tile style allows you to simply...
+ The keyPad tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -819,7 +817,10 @@ When you press the tile button the dropdown list screen will appear giving you t
 
 ```json
 {
-  "example": "Config",
+  "tile": <number>,                 // Enter your tile number e.g. 1  
+  "style": "keyPad",        
+  "icon": "<icon_name>",            // Enter icon name e.g."_unlocked"
+  "label": "<label_text>"           // Enter label text e.g."House Alarm" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -830,7 +831,13 @@ When you press the tile button the dropdown list screen will appear giving you t
 ::: code-group-item State
 ```json
 {
-  "example": "State"
+  "screen": <number>,               // Screen number e.g. 1
+  "tile": <number>,                 // Tile number e.g. 1 
+  "style": "keyPad",
+  "type": "button",
+  "event": "key",
+  "state": "on"|"off",
+  "keyCode": <code>                 // Code entered - NOTE: this is plain text
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -841,7 +848,15 @@ When you press the tile button the dropdown list screen will appear giving you t
 ::: code-group-item Command
 ```json
 {
-  "example": "Command"
+  "keyPad":{
+    "state": "failed",
+    "text": <label_text>,         // Keypad status label text
+    "colorRgb":{                  // Keypad icon color
+      "r": <number>,
+      "g": <number>,
+      "b": <number>
+    }
+  }
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -851,17 +866,23 @@ When you press the tile button the dropdown list screen will appear giving you t
 ::::
 [comment]: <> (END of JSON Example)
 
+### Control Screen:
+
+When you press the tile button the keypad screen will appear giving you the ability to enter the code.
+
+![TP32 Image Alt Text](/images/keypad-screen-1.png)![TP32 Image Alt Text](/images/keypad-screen-2.png)
+
 
 ---
 
 
 # keyPadBlocking Tile
 
-![TP32 Image Alt Text](/images/tile-img-placeholder.png) ![TP32 Image Alt Text](/images/tile-img-placeholder.png)
+![TP32 Image Alt Text](/images/keypad-screen-1.png)![TP32 Image Alt Text](/images/keypad-screen-2.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The xxx tile style allows you to simply...
+ The keyPadBlocking tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -870,7 +891,10 @@ When you press the tile button the dropdown list screen will appear giving you t
 
 ```json
 {
-  "example": "Config",
+  "tile": <number>,                 // Enter your tile number e.g. 1  
+  "style": "keyPadBlocking",        
+  "icon": "<icon_name>",            // Enter icon name e.g."_unlocked"
+  "label": "<label_text>"           // Enter label text e.g."House Alarm" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -881,7 +905,13 @@ When you press the tile button the dropdown list screen will appear giving you t
 ::: code-group-item State
 ```json
 {
-  "example": "State"
+  "screen": <number>,               // Screen number e.g. 1
+  "tile": <number>,                 // Tile number e.g. 1 
+  "style": "keyPadBlocking",
+  "type": "button",
+  "event": "key",
+  "state": "on"|"off",
+  "keyCode": <code>                 // Code entered - NOTE: this is plain text
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -892,7 +922,15 @@ When you press the tile button the dropdown list screen will appear giving you t
 ::: code-group-item Command
 ```json
 {
-  "example": "Command"
+  "keyPad":{
+    "state": "failed",
+    "text": <label_text>,         // Keypad status label text
+    "colorRgb":{                  // Keypad icon color
+      "r": <number>,
+      "g": <number>,
+      "b": <number>
+    }
+  }
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -908,7 +946,7 @@ When you press the tile button the dropdown list screen will appear giving you t
 
 # remote Tile
 
-![TP32 Image Alt Text](/images/tile-img-placeholder.png) ![TP32 Image Alt Text](/images/tile-img-placeholder.png)
+![TP32 Image Alt Text](/images/remote-tile.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
@@ -921,7 +959,10 @@ When you press the tile button the dropdown list screen will appear giving you t
 
 ```json
 {
-  "example": "Config",
+  "tile": <number>,                 // Enter your tile number e.g. 1  
+  "style": "remote",        
+  "icon": "<icon_name>",            // Enter icon name e.g."_remote"
+  "label": "<label_text>"           // Enter label text e.g."Kodi TV" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -932,7 +973,11 @@ When you press the tile button the dropdown list screen will appear giving you t
 ::: code-group-item State
 ```json
 {
-  "example": "State"
+  "screen": <number>,
+  "tile": <number>,
+  "style": "remote",
+  "type": "home"|"info"|"back"|"list"|"ok"|"up"|"down"|"left"|"right",
+  "event": "single"
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -943,7 +988,9 @@ When you press the tile button the dropdown list screen will appear giving you t
 ::: code-group-item Command
 ```json
 {
-  "example": "Command"
+  "screen": <number>,               // Screen number sending command to 
+  "tile": <number>,                 // Tile number sending command to  
+  "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -953,17 +1000,23 @@ When you press the tile button the dropdown list screen will appear giving you t
 ::::
 [comment]: <> (END of JSON Example)
 
+### Control Screen:
+
+When you press the tile button the remote screen will appear giving you the ability to interact with the remote controls.
+
+![TP32 Image Alt Text](/images/remote-screen.png)
+
 
 ---
 
 
 # link Tile
 
-![TP32 Image Alt Text](/images/tile-img-placeholder.png) ![TP32 Image Alt Text](/images/tile-img-placeholder.png)
+![TP32 Image Alt Text](/images/link-tile.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The xxx tile style allows you to simply...
+ The link tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -972,7 +1025,11 @@ When you press the tile button the dropdown list screen will appear giving you t
 
 ```json
 {
-  "example": "Config",
+  "tile": <number>,                 // Enter your tile number e.g. 1  
+  "style": "link",        
+  "icon": "<icon_name>",            // Enter icon name e.g."_music_"
+  "label": "<label_text>",          // Enter label text e.g."HiFi Controls"
+  "link": 5                         // Screen which is loaded upon press event
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -983,7 +1040,10 @@ When you press the tile button the dropdown list screen will appear giving you t
 ::: code-group-item State
 ```json
 {
-  "example": "State"
+  "screen": <number>,
+  "type":"screen",
+  "event":"change",
+  "state":"loaded"
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -994,7 +1054,9 @@ When you press the tile button the dropdown list screen will appear giving you t
 ::: code-group-item Command
 ```json
 {
-  "example": "Command"
+  "screen": <number>,               // Screen number sending command to 
+  "tile": <number>,                 // Tile number sending command to  
+  "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
