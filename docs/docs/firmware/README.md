@@ -15,3 +15,4 @@ Most firmware is designed around ESP chips - whether it be the ESP8266 or ESP32,
 | | [State Controller](/docs/firmware/state-controller-esp32.md) |
 | | [State IO](/docs/firmware/state-io-esp32.md) |
 | | [State Monitor](/docs/firmware/state-monitor-esp32.md) |
+| | [Touch Panel](/docs/firmware/touch-panel-esp32.md) |
