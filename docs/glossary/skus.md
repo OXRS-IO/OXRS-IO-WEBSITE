@@ -30,6 +30,7 @@ Here is a list of the firmware SKUs.
 |State Controller ESP32 | SuperHouse Automation | OXRS-SHA-STATECONTROLLER-ESP32-FW| [more info](/docs/firmware/state-controller-esp32.md) |
 |Smoke Detector ESP32 | Bedrock Media Design | OXRS-BMD-SMOKEDETECTOR-ESP32-FW| [more info](/docs/firmware/smoke-detector-esp32.md) |
 |LED Controller ESP32 | Austin's Creations | OXRS-AC-LEDCONTROLLER-ESP32-FW| [more info](/docs/firmware/led-controller-esp32.md) |
+|Touch Panel ESP32 | OXRS Core Team | OXRS-IO-TouchPanel-ESP32-FW| [more info](/docs/firmware/touch-panel-esp32.md) |
 
 
 ## Libraries
