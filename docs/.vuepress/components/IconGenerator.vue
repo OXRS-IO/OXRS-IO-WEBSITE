@@ -41,12 +41,11 @@ export default {
 			}
 			const file = event.target.files[0];
 			const base64 = await this.convertBase64(file);
-			const icon = base64.split(",")[1]
 			avatar.src = base64;
 			this.iconJson = {
 				"addIcon": { 
 					"name": this.iconName, 
-					"image": icon 
+					"imageBase64": base64.split(",")[1]
 					}
 			}
 		},
