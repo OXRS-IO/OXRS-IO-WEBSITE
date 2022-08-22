@@ -40,13 +40,13 @@ Configuration, State and Commands
 
 <Badge type="warning" text="MQTT Configuration Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 <Badge type="warning" text="MQTT State Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 <Badge type="warning" text="MQTT Command Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 
 
 ::: tip Recommendation:
@@ -108,7 +108,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -124,7 +124,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -138,7 +138,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -172,7 +172,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -188,7 +188,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -201,7 +201,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -235,7 +235,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -251,7 +251,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -264,7 +264,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -296,7 +296,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -312,7 +312,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -325,7 +325,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -357,7 +357,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -373,7 +373,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -386,7 +386,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -418,7 +418,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -434,7 +434,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -447,7 +447,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -478,7 +478,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -489,7 +489,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -504,7 +504,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -536,7 +536,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -560,7 +560,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -574,7 +574,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -613,7 +613,7 @@ When you press and hold the tile button the controls screen will appear. The con
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -635,7 +635,7 @@ When you press and hold the tile button the controls screen will appear. The con
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -649,7 +649,7 @@ When you press and hold the tile button the controls screen will appear. The con
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -688,7 +688,7 @@ When you press and hold the tile button the controls screen will appear giving y
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -706,7 +706,7 @@ When you press and hold the tile button the controls screen will appear giving y
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -720,7 +720,7 @@ When you press and hold the tile button the controls screen will appear giving y
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -758,7 +758,7 @@ When you press and hold the tile button the controls screen will appear giving y
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -774,7 +774,7 @@ When you press and hold the tile button the controls screen will appear giving y
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -788,7 +788,7 @@ When you press and hold the tile button the controls screen will appear giving y
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -825,7 +825,7 @@ When you press the tile button the dropdown list screen will appear giving you t
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -842,7 +842,7 @@ When you press the tile button the dropdown list screen will appear giving you t
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -861,7 +861,7 @@ When you press the tile button the dropdown list screen will appear giving you t
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -899,7 +899,7 @@ When you press the tile button the keypad screen will appear giving you the abil
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -916,7 +916,7 @@ When you press the tile button the keypad screen will appear giving you the abil
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -935,7 +935,7 @@ When you press the tile button the keypad screen will appear giving you the abil
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -967,7 +967,7 @@ When you press the tile button the keypad screen will appear giving you the abil
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -982,7 +982,7 @@ When you press the tile button the keypad screen will appear giving you the abil
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -995,7 +995,7 @@ When you press the tile button the keypad screen will appear giving you the abil
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1034,7 +1034,7 @@ When you press the tile button the remote screen will appear giving you the abil
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```conf/<your-device-topic>```
+```conf/<device-client-id>```
 :::
 
 ::: code-group-item State
@@ -1048,7 +1048,7 @@ When you press the tile button the remote screen will appear giving you the abil
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
@@ -1061,7 +1061,7 @@ When you press the tile button the remote screen will appear giving you the abil
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1074,7 +1074,7 @@ Commands explanation text goes here...
 
 <Badge type="warning" text="MQTT Command Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 
 
 
@@ -1102,7 +1102,7 @@ Set Footer explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1140,7 +1140,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1173,7 +1173,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1205,7 +1205,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1240,7 +1240,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1268,7 +1268,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1297,7 +1297,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1329,7 +1329,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1358,7 +1358,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1393,7 +1393,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1426,7 +1426,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1459,7 +1459,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1508,7 +1508,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1550,7 +1550,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1574,7 +1574,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1604,7 +1604,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1628,7 +1628,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1653,7 +1653,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1677,7 +1677,7 @@ The backlight level can be set via the slider on the settings screen or with an 
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1701,7 +1701,7 @@ The backlight state can be set to on or off. Additionally a "Screen Sleep Timeou
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<your-device-topic>```
+```cmnd/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1714,7 +1714,7 @@ Explanation text goes here...
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 
 ## Remote :
 [comment]: <> ([TODO] Explanation)
@@ -1736,7 +1736,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1764,7 +1764,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1791,7 +1791,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1820,7 +1820,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1847,7 +1847,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1886,7 +1886,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1930,7 +1930,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -1957,7 +1957,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::::
@@ -1985,7 +1985,7 @@ Changing the backlight level or state will generate a change event message conta
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::::
@@ -2013,7 +2013,7 @@ Explanation text goes here...
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```stat/<your-device-topic>```
+```stat/<device-client-id>```
 :::
 
 ::::
