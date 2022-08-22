@@ -114,12 +114,12 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,          // Screen number triggering state event  
-  "tile": <number>,            // Tile number triggering state event  
+  "screen": <number>,           // Screen number triggering state event  
+  "tile": <number>,             // Tile number triggering state event  
   "style": "button",
   "type": "button",
-  "event": "single"|"hold",
-  "state": "on"|"off"
+  "event": "single"|"hold",     // Indicates if the button press was short or long
+  "state": "on"|"off"           // The current tile state (prior to this event)
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -166,8 +166,8 @@ Explanation text goes here...
   "style": "buttonLevelUp",
   "icon": "<icon_name>",                  // Enter icon name e.g."_bulb"
   "label": "<label_text>",                // Enter label text e.g."Light"
-  "levelStart": <number>,                  // Defaults to 0
-  "levelStop": <number>                    // Defaults to 100
+  "levelStart": <number>,                 // Defaults to 0
+  "levelStop": <number>                   // Defaults to 100
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -182,8 +182,8 @@ Explanation text goes here...
   "tile": <number>,                       // Tile number e.g. 1 
   "style": "buttonLevelUp",
   "type": "button"|"level",               // Indicates if touch event was a button press or level change
-  "event": "single"|"hold"|"up"|"down",   // Indicates if a button press was single or hold, or if a level change was up or down
-  "state": <number>                       // Indicates the current level state
+  "event": "single"|"hold"|"up"|"down",   // Indicates if a button press was short or long, or if a level change was up or down
+  "state": <number>                       // The current level state (prior to this event)
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -197,7 +197,7 @@ Explanation text goes here...
   "screen": <number>,                     // Screen number sending command to 
   "tile": <number>,                       // Tile number sending command to
   "state": "on"|"off",                    // Update the tile state
-  "level": <number>,                      // Update the current level state
+  "level": <number>,                      // Update the level state
   "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -231,8 +231,8 @@ Explanation text goes here...
   "style": "buttonLevelDown",
   "icon": "<icon_name>",        // Enter icon name e.g."_blind"
   "label": "<label_text>",      // Enter label text e.g."Blinds"
-  "levelStart": <number>,        // Defaults to 0
-  "levelStop": <number>          // Defaults to 100
+  "levelStart": <number>,       // Defaults to 0
+  "levelStop": <number>         // Defaults to 100
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -247,8 +247,8 @@ Explanation text goes here...
   "tile": <number>,                           // Tile number e.g. 1 
   "style": "buttonLevelDown",
   "type": "button"|"level",                   // Indicates if touch event was a button press or level change
-  "event": "single"|"hold"|"up"|"down",       // Indicates if a button press was single or hold, or if a level change was up or down
-  "state": <number>                           // Indicates the current level state
+  "event": "single"|"hold"|"up"|"down",       // Indicates if a button press was short or long, or if a level change was up or down
+  "state": <number>                           // The current level state (prior to this event)
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -262,7 +262,7 @@ Explanation text goes here...
   "screen": <number>,                     // Screen number sending command to 
   "tile": <number>,                       // Tile number sending command to
   "state": "on"|"off",                    // Update the tile state
-  "level": <number>,                      // Update the current level state
+  "level": <number>,                      // Update the level state
   "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -310,8 +310,8 @@ Explanation text goes here...
   "tile": <number>,             // Tile number e.g. 1 
   "style": "buttonUpDown",
   "type": "up"|"down"|"button", // Indicates if touch event was a button press or up/down press
-  "event": "single"|"hold",     // Was the touch event a short or long press
-  "state": "on"|"off"           // The current tile state, included only for button press events
+  "event": "single"|"hold",     // Indicates if a button press was short or long
+  "state": "on"|"off"           // The current tile state (prior to this event), only included for button press events
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -372,8 +372,8 @@ Explanation text goes here...
   "tile": <number>,                   // Tile number e.g. 1 
   "style": "buttonLeftRight",
   "type": "left"|"right"|"button",    // Indicates if touch event was a button press or left/right press
-  "event": "single"|"hold",           // Was the touch event a short or long press
-  "state": "on"|"off"                 // The current tile state, included only for button press events
+  "event": "single"|"hold",           // Indicates if a button press was short or long
+  "state": "on"|"off"                 // The current tile state (prior to this event), only included for button press events
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -434,8 +434,8 @@ Explanation text goes here...
   "tile": <number>,                 // Tile number e.g. 1 
   "style": "buttonPrevNext",
   "type": "prev"|"next"|"button",   // Indicates if touch event was a button press or prev/next press
-  "event": "single"|"hold",         // Was the touch event a short or long press
-  "state": "on"|"off"               // The current tile state, included only for button press events
+  "event": "single"|"hold",         // Indicates if a button press was short or long
+  "state": "on"|"off"               // The current tile state (prior to this event), only included for button press events
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
