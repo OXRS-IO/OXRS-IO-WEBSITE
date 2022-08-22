@@ -739,11 +739,11 @@ When you press and hold the tile button the controls screen will appear giving y
 
 # dropDown Tile
 
-![TP32 Image Alt Text](/images/tile-img-placeholder.png) ![TP32 Image Alt Text](/images/tile-img-placeholder.png)
+![TP32 Image Alt Text](/images/dropdown-tile.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The xxx tile style allows you to simply...
+ The dropDown tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -752,7 +752,10 @@ When you press and hold the tile button the controls screen will appear giving y
 
 ```json
 {
-  "example": "Config",
+  "tile": <number>,                 // Enter your tile number e.g. 1  
+  "style": "dropDown",              // Enter icon name e.g."_music"
+  "icon": "<icon_name>",
+  "label": "<label_text>"           // Enter label text e.g."Select Album" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -763,7 +766,12 @@ When you press and hold the tile button the controls screen will appear giving y
 ::: code-group-item State
 ```json
 {
-  "example": "State"
+  "screen": <number>,               // Screen number e.g. 1 
+  "tile": <number>,                 // Tile number e.g. 1 
+  "style": "dropDown",
+  "type": "dropDown",
+  "event": "selection",
+  "state": <number>                 // Item number selected
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -774,7 +782,10 @@ When you press and hold the tile button the controls screen will appear giving y
 ::: code-group-item Command
 ```json
 {
-  "example": "Command"
+  "screen": <number>,               // Screen number sending command to  
+  "tile": <number>,                 // Tile number sending command to  
+  "dropDownList": <list-items>,     // List of items Strings seperated by \n
+  "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -784,6 +795,11 @@ When you press and hold the tile button the controls screen will appear giving y
 ::::
 [comment]: <> (END of JSON Example)
 
+### Control Screen:
+
+When you press the tile button the dropdown list screen will appear giving you the ability to select from the list of items.
+
+![TP32 Image Alt Text](/images/dropdown-list-screen.png)
 
 ---
 
