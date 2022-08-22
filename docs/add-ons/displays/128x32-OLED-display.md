@@ -10,15 +10,12 @@ tags: [""]
 <!-- Board Description -->
 128x32 OLED Display
 
-This is a very basic and common I2C display. devices using the OXRS Sensors library have built in support for this display. some items have 3d printable cases designed to hold the adafruit version of the display. the cheaper aliexpress version of the display can still be used, but a 4 wire jst sh conenctor will have to be soldered in place; ideally without a pinheader installed on the display to save height.
+This is a very basic and common I2C display. Devices using the OXRS Sensor library have built-in support for this display. Some items have 3D printable cases designed to hold the Adafruit version of the display. The cheaper AliExpress version of the display can still be used, but a 4 wire JST SH connector will have to be soldered in place, ideally without a pin header installed on the display to save height.
+
 
 ## Supported Firmware
-<!-- - OXRS-SHA-StateController-ESP32-FW  [Github](https://github.com/SuperHouse/OXRS-SHA-StateController-ESP32-FW) -->
-- towerlight_V1_0_2 [Github](https://github.com/austinscreations/Tower-Controller/tree/main/version%203/code)
-- OXRS-AC-GPIOLedController-ESP32-FW [Github](https://github.com/austinscreations/OXRS-AC-GPIOLedController-ESP32-FW)
-- OXRS-AC-GPIOLedController-ESP8266-FW [Github](https://github.com/austinscreations/OXRS-AC-GPIOLedController-ESP8266-FW)
-- OXRS-AC-PCALedController-ESP32-FW [Github](https://github.com/austinscreations/OXRS-AC-PCALedController-ESP32-FW)
-- OXRS-AC-PCALedController-ESP8266-FW [Github](https://github.com/austinscreations/OXRS-AC-PCALedController-ESP8266-FW)
+- OXRS-AC-TowerController-ESP-FW [Github](https://github.com/austinscreations/OXRS-AC-TowerController-ESP-FW)
+- OXRS-AC-LEDController-ESP-FW [Github](https://github.com/austinscreations/OXRS-AC-LEDController-ESP-FW)
 
 
 ## Supported Libraries
@@ -35,5 +32,5 @@ TODO - to supply some FAQ's
 ::: -->
 
 ## Compatible Hardware
-- room8266  [Link](/docs/hardware/controllers/rack32.md)
-- tower controller [Link](/docs/addons/accessibility/ac-tower-controller.md)
+- Room8266  [Link](/docs/hardware/controllers/room8266.md)
+- Tower Controller [Link](/docs/addons/accessibility/ac-tower-controller.md)
