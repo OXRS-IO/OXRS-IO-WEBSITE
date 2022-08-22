@@ -950,7 +950,7 @@ When you press the tile button the keypad screen will appear giving you the abil
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The xxx tile style allows you to simply...
+ The remote tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
