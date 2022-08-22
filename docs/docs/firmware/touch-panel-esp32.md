@@ -27,7 +27,7 @@ Prerequisites:
 - OXRS-IO-TouchPanel-ESP32-FW - [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases)
 - OXRS Web UI Admin - [Github](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
 - WT32-SC01 Touch Screen Display - [Read more](/add-ons/touch-displays/WT32-SC01-display).
-- Node Red - [Read more](https://nodered.org).
+- Node-RED - [Read more](https://nodered.org).
 - MQTT Broker - e.g. Mosquitto, Mosca - [Wiki](https://en.wikipedia.org/wiki/MQTT).
 
 
@@ -50,10 +50,10 @@ Configuration, State and Commands
 
 
 ::: tip Recommendation:
-[comment]: <> ([TODO] Explanation into the recommended Node Red usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node Red and MQTT. They are used to configure, manage state and recieve events. 
+[comment]: <> ([TODO] Explanation into the recommended Node-RED usage for the product)
+The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node-RED and MQTT. They are used to configure, manage state and recieve events. 
 
-Further documentation and some example Node Red Flows will be made available to get you started. 
+Further documentation and some example Node-RED Flows will be made available to get you started. 
 :::
 
 ---
@@ -2079,21 +2079,22 @@ Explanation text goes here...
 Explanation text goes here...
 
 ## Custom APIs
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
+Some extra REST API endpoints have been added to the Touch Panel firmware, in addition to the standard [OXRS API](/docs/libraries/esp32-api-library.html) endpoints. These are listed below with a brief explanation;
 
 HTTP <Badge type="tip" text="GET" vertical="middle" /> 
 
 ``/api/snapshot.bmp``
-download a raw 1:1 snapshot (approx. 450kB) of the current display to your computer
-in the bitmap format.
+download a raw 1:1 snapshot (approx. 450kB) of the current display, to your computer
+
+``/api/snapshot.bmp?tile=<1-6>``
+download a raw 1:1 snapshot (approx. 60kB) of the selected tile (1-6) in the current display, to your computer
 
 ## Downloads
 Download the latest version of the firmware on [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases).
 
 - OXRS Web UI Admin - [Github](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
 - WT32-SC01 Touch Screen Display - [Read more](/add-ons/touch-displays/WT32-SC01-display).
-- Node Red - [Read more](https://nodered.org).
+- Node-RED - [Read more](https://nodered.org).
 - MQTT Broker - e.g. Mosquitto, Mosca - [Wiki](https://en.wikipedia.org/wiki/MQTT).
 
 
