@@ -515,7 +515,7 @@ Explanation text goes here...
 
 # colorPickerRgbCct Tile
 
-![TP32 Image Alt Text](/images/colorPickerRgbCct-tile.png) ![TP32 Image Alt Text](/images/colorPickerRgbCct-tile-active.png)
+![TP32 Image Alt Text](/images/colorPicker-tile.png) ![TP32 Image Alt Text](/images/colorPicker-tile-active.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
