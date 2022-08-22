@@ -1,5 +1,5 @@
 ---
-tags: ["OXRS-AC-rackfancontroller", "fan"]
+tags: ["OXRS-AC-RACKFANCONTROLLER", "fan"]
 ---
 
 # Rack Fan Controller

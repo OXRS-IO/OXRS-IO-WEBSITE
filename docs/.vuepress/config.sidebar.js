@@ -62,7 +62,7 @@ module.exports = {
           text: "Touch Displays",
           link: "/add-ons/touch-displays/",
           children: [
-            "/add-ons/touch-displays/WT32-SC01-display/",
+            "/add-ons/touch-displays/wt32-sc01/",
           ],
         },
     // {

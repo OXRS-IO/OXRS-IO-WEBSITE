@@ -23,12 +23,12 @@ Getting started text goes here...
 - [Global Command Payloads](/docs/firmware/touch-panel-esp32.html#global-command-payloads)
 - [State / Event Payloads](/docs/firmware/touch-panel-esp32.html#state-and-event-payloads)
 
-Prerequisites:
-- OXRS-IO-TouchPanel-ESP32-FW - [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases)
-- OXRS Web UI Admin - [Github](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
-- WT32-SC01 Touch Screen Display - [Read more](/add-ons/touch-displays/WT32-SC01-display).
-- Node-RED - [Read more](https://nodered.org).
-- MQTT Broker - e.g. Mosquitto, Mosca - [Wiki](https://en.wikipedia.org/wiki/MQTT).
+### Prerequisites:
+- WT32-SC01 ESP32 TFT [Read more](/add-ons/touch-displays/wt32-sc01)
+- OXRS-IO-TouchPanel-ESP32-FW [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases)
+- OXRS Admin UI [Github](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
+- Node-RED [Read more](https://nodered.org)
+- MQTT Broker - e.g. Mosquitto, Mosca [Wiki](https://en.wikipedia.org/wiki/MQTT)
 
 
 ### How does it work?
@@ -2093,14 +2093,9 @@ download a snapshot (approx. 60kB) of the selected tile (1-6) in the current dis
 ## Downloads
 Download the latest version of the firmware on [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases).
 
-- OXRS Web UI Admin - [Github](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
-- WT32-SC01 Touch Screen Display - [Read more](/add-ons/touch-displays/WT32-SC01-display).
-- Node-RED - [Read more](https://nodered.org).
-- MQTT Broker - e.g. Mosquitto, Mosca - [Wiki](https://en.wikipedia.org/wiki/MQTT).
-
 
 ## Supported Hardware
-- WT32-SC01 Display [Check it out](/add-ons/touch-displays/WT32-SC01-display)
+- WT32-SC01 ESP32 TFT [Link](/add-ons/touch-displays/wt32-sc01)
 
 
 ### Credits
