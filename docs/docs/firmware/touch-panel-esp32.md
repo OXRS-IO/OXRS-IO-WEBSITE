@@ -1256,8 +1256,8 @@ Explanation text goes here...
     {
       "screen":"<number>",
       "tile":"<number>",
-      "bgImage":{
-        "base64":"<encodeBase64(.png)>",
+      "backgroundImage":{
+        "imageBase64":"<encodeBase64(.png)>",
         "zoom":"<number>",
         "angle":"<number>",
         "offset":[
@@ -1678,7 +1678,7 @@ Explanation text goes here...
 {
   "addIcon":{
     "name": "<text>",
-    "image": "<encodeBase64(.png)>"
+    "imageBase64": "<encodeBase64(.png)>"
   }
 }
 ```
