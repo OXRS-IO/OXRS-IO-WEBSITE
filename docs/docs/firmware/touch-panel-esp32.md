@@ -812,7 +812,7 @@ When you press and hold the tile button the controls screen will appear giving y
 {
   "screen": <number>,               // Screen number sending command to  
   "tile": <number>,                 // Tile number sending command to  
-  "dropDownList": <list-items>,     // List of items Strings seperated by \n
+  "dropDownList": ["list-item"],     // List items Array of Strings ["item-1", "item-2", "item-3"]
   "dropDownSelect": <number>,       // Update the selected item in the dropdown list
   "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
 }
@@ -1382,7 +1382,7 @@ Explanation text goes here...
     {
       "screen": <number>,
       "tile": <number>,
-      "dropDownList": "<list-item>"
+      "dropDownList": ["list-item"],     // List items Array of Strings ["item-1", "item-2", "item-3"]
     }
   ]
 } 
@@ -1393,12 +1393,6 @@ Explanation text goes here...
 :::
 ::::
 [comment]: <> (END of JSON Example)
-
-
-::: tip
-``<list>`` list of items separated with ``\n``
-:::
-
 
 
 ## Set index to selected list item
@@ -1483,7 +1477,7 @@ Explanation text goes here...
     {
       "screen": <number>,
       "tile": <number>,
-      "selectorList": "<list-item>"
+      "selectorList": ["list-item"],     // List items Array of Strings ["item-1", "item-2", "item-3"]
     }
   ]
 }
@@ -1497,7 +1491,6 @@ Explanation text goes here...
 
 
 ::: tip
-``<list-item>`` list items separated with ``\n``
 
 Populate the selector list with items and enable the selector feature for this tile: ``buttonUpDown``, ``-LeftRight``, ``-PrevNext``
 :::
