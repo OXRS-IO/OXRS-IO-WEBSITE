@@ -504,8 +504,8 @@ Explanation text goes here...
 {
   "screen": <number>,             // Screen number e.g. 1     
   "tile": <number>,               // Tile number e.g. 1 
-  "number": "<number-text>",      // String indicating the number e.g. "22.9"
-  "units": "<unit-text>",         // String showing the suffix unit e.g. "%"
+  "value": "<value-text>",        // The formatted value to display e.g. "22.9"
+  "units": "<unit-text>",         // The value suffix/unit e.g. "%"
   "subLabel": "<subLabel_text>"   // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -1306,7 +1306,7 @@ Explanation text goes here...
 
 
 
-## Set a number and units to replace the icon
+## Set a value and units to replace the icon
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
 
@@ -1320,7 +1320,7 @@ Explanation text goes here...
     {
       "screen": <number>,
       "tile": <number>,
-      "number": "<text>",
+      "value": "<text>",
       "units": "<text>"          //Optional
     }
   ]
