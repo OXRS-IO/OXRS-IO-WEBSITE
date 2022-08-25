@@ -504,7 +504,7 @@ Explanation text goes here...
 {
   "screen": <number>,             // Screen number e.g. 1     
   "tile": <number>,               // Tile number e.g. 1 
-  "value": "<value-text>",        // The formatted value to display e.g. "22.9"
+  "value": "<value-text>",        // The formatted value to display e.g. "22.9"."
   "units": "<unit-text>",         // The value suffix/unit e.g. "%"
   "subLabel": "<subLabel_text>"   // String for additional tile information e.g. last updated "15 mins ago" 
 }
@@ -1320,7 +1320,7 @@ Explanation text goes here...
     {
       "screen": <number>,
       "tile": <number>,
-      "value": "<text>",
+      "value": "<text>",         //String restricted to "0...9 + - . : "
       "units": "<text>"          //Optional
     }
   ]
