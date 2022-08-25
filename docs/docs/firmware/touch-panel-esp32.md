@@ -812,7 +812,7 @@ When you press and hold the tile button the controls screen will appear giving y
 {
   "screen": <number>,               // Screen number sending command to  
   "tile": <number>,                 // Tile number sending command to  
-  "dropDownList": ["list-item"],     // List items Array of Strings ["item-1", "item-2", "item-3"]
+  "dropDownList": ["list-item"],    // List items Array of Strings ["item-1", "item-2", "item-3"]
   "dropDownSelect": <number>,       // Update the selected item in the dropdown list
   "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
 }
@@ -1320,8 +1320,8 @@ Explanation text goes here...
     {
       "screen": <number>,
       "tile": <number>,
-      "value": "<text>",         //String restricted to "0...9 + - . : "
-      "units": "<text>"          //Optional
+      "value": "<text>",         // String restricted to "0...9 + - . : "
+      "units": "<text>"          // Optional
     }
   ]
 }   
@@ -2060,7 +2060,7 @@ Explanation text goes here...
 * Custom icons have to be .png files
 * For download via mqtt/json the binary .png has to be encoded Base64
 * Online converter like [base64encode.org](https://www.base64encode.org/) can be used, or you can tru our new online convertor which also generates the Json Object required which can be easily copy & pasted into your payload [OXRS Icon Generator](/tools/icon-generator.html). Alternativley for automation there is a Base64 node for NR. Make sure there is no extra information added to the Base64 encoded file.
-* Icon download is performed via [“addIcon” command](/docs/firmware/tp32.html#add-a-custom-icon)
+* Icon download is performed via [“addIcon” command](/docs/firmware/touch-panel-esp32.html#add-a-custom-icon)
 * The added icons appear in alphabetical order after the built-in icons (which are preceded with "_")
 * Custom icons are not persistent, they need to be reloaded after restart, and (stored) config needs to be resent to allow the custom icons to be used
 
