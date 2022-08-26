@@ -997,7 +997,7 @@ When you press the tile button the keypad screen will appear giving you the abil
   "tile": <number>,
   "style": "remote",
   "type": "home"|"info"|"back"|"list"|"ok"|"up"|"down"|"left"|"right",
-  "event": "single"
+  "event": "single"|"hold"
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
