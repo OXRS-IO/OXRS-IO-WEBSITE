@@ -488,17 +488,6 @@ Explanation text goes here...
 ```conf/<device-client-id>```
 :::
 
-::: code-group-item State
-```json
-{
-  "example": "State"
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-:::
-
 ::: code-group-item Command
 ```json
 {
