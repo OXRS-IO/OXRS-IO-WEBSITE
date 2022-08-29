@@ -491,10 +491,14 @@ Explanation text goes here...
 ::: code-group-item Command
 ```json
 {
-  "screen": <number>,             // Screen number e.g. 1     
-  "tile": <number>,               // Tile number e.g. 1 
-  "value": "<value-text>",        // The formatted value to display e.g. "22.9"."
-  "units": "<unit-text>",         // The value suffix/unit e.g. "%"
+  "screen": <number>,               // Screen number e.g. 1     
+  "tile": <number>,                 // Tile number e.g. 1 
+  "number": {
+    "value": "<value-text>",        // Formatted value to display e.g. "22.9" (restricted to "0...9 + - . :")
+    "units": "<units-text>",        // Optional suffix/unit e.g. "%"
+    "subValue": "<sub-value-text>", // Optional formatted sub-value to display (smaller font under main value)
+    "subUnits": "<sub-units-text>"  // Optional suffix/unit
+  },
   "subLabel": "<subLabel_text>"   // String for additional tile information e.g. last updated "15 mins ago" 
 }
 ```
@@ -1309,8 +1313,12 @@ Explanation text goes here...
     {
       "screen": <number>,
       "tile": <number>,
-      "value": "<text>",         // String restricted to "0...9 + - . : "
-      "units": "<text>"          // Optional
+      "number": {
+        "value": "<value-text>",        // Formatted value to display e.g. "22.9" (restricted to "0...9 + - . :")
+        "units": "<units-text>",        // Optional suffix/unit e.g. "%"
+        "subValue": "<sub-value-text>", // Optional formatted sub-value to display (smaller font under main value)
+        "subUnits": "<sub-units-text>"  // Optional suffix/unit
+      }
     }
   ]
 }   
