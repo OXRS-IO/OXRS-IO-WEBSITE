@@ -53,8 +53,16 @@ p.maker {
   color: var(--c-tip-text);
 }
 
-.badge.tip {
-  background-color: #48C0C7;
+// .badge.tip {
+//   background-color: #48C0C7;
+//   padding: 5px 10px;
+// }
+
+// .badge.warning {
+//   padding: 5px 10px;
+// }
+
+.badge {
   padding: 5px 10px;
 }
 
@@ -76,4 +84,32 @@ p.maker {
 	cursor: pointer;
 	padding-bottom: 10px;
 	padding-top: 10px;
+}
+
+div[class*="language-"] {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.code-group__nav {
+  background-color: #2f5599;
+}
+
+.code-group__nav-tab-active {
+	border-bottom: none;
+  margin-bottom: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  font-weight: 700;
+  background-color: white;
+  color: black;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  height: 100%;
+
+}
+
+.code-group__nav-tab {
+  line-height: 1.2;
 }

@@ -93,7 +93,7 @@ module.exports = [
   },
   {
     text: "Discord",
-    link: "https://discord.gg/jsFjaPzB",
+    link: "https://discord.gg/6pZvmVS5ET",
   },
   // {
   //   text: "Tools",

@@ -39,5 +39,5 @@ module.exports = {
     sidebarDepth: 0,
     navbar: navbar,
     sidebar: sidebar,
-  }),
+  })
 };

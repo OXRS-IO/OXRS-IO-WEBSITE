@@ -9,15 +9,23 @@ tags: ["TAG1", "TAG2", "TAG3"]
 <!-- Board Image -->
 ![OXRS TP32 Firmware](/images/advert-tp32.png)
 
+<button-tile/>
+
+
 ## Introduction
 [comment]: <> ([TODO] Introduction)
-Introduction text goes here...
+
+Touch Panel ESP32 is a firmware for the WT32-SC01, which is a low-cost device comprising a 3.5-inch touchscreen, ESP32, and options for hardware expansion. The firmware provides a user interface that complements your existing home or buildings automation system by providing elements such as tiles or keypads presented on a given "screen", and the user may switch between screens. The unit uses MQTT to provide control of your existing automation hub, and MQTT is used to provide feedback to UI elements, as well as to provide means of dynamic configuration of screens and other settings.
+
+The W32-SC01 device may be flashed straight out of the box with the firmware available below, joined to wi-fi or wired ethernet, then configured remotely using OXRS Admin, which is a single HTML file that targets a given unit by IP address. The unit is then further configured by OXRS Admin or MQTT.
+
+Touch Panel ESP32 may best be described as a "thin client"; that is, it sends messages when buttons are pressed, and updates the UI when messages are received, but automation states are not stored within Touch Panel ESP32 itself.
+
+Example applications include: a light switch to control dimming or colour for multiple lights in a room or to initiate scene selection, an intruder alarm panel allowing keycode entry to set or unset the alarm and visual feedback to show the state, or a weather monitor. The built-in tile and screen management, along with external tools to create and upload your own icons, combine to make a panel with infinite possibilities for home or buildings control and monitoring.
 
 
 ## Getting Started
 [comment]: <> ([TODO] Getting started text)
-Getting started text goes here...
-
 
 - [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
 - [Global Command Payloads](/docs/firmware/touch-panel-esp32.html#global-command-payloads)
@@ -60,7 +68,6 @@ Further documentation and some example Node-RED Flows will be made available to 
 
 # Tile Styles
 [comment]: <> ([TODO] Tile Styles explanation)
-Tile Styles explanation text goes here...
 
 |Tile Style| Tile Example| Get Started |
 | :---- |:----|:----|
@@ -76,6 +83,7 @@ Tile Styles explanation text goes here...
 | keyPad <br><br> keyPadBlocking  | ![TP32 Image Alt Text](/images/keypad-tile-2.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypad)<br><br> [Get Started](/docs/firmware/touch-panel-esp32/#keypadblocking) |
 | remote | ![TP32 Image Alt Text](/images/remote-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#remote) |
 | link | ![TP32 Image Alt Text](/images/link-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#link) |
+| thermostat | ![TP32 Image Alt Text](/images/thermostat-arc-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#thermostat) |
 
 
 # Tile Payloads
@@ -91,21 +99,40 @@ Explanation text goes here...
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The button tile style allows you to simply...
-
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-12}
 {
-  "tile": <number>,            // Enter your tile number e.g. 1  
-  "style": "button",
-  "icon": "<icon_name>",       // Enter icon name e.g."_bulb"
-  "label": "<label_text>"      // Enter label text e.g."Lamps"
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "button",
+          "icon": "_bulb",
+          "label": "Lamps"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type     | Options | Description                     |                                                            |
+|:---       |:---:     |:---:    |:---                             |:---                                                        |
+| `tile`    | *Number* | n/a     | Enter your tile number e.g. `1` | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`   | *String* | n/a     | Enter tile style name `button`  | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`    | *String* | n/a     | Enter icon name e.g.`_bulb`     | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`   | *String* | n/a     | Enter label text e.g.`Lamps`    | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -114,28 +141,54 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,           // Screen number triggering state event  
-  "tile": <number>,             // Tile number triggering state event  
+  "screen": 1,
+  "tile": 1,
   "style": "button",
   "type": "button",
-  "event": "single"|"hold",     // Indicates if the button press was short or long
-  "state": "on"|"off"           // The current tile state (prior to this event)
+  "event": "single",
+  "state": "off"
 }
 ```
+
+### JSON parameters
+| Parameter | Type                 | Options                   | Description                                     |
+|:---       |:----:                |:---:                      |:---                                             |
+| `screen`  | *Number*             | n/a                       | Screen number triggering state event            |
+| `tile`    | *Number*             | n/a                       | Tile number triggering state event              |
+| `style`   | *String*             | n/a                       | Tile style `_thermostat`                        |
+| `type`    | *String*             | `"button"`                |                                                 |
+| `event`   | *String*             | `"single"` \| `"hold"`    | Indicates if the button press was short or long |
+| `state`   | *String* \| *Object* | `"on"` \| `"off"`         | The current tile state (prior to this event)    |
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-8}
 {
-  "screen": <number>,               // Screen number sending command to 
-  "tile": <number>,                 // Tile number sending command to
-  "state": "on"|"off",              // Update the tile state
-  "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles":[
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
+
+### JSON parameters
+| Parameter  | Type     | Options         | Description                                                 |                                                            |
+|:---        |:---:     |:---:            |:---                                                         |:---                                                        |
+| `screen`   | *Number* | n/a             | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`     | *Number* | n/a             | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `state`    | *String* | `"on"`\|`"off"` | Updated the tile state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `sublabel` | *String* | n/a             | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -149,27 +202,49 @@ Explanation text goes here...
 
 ## buttonLevelUp
 
-![TP32 Image Alt Text](/images/buttonLevelUp-tile.png) ![TP32 Image Alt Text](/images/buttonLevelUp-tile-active.png)
+![TP32 Image Alt Text](/images/buttonLevelUp-tile.png) ![TP32 Image Alt Text](/images/buttonLevelUp-tile-toggle.png)
+![TP32 Image Alt Text](/images/buttonLevelUp-tile-active.png) ![TP32 Image Alt Text](/images/buttonLevelUp-tile-active-toggle.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
-
- The buttonLevelUp tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-14}
 {
-  "tile": <number>,                       // Enter your tile number e.g. 1  
-  "style": "buttonLevelUp",
-  "icon": "<icon_name>",                  // Enter icon name e.g."_bulb"
-  "label": "<label_text>",                // Enter label text e.g."Light"
-  "levelStart": <number>,                 // Defaults to 0
-  "levelStop": <number>                   // Defaults to 100
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "buttonLevelUp",
+          "icon": "_bulb",
+          "label": "Light",
+          "levelStart": 0,
+          "levelStop": 10
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter    | Type     | Options | Description                           |                                                            |
+|:---          |:---:     |:---:    |:---                                   |:---                                                        |
+| `tile`       | *Number* | n/a     | Enter your tile number e.g. `1`       | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`      | *String* | n/a     | Enter tile style name `buttonLevelUp` | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`       | *String* | n/a     | Enter icon name e.g.`_bulb`           | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`      | *String* | n/a     | Enter label text e.g.`Lamps`          | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `levelStart` | *String* | n/a     | Defaults to `0`                       | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `levelStop`  | *String* | n/a     | Defaults to `100`                     | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -178,29 +253,57 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,                     // Screen number e.g. 1 
-  "tile": <number>,                       // Tile number e.g. 1 
+  "screen": 1,
+  "tile": 1,
   "style": "buttonLevelUp",
-  "type": "button"|"level",               // Indicates if touch event was a button press or level change
-  "event": "single"|"hold"|"up"|"down",   // Indicates if a button press was short or long, or if a level change was up or down
-  "state": <number>                       // The current level state (prior to this event)
+  "type": "level",
+  "event": "up",
+  "state": 5
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type                 | Options                                      | Description                                                                                |
+|:---       |:----:                |:---:                                         |:---                                                                                        |
+| `screen`  | *Number*             | n/a                                          | Screen number triggering state event                                                       |
+| `tile`    | *Number*             | n/a                                          | Tile number triggering state event                                                         |
+| `style`   | *String*             | n/a                                          | Tile style `buttonLevelUp`                                                                 |
+| `type`    | *String*             | `"button"`\|`"level"`                        | Indicates if touch event was a button press or level change                                |
+| `event`   | *String*             | `"single"` \| `"hold"` \| `"up"` \| `"down"` | Indicates if a button press was `short` or `long`, or if a level change was `up` or `down` |
+| `state`   | *Number*             | n/a                                          | The current level state (prior to this event)                                              |
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-9}
 {
-  "screen": <number>,                     // Screen number sending command to 
-  "tile": <number>,                       // Tile number sending command to
-  "state": "on"|"off",                    // Update the tile state
-  "level": <number>,                      // Update the level state
-  "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
+    "tiles": [
+        {
+            "screen": 1,
+            "tile": 1,
+            "state": "on",
+            "level": 5,
+            "subLabel": "on just now"
+        }
+    ]
 }
 ```
+
+
+### JSON parameters
+| Parameter  | Type     | Options         | Description                                                 |                                                            |
+|:---        |:---:     |:---:            |:---                                                         |:---                                                        |
+| `screen`   | *Number* | n/a             | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`     | *Number* | n/a             | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `state`    | *String* | `"on"`\|`"off"` | Updated the tile state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `level`    | *Number* | n/a             | Update the level state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `sublabel` | *String* | n/a             | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -214,27 +317,49 @@ Explanation text goes here...
 
 ## buttonLevelDown
 
-![TP32 Image Alt Text](/images/buttonLevelDown-tile.png) ![TP32 Image Alt Text](/images/buttonLevelDown-tile-active.png)
+![TP32 Image Alt Text](/images/buttonLevelDown-tile.png) ![TP32 Image Alt Text](/images/buttonLevelDown-tile-toggle.png)
+![TP32 Image Alt Text](/images/buttonLevelDown-tile-active.png) ![TP32 Image Alt Text](/images/buttonLevelDown-tile-active-toggle.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
-
- The buttonLevelDown tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-14}
 {
-  "tile": <number>,             // Enter your tile number e.g. 1  
-  "style": "buttonLevelDown",
-  "icon": "<icon_name>",        // Enter icon name e.g."_blind"
-  "label": "<label_text>",      // Enter label text e.g."Blinds"
-  "levelStart": <number>,       // Defaults to 0
-  "levelStop": <number>         // Defaults to 100
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "buttonLevelDown",
+          "icon": "_blind",
+          "label": "Blinds",
+          "levelStart": 0,
+          "levelStop": 10
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter    | Type     | Options | Description                             |                                                            |
+|:---          |:---:     |:---:    |:---                                     |:---                                                        |
+| `tile`       | *Number* | n/a     | Enter your tile number e.g. `1`         | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`      | *String* | n/a     | Enter tile style name `buttonLevelDown` | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`       | *String* | n/a     | Enter icon name e.g.`_blind`            | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`      | *String* | n/a     | Enter label text e.g.`Blinds`           | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `levelStart` | *String* | n/a     | Defaults to `0`                         | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `levelStop`  | *String* | n/a     | Defaults to `100`                        | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -243,29 +368,58 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,                         // Screen number e.g. 1 
-  "tile": <number>,                           // Tile number e.g. 1 
+  "screen": 1,
+  "tile": 1,
   "style": "buttonLevelDown",
-  "type": "button"|"level",                   // Indicates if touch event was a button press or level change
-  "event": "single"|"hold"|"up"|"down",       // Indicates if a button press was short or long, or if a level change was up or down
-  "state": <number>                           // The current level state (prior to this event)
+  "type": "level",
+  "event": "up",
+  "state": 5
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type                 | Options                                      | Description                                                                                |
+|:---       |:----:                |:---:                                         |:---                                                                                        |
+| `screen`  | *Number*             | n/a                                          | Screen number triggering state event                                                       |
+| `tile`    | *Number*             | n/a                                          | Tile number triggering state event                                                         |
+| `style`   | *String*             | n/a                                          | Tile style `buttonLevelDown`                                                                 |
+| `type`    | *String*             | `"button"`\|`"level"`                        | Indicates if touch event was a button press or level change                                |
+| `event`   | *String*             | `"single"` \| `"hold"` \| `"up"` \| `"down"` | Indicates if a button press was `short` or `long`, or if a level change was `up` or `down` |
+| `state`   | *Number*             | n/a                                          | The current level state (prior to this event)                                              |
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json{3-9}
 {
-  "screen": <number>,                     // Screen number sending command to 
-  "tile": <number>,                       // Tile number sending command to
-  "state": "on"|"off",                    // Update the tile state
-  "level": <number>,                      // Update the level state
-  "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "level": 5,
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter  | Type     | Options         | Description                                                 |                                                            |
+|:---        |:---:     |:---:            |:---                                                         |:---                                                        |
+| `screen`   | *Number* | n/a             | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`     | *Number* | n/a             | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `state`    | *String* | `"on"`\|`"off"` | Updated the tile state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `level`    | *Number* | n/a             | Update the level state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `sublabel` | *String* | n/a             | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -279,25 +433,43 @@ Explanation text goes here...
 
 ## buttonUpDown
 
-![TP32 Image Alt Text](/images/buttonUpDown-tile.png)
+![TP32 Image Alt Text](/images/buttonUpDown-tile.png) ![TP32 Image Alt Text](/images/buttonUpDown-tile-active.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
-
- The buttonUpDown tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-12}
 {
-  "tile": <number>,             // Enter your tile number e.g. 1  
-  "style": "buttonUpDown",
-  "icon": "<icon_name>",        // Enter icon name e.g."_speaker"
-  "label": "<label_text>",      // Enter label text e.g."Speakers"
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "buttonUpDown",
+          "icon": "_speaker",
+          "label": "Speakers"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+### JSON parameters
+| Parameter    | Type     | Options | Description                             |                                                            |
+|:---          |:---:     |:---:    |:---                                     |:---                                                        |
+| `tile`       | *Number* | n/a     | Enter your tile number e.g. `1`         | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`      | *String* | n/a     | Enter tile style name `buttonUpDown`    | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`       | *String* | n/a     | Enter icon name e.g.`_speaker`          | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`      | *String* | n/a     | Enter label text e.g.`Speakers`         | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -306,28 +478,56 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,           // Screen number e.g. 1 
-  "tile": <number>,             // Tile number e.g. 1 
+  "screen": 1,
+  "tile": 1,
   "style": "buttonUpDown",
-  "type": "up"|"down"|"button", // Indicates if touch event was a button press or up/down press
-  "event": "single"|"hold",     // Indicates if a button press was short or long
-  "state": "on"|"off"           // The current tile state (prior to this event), only included for button press events
+  "type": "button",
+  "event": "single",
+  "state": "on"
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type                 | Options                                      | Description                                                                                |
+|:---       |:----:                |:---:                                         |:---                                                                                        |
+| `screen`  | *Number*             | n/a                                          | Screen number triggering state event                                                       |
+| `tile`    | *Number*             | n/a                                          | Tile number triggering state event                                                         |
+| `style`   | *String*             | n/a                                          | Tile style `buttonLevelDown`                                                               |
+| `type`    | *String*             | `"up"`\|`"down"`\|`"button"`                 | Indicates if touch event was a button press or up/down                                     |
+| `event`   | *String*             | `"single"` \| `"hold"`                       | Indicates if a button press was `short` or `long`                                          |
+| `state`   | *String*             | `"on"` \| `"off"`                            | The current tile state (prior to this event), only included for button press events        |
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-8}
 {
-  "screen": <number>,                     // Screen number sending command to 
-  "tile": <number>,                       // Tile number sending command to
-  "state": "on"|"off",                    // Update the tile state
-  "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter  | Type     | Options         | Description                                                 |                                                            |
+|:---        |:---:     |:---:            |:---                                                         |:---                                                        |
+| `screen`   | *Number* | n/a             | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`     | *Number* | n/a             | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `state`    | *String* | `"on"`\|`"off"` | Updated the tile state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |   
+| `sublabel` | *String* | n/a             | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -341,25 +541,44 @@ Explanation text goes here...
 
 ## buttonLeftRight
 
-![TP32 Image Alt Text](/images/buttonLeftRight-tile.png)
+![TP32 Image Alt Text](/images/buttonLeftRight-tile.png) ![TP32 Image Alt Text](/images/buttonLeftRight-tile-active.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
-
- The buttonLeftRight tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-12}
 {
-  "tile": <number>,               // Enter your tile number e.g. 1  
-  "style": "buttonLeftRight",
-  "icon": "<icon_name>",          // Enter icon name e.g."_slider"
-  "label": "<label_text>",        // Enter label text e.g."Audio Balance"
+  "screens":[
+    {
+      "screen":1,
+      "label":"Demo",
+      "tiles":[
+        {
+          "tile":1,
+          "style":"buttonLeftRight",
+          "icon":"_slider",
+          "label":"Audio Balance"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter    | Type     | Options | Description                             |                                                            |
+|:---          |:---:     |:---:    |:---                                     |:---                                                        |
+| `tile`       | *Number* | n/a     | Enter your tile number e.g. `1`         | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`      | *String* | n/a     | Enter tile style name `buttonLeftRight` | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`       | *String* | n/a     | Enter icon name e.g.`_slider`           | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`      | *String* | n/a     | Enter label text e.g.`Audio Balance`    | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -368,28 +587,56 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,                 // Screen number e.g. 1 
-  "tile": <number>,                   // Tile number e.g. 1 
+  "screen": 1,
+  "tile": 1,
   "style": "buttonLeftRight",
-  "type": "left"|"right"|"button",    // Indicates if touch event was a button press or left/right press
-  "event": "single"|"hold",           // Indicates if a button press was short or long
-  "state": "on"|"off"                 // The current tile state (prior to this event), only included for button press events
+  "type": "button",
+  "event": "single",
+  "state": "on"
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type                 | Options                         | Description                                                                                |
+|:---       |:----:                |:---:                            |:---                                                                                        |
+| `screen`  | *Number*             | n/a                             | Screen number triggering state event                                                       |
+| `tile`    | *Number*             | n/a                             | Tile number triggering state event                                                         |
+| `style`   | *String*             | n/a                             | Tile style `buttonLeftRight`                                                               |
+| `type`    | *String*             | `"left"`\|`"right"`\|`"button"` | Indicates if touch event was a button press or left/right press                                     |
+| `event`   | *String*             | `"single"` \| `"hold"`          | Indicates if a button press was `short` or `long`                                          |
+| `state`   | *String*             | `"on"` \| `"off"`               | The current tile state (prior to this event), only included for button press events        |
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-8}
 {
-  "screen": <number>,                     // Screen number sending command to 
-  "tile": <number>,                       // Tile number sending command to
-  "state": "on"|"off",                    // Update the tile state
-  "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter  | Type     | Options         | Description                                                 |                                                            |
+|:---        |:---:     |:---:            |:---                                                         |:---                                                        |
+| `screen`   | *Number* | n/a             | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`     | *Number* | n/a             | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `state`    | *String* | `"on"`\|`"off"` | Updated the tile state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |   
+| `sublabel` | *String* | n/a             | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -403,25 +650,44 @@ Explanation text goes here...
 
 ## buttonPrevNext
 
-![TP32 Image Alt Text](/images/buttonPrevNext.png)
+![TP32 Image Alt Text](/images/buttonPrevNext.png) ![TP32 Image Alt Text](/images/buttonPrevNext-active.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
-
- The buttonPrevNext tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-12}
 {
-  "tile": <number>,                 // Enter your tile number e.g. 1  
-  "style": "buttonPrevNext",
-  "icon": "<icon_name>",            // Enter icon name e.g."_music"
-  "label": "<label_text>"           // Enter label text e.g."Skip track"
+  "screens":[
+    {
+      "screen":1,
+      "label":"Demo",
+      "tiles":[
+        {
+          "tile":1,
+          "style":"buttonPrevNext",
+          "icon":"_music",
+          "label":"Skip track"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter    | Type     | Options | Description                             |                                                            |
+|:---          |:---:     |:---:    |:---                                     |:---                                                        |
+| `tile`       | *Number* | n/a     | Enter your tile number e.g. `1`         | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`      | *String* | n/a     | Enter tile style name `buttonLeftRight` | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`       | *String* | n/a     | Enter icon name e.g.`_music`            | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`      | *String* | n/a     | Enter label text e.g.`Skip track`       | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -430,28 +696,56 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,               // Screen number e.g. 1 
-  "tile": <number>,                 // Tile number e.g. 1 
-  "style": "buttonPrevNext",
-  "type": "prev"|"next"|"button",   // Indicates if touch event was a button press or prev/next press
-  "event": "single"|"hold",         // Indicates if a button press was short or long
-  "state": "on"|"off"               // The current tile state (prior to this event), only included for button press events
+  "screen": 1,
+  "tile": 1,
+  "style": "buttonLeftRight",
+  "type": "button",
+  "event": "single",
+  "state": "on"
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type                 | Options                         | Description                                                                         |
+|:---       |:----:                |:---:                            |:---                                                                                 |
+| `screen`  | *Number*             | n/a                             | Screen number triggering state event                                                |
+| `tile`    | *Number*             | n/a                             | Tile number triggering state event                                                  |
+| `style`   | *String*             | n/a                             | Tile style `buttonPrevNext`                                                         |
+| `type`    | *String*             | `"prev"`\|`"next"`\|`"button"` | Indicates if touch event was a button press or prev/next press                       |
+| `event`   | *String*             | `"single"` \| `"hold"`          | Indicates if a button press was `short` or `long`                                   |
+| `state`   | *String*             | `"on"` \| `"off"`               | The current tile state (prior to this event), only included for button press events |
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-8}
 {
-  "screen": <number>,                     // Screen number sending command to 
-  "tile": <number>,                       // Tile number sending command to
-  "state": "on"|"off",                    // Update the tile state
-  "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter  | Type     | Options         | Description                                                 |                                                            |
+|:---        |:---:     |:---:            |:---                                                         |:---                                                        |
+| `screen`   | *Number* | n/a             | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`     | *Number* | n/a             | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `state`    | *String* | `"on"`\|`"off"` | Update the tile state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |   
+| `sublabel` | *String* | n/a             | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -465,43 +759,80 @@ Explanation text goes here...
 
 ## indicator
 
-![TP32 Image Alt Text](/images/indicator-tile.png)
+![TP32 Image Alt Text](/images/indicator-tile.png) ![TP32 Image Alt Text](/images/indicator-tile-2.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
-
- The indicator tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-11}
 {
-  "tile": <number>,                 // Enter your tile number e.g. 1           
-  "style": "indicator",
-  "label": "<label_text>" ,         // Enter label text e.g."Temperature"
+  "screens":[
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "indicator",
+          "label": "Temp / Hum"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter    | Type     | Options | Description                             |                                                            |
+|:---          |:---:     |:---:    |:---                                     |:---                                                        |
+| `tile`       | *Number* | n/a     | Enter your tile number e.g. `1`         | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`      | *String* | n/a     | Enter tile style name `indicator`       | <Badge type="warning" text="Required" vertical="bottom" /> |   
+| `label`      | *String* | n/a     | Enter label text e.g.`Temp / Hum`       | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-13}
 {
-  "screen": <number>,               // Screen number e.g. 1     
-  "tile": <number>,                 // Tile number e.g. 1 
-  "number": {
-    "value": "<value-text>",        // Formatted value to display e.g. "22.9" (restricted to "0...9 + - . :")
-    "units": "<units-text>",        // Optional suffix/unit e.g. "%"
-    "subValue": "<sub-value-text>", // Optional formatted sub-value to display (smaller font under main value)
-    "subUnits": "<sub-units-text>"  // Optional suffix/unit
-  },
-  "subLabel": "<subLabel_text>"   // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles":[
+    {
+      "screen":1,
+      "tile":1,
+      "number":{
+        "value":"22.9",
+        "units":"°C",
+        "subValue":"56.8",
+        "subUnits":"%"
+      },
+      "subLabel":"updated just now"
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter  | Type     | Options | Description                                                                  |                                                            |
+|:---        |:---:     |:---:    |:---                                                                          |:---                                                        |
+| `screen`   | *Number* | n/a     | Screen number sending command to                                             | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`     | *Number* | n/a     | Tile number sending command to                                               | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `number`   | *Object* | n/a     |                                                                              | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `value`    | *String* | n/a     | Formatted value to display e.g. `22.9` <br> (restricted to `0...9 + - . :` ) | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `units`    | *String* | n/a     | Suffix/unit e.g. "°C"                                                         | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `subValue` | *String* | n/a     | Formatted sub-value to display e.g. `56.8`                                   | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `subUnits` | *String* | n/a     | Suffix/unit e.g. "%"                                                          | <Badge type="tip" text="Optional" vertical="bottom" />     | 
+| `sublabel` | *String* | n/a     | String for additional tile information e.g. `"updated just now"`             | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -519,21 +850,40 @@ Explanation text goes here...
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The colorPickerRgbCct tile style allows you to simply...
-
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-12}
 {
-  "tile": <number>,                 // Enter your tile number e.g. 1  
-  "style": "colorPickerRgbCct",     // Enter icon name e.g."_bulb"
-  "icon": "<icon_name>",
-  "label": "<label_text>"           // Enter label text e.g."Office light" 
+  "screens":[
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "colorPickerRgbCct",
+          "icon": "_bulb",
+          "label": "Office light"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type     | Options | Description                               |                                                            |
+|:---       |:---:     |:---:    |:---                                       |:---                                                        |
+| `tile`    | *Number* | n/a     | Enter your tile number e.g. `1`           | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`   | *String* | n/a     | Enter tile style name `colorPickerRgbCct` | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`    | *String* | n/a     | Enter icon name e.g.`_bulb`               | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`   | *String* | n/a     | Enter label text e.g.`Office light`        | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -542,46 +892,88 @@ Explanation text goes here...
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,               // Screen number e.g. 1 
-  "tile": <number>,                 // Tile number e.g. 1 
-  "style":"colorPickerRgbCct",
-  "type": "button"|"colorPicker",   // Indicates if touch event was a button press or long-press to launch the color picker popup
-  "event": "single"|"change",       // "single" for a button press or "change" when the color picker popup is closed
-  "state": "on"|"off"| {            // "on"|"off" for a button press or the selected color when the color picker popup is closed
-    "colorRgb":{
-      "r": <number>,
-      "g": <number>,
-      "b": <number>
+  "screen": 1,
+  "tile": 1,
+  "style": "colorPickerRgbCct",
+  "type": "colorPicker",
+  "event": "change",
+  "state": {
+    "colorRgb": {
+      "r": 255,
+      "g": 124,
+      "b": 208
     },
-    "colorKelvin": <number>,
-    "brightness": <number>
+    "colorKelvin": 0,
+    "brightness": 0
   }
 }
 ```
+
+
+### JSON parameters
+| Parameter     | Type                 | Options                              | Description                                                                                 |
+|:---           |:----:                |:---:                                 |:---                                                                                         |
+| `screen`      | *Number*             | n/a                                  | Screen number triggering state event                                                        |
+| `tile`        | *Number*             | n/a                                  | Tile number triggering state event                                                          |
+| `style`       | *String*             | n/a                                  | Tile style `colorPickerRgbCct`                                                              |
+| `type`        | *String*             | `"button"` \| `"colorPicker"`        | Indicates if touch event was a button press or long-press to launch the color picker popup  |
+| `event`       | *String*             | `"single"` \| `"hold"` \| `"change"` | `single` \| `hold` events only on type `button`. `change` events only on type `colorPicker` |
+| `state`       | *String* \| *Object* | `"on"` \| `"off"` \| `{}`            | The current tile state                                                                      |
+| `colorRgb`    | *Object*             | n/a                                  |                                                                                             |
+| `r`           | *Number*             | n/a                                  | Red colour Number between `0-255`                                                           |
+| `g`           | *Number*             | n/a                                  | Green colour Number between `0-255`                                                         | 
+| `b`           | *Number*             | n/a                                  | Blue colour Number between `0-255`                                                          |  
+| `colorKelvin` | *Number*             | n/a                                  | For temperature mode, color temp (in kelvin)                                                | 
+| `brightness`  | *Number*             | n/a                                  | For either mode, color brightness                                                           | 
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-18}
 {
-  "screen": <number>,                     // Screen number sending command to 
-  "tile": <number>,                       // Tile number sending command to  
-  "state": "on"|"off",                    // Update the tile state
-  "colorPicker": {
-    "mode": "colorRgb"|"colorKelvin",     // Update the color picker mode
-    "colorRgb": {                         // For RGB mode, update the selected color (in RGB)
-      "r": <number>,
-      "g": <number>,
-      "b": <number>
-    },
-    "colorKelvin": <number>,              // For temperature mode, update the selected color temp (in kelvin)
-    "brightness": <number>                // For either mode, update the selected color brightness
-  },
-  "subLabel": "<subLabel_text>"           // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles":[
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "colorPicker": {
+        "mode": "colorRgb",
+        "colorRgb": {
+          "r": 255,
+          "g": 0,
+          "b": 0
+        },
+        "colorKelvin": 0,
+        "brightness": 50
+      },
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter     | Type     | Options                       | Description                                                            |                                                            |
+|:---           |:---:     |:---:                          |:---                                                                    |:---                                                        |
+| `screen`      | *Number* | n/a                           | Screen number sending command to                                       | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`        | *Number* | n/a                           | Tile number sending command to                                         | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `state`       | *String* | `"on"`\|`"off"`               | Update the tile state                                                 | <Badge type="tip" text="Optional" vertical="bottom" />     | 
+| `colorPicker` | *Object* | n/a                           |                                                                        | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `mode`        | *String* | `"colorRgb"`\|`"colorKelvin"` | Update the color picker mode                                           | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `colorRgb`    | *Object* | n/a                           | For RGB mode, update the selected color (in RGB)                       | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `r`           | *Number* | n/a                           | Red colour Number between 0-255                                        | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `g`           | *Number* | n/a                           | Green colour Number between 0-255                                      | <Badge type="tip" text="Optional" vertical="bottom" />     | 
+| `b`           | *Number* | n/a                           | Blue colour Number between 0-255                                       | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `colorKelvin` | *Number* | n/a                           | For temperature mode, update the selected color temp (in kelvin)       | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `brightness`  | *Number* | n/a                           | For either mode, update the selected color brightness                  | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `subLabel`    | *String* | n/a                           | String for additional tile information e.g. last updated "on just now" | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -591,7 +983,7 @@ Explanation text goes here...
 
 ### Control Screen:
 
-When you press and hold the tile button the controls screen will appear. The controls screen has two tabs to choose from ``Color`` and ``Temperature``. The color tab gives you the ability to adjust the ``RGB Color`` via the color wheel and ``Brightness Color`` via the slider. The temperature tab gives you the ability to adjust the ``Color Temperature`` and ``Brightness White`` via the sliders.
+When you press the tile button the controls screen will appear. The controls screen has two tabs to choose from ``Color`` and ``Temperature``. The color tab gives you the ability to adjust the ``RGB Color`` via the color wheel and ``Brightness Color`` via the slider. The temperature tab gives you the ability to adjust the ``Color Temperature`` and ``Brightness White`` via the sliders. You can also toggle the tile `on` \| `off` by pressing the light bulb button in thr bottom right of the popup.
 
 ![TP32 Image Alt Text](/images/colorPicker-both-color-tab.png) ![TP32 Image Alt Text](/images/colorPicker-both-temp-tab.png)
 
@@ -606,21 +998,39 @@ When you press and hold the tile button the controls screen will appear. The con
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The colorPickerRgb tile style allows you to simply...
-
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-12}
 {
-  "tile": <number>,                 // Enter your tile number e.g. 1  
-  "style": "colorPickerRgb",        // Enter icon name e.g."_bulb"
-  "icon": "<icon_name>",
-  "label": "<label_text>"           // Enter label text e.g."Office light" 
+  "screens":[
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "colorPickerRgb",
+          "icon": "_bulb",
+          "label": "Office light"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type     | Options | Description                               |                                                            |
+|:---       |:---:     |:---:    |:---                                       |:---                                                        |
+| `tile`    | *Number* | n/a     | Enter your tile number e.g. `1`           | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`   | *String* | n/a     | Enter tile style name `colorPickerRgb` | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`    | *String* | n/a     | Enter icon name e.g.`_bulb`               | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`   | *String* | n/a     | Enter label text e.g.`Office light`        | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -629,42 +1039,82 @@ When you press and hold the tile button the controls screen will appear. The con
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,               // Screen number e.g. 1 
-  "tile": <number>,                 // Tile number e.g. 1 
-  "style":"colorPickerRgb",
-  "type": "button"|"colorPicker",   // Indicates if touch event was a button press or long-press to launch the color picker popup
-  "event": "single"|"change",       // "single" for a button press or "change" when the color picker popup is closed
-  "state": "on"|"off"| {            // "on"|"off" for a button press or the selected color when the color picker popup is closed
-    "colorRgb":{
-      "r": <number>,
-      "g": <number>,
-      "b": <number>
-    }
+  "screen": 1,
+  "tile": 1,
+  "style": "colorPickerRgb",
+  "type": "colorPicker",
+  "event": "change",
+  "state": {
+    "colorRgb": {
+      "r": 255,
+      "g": 124,
+      "b": 208
+    },
+    "brightness": 0
   }
 }
 ```
+
+
+### JSON parameters
+| Parameter     | Type                 | Options                              | Description                                                                                 |
+|:---           |:----:                |:---:                                 |:---                                                                                         |
+| `screen`      | *Number*             | n/a                                  | Screen number triggering state event                                                        |
+| `tile`        | *Number*             | n/a                                  | Tile number triggering state event                                                          |
+| `style`       | *String*             | n/a                                  | Tile style `colorPickerRgb`                                                              |
+| `type`        | *String*             | `"button"` \| `"colorPicker"`        | Indicates if touch event was a button press or long-press to launch the color picker popup  |
+| `event`       | *String*             | `"single"` \| `"hold"` \| `"change"` | `single` \| `hold` events only on type `button`. `change` events only on type `colorPicker` |
+| `state`       | *String* \| *Object* | `"on"` \| `"off"` \| `{}`            | The current tile state                                                                      |
+| `colorRgb`    | *Object*             | n/a                                  |                                                                                             |
+| `r`           | *Number*             | n/a                                  | Red colour Number between `0-255`                                                           |
+| `g`           | *Number*             | n/a                                  | Green colour Number between `0-255`                                                         | 
+| `b`           | *Number*             | n/a                                  | Blue colour Number between `0-255`                                                          |  
+| `brightness`  | *Number*             | n/a                                  | For either mode, color brightness                                                           | 
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-18}
 {
-  "screen": <number>,               // Screen number sending command to 
-  "tile": <number>,                 // Tile number sending command to  
-  "state": "on"|"off",              // Update the tile state
-  "colorPicker": {
-    "colorRgb": {                   // Update the selected color (in RGB)
-      "r": <number>,
-      "g": <number>,
-      "b": <number>
-    },
-    "brightness": <number>          // Update the selected color brightness
-  },
-  "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles":[
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "colorPicker": {
+        "mode": "colorRgb",
+        "colorRgb": {
+          "r": 255,
+          "g": 0,
+          "b": 0
+        },
+        "brightness": 50
+      },
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter     | Type     | Options                       | Description                                                            |                                                            |
+|:---           |:---:     |:---:                          |:---                                                                    |:---                                                        |
+| `screen`      | *Number* | n/a                           | Screen number sending command to                                       | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`        | *Number* | n/a                           | Tile number sending command to                                         | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `state`       | *String* | `"on"`\|`"off"`               | Updated the tile state                                                 | <Badge type="tip" text="Optional" vertical="bottom" />     | 
+| `colorPicker` | *Object* | n/a                           |                                                                        | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `mode`        | *String* | `"colorRgb"`\|`"colorKelvin"` | Update the color picker mode                                           | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `colorRgb`    | *Object* | n/a                           | For RGB mode, update the selected color (in RGB)                       | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `r`           | *Number* | n/a                           | Red colour Number between 0-255                                        | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `g`           | *Number* | n/a                           | Green colour Number between 0-255                                      | <Badge type="tip" text="Optional" vertical="bottom" />     | 
+| `b`           | *Number* | n/a                           | Blue colour Number between 0-255                                       | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `brightness`  | *Number* | n/a                           | For either mode, update the selected color brightness                  | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `subLabel`    | *String* | n/a                           | String for additional tile information e.g. last updated "on just now" | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -674,7 +1124,7 @@ When you press and hold the tile button the controls screen will appear. The con
 
 ### Control Screen:
 
-When you press and hold the tile button the controls screen will appear giving you the ability to adjust the ``RGB Color`` via the color wheel and ``Brightness Color`` via the slider.
+When you press the tile button the controls screen will appear giving you the ability to adjust the ``RGB Color`` via the color wheel and ``Brightness Color`` via the slider. You can also toggle the tile `on` \| `off` by pressing the light bulb button in thr bottom right of the popup.
 
 ![TP32 Image Alt Text](/images/colorPicker-color-tab.png)
 
@@ -689,21 +1139,39 @@ When you press and hold the tile button the controls screen will appear giving y
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The colorPickerCct tile style allows you to simply...
-
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-12}
 {
-  "tile": <number>,                 // Enter your tile number e.g. 1  
-  "style": "colorPickerCct",        // Enter icon name e.g."_bulb"
-  "icon": "<icon_name>",
-  "label": "<label_text>"           // Enter label text e.g."Office light" 
+  "screens":[
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "colorPickerCct",
+          "icon": "_bulb",
+          "label": "Office light"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type     | Options | Description                               |                                                            |
+|:---       |:---:     |:---:    |:---                                       |:---                                                        |
+| `tile`    | *Number* | n/a     | Enter your tile number e.g. `1`           | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`   | *String* | n/a     | Enter tile style name `colorPickerCct` | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`    | *String* | n/a     | Enter icon name e.g.`_bulb`               | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`   | *String* | n/a     | Enter label text e.g.`Office light`        | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -712,35 +1180,69 @@ When you press and hold the tile button the controls screen will appear giving y
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,               // Screen number e.g. 1 
-  "tile": <number>,                 // Tile number e.g. 1 
-  "style":"colorPickerRgb",
-  "type": "button"|"colorPicker",   // Indicates if touch event was a button press or long-press to launch the color picker popup
-  "event": "single"|"change",       // "single" for a button press or "change" when the color picker popup is closed
-  "state": "on"|"off"| {            // "on"|"off" for a button press or the selected color when the color picker popup is closed
-    "colorKelvin": <number>,
-    "brightness": <number>
+  "screen": 1,
+  "tile": 1,
+  "style": "colorPickerCct",
+  "type": "colorPicker",
+  "event": "change",
+  "state": {
+    "colorRgb": {
+      "colorKelvin": 2000,
+      "brightness": 50
+    },
   }
 }
 ```
+
+
+### JSON parameters
+| Parameter     | Type                 | Options                              | Description                                                                                 |
+|:---           |:----:                |:---:                                 |:---                                                                                         |
+| `screen`      | *Number*             | n/a                                  | Screen number triggering state event                                                        |
+| `tile`        | *Number*             | n/a                                  | Tile number triggering state event                                                          |
+| `style`       | *String*             | n/a                                  | Tile style `colorPickerCct`                                                                 |
+| `type`        | *String*             | `"button"` \| `"colorPicker"`        | Indicates if touch event was a button press or long-press to launch the color picker popup  |
+| `event`       | *String*             | `"single"` \| `"hold"` \| `"change"` | `single` \| `hold` events only on type `button`. `change` events only on type `colorPicker` |
+| `state`       | *String* \| *Object* | `"on"` \| `"off"` \| `{}`            | The current tile state                                                                      |
+| `colorRgb`    | *Object*             | n/a                                  |                                                                                             | 
+| `colorKelvin` | *Number*             | n/a                                  | For temperature mode, color temp (in kelvin)                                                | 
+| `brightness`  | *Number*             | n/a                                  | For either mode, color brightness                                                           | 
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-12}
 {
-  "screen": <number>,               // Screen number sending command to 
-  "tile": <number>,                 // Tile number sending command to  
-  "state": "on"|"off",              // Update the tile state
-  "colorPicker": {
-    "colorKelvin": <number>,        // Update the selected color temp (in kelvin)
-    "brightness": <number>          // Update the selected color brightness
-  },
-  "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles":[
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "colorPicker": {
+        "colorKelvin": 2000,
+        "brightness": 50
+      },
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter     | Type     | Options                       | Description                                                            |                                                            |
+|:---           |:---:     |:---:                          |:---                                                                    |:---                                                        |
+| `screen`      | *Number* | n/a                           | Screen number sending command to                                       | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`        | *Number* | n/a                           | Tile number sending command to                                         | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `state`       | *String* | `"on"`\|`"off"`               | Updated the tile state                                                 | <Badge type="tip" text="Optional" vertical="bottom" />     | 
+| `colorPicker` | *Object* | n/a                           |                                                                        | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `colorKelvin` | *Number* | n/a                           | For temperature mode, update the selected color temp (in kelvin)       | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `brightness`  | *Number* | n/a                           | For either mode, update the selected color brightness                  | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `subLabel`    | *String* | n/a                           | String for additional tile information e.g. last updated "on just now" | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -750,7 +1252,7 @@ When you press and hold the tile button the controls screen will appear giving y
 
 ### Control Screen:
 
-When you press and hold the tile button the controls screen will appear giving you the ability to adjust the ``Color Temperature`` and ``Brightness White`` via the sliders.
+When you press the tile button the controls screen will appear giving you the ability to adjust the ``Color Temperature`` and ``Brightness White`` via the sliders. You can also toggle the tile `on` \| `off` by pressing the light bulb button in thr bottom right of the popup.
 
 ![TP32 Image Alt Text](/images/colorPicker-temp-tab.png)
 
@@ -760,25 +1262,44 @@ When you press and hold the tile button the controls screen will appear giving y
 
 ## dropDown
 
-![TP32 Image Alt Text](/images/dropdown-tile.png)
+![TP32 Image Alt Text](/images/dropdown-tile.png) ![TP32 Image Alt Text](/images/dropdown-tile-1.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
-
- The dropDown tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-12}
 {
-  "tile": <number>,                 // Enter your tile number e.g. 1  
-  "style": "dropDown",              
-  "icon": "<icon_name>",            // Enter icon name e.g."_music"
-  "label": "<label_text>"           // Enter label text e.g."Select Album" 
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "dropDown",
+          "icon": "_music",
+          "label": "Select Album"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type     | Options | Description                               |                                                            |
+|:---       |:---:     |:---:    |:---                                       |:---                                                        |
+| `tile`    | *Number* | n/a     | Enter your tile number e.g. `1`           | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`   | *String* | n/a     | Enter tile style name `dropDown`          | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`    | *String* | n/a     | Enter icon name e.g.`_music`               | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`   | *String* | n/a     | Enter label text e.g.`Select Album`        | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -787,29 +1308,64 @@ When you press and hold the tile button the controls screen will appear giving y
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,               // Screen number e.g. 1 
-  "tile": <number>,                 // Tile number e.g. 1 
+  "screen": 1, 
+  "tile": 1,
   "style": "dropDown",
   "type": "dropDown",
   "event": "selection",
-  "state": <number>                 // Item number selected
+  "state": 2
 }
 ```
+
+
+### JSON parameters
+| Parameter     | Type                 | Options | Description                          |
+|:---           |:----:                |:---:    |:---                                  |
+| `screen`      | *Number*             | n/a     | Screen number triggering state event |
+| `tile`        | *Number*             | n/a     | Tile number triggering state event   |
+| `style`       | *String*             | n/a     |                                      |
+| `type`        | *String*             | n/a     |                                      |
+| `event`       | *String*             | n/a     |                                      |
+| `state`       | *Number*             | n/a     | Item number selected                 |
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-15}
 {
-  "screen": <number>,               // Screen number sending command to  
-  "tile": <number>,                 // Tile number sending command to  
-  "dropDownList": ["list-item"],    // List items Array of Strings ["item-1", "item-2", "item-3"]
-  "dropDownSelect": <number>,       // Update the selected item in the dropdown list
-  "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "dropDownList": [
+        "Rock Album",
+        "Dance Album",
+        "Jazz Album",
+        "Soul Album",
+        "Classical Album"
+      ],
+      "dropDownSelect": 2,
+      "subLabel": "playing now"
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter        | Type     | Options | Description                                                               |                                                            |
+|:---              |:---:     |:---:    |:---                                                                       |:---                                                        |
+| `screen`         | *Number* | n/a     | Screen number sending command to                                          | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`           | *Number* | n/a     | Tile number sending command to                                            | <Badge type="warning" text="Required" vertical="bottom" /> |   
+| `dropDownList`   | *Array*  | n/a     | List items Array of Strings `["Rock Album", "Dance Album", "Jazz Album"]` | <Badge type="tip" text="Optional" vertical="bottom" />     |   
+| `dropDownSelect` | *Number* | n/a     | Update the selected item in the dropdown list                            | <Badge type="tip" text="Optional" vertical="bottom" />     |   
+| `subLabel`       | *String* | n/a     | String for additional tile information e.g. last updated `"playing now"`  | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -832,21 +1388,40 @@ When you press the tile button the dropdown list screen will appear giving you t
  
 [comment]: <> ([TODO] Tile introduction text goes here)
 
- The keyPad tile style allows you to simply...
-
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-12}
 {
-  "tile": <number>,                 // Enter your tile number e.g. 1  
-  "style": "keyPad",        
-  "icon": "<icon_name>",            // Enter icon name e.g."_unlocked"
-  "label": "<label_text>"           // Enter label text e.g."House Alarm" 
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "keyPad",
+          "icon": "_locked",
+          "label": "House Alarm"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type     | Options | Description                        |                                                            |
+|:---       |:---:     |:---:    |:---                                |:---                                                        |
+| `tile`    | *Number* | n/a     | Enter your tile number e.g. `1`    | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`   | *String* | n/a     | Enter tile style name `keyPad`     | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`    | *String* | n/a     | Enter icon name e.g.`_unlocked`    | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`   | *String* | n/a     | Enter label text e.g.`House Alarm` | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -855,34 +1430,97 @@ When you press the tile button the dropdown list screen will appear giving you t
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,               // Screen number e.g. 1
-  "tile": <number>,                 // Tile number e.g. 1 
+  "screen": 1,
+  "tile": 1,
   "style": "keyPad",
   "type": "button",
   "event": "key",
-  "state": "on"|"off",              // The current tile state
-  "keyCode": <code>                 // Code entered - NOTE: this is plain text
+  "state": "on",
+  "keyCode": "1234"
 }
 ```
+
+
+### JSON parameters
+| Parameter     | Type                 | Options           | Description                             |
+|:---           |:----:                |:---:              |:---                                     |
+| `screen`      | *Number*             | n/a               | Screen number triggering state event    |
+| `tile`        | *Number*             | n/a               | Tile number triggering state event      |
+| `style`       | *String*             | n/a               |                                         |
+| `type`        | *String*             | n/a               |                                         |
+| `event`       | *String*             | n/a               |                                         |
+| `state`       | *Number*             | `"on"` \| `"off"` | Item number selected                    |
+| `keyCode`     | *String*             | n/a               | Code entered - NOTE: this is plain text |
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
-::: code-group-item Command
+::: code-group-item Command (Tile)
+```json {3-11}
+{
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "icon": "_locked",
+      "keyPad": {
+        "state": "locked"
+      },
+      "subLabel": "Armed for 13m"
+    }
+  ]
+}
+```
+
+
+### JSON parameters
+| Parameter      | Type     | Options                                               | Description                                                              |                                                            |
+|:---            |:---:     |:---:                                                  |:---                                                                      |:---                                                        |
+| `screen`       | *Number* | n/a                                                   | Screen number sending command to                                         | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`         | *Number* | n/a                                                   | Tile number sending command to                                           | <Badge type="warning" text="Required" vertical="bottom" /> |   
+| `icon`         | *String* |                                                       | Dynamically set icon by entering icon name e.g."_locked"                 | <Badge type="tip" text="Optional" vertical="bottom" />     |   
+| `keyPad`       | *Object* |                                                       |                                                                          | <Badge type="tip" text="Optional" vertical="bottom" />     |   
+| `state`        | *String* | `"close"` \| `"failed"` \| `"unlocked"` \| `"locked"` | Update the tile state                                                    | <Badge type="warning" text="Required" vertical="bottom" /> |   
+| `subLabel`     | *String* | n/a                                                   | String for additional tile information e.g. last updated "Armed for 13m" | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```cmnd/<device-client-id>```
+:::
+
+::: code-group-item Command (KeyPad)
 ```json
 {
   "keyPad":{
-    "state": "close"|"failed"|"unlocked"|"locked",
-    "text": <label_text>,         // Keypad status label (optional, displays "state" if omitted)
-    "colorRgb":{                  // Keypad icon color
-      "r": <number>,
-      "g": <number>,
-      "b": <number>
+    "state":"failed",
+    "text":"Failed",
+    "icon":"_locked",
+    "iconColorRgb":{
+      "r":255,
+      "g":0,
+      "b":0
     }
   }
 }
 ```
+
+
+### JSON parameters
+| Parameter      | Type     | Options                                               | Description                                                              |                                                            |
+|:---            |:---:     |:---:                                                  |:---                                                                      |:---                                                        |  
+| `state`        | *String* | `"close"` \| `"failed"` \| `"unlocked"` \| `"locked"` | Update the tile state                                                                         | <Badge type="warning" text="Required" vertical="bottom" /> |   
+| `text`         | *String* | n/a                                                   | Keypad status label (optional, displays "state" if omitted)              | <Badge type="warning" text="Required" vertical="bottom" /> |   
+| `iconColorRgb` | *Object* | n/a                                                   | Change RGB colour of the keyPad icon                                     | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `r`            | *Number* | n/a                                                   | Red colour Number between 0-255                                          | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `g`            | *Number* | n/a                                                   | Green colour Number between 0-255                                        | <Badge type="tip" text="Optional" vertical="bottom" />     | 
+| `b`            | *Number* | n/a                                                   | Blue colour Number between 0-255                                         | <Badge type="tip" text="Optional" vertical="bottom" />     | 
+| `subLabel`     | *String* | n/a                                                   | String for additional tile information e.g. last updated "Armed for 13m" | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -894,7 +1532,7 @@ When you press the tile button the dropdown list screen will appear giving you t
 
 When you press the tile button the keypad screen will appear giving you the ability to enter the code.
 
-![TP32 Image Alt Text](/images/keypad-screen-1.png)![TP32 Image Alt Text](/images/keypad-screen-2.png)
+![TP32 Image Alt Text](/images/keypad-screen-1.png) ![TP32 Image Alt Text](/images/keypad-screen-2.png)
 
 
 ---
@@ -902,25 +1540,43 @@ When you press the tile button the keypad screen will appear giving you the abil
 
 ## keyPadBlocking
 
-![TP32 Image Alt Text](/images/keypad-screen-1.png)![TP32 Image Alt Text](/images/keypad-screen-2.png)
+![TP32 Image Alt Text](/images/keypad-screen-1.png) ![TP32 Image Alt Text](/images/keypad-screen-2.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
-
- The keyPadBlocking tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-12}
 {
-  "tile": <number>,                 // Enter your tile number e.g. 1  
-  "style": "keyPadBlocking",        
-  "icon": "<icon_name>",            // Enter icon name e.g."_unlocked"
-  "label": "<label_text>"           // Enter label text e.g."House Alarm" 
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "keyPadBlocking",
+          "icon": "_locked",
+          "label": "House Alarm"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type     | Options | Description                            |                                                            |
+|:---       |:---:     |:---:    |:---                                    |:---                                                        |
+| `tile`    | *Number* | n/a     | Enter your tile number e.g. `1`        | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`   | *String* | n/a     | Enter tile style name `keyPadBlocking` | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`    | *String* | n/a     | Enter icon name e.g.`_unlocked`        | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`   | *String* | n/a     | Enter label text e.g.`House Alarm`     | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -997,8 +1653,8 @@ When you press the tile button the keypad screen will appear giving you the abil
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,
-  "tile": <number>,
+  "screen": <number>,                                                     // Screen number e.g. 1
+  "tile": <number>,                                                       // Tile number e.g. 1 
   "style": "remote",
   "type": "home"|"info"|"back"|"list"|"ok"|"up"|"down"|"left"|"right",
   "event": "single"|"hold"
@@ -1051,9 +1707,9 @@ When you press the tile button the remote screen will appear giving you the abil
 {
   "tile": <number>,                 // Enter your tile number e.g. 1  
   "style": "link",        
-  "icon": "<icon_name>",            // Enter icon name e.g."_music_"
+  "icon": "<icon_name>",            // Enter icon name e.g."_music"
   "label": "<label_text>",          // Enter label text e.g."HiFi Controls"
-  "link": 5                         // Screen which is loaded upon press event
+  "link": <number>                  // Number of screen which is loaded upon press event
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -1064,8 +1720,8 @@ When you press the tile button the remote screen will appear giving you the abil
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,
-  "type":"screen",
+  "screen": <number>,               // Screen number e.g. 1
+  "type":"screen",                  // Tile number e.g. 1           
   "event":"change",
   "state":"loaded"
 }
@@ -1090,7 +1746,150 @@ When you press the tile button the remote screen will appear giving you the abil
 ::::
 [comment]: <> (END of JSON Example)
 
+---
 
+
+## thermostat
+
+![TP32 Image Alt Text](/images/thermostat-arc-tile.png) ![TP32 Image Alt Text](/images/thermostat-arc-tile-active.png) ![TP32 Image Alt Text](/images/thermostat-digit-tile.png) ![TP32 Image Alt Text](/images/thermostat-digit-tile-active.png)
+ 
+[comment]: <> ([TODO] Tile introduction text goes here)
+
+ The thermostat tile style allows you to simply...
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+
+::: code-group-item Config
+
+```json {7-12}
+{
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "thermostat",
+          "label": "Heating",
+          "icon": "_thermostat"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### JSON parameters
+| Parameter | Type     | Options | Description                                                        |                                                            |
+|:---       |:---:     |:---:    |:---                                                                |:---                                                        |
+| `tile`    | *Number* | n/a     | Enter your tile number e.g. `1`                                    | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`   | *String* | n/a     | Enter tile style name `thermostat`                                 | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `label`   | *String* | n/a     | Enter label text e.g.`Heating`                                     | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`    | *String* | n/a     | Set to `_thermostat` for dynamic Arc tile, dont specify for digits | <Badge type="warning" text="Required" vertical="bottom" /> |  
+
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```conf/<device-client-id>```
+:::
+
+::: code-group-item State
+```json
+{
+  "screen": 1,
+  "tile": 1,
+  "style": "thermostat",
+  "type": "thermostat",
+  "event": "change",
+  "state": {
+    "mode": 3,
+    "targetTemperature": 155
+    }
+}
+```
+
+### JSON parameters
+| Parameter           | Type                  | Options                      | Description                                                                     |
+|:---                 |:----:                 |:---:                         |:---                                                                             |
+| `screen`            | *Number*              | n/a                          | Screen number triggering state event                                            |
+| `tile`              | *Number*              | n/a                          | Tile number triggering state event                                              |
+| `style`             | *String*              | n/a                          | Tile style `_thermostat`                                                        |
+| `type`              | *String*              | `"button"` \| `"thermostat"` |                                                                                 |
+| `event`             | *String*              | `"hold"` \| `"change"`       | `hold` events only on type `button`. `change` events only on type `themrmostat` |
+| `state`             | *String* \| *Object*  | `"on"` \| `"off"` \| `{}`    | The current tile state                                                          |
+| `mode`              | *Number*              | n/a                          | The current mode state                                                          |
+| `targetTemperature` | *Number*              | n/a                          | The current target temperature                                                  |
+
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```stat/<device-client-id>```
+:::
+
+::: code-group-item Command
+```json {3-21}
+{
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "number": {
+        "value": "15.5",
+        "units": "°C",
+        "subValue": "13.8",
+        "subUnits": "°C"
+      },
+      "state": "off",
+      "thermostat": {
+        "modeList": ["Off","On","Auto","Maunal"],
+        "mode": 1,
+        "targetTemperature": 155,
+        "currentTemperature": 138,
+        "units": "°C"
+      },
+      "subLabel": "off just now"
+    }
+  ]
+}
+```
+
+
+### JSON parameters
+| Parameter            | Type      | Options         | Description                                                                   |                                                            |
+|:---                  |:---:      |:---:            |:---                                                                           |:---                                                        |
+| `screen`             | *Number*  | n/a             | Screen number sending command to e.g. `1`                                     | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`               | *Number*  | n/a             | Tile number sending command to e.g. `1`                                       | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `number`             | *Object*  | n/a             | Number object only used when icon not specified                                | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `value`              | *String*  | n/a             | Formatted value to display e.g. `15.5` <br> (restricted to `0...9 + - . :` )  | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `units`              | *String*  | n/a             | Suffix/unit e.g. "°C"                                                          | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `subValue`           | *String*  | n/a             | Formatted sub-value to display e.g. `13.8`                                    | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `subUnits`           | *String*  | n/a             | Suffix/unit e.g. "°C"                                                          | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `state`              | *String*  | `"on"`\|`"off"` | Update the tile state                                                         | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `thermostat`         | *Object*  | n/a             |                                                                               | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `modeList`           | *Array*   | n/a             | Array of strings to populate modelist dropdown in thermostat popup            | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `mode`               | *Number*  | n/a             | Set value in modelist dropdown in thermostat popup                            | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `targetTemperature`  | *Number*  | n/a             | Integer increments by 0.5 in thermostat popup `155` = `15.5`                  | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `currentTemperature` | *Number*  | n/a             | Integer in thermostat popup `138` = `13.8`                                    | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `units`              | *String*  | n/a             | Suffix/unit in thermostat popup e.g. "°C"                                      | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `subLabel`           | *String*  | n/a             | String for additional tile information e.g. last updated "off just now"       | <Badge type="tip" text="Optional" vertical="bottom" />     |
+
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```cmnd/<device-client-id>```
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+### Control Screen:
+
+When you press the tile the thermostat popup screen will appear giving you the ability to interact with the thermostat controls.
+
+![TP32 Image Alt Text](/images/thermostat-popup.png) ![TP32 Image Alt Text](/images/thermostat-popup-selector.png)
+
+---
 
 # Global Command Payloads
 [comment]: <> ([TODO] Commands explanation)
