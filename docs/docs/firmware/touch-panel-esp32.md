@@ -9,9 +9,6 @@ tags: ["TAG1", "TAG2", "TAG3"]
 <!-- Board Image -->
 ![OXRS TP32 Firmware](/images/advert-tp32.png)
 
-<button-tile/>
-
-
 ## Introduction
 [comment]: <> ([TODO] Introduction)
 
