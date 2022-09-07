@@ -25,6 +25,12 @@ Example applications include: a light switch to control dimming or colour for mu
 [comment]: <> ([TODO] Getting started text)
 
 - [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
+- [Screen Payloads](/docs/firmware/touch-panel-esp32.html#)
+- [Device Payloads](/docs/firmware/touch-panel-esp32.html#)
+
+
+
+
 - [Global Command Payloads](/docs/firmware/touch-panel-esp32.html#global-command-payloads)
 - [State / Event Payloads](/docs/firmware/touch-panel-esp32.html#state-and-event-payloads)
 
@@ -77,11 +83,11 @@ Further documentation and some example Node-RED Flows will be made available to 
 | indicator | ![TP32 Image Alt Text](/images/indicator-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#indicator) |
 | colorPickerRgbCct <br><br> colorPickerRgb <br><br> colorPickerCct | ![TP32 Image Alt Text](/images/colorPicker-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgbcct)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgb)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickercct) |
 | dropDown | ![TP32 Image Alt Text](/images/dropdown-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#dropdown) |
-| keyPad <br><br> keyPadBlocking  | ![TP32 Image Alt Text](/images/keypad-tile-2.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypad)<br><br> [Get Started](/docs/firmware/touch-panel-esp32/#keypadblocking) |
 | remote | ![TP32 Image Alt Text](/images/remote-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#remote) |
 | link | ![TP32 Image Alt Text](/images/link-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#link) |
 | thermostat | ![TP32 Image Alt Text](/images/thermostat-arc-tile.png)|[Get Started](/docs/firmware/touch-panel-esp32/#thermostat) |
 
+<!-- | keyPad <br><br> keyPadBlocking  | ![TP32 Image Alt Text](/images/keypad-tile-2.png)|[Get Started](/docs/firmware/touch-panel-esp32/#keypad)<br><br> [Get Started](/docs/firmware/touch-panel-esp32/#keypadblocking) | -->
 
 # Tile Payloads
 [comment]: <> ([TODO] Explanation)
@@ -1378,7 +1384,7 @@ When you press the tile button the dropdown list screen will appear giving you t
 
 ---
 
-
+<!-- 
 ## keyPad
 
 ![TP32 Image Alt Text](/images/keypad-tile-1.png) ![TP32 Image Alt Text](/images/keypad-tile-2.png)
@@ -1532,9 +1538,9 @@ When you press the tile button the keypad screen will appear giving you the abil
 ![TP32 Image Alt Text](/images/keypad-screen-1.png) ![TP32 Image Alt Text](/images/keypad-screen-2.png)
 
 
----
+--- -->
 
-
+<!-- 
 ## keyPadBlocking
 
 ![TP32 Image Alt Text](/images/keypad-screen-1.png) ![TP32 Image Alt Text](/images/keypad-screen-2.png)
@@ -1618,30 +1624,49 @@ When you press the tile button the keypad screen will appear giving you the abil
 [comment]: <> (END of JSON Example)
 
 
----
+--- -->
 
 
 ## remote
 
-![TP32 Image Alt Text](/images/remote-tile.png)
+![TP32 Image Alt Text](/images/remote-tile.png) ![TP32 Image Alt Text](/images/remote-tile-active.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
-
- The remote tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-12}
 {
-  "tile": <number>,                 // Enter your tile number e.g. 1  
-  "style": "remote",        
-  "icon": "<icon_name>",            // Enter icon name e.g."_remote"
-  "label": "<label_text>"           // Enter label text e.g."Kodi TV" 
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "remote",
+          "icon": "_remote",
+          "label": "Kodi TV"
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type     | Options | Description                     |                                                            |
+|:---       |:---:     |:---:    |:---                             |:---                                                        |
+| `tile`    | *Number* | n/a     | Enter your tile number e.g. `1` | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`   | *String* | n/a     | Enter tile style name `remote`  | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`    | *String* | n/a     | Enter icon name e.g.`_remote`   | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`   | *String* | n/a     | Enter label text e.g.`Kodi TV`  | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -1650,26 +1675,53 @@ When you press the tile button the keypad screen will appear giving you the abil
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,                                                     // Screen number e.g. 1
-  "tile": <number>,                                                       // Tile number e.g. 1 
+  "screen": 1,
+  "tile": 1,
   "style": "remote",
-  "type": "home"|"info"|"back"|"list"|"ok"|"up"|"down"|"left"|"right",
-  "event": "single"|"hold"
+  "type": "up",
+  "event": "single"
 }
 ```
+
+
+### JSON parameters
+| Parameter     | Type                 | Options                                                                                               | Description                                                 |
+|:---           |:----:                |:---:                                                                                                  |:---                                                         |
+| `screen`      | *Number*             | n/a                                                                                                   | Screen number triggering state event                        |
+| `tile`        | *Number*             | n/a                                                                                                   | Tile number triggering state event                          |
+| `style`       | *String*             | n/a                                                                                                   | Tile style `remote`                                         |
+| `type`        | *String*             | `"home"` \| `"info"` \| `"back"` \| `"list"` \| `"ok"` \| `"up"` \| `"down"` \| `"left"` \| `"right"` | Indicates which mote button on the popup screen was pressed |
+| `event`       | *String*             | `"single"` \| `"hold"`                                                                                | `single` \| `hold` events                                   |
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-8}
 {
-  "screen": <number>,               // Screen number sending command to 
-  "tile": <number>,                 // Tile number sending command to  
-  "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter     | Type     | Options         | Description                                               |                                                            |
+|:---           |:---:     |:---:            |:---                                                       |:---                                                        |
+| `screen`      | *Number* | n/a             | Screen number sending command to                          | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`        | *Number* | n/a             | Tile number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `state`       | *String* | `"on"`\|`"off"` | Updated the tile state                                    | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `subLabel`    | *String* | n/a             | String for additional tile information e.g. "on just now" | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -1689,26 +1741,46 @@ When you press the tile button the remote screen will appear giving you the abil
 
 ## link
 
-![TP32 Image Alt Text](/images/link-tile.png)
+![TP32 Image Alt Text](/images/link-tile.png) ![TP32 Image Alt Text](/images/link-tile-active.png)
  
 [comment]: <> ([TODO] Tile introduction text goes here)
-
- The link tile style allows you to simply...
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json
+```json {7-13}
 {
-  "tile": <number>,                 // Enter your tile number e.g. 1  
-  "style": "link",        
-  "icon": "<icon_name>",            // Enter icon name e.g."_music"
-  "label": "<label_text>",          // Enter label text e.g."HiFi Controls"
-  "link": <number>                  // Number of screen which is loaded upon press event
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "link",
+          "icon": "_music",
+          "label": "HiFi Controls",
+          "link": 2
+        }
+      ]
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type     | Options | Description                                       |                                                            |
+|:---       |:---:     |:---:    |:---                                               |:---                                                        |
+| `tile`    | *Number* | n/a     | Enter your tile number e.g. `1`                   | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `style`   | *String* | n/a     | Enter tile style name `link`                      | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `icon`    | *String* | n/a     | Enter icon name e.g.`_music`                      | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `label`   | *String* | n/a     | Enter label text e.g.`HiFi Controls`              | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `link`    | *String* | n/a     | Number of screen which is loaded upon press event | <Badge type="warning" text="Required" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```conf/<device-client-id>```
@@ -1717,25 +1789,51 @@ When you press the tile button the remote screen will appear giving you the abil
 ::: code-group-item State
 ```json
 {
-  "screen": <number>,               // Screen number e.g. 1
-  "type":"screen",                  // Tile number e.g. 1           
+  "screen": 1,
+  "type": "screen",          
   "event":"change",
   "state":"loaded"
 }
 ```
+
+
+### JSON parameters
+| Parameter | Type     | Options                    | Description                          |
+|:---       |:----:    |:---:                       |:---                                  |
+| `screen`  | *Number* | n/a                        | Screen number triggering state Event |
+| `type`    | *String* | n/a                        |                                      |
+| `event`   | *String* | n/a                        | `change` events                      |
+| `state`   | *String* | `"loaded"` \| `"unloaded"` | `loaded` \| `unloaded` events        |
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```stat/<device-client-id>```
 :::
 
 ::: code-group-item Command
-```json
+```json {3-8}
 {
-  "screen": <number>,               // Screen number sending command to 
-  "tile": <number>,                 // Tile number sending command to  
-  "subLabel": "<subLabel_text>"     // String for additional tile information e.g. last updated "15 mins ago" 
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
+
+
+### JSON parameters
+| Parameter     | Type     | Options         | Description                                               |                                                            |
+|:---           |:---:     |:---:            |:---                                                       |:---                                                        |
+| `screen`      | *Number* | n/a             | Screen number sending command to                          | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`        | *Number* | n/a             | Tile number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `state`       | *String* | `"on"`\|`"off"` | Updated the tile state                                    | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `subLabel`    | *String* | n/a             | String for additional tile information e.g. "on just now" | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -1888,20 +1986,14 @@ When you press the tile the thermostat popup screen will appear giving you the a
 
 ---
 
-# Global Command Payloads
+# Screen Payloads
 [comment]: <> ([TODO] Commands explanation)
-Commands explanation text goes here...
-
-<Badge type="warning" text="MQTT Command Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-
-
+These payloads are specific to the screen object.
 
 ## Set footer
 [comment]: <> ([TODO] Set Footer explanation text goes here)
-Set Footer explanation text goes here...
 
+![TP32 Image Alt Text](/images/footer-screen.png) ![TP32 Image Alt Text](/images/footer-screen-2.png)
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -1910,16 +2002,26 @@ Set Footer explanation text goes here...
 {
   "screens":[
     {
-      "screen": <number>,
+      "screen": 1,
       "footer":{
-        "left": "<text>",
-        "center": "<text>",
-        "right": "<text>"
+        "left": "Wed 07 Sep",
+        "center": "",
+        "right": "20:49pm"
       }
     }
   ]
 }
 ```
+### JSON parameters
+| Parameter | Type     | Options | Description                                              |                                                            |
+|:---       |:---:     |:---:    |:---                                                      |:---                                                        |
+| `screen`  | *Number* | n/a     | Screen number sending command to                         | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `footer`  | *Object* | n/a     |                                                          | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `left`    | *String* | n/a     | Left aligned String for additional tile information      | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `center`  | *String* | n/a     | Centrally aligned String for additional tile information | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+| `right`   | *String* | n/a     | Right aligned String for additional tile information     | <Badge type="tip" text="Optional" vertical="bottom" />     |  
+
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -1935,62 +2037,37 @@ Missing key shows the default icon/string (empty) hides the default icon/string 
 :::
 
 
-## Set icon color
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
+## Set screen background color
+[comment]: <> ([TODO] Set Footer explanation text goes here)
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 ::: code-group-item Command
-```json
+```json {3-10}
 {
-  "tiles":[
+  "screens":[
     {
-      "screen": <number>,
-      "tile": <number>,
-      "colorRgb":{
-        "r": <number>,
-        "g": <number>,
-        "b": <number>
+      "screen": 1,
+      "backgroundColorRgb":{
+        "r": 255,
+        "g": 0,
+        "b": 0
       }
     }
   ]
 }
 ```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
 
 
-::: tip
-``<number>``  value between 0 .. 255  [r, g, b]
-:::
+### JSON parameters
+| Parameter            | Type     | Options | Description                       |                                                               |
+|:---                  |:---:     |:---:    |:---                               |:---                                                           |
+| `screen`             | *Number* | n/a     | Screen number sending command to  | <Badge type="warning" text="Required" vertical="bottom" />    |  
+| `backgroundColorRgb` | *Object* | n/a     |                                   | <Badge type="warning" text="Required" vertical="bottom" />    |
+| `r`                  | *Number* | n/a     | Red colour Number between 0-255   | <Badge type="warning" text="Required" vertical="bottom" />    |
+| `g`                  | *Number* | n/a     | Green colour Number between 0-255 | <Badge type="warning" text="Required" vertical="bottom" />    | 
+| `b`                  | *Number* | n/a     | Blue colour Number between 0-255  | <Badge type="twarningip" text="Required" vertical="bottom" /> |
 
-
-
-## Set icon
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "icon": "<name>"
-    }
-  ]
-}
-```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 ```cmnd/<device-client-id>```
@@ -1999,14 +2076,21 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 ::: tip
-``<name>``  name of icon as stored in list (built-in or custom)
+
+``<text>`` supports coloring using``"#RRGGBB <text>#"`` tags where RRGGBB are hex, e.g. ``“#FF0000 RED#”``. 
+
+Missing key shows the default icon/string (empty) hides the default icon/string ``"<any text>"`` replaces the default icon/string with ``"<any text>"`` an empty list ``"footer":{}`` resets all to default
 :::
 
 
+# Device Payloads
+[comment]: <> ([TODO] Commands explanation)
+These payloads are specific to the screen object.
 
-## Set subLabel
+
+## Control the backlight
 [comment]: <> ([TODO] Explanation)
-Explanation text goes here...
+The backlight level can be set via the slider on the settings screen or with an MQTT Payload.
 
 
 [comment]: <> (START of JSON Example)
@@ -2014,378 +2098,8 @@ Explanation text goes here...
 ::: code-group-item Command
 ```json
 {
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "subLabel": "<text>"
-    }
-  ]
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## Set a background image
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen":"<number>",
-      "tile":"<number>",
-      "backgroundImage":{
-        "imageBase64":"<encodeBase64(.png)>",
-        "zoom":"<number>",
-        "angle":"<number>",
-        "offset":[
-          "<x number>",
-          "<y number>"
-        ]
-      }
-    }
-  ]
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-##  Set text to replace the icon
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen":<number>,
-      "tile":<number>,
-      "text":"<text>"
-    }
-  ]
-} 
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## Set a value and units to replace the icon
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "number": {
-        "value": "<value-text>",        // Formatted value to display e.g. "22.9" (restricted to "0...9 + - . :")
-        "units": "<units-text>",        // Optional suffix/unit e.g. "%"
-        "subValue": "<sub-value-text>", // Optional formatted sub-value to display (smaller font under main value)
-        "subUnits": "<sub-units-text>"  // Optional suffix/unit
-      }
-    }
-  ]
-}   
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## Set a level value
-[comment]: <> ([TODO] Explanation)
-(for buttonLevelUp and buttonLevelDown)
-
-
-Explanation text goes here...
-
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "level": <number>
-    }
-  ]
-}  
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## Set items in drop down list
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "dropDownList": ["list-item"],     // List items Array of Strings ["item-1", "item-2", "item-3"]
-    }
-  ]
-} 
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-## Set index to selected list item
-[comment]: <> ([TODO] Explanation)
-(will be shown on parent tile)
-
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "dropDownSelect": <number>
-    }
-  ]
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-::: tip
-``<number>`` index to selected list item
-:::
-
-
-
-## Set a label for the drop down list
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "dropDownLabel": "<text>"
-    }
-  ]
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-::: tip
-``<text>`` shows fixed text instead of selection in top row
-:::
-
-
-
-## Populate the selectorList
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "selectorList": ["list-item"],     // List items Array of Strings ["item-1", "item-2", "item-3"]
-    }
-  ]
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-::: tip
-
-Populate the selector list with items and enable the selector feature for this tile: ``buttonUpDown``, ``-LeftRight``, ``-PrevNext``
-:::
-
-
-
-## Set index to selected selector list item
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (END of JSON Example)
-
-
-::: tip
-``<text>`` shows fixed text instead of selection in top row
-:::
-
-
-
-## Populate the selectorList
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "selectorSelect": <number>
-    }
-  ]
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-::: tip
-``<number>`` index to selected list item
-:::
-
-
-
-## Set values for colorPicker
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "colorPicker":{
-        "mode": "colorKelvin"|"colorRgb",
-        "colorKelvin": <number>,
-        "colorRgb":{
-          "r": <number>,
-          "g": <number>,
-          "b": <number>
-        },
-        "brightness": <number>
-      }
-    }
-  ]
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## Load a screen
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "screen":{
-    "load": <number>
+  "backlight":{
+    "brightness": <number>
   }
 }
 ```
@@ -2393,13 +2107,27 @@ Explanation text goes here...
 
 ```cmnd/<device-client-id>```
 :::
+::: code-group-item State
+```json
+{
+  "type": "backlight",
+  "event": "change",
+  "state": "sleep"|"awake",
+  "brightness": <number>
+}
+```
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```stat/<device-client-id>```
+:::
 ::::
 [comment]: <> (END of JSON Example)
 
-
 ::: tip
-``<number>`` screen number between 1 .. 32    
+``<number>`` number between 1 .. 100 [%]
 :::
+
+The backlight state can be set to on or off. Additionally a "Screen Sleep Timeout" can be set via the Admin UI config page. 
 
 
 
@@ -2423,29 +2151,18 @@ Explanation text goes here...
 
 ```cmnd/<device-client-id>```
 :::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## Send feedback to open keyPad
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
+::: code-group-item State
 ```json
 {
-  "keyPad":{
-    "state": "locked"|"unlocked"|"failed"|"close"
-  }
+  "screen": <number>,
+  "type": "message",
+  "event": "close"|"open",
+  "state": "closed"|"open"
 }
 ```
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<device-client-id>```
+```stat/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -2477,366 +2194,6 @@ Explanation text goes here...
 
 
 
-## Control the backlight
-[comment]: <> ([TODO] Explanation)
-The backlight level can be set via the slider on the settings screen or with an MQTT Payload.
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "backlight":{
-    "brightness": <number>
-  }
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-::: tip
-``<number>`` number between 1 .. 100 [%]
-:::
-
-The backlight state can be set to on or off. Additionally a "Screen Sleep Timeout" can be set via the Admin UI config page. 
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "backlight":{
-    "state": "sleep"|"awake"
-  }
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-# State and Event Payloads
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-
-## Remote :
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-
-::: code-group-item State
-```json
-{
-  "screen": <number>,
-  "tile": <number>,
-  "style": "remote",
-  "type": "up"|"down"|"left"|"right"|"ok"|"info"|"list"|"back"|"home"
-  "event":"single"|"hold"
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## DropDown :
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-
-::: code-group-item State
-```json
-{
-  "screen":<number>,
-  "tile":<number>,
-  "style":"dropDown",
-  "type":"dropDown",
-  "event":"selection",
-  "state":<number>
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## Selector :
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-
-::: code-group-item State
-```json
-{
-  "screen": <number>,
-  "tile": <number>,
-  "style": "<style>",
-  "type": "selector",
-  "event": "selection",
-  "state": <number>
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## KeyPad :
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-
-::: code-group-item State
-```json
-{
-  "screen": <number>,
-  "tile": <number>,
-  "style": "keyPad"|"keyPadBlocking",
-  "type": "button",
-  "event": "key",
-  "state": "on"|"off",
-  "keyCode": "<text>"
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## PrevNext , UpDown, LeftRight :
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-
-::: code-group-item State
-```json
-{
-  "screen": <number>,
-  "tile": <number>,
-  "style": "<style>",
-  "type": "<type>",
-  "event": "single"|"hold"
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-::: tip
-``<type>`` depends on the ``<style>`` chosen see table below:
-|Type| Style Dependancy |
-| :---- |:----|
-|``"buttonUpDown"``|``"up"\|"down"``|
-|``"buttonLeftRight"``|``"left"\|"right"``|
-|``"buttonPrevNext"``|``"prev"\|"next"``|
-
-:::
-
-
-
-## LevelEvent :
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-
-::: code-group-item State
-```json
-{
-  "screen": <number>,
-  "tile": <number>,
-  "style": "<style>",
-  "type": "level",
-  "event": "up"|"down",
-  "state": <number>
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-::: tip
-|Type| Event | |
-| :---- |:----|:---|
-|``"level"``|``"up"``| level+ |
-|``"level"``|``"down"``| level- |
-:::
-
-
-
-## ColorPickerEvent :
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-
-::: code-group-item State
-```json
-{
-  "screen": <number>,
-  "tile": <number>,
-  "style": "<style>",
-  "type": "colorPicker",
-  "event": "change",
-  "state":{
-    "colorRgb":{
-      "r": <number>,
-      "g": <number>,
-      "b": <number>
-    },
-    "colorKelvin": "<value>",
-    "brightness": "<value>"
-  }
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## ScreenChange :
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-
-::: code-group-item State
-```json
-{
-  "screen": <number>,
-  "type": "screen",
-  "event": "change",
-  "state": "loaded"|"unloaded"
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-:::
-
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## Backlight Change:
-[comment]: <> ([TODO] Explanation)
-Changing the backlight level or state will generate a change event message containing the backlight state and brightness level. Sleep state events will return a brightness of 0.
-
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-
-::: code-group-item State
-```json
-{
-  "type": "backlight",
-  "event": "change",
-  "state": "sleep"|"awake",
-  "brightness": <number>
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-:::
-
-::::
-[comment]: <> (END of JSON Example)
-
-
-
-## Message popup:
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
-
-
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-
-::: code-group-item State
-```json
-{
-  "screen": <number>,
-  "type": "message",
-  "event": "close"|"open",
-  "state": "closed"|"open"
-}
-```
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```stat/<device-client-id>```
-:::
-
-::::
-[comment]: <> (END of JSON Example)
-
-
 ## Custom Icons
 * Custom icons have to be downloaded before they can be used
 * Configure a tile after the custom icons have been loaded
@@ -2864,8 +2221,8 @@ The Touch Panel firmware implements the standard [OXRS REST API](/docs/libraries
 The [OXRS Admin UI](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP) uses this REST API and is a great place to start with when setting up your device for the first time.
 
 
-### Custom APIs
-Some extra REST API endpoints have been added to the Touch Panel firmware, these are listed below with a brief explanation;
+### API Endpoints
+REST API endpoints have been added to the Touch Panel firmware, these are listed below with a brief explanation;
 
 HTTP <Badge type="tip" text="GET" vertical="middle" /> 
 
