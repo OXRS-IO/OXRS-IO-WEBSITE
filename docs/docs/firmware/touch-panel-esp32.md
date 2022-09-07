@@ -1982,7 +1982,7 @@ When you press the tile the thermostat popup screen will appear giving you the a
 ---
 
 # Screen Payloads
-[comment]: <> ([TODO] Commands explanation)
+[comment]: <> ([TODO] Screen Payloads explanation)
 These payloads are specific to the screen object.
 
 ## Set footer
@@ -2033,23 +2033,18 @@ Missing key shows the default icon/string (empty) hides the default icon/string 
 
 
 ## Set screen background color
-[comment]: <> ([TODO] Set Footer explanation text goes here)
+[comment]: <> ([TODO] Set screen background color explanation text goes here)
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 ::: code-group-item Command
 ```json {3-10}
 {
-  "screens":[
-    {
-      "screen": 1,
-      "backgroundColorRgb":{
-        "r": 255,
-        "g": 0,
-        "b": 0
-      }
-    }
-  ]
+  "backgroundColorRgb":{
+    "r": 255,
+    "g": 0,
+    "b": 0
+  }
 }
 ```
 
@@ -2079,9 +2074,8 @@ Missing key shows the default icon/string (empty) hides the default icon/string 
 
 
 # Device Payloads
-[comment]: <> ([TODO] Commands explanation)
+[comment]: <> ([TODO] Device Payloads explanation)
 These payloads are specific to the screen object.
-
 
 ## Control the backlight
 [comment]: <> ([TODO] Explanation)
