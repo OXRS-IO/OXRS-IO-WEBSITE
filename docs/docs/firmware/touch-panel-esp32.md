@@ -2038,7 +2038,7 @@ Missing key shows the default icon/string (empty) hides the default icon/string 
 [comment]: <> (START of JSON Example)
 :::: code-group
 ::: code-group-item Command
-```json {3-10}
+```json
 {
   "backgroundColorRgb":{
     "r": 255,
@@ -2065,12 +2065,6 @@ Missing key shows the default icon/string (empty) hides the default icon/string 
 ::::
 [comment]: <> (END of JSON Example)
 
-::: tip
-
-``<text>`` supports coloring using``"#RRGGBB <text>#"`` tags where RRGGBB are hex, e.g. ``“#FF0000 RED#”``. 
-
-Missing key shows the default icon/string (empty) hides the default icon/string ``"<any text>"`` replaces the default icon/string with ``"<any text>"`` an empty list ``"footer":{}`` resets all to default
-:::
 
 
 # Device Payloads
