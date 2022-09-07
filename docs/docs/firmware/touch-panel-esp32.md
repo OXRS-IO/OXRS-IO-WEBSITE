@@ -25,14 +25,9 @@ Example applications include: a light switch to control dimming or colour for mu
 [comment]: <> ([TODO] Getting started text)
 
 - [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
-- [Screen Payloads](/docs/firmware/touch-panel-esp32.html#)
-- [Device Payloads](/docs/firmware/touch-panel-esp32.html#)
+- [Screen Payloads](/docs/firmware/touch-panel-esp32.html#screen-payloads)
+- [Device Payloads](/docs/firmware/touch-panel-esp32.html#device-payloads)
 
-
-
-
-- [Global Command Payloads](/docs/firmware/touch-panel-esp32.html#global-command-payloads)
-- [State / Event Payloads](/docs/firmware/touch-panel-esp32.html#state-and-event-payloads)
 
 ### Prerequisites:
 - WT32-SC01 ESP32 TFT [Read more](/add-ons/touch-displays/wt32-sc01)
