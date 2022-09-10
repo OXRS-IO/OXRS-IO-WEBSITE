@@ -2032,12 +2032,16 @@ Missing key shows the default icon/string (empty) hides the default icon/string 
 :::
 
 
-## Set screen background color
-[comment]: <> ([TODO] Set screen background color explanation text goes here)
+# Device Payloads
+[comment]: <> ([TODO] Device Payloads explanation)
+These are configuration and command payloads for the device itself.
+
+## Set the background color
+RGB color of all screen backgrounds (defaults to black - R0, G0, B0).
 
 [comment]: <> (START of JSON Example)
 :::: code-group
-::: code-group-item Command
+::: code-group-item Config
 ```json
 {
   "backgroundColorRgb":{
@@ -2048,28 +2052,103 @@ Missing key shows the default icon/string (empty) hides the default icon/string 
 }
 ```
 
-
 ### JSON parameters
 | Parameter            | Type     | Options | Description                       |                                                               |
 |:---                  |:---:     |:---:    |:---                               |:---                                                           |
-| `screen`             | *Number* | n/a     | Screen number sending command to  | <Badge type="warning" text="Required" vertical="bottom" />    |  
-| `backgroundColorRgb` | *Object* | n/a     |                                   | <Badge type="warning" text="Required" vertical="bottom" />    |
+| `backgroundColorRgb` | *Object* | n/a     |                                   | <Badge type="tip" text="Optional" vertical="bottom" />    |
 | `r`                  | *Number* | n/a     | Red colour Number between 0-255   | <Badge type="warning" text="Required" vertical="bottom" />    |
 | `g`                  | *Number* | n/a     | Green colour Number between 0-255 | <Badge type="warning" text="Required" vertical="bottom" />    | 
-| `b`                  | *Number* | n/a     | Blue colour Number between 0-255  | <Badge type="twarningip" text="Required" vertical="bottom" /> |
+| `b`                  | *Number* | n/a     | Blue colour Number between 0-255  | <Badge type="warning" text="Required" vertical="bottom" /> |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-```cmnd/<device-client-id>```
+```conf/<device-client-id>```
 :::
 ::::
 [comment]: <> (END of JSON Example)
 
 
+## Set the "on" icon color
+RGB color of icon when 'on' (defaults to light green - R91, G190, B91).
 
-# Device Payloads
-[comment]: <> ([TODO] Device Payloads explanation)
-These payloads are specific to the screen object.
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+```json
+{
+  "iconOnColorRgb":{
+    "r": 255,
+    "g": 0,
+    "b": 0
+  }
+}
+```
+
+### JSON parameters
+| Parameter            | Type     | Options | Description                       |                                                               |
+|:---                  |:---:     |:---:    |:---                               |:---                                                           |
+| `iconOnColorRgb`     | *Object* | n/a     |                                   | <Badge type="tip" text="Optional" vertical="bottom" />    |
+| `r`                  | *Number* | n/a     | Red colour Number between 0-255   | <Badge type="warning" text="Required" vertical="bottom" />    |
+| `g`                  | *Number* | n/a     | Green colour Number between 0-255 | <Badge type="warning" text="Required" vertical="bottom" />    | 
+| `b`                  | *Number* | n/a     | Blue colour Number between 0-255  | <Badge type="warning" text="Required" vertical="bottom" /> |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```conf/<device-client-id>```
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+
+## Home screen timeout
+Return to home screen after a period of in-activity (defaults to 0 which disables the timeout). Must be a number between 0 and 600 (i.e. 10 minutes).
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+```json
+{
+  "noActivitySecondsToHome": 60
+}
+```
+
+### JSON parameters
+| Parameter                 | Type     | Options | Description                            |                                                           |
+|:---                       |:---:     |:---:    |:---                                    |:---                                                       |
+| `noActivitySecondsToHome` | *Object* | n/a     |Return to home screen after in-activity | <Badge type="tip" text="Optional" vertical="bottom" />    |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```conf/<device-client-id>```
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+
+## Screen sleep timeout
+Turn off screen backlight after a period of in-activity (defaults to 0 which disables the timeout). Must be a number between 0 and 3600 (i.e. 1 hour).
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+```json
+{
+  "noActivitySecondsToSleep": 60
+}
+```
+
+### JSON parameters
+| Parameter                   | Type     | Options | Description                          |                                                           |
+|:---                         |:---:     |:---:    |:---                                  |:---                                                       |
+| `noActivitySecondsToSleep`  | *Object* | n/a     |Turn off backlight after in-activity  | <Badge type="tip" text="Optional" vertical="bottom" />    |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```conf/<device-client-id>```
+:::
+::::
+[comment]: <> (END of JSON Example)
+
 
 ## Control the backlight
 [comment]: <> ([TODO] Explanation)
