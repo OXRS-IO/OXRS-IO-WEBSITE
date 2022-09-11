@@ -2192,7 +2192,6 @@ The backlight level can be set via the slider on the settings screen or with an 
 The backlight state can be set to on or off. Additionally a "Screen Sleep Timeout" can be set via the Admin UI config page. 
 
 
-
 ## Show a message in modal pop-up
 [comment]: <> ([TODO] Explanation)
 Explanation text goes here...
@@ -2230,11 +2229,12 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
-
 ## Add a custom icon
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
+There are a limited set of built-in icons available, but it is possible to upload custom icons for use in your tile configuration. The built-in icons are sourced from [icons8.com](https://icons8.com/icon/set/ios/ios) but you can use any icon you want. This provides a great way to customise your touch panel.
 
+::: tip
+Custom icons are **not persistent** and have to be (re)loaded after restart and before they can be used in any configuration. 
+:::
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -2255,26 +2255,23 @@ Explanation text goes here...
 [comment]: <> (END of JSON Example)
 
 
+### How to prepare an icon for use
+* Custom icons need to be in .PNG format
+* Custom icons appear in alphabetical order after the built-in icons (which are preceded with "_")
+* Icon upload is performed using the [`addIcon`](/docs/firmware/touch-panel-esp32.html#add-a-custom-icon) command
+* To upload via MQTT the icon has to be Base64 encoded using one of the following methods;
+  * Use the [OXRS Icon Generator](/tools/icon-generator.html) which generates the required JSON payload ready-to-use
+  * Use an online converter like [base64encode.org](https://www.base64encode.org/)
+  * Use Node-RED [node-red-node-base64](https://flows.nodered.org/node/node-red-node-base64) for automated conversion
+* Ensure there is no extra information added to the Base64 encoded file
+* The encoded image should not exceed 4KB to avoid crashes
+* If using the AdminUI, after uploading a custom icon the "Edit Config" page needs to be refreshed to update the icon list
 
-## Custom Icons
-* Custom icons have to be downloaded before they can be used
-* Configure a tile after the custom icons have been loaded
-* If using AdminUI, the “Edit Config” has to be refreshed to make the new icon appear in the icon list
-* On the fly loaded or changed icons are shown on their tile(s) only after the ``cmnd/``  “Set icon for state” with  ``“state”:”on”``  and ``“state”:”off”``  has been sent for all tiles having this icon
-
-### Notes on how to prepare an icon for use;
-
-* Built-in icons are sourced from [icons8.com](https://icons8.com/icon/set/ios/ios), style ios / outline
-* The tile layout is optimised for a size of 60x60 pixels
+### Icon size and alignment
+* The tile layout is optimised for 60x60 pixel icons
+* Max icon size is approx. 140x140 pixels (the tile size)
+* Icons are aligned top/left of a tile
 * There are no size checks for custom icons
-* Icons are aligned top/left of a tile. Up to approx. 140x140 pixel would fit on a tile
-* The encoded image size should not exceed 4k to avoid crashes (TBD)
-* Custom icons have to be .png files
-* For download via mqtt/json the binary .png has to be encoded Base64
-* Online converter like [base64encode.org](https://www.base64encode.org/) can be used, or you can tru our new online convertor which also generates the Json Object required which can be easily copy & pasted into your payload [OXRS Icon Generator](/tools/icon-generator.html). Alternativley for automation there is a Base64 node for NR. Make sure there is no extra information added to the Base64 encoded file.
-* Icon download is performed via [“addIcon” command](/docs/firmware/touch-panel-esp32.html#add-a-custom-icon)
-* The added icons appear in alphabetical order after the built-in icons (which are preceded with "_")
-* Custom icons are not persistent, they need to be reloaded after restart, and (stored) config needs to be resent to allow the custom icons to be used
 
 
 ## API
@@ -2305,9 +2302,9 @@ Download the latest version of the firmware on [Github](https://github.com/OXRS-
 
 ### Credits
  - Moin [Github](https://github.com/moinmoin-sh)
+ - Aaron Knox [Github](https://github.com/MakerDockio)
  - Ben Jones [Github](https://github.com/sumnerboy12)
- - Austin's Creations [Maker Website](https://www.austinscreations.ca/)
-
+ 
  ---
 
 
