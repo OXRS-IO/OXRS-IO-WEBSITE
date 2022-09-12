@@ -1981,9 +1981,131 @@ When you press the tile the thermostat popup screen will appear giving you the a
 
 ---
 
+## Common Payloads
+[comment]: <> ([TODO] Common Payloads explanation)
+These commands are common to all tile styles.
+
+## Set the background color
+RGB color for a tile background (defaults to the parent screen background color).
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Command
+```json
+{
+  "tiles":[
+    {
+      "screen": 1,
+      "tile": 1,
+      "backgroundColorRgb":{
+        "r": 255,
+        "g": 0,
+        "b": 0
+      }
+    }
+  ]
+}
+```
+
+### JSON parameters
+| Parameter            | Type     | Options | Description                       |                                                            |
+|:---                  |:---:     |:---:    |:---                               |:---                                                        |
+| `screen`             | *Number* | n/a     | Screen number sending command     | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`               | *Number* | n/a     | Tile number sending command       | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `backgroundColorRgb` | *Object* | n/a     |                                   | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `r`                  | *Number* | n/a     | Red colour Number between 0-255   | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `g`                  | *Number* | n/a     | Green colour Number between 0-255 | <Badge type="warning" text="Required" vertical="bottom" /> | 
+| `b`                  | *Number* | n/a     | Blue colour Number between 0-255  | <Badge type="warning" text="Required" vertical="bottom" /> |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```cmnd/<device-client-id>```
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+
+## Set the icon color
+RGB color for a tile icon (defaults to white if the tile state is "off", or the configured device "on" icon color if the tile state is "on").
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Command
+```json
+{
+  "tiles":[
+    {
+      "screen": 1,
+      "tile": 1,
+      "iconColorRgb":{
+        "r": 255,
+        "g": 0,
+        "b": 0
+      }
+    }
+  ]
+}
+```
+
+### JSON parameters
+| Parameter            | Type     | Options | Description                       |                                                            |
+|:---                  |:---:     |:---:    |:---                               |:---                                                        |
+| `screen`             | *Number* | n/a     | Screen number sending command     | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`               | *Number* | n/a     | Tile number sending command       | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `iconColorRgb`       | *Object* | n/a     |                                   | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `r`                  | *Number* | n/a     | Red colour Number between 0-255   | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `g`                  | *Number* | n/a     | Green colour Number between 0-255 | <Badge type="warning" text="Required" vertical="bottom" /> | 
+| `b`                  | *Number* | n/a     | Blue colour Number between 0-255  | <Badge type="warning" text="Required" vertical="bottom" /> |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```cmnd/<device-client-id>```
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+
 # Screen Payloads
 [comment]: <> ([TODO] Screen Payloads explanation)
-These payloads are specific to the screen object.
+These commands are specific to an individual screen.
+
+## Set the background color
+RGB color for a screen background (defaults to the configured device background color).
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Command
+```json
+{
+  "screens":[
+    {
+      "screen": 1,
+      "backgroundColorRgb":{
+        "r": 255,
+        "g": 0,
+        "b": 0
+      }
+    }
+  ]
+}
+```
+
+### JSON parameters
+| Parameter            | Type     | Options | Description                       |                                                               |
+|:---                  |:---:     |:---:    |:---                               |:---                                                           |
+| `screen`             | *Number* | n/a     | Screen number sending command to  | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `backgroundColorRgb` | *Object* | n/a     |                                   | <Badge type="warning" text="Required" vertical="bottom" />    |
+| `r`                  | *Number* | n/a     | Red colour Number between 0-255   | <Badge type="warning" text="Required" vertical="bottom" />    |
+| `g`                  | *Number* | n/a     | Green colour Number between 0-255 | <Badge type="warning" text="Required" vertical="bottom" />    | 
+| `b`                  | *Number* | n/a     | Blue colour Number between 0-255  | <Badge type="warning" text="Required" vertical="bottom" /> |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```cmnd/<device-client-id>```
+:::
+::::
+[comment]: <> (END of JSON Example)
+
 
 ## Set footer
 [comment]: <> ([TODO] Set Footer explanation text goes here)
@@ -2037,7 +2159,12 @@ Missing key shows the default icon/string (empty) hides the default icon/string 
 These are configuration and command payloads for the device itself.
 
 ## Set the background color
-RGB color of all screen backgrounds (defaults to black - R0, G0, B0).
+Default RGB color for screen backgrounds (defaults to black - R0, G0, B0). If there is no explicit screen or tile background color defined then this is the fallback color used to render a screen or tile. 
+
+
+::: tip
+The configured background color has the lowest precendence and will only be used if no background color has been set for the screen or tile being displayed.
+:::
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -2055,10 +2182,10 @@ RGB color of all screen backgrounds (defaults to black - R0, G0, B0).
 ### JSON parameters
 | Parameter            | Type     | Options | Description                       |                                                               |
 |:---                  |:---:     |:---:    |:---                               |:---                                                           |
-| `backgroundColorRgb` | *Object* | n/a     |                                   | <Badge type="tip" text="Optional" vertical="bottom" />    |
+| `backgroundColorRgb` | *Object* | n/a     |                                   | <Badge type="warning" text="Required" vertical="bottom" />    |
 | `r`                  | *Number* | n/a     | Red colour Number between 0-255   | <Badge type="warning" text="Required" vertical="bottom" />    |
 | `g`                  | *Number* | n/a     | Green colour Number between 0-255 | <Badge type="warning" text="Required" vertical="bottom" />    | 
-| `b`                  | *Number* | n/a     | Blue colour Number between 0-255  | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `b`                  | *Number* | n/a     | Blue colour Number between 0-255  | <Badge type="warning" text="Required" vertical="bottom" />    |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -2087,10 +2214,10 @@ RGB color of icon when 'on' (defaults to light green - R91, G190, B91).
 ### JSON parameters
 | Parameter            | Type     | Options | Description                       |                                                               |
 |:---                  |:---:     |:---:    |:---                               |:---                                                           |
-| `iconOnColorRgb`     | *Object* | n/a     |                                   | <Badge type="tip" text="Optional" vertical="bottom" />    |
+| `iconOnColorRgb`     | *Object* | n/a     |                                   | <Badge type="warning" text="Required" vertical="bottom" />    |
 | `r`                  | *Number* | n/a     | Red colour Number between 0-255   | <Badge type="warning" text="Required" vertical="bottom" />    |
 | `g`                  | *Number* | n/a     | Green colour Number between 0-255 | <Badge type="warning" text="Required" vertical="bottom" />    | 
-| `b`                  | *Number* | n/a     | Blue colour Number between 0-255  | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `b`                  | *Number* | n/a     | Blue colour Number between 0-255  | <Badge type="warning" text="Required" vertical="bottom" />    |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
