@@ -24,6 +24,8 @@ Example applications include: a light switch to control dimming or colour for mu
 ## Getting Started
 [comment]: <> ([TODO] Getting started text)
 
+- [Firmware Installation](/docs/firmware/touch-panel-esp32.html#firmware-installation)
+
 - [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
 - [Screen Payloads](/docs/firmware/touch-panel-esp32.html#screen-payloads)
 - [Device Payloads](/docs/firmware/touch-panel-esp32.html#device-payloads)
@@ -2400,6 +2402,27 @@ Custom icons are **not persistent** and have to be (re)loaded after restart and 
 * Icons are aligned top/left of a tile
 * There are no size checks for custom icons
 
+## Firmware Installation
+
+### Initial Set-up – Windows 10
+Workflow to commission a new Touch Panel:
+1.	[Download](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases) the most recent wifi or ethernet version of the compiled *OXRS-IO-TouchPanel-ESP32-FW* firmware to a work folder created for the commissioning process.
+2.	Connect the WT32-SC01 LCD dev board USB-C port to a USB connector on the Windows PC using a USB-C to USB-A cable (a USB-C to USB-C cable doesn’t appear to work).
+3.	Ensure the LCD dev board power LED comes on and the screen displays the factory default page display sequence.
+4.	Open the ‘Device Manager’ app (i.e. Invoke Windows logo key+R, type in “devmgmt.msc” and the press Enter), navigate down the devices list to Universal Serial Bus controllers and right click on the USB Root Hub icon.
+5.	If the ‘Device status’ window in the USB Root Hub properties window shows “This device is working properly”, skip to step 8. below.
+6.	If the ‘USB Root Hub properties’ window indicates the ‘CP210x driver is missing’, download the [CP210x_Universal_Windows_Driver.zip](https://www.silabs.com/documents/public/software/CP210x_Universal_Windows_Driver.zip) file to your work folder, and extract its contents.
+7.	Locate the file *silabser.inf* within the extracted folder, right click on it and select *Install* in the pop-up menu. Then repeat step 5. above.
+8.	[Download](https://github.com/esphome/esphome-flasher/releases) the most recent Windows executable version of the *esphome-flasher* app and run it. (No need to install, it simply runs as an executable)
+9.	Use *esphome-flasher* to install the compiled firmware.
+10.	Connect your computer to the LCD dev board's on-board wiFi Access Point (it appear with an ssid *OXRS-WiFi*), and connect using the password "superhouse".
+11.	Using a *Chrome* or *Microsoft Edge* browser (*FireFox* does not appear to handle the rendered html properly), navigate to the IP address [192.168.4.1](http://192.168.4.1), at which point a device set-up menu screen should be displayed.
+12.	Clicking the [Configure WiFi](http://192.168.4.1/wifi) button will display a page enabling entry of your WiFi network *SSID* and *Password*.
+13. Once configured clicking the [Save](http://192.168.4.1/wifisave) button will set the WiFi configuration and the LCD Touchscreen should then connect and appear on your WiFi network. At this point the screen of the LCD Touchscreen will display a default page.
+14.	Touch the *Settings* cog icon at the bottom right of the screen to display the LCD Touchscreen's MAC address and DHCP allocated IP address.
+15.	If you have not already done so, [download](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP) the *OXRS Web based administrator UI* `index.html` file onto to your local machine and open it using your favourite web browser.
+16. Using the displayed *OXRS Admin* UI page, insert the IP address displayed on the LCD Touchscreen's *Settings* screen in the *Device address* field, then choose *Setup MQTT* menu option in the *Action* field, and click the *Select* button.
+17.	Fill out the *MQTT Configuration* fields displayed to input your MQTT broker settings, and click the *Submit* button. The LCD Touchscreen *Settings* page should now confirm the MQTT broker connection, and the yellow warning triangle displayed on the main default screen should now have disappeared.
 
 ## API
 The Touch Panel firmware implements the standard [OXRS REST API](/docs/libraries/esp32-api-library.html) endpoints. This allows you to configure the device, send commands, as well as perform OTA updates, restarts and factory resets.
