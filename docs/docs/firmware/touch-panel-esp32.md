@@ -2406,7 +2406,7 @@ Custom icons are **not persistent** and have to be (re)loaded after restart and 
 
 ### Initial Set-up – Windows 10
 Workflow to commission a new Touch Panel:
-1.	[Download](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases) the most recent wifi or ethernet version of the compiled *oxrs-io-touchpanel-esp32-fw* firmware to a work folder created for the commissioning process.
+1.	[Download](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases) the most recent wifi or ethernet version of the compiled *OXRS-IO-TouchPanel-ESP32-FW* firmware to a work folder created for the commissioning process.
 2.	Connect the WT32-SC01 LCD dev board USB-C port to a USB connector on the Windows PC using a USB-C to USB-A cable (a USB-C to USB-C cable doesn’t appear to work).
 3.	Ensure the LCD dev board power LED comes on and the screen displays the factory default page display sequence.
 4.	Open the ‘Device Manager’ app (i.e. Invoke Windows logo key+R, type in “devmgmt.msc” and the press Enter), navigate down the devices list to Universal Serial Bus controllers and right click on the USB Root Hub icon.
