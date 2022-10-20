@@ -2415,7 +2415,7 @@ Workflow to commission a new Touch Panel:
 7.	Locate the file `silabser.inf` within the extracted folder, right click on it and select *Install* in the pop-up menu. Then repeat step 5. above.
 8.	[Download](https://github.com/esphome/esphome-flasher/releases) the most recent Windows executable version of the *esphome-flasher* app and run it. (No need to install, it simply runs as an executable)
 9.	Use *esphome-flasher* to install the compiled firmware.
-10.	Assuming the *esphome-flasher* log window has confirmed the flashing was successful; if you are intending to couple the LCD Touch Screen to an [Ethernet shield](https://www.austinscreations.ca/oxrs), skip now to step 14. below.
+10.	Assuming the *esphome-flasher* log window has confirmed the flashing was successful; if you are intending to couple the LCD Touch Screen to an [Ethernet shield](https://www.austinscreations.ca/oxrs), skip now to step 15. below.
 11. Connect your computer to the LCD dev board's on-board wiFi Access Point (it appear with the ssid *OXRS-WiFi*), and connect using the password "superhouse".
 12.	Using a *Chrome* or *Microsoft Edge* browser (*FireFox* does not appear to handle the rendered html properly), navigate to the IP address [192.168.4.1](http://192.168.4.1), at which point a device set-up menu screen should be displayed.
 13.	Clicking the [Configure WiFi](http://192.168.4.1/wifi) button will display a page enabling entry of your WiFi network *SSID* and *Password*.
