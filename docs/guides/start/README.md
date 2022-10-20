@@ -22,6 +22,9 @@ These docs are work in progress, if you have any issues getting things setup dro
 
 ## Displays
 
+## Touch Screen Displays
+A tutorial guiding intial [firmware installation](/docs/firmware/touch-panel-esp32.html#firmware-installation)on the [OXRS Touch Panel ESP32](/docs/firmware/touch-panel-esp32.html) device can be found [here](/docs/firmware/touch-panel-esp32.html#firmware-installation).
+
 ## Cases
 
 ## Firmware
