@@ -2105,7 +2105,7 @@ Removes a screen from the configuration.
 
 Removing a screen removes all tiles on this screen as well.
 
-Removing sreen 1 (Home Screen) technically removes screen 1 and creates an empty screen 1 (Home Screen)
+Removing screen 1 (Home Screen) technically removes screen 1 and creates an empty screen 1 (Home Screen)
 
 :::
 
