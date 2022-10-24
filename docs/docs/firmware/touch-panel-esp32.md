@@ -2067,6 +2067,41 @@ RGB color for a tile icon (defaults to white if the tile state is "off", or the 
 [comment]: <> (END of JSON Example)
 
 
+## Actions to remove or disable a tile
+- Removes a tile from the configuration.
+- Disables touch input for a tile. The tile is greyed out. State changes are still updated.
+
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Command
+```json
+{
+  "tiles":[
+    {
+      "screen": 1,
+      "tile": 1,
+      "action": "remove"
+    }
+  ]
+}
+```
+
+### JSON parameters
+| Parameter            | Type     | Options    | Description                       |                                                               |
+|:---                  |:---:     |:---:       |:---                               |:---                                                           |
+| `screen`             | *Number* | n/a        | Screen number sending command to  | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `tile`               | *Number* | n/a        | Tile number to be removed         | <Badge type="warning" text="Required" vertical="bottom" /> |  
+| `action`             | *String* | `"remove"`\|`"disable"`\|`"enable"`| Command to remove\disable\re enable tile            | <Badge type="warning" text="Required" vertical="bottom" />    |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+```cmnd/<device-client-id>```
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+
 # Screen Payloads
 [comment]: <> ([TODO] Screen Payloads explanation)
 These commands are specific to an individual screen.
@@ -2194,75 +2229,6 @@ RGB color for a screen background (defaults to the configured device background 
 Missing key shows the default icon/string (empty) hides the default icon/string ``"<any text>"`` replaces the default icon/string with ``"<any text>"`` an empty list ``"footer":{}`` resets all to default
 :::
 
-
-# Tile Payloads
-[comment]: <> ([TODO] Tile Payloads explanation)
-These commands are specific to an individual tile.
-
-## Remove a tile from the configuration
-Removes a tile from the configuration.
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen": 1,
-      "tile": 1,
-      "action": "remove"
-    }
-  ]
-}
-```
-
-### JSON parameters
-| Parameter            | Type     | Options    | Description                       |                                                               |
-|:---                  |:---:     |:---:       |:---                               |:---                                                           |
-| `screen`             | *Number* | n/a        | Screen number sending command to  | <Badge type="warning" text="Required" vertical="bottom" /> |  
-| `tile`               | *Number* | n/a        | Tile number to be removed         | <Badge type="warning" text="Required" vertical="bottom" /> |  
-| `action`             | *String* | `"remove"` | Command to remove tile            | <Badge type="warning" text="Required" vertical="bottom" />    |
-
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-
-## Disable a tile 
-Disables touch input for a tile. The tile is greyed out. State changes are still updated.
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-```json
-{
-  "tiles":[
-    {
-      "screen": 1,
-      "tile": 1,
-      "action": "disable"
-    }
-  ]
-}
-```
-
-### JSON parameters
-| Parameter            | Type     | Options     | Description                       |                                                               |
-|:---                  |:---:     |:---:        |:---                               |:---                                                           |
-| `screen`             | *Number* | n/a         | Screen number sending command to  | <Badge type="warning" text="Required" vertical="bottom" /> |  
-| `tile`               | *Number* | n/a         | Tile number to be removed         | <Badge type="warning" text="Required" vertical="bottom" /> |  
-| `action`             | *String* | `"disable"`\|`"enable"` | Command to disable/enable a tile           | <Badge type="warning" text="Required" vertical="bottom" />    |
-
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-```cmnd/<device-client-id>```
-:::
-::::
-[comment]: <> (END of JSON Example)
 
 
 # Device Payloads
