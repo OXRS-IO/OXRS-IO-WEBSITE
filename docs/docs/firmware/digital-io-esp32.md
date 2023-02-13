@@ -44,6 +44,40 @@ All the functionality of the [StateMonitor](/docs/firmware/state-monitor-esp32.m
 Instead of using the ```index``` to address the IO-pin, the `gpio` number is used for convenience. These numbers have to be used in all `/cmnd` requests and are returned in all `/stat` updates. Beside this change the API is equal to StateMonitor/StateController to ensure compatability with the IO-expander HW.
 :::
 
+The configuration payloads are wrapped in an extra JSON object, containing the GPIO pin and type. The payloads inside the `input` and `output` objects mirror the format in the [StateMonitor](/docs/firmware/state-monitor-esp32.md) and [StateController](/docs/firmware/state-controller-esp32.md) firmware. The only exception is `interlockGpio` which is named `interlockIndex` in the State Controller firmware.
+
+```json
+{
+  "gpios": [
+    {
+      "gpio": 2,
+      "type": "input",
+      "input": { "type": "contact", "invert": true }
+    },
+    {
+      "gpio": 4,
+      "type": "input",
+      "input": { "type": "button" }
+    },
+    {
+      "gpio": 19,
+      "type": "output",
+      "output": { "type": "timer", "timerSeconds": 5 }
+    },
+    {
+      "gpio": 21,
+      "type": "output",
+      "output": { "type": "motor", "interlockGpio": 22 }
+    },
+    {
+      "gpio": 22,
+      "type": "output",
+      "output": { "type": "motor", "interlockGpio": 21 }
+    }
+  ]
+}
+```
+
 ## Downloads
 Download the [latest binary](https://github.com/OXRS-IO/OXRS-IO-DigitalIO-ESP32-FW/releases) of the firmware from GitHub.
 
