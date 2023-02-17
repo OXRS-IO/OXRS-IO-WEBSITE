@@ -11,7 +11,7 @@ Most firmware is designed around ESP chips - whether it be the ESP8266 or ESP32,
 
 | ESP | ESP32 | ESP8266 |
 | :-: | :---: | :-----: |
-| | [Digital IO](/docs/firmware/digital-io-esp32.md) |
+| | [Digital IO](/docs/firmware/digital-io-esp.md) |
 | | [Smoke Detector](/docs/firmware/smoke-detector-esp32.md) |
 | | [State Controller](/docs/firmware/state-controller-esp32.md) |
 | | [State IO](/docs/firmware/state-io-esp32.md) |

@@ -1,10 +1,10 @@
 ---
-tags: ["OXRS-IO-DigitalIO-ESP32"]
+tags: ["OXRS-IO-DigitalIO-ESP"]
 ---
 # Digital IO ESP32
 <p class="maker">by <b>OXRS Core Team</b></p>
 
-> SKU: OXRS-IO-DigitalIO-ESP32-FW
+> SKU: OXRS-IO-DigitalIO-ESP-FW
 
 ## Introduction
 This FW is similar to [OXRS-SHA-StateIO-ESP32](/docs/firmware/state-io-esp32.md) which combines the functionality of [OXRS-SHA-StateMonitor-ESP32](/docs/firmware/state-monitor-esp32.md) and [OXRS-SHA-StateController-ESP32](/docs/firmware/state-controller-esp32.md).
@@ -79,9 +79,9 @@ The configuration payloads are wrapped in an extra JSON object, containing the G
 ```
 
 ## Downloads
-Download the [latest binary](https://github.com/OXRS-IO/OXRS-IO-DigitalIO-ESP32-FW/releases) of the firmware from GitHub.
+Download the [latest binary](https://github.com/OXRS-IO/OXRS-IO-DigitalIO-ESP-FW/releases) of the firmware from GitHub.
 
-Download the [source code](https://github.com/OXRS-IO/OXRS-IO-DigitalIO-ESP32-FW) of the firmware from GitHub.
+Download the [source code](https://github.com/OXRS-IO/OXRS-IO-DigitalIO-ESP-FW) of the firmware from GitHub.
 
 ## Supported Hardware
 Any ESP32 with all GPIOs broken out and not connected to or used by additional HW
