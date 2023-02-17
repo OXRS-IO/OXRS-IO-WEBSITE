@@ -1,7 +1,7 @@
 ---
 tags: ["OXRS-IO-DigitalIO-ESP"]
 ---
-# Digital IO ESP32
+# Digital IO ESP32/ESP8266
 <p class="maker">by <b>OXRS Core Team</b></p>
 
 > SKU: OXRS-IO-DigitalIO-ESP-FW
@@ -9,16 +9,20 @@ tags: ["OXRS-IO-DigitalIO-ESP"]
 ## Introduction
 This FW is similar to [OXRS-SHA-StateIO-ESP32](/docs/firmware/state-io-esp32.md) which combines the functionality of [OXRS-SHA-StateMonitor-ESP32](/docs/firmware/state-monitor-esp32.md) and [OXRS-SHA-StateController-ESP32](/docs/firmware/state-controller-esp32.md).
 
-The major difference of ```DigitalIO``` compared to ```StateIO```  is the usage of 16 usable GPIO pins of an ESP32 to perform physical IO instead of I2C connected IO-expander.
+The major difference of ```DigitalIO``` compared to ```StateIO```  is the usage of spare GPIO pins of an ESP32/ESP8266 to perform physical IO instead of I2C connected IO-expander.
 
 By default all GPIOs are configured as ```input```.
 
 ---
 
 ### How does it work?
-The 16 available GPIOs are
+The 16 available GPIOs on an ESP32 are;
 
 ```2, 4, 5, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 25, 26, 27```
+
+The 8 available GPIOs on an ESP8266 are;
+
+```2, 4, 5, 12, 13, 14, 15, 16```
 
 Each GPIO can be individually configured to be either `monitor inputs` or `control outputs`.
 
@@ -31,9 +35,9 @@ The [AdminUI-WEB-APP](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP) is the
 :::
 
 ## Possible use cases
-- runs on an off the shelf ESP32 without any additional peripherals
-- supports the standard OXRS eco-system so it can be used for bench testing to get familiar with the api without the need to have a RACK32 on hand.
-- push buttons, switches, encoder, relay driver ... can be connected for a small scale applications or testing
+- Runs on an off the shelf ESP32/ESP8266 dev boards without any additional peripherals
+- Supports the standard OXRS eco-system so it can be used for bench testing to get familiar with the api without the need to have a RACK32 on hand
+- Push buttons, switches, encoder, relay driver ... can be connected for a small scale applications or testing
 
 ## Configuration
 This FW is fully compatible with [OXRS](https://oxrs.io) eco-system and is built using the standard OXRS [Libraries](/docs/libraries/README.md)
@@ -84,9 +88,9 @@ Download the [latest binary](https://github.com/OXRS-IO/OXRS-IO-DigitalIO-ESP-FW
 Download the [source code](https://github.com/OXRS-IO/OXRS-IO-DigitalIO-ESP-FW) of the firmware from GitHub.
 
 ## Supported Hardware
-Any ESP32 with all GPIOs broken out and not connected to or used by additional HW
+Any ESP32 or ESP8266 with all GPIOs broken out and not connected to or used by additional hardware.
 
-And is designed to run as part of the [OXRS](https://oxrs.io) eco-system.
+Is designed to run as part of the [OXRS](https://oxrs.io) eco-system.
 
 
 
