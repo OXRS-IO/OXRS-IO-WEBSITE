@@ -2453,6 +2453,7 @@ Background images are **not persistent** and have to be (re)loaded after restart
 Remove the image by sending a payload with a blank value for imageBase64
 
 The parameters for the image can be updated if you have the image already on the screen and leave out the imageBase64 key from the payload. 
+
 :::
 
 [comment]: <> (START of JSON Example)
