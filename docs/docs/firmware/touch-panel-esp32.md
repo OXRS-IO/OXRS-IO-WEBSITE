@@ -2501,7 +2501,7 @@ The parameters for the image can be updated if you have the image already on the
 - Max image size is approx. 140x140 pixels (the tile size)
 - Images are aligned to the centre of the tile
 - There are no size checks for custom images
-- angle is an integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg), + <number> rotates CW , - <number> rotates CCW.
+- angle is an integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg), + number rotates CW , - number rotates CCW
 
 ## Firmware Installation
 
