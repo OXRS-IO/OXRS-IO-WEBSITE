@@ -2466,8 +2466,8 @@ Background images are **not persistent** and have to be (re)loaded after restart
       {
         "imageBase64": "<encodeBase64(.png)>",
         "zoom": <number>,
-        "angle": <number>
-        "offset": [<x number>,<y number>],
+        "angle": <number>,
+        "offset": [<x number>,<y number>]
       }
     }
   ]
