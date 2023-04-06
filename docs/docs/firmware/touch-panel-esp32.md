@@ -2449,6 +2449,11 @@ It is possible to upload custom images to be used for the background of your til
 
 ::: tip
 Background images are **not persistent** and have to be (re)loaded after restart and before they can be used in any configuration.
+
+Remove the image by sending a payload with a blank value for imageBase64
+
+The parameters for the image can be updated if you have the image already on the screen and leave out the imageBase64 key from the payload. 
+
 :::
 
 [comment]: <> (START of JSON Example)
@@ -2494,9 +2499,9 @@ Background images are **not persistent** and have to be (re)loaded after restart
 
 - The tile layout is optimised for 60x60 pixel icons
 - Max image size is approx. 140x140 pixels (the tile size)
-- Images are aligned top left in the tile
+- Images are aligned to the centre of the tile
 - There are no size checks for custom images
-- Images can be rotated clockwise
+- angle is an integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg), + number rotates CW , - number rotates CCW
 
 ## Firmware Installation
 
