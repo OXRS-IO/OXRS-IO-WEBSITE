@@ -89,7 +89,7 @@ module.exports = {
           children: [
             "/docs/hardware/controllers/rack32/",
             "/docs/hardware/controllers/room8266/",
-            "/docs/hardware/controllers/OXRS-Black/",
+            "/docs/hardware/controllers/oxrs-black/",
             "/docs/hardware/controllers/rack-fan-controller/",
             "/docs/hardware/controllers/tower-controller/",
           ],
