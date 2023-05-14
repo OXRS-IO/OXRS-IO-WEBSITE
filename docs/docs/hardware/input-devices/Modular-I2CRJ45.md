@@ -1,7 +1,7 @@
 ---
 tags: ["I2CRJ45", "URC", "modular", "modular I2CRJ45"]
 ---
-# Modular-RJ45
+# Modular-I2CRJ45
 <p class="maker">by <b>Austins Creations</b></p>
 
 <!-- Board Image -->
