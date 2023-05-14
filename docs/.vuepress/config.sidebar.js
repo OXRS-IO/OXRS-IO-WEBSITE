@@ -97,6 +97,7 @@ module.exports = {
           text: "Input Devices",
           children: [
             "/docs/hardware/input-devices/I2CRJ45/",
+            "/docs/hardware/input-devices/Modular-I2CRJ45/",
             "/docs/hardware/input-devices/CBUS-to-RJ45/",
             "/docs/hardware/input-devices/rotary-encode-to-rj45/",
             "/docs/hardware/input-devices/rotary-encode/",
