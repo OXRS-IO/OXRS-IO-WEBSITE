@@ -62,7 +62,7 @@ VDD is your system voltage; AKA the power being feed by the Screw Terminals (12-
 - OXRS-IO-SecurityMonitor-ESP32-FW [Github](https://github.com/austinscreations/OXRS-AC-SecurityMonitor-ESP32-FW)
 
 ## Additional Resources
-- More info [Github](https://github.com/SuperHouse/I2CRJ45)
+- More info [Github](https://github.com/austinscreations/Modular-I2CRJ45)
 
 ## Where to Buy
 - Contact on Discord or [WEBSITE](https://www.austinscreations.ca/)
