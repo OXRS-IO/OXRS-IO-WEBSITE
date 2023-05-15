@@ -5,7 +5,7 @@ tags: ["PWM", "LED","OXRS-AC-PWMcontroller"]
 <p class="maker">by <b>Austin's Creations</b></p>
 
 <!-- Board Image -->
-![Austin's Creations PWM Controller](/images/pwm-controllers.jpg)
+![Austin's Creations PWM Controller](/images/austins-creations/PWM.jpg)
 
 <!-- Board Description -->
 WOAH, Look at all the LEDs
@@ -16,7 +16,7 @@ These controllers are designed for controlling common anode 12-24v LED strips.
 
 ## Features
 - 5 channel control or 16 channel (expanable) control
-- 12-24V common andode led strip compatibility
+- 12-24V common anode led strip compatibility
 - 30V 8A MOSFET per channel
 
 ## Choose Your Adventure
@@ -32,7 +32,8 @@ The firmware is now built using platformIO and github actions - all bin files ca
 
 ## Notes
 D1 Mini
-- the D1 mini only requires one power input, either from 2.1mm jack or the terminal block. this will pwoer both the D1 Mini and your lights
+- the D1 mini only requires one power input, either from 2.1mm jack or the terminal block. This will power both the D1 Mini and your lights
+- latest design forgoes the D1 in favor of the ESP-12f directly and uses USB C 2.0 for progamming and debug
 
 LilyGO
 - The LilyGO can be powered from POE or it's on board usb c connection. The LED strip can be pwoered via teh 2.1mm jack or the terminal block. The sheild will **NOT** power the LilyGO
@@ -43,6 +44,7 @@ Athom Tasmota Bulb
 Required to Run the 16Ch PWM Board
 - [Room8266](/docs/hardware/controllers/room8266.md)
 - [Rack32](/docs/hardware/controllers/rack32.md)
+- [OXRS Black](/docs/hardware/controllers/oxrs-black.md)
 
 ## Cases
 All these devices have 3d printable cases

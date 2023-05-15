@@ -89,6 +89,7 @@ module.exports = {
           children: [
             "/docs/hardware/controllers/rack32/",
             "/docs/hardware/controllers/room8266/",
+            "/docs/hardware/controllers/oxrs-black/",
             "/docs/hardware/controllers/rack-fan-controller/",
             "/docs/hardware/controllers/tower-controller/",
           ],
@@ -97,6 +98,8 @@ module.exports = {
           text: "Input Devices",
           children: [
             "/docs/hardware/input-devices/I2CRJ45/",
+            "/docs/hardware/input-devices/Modular-I2CRJ45/",
+            "/docs/hardware/input-devices/Modular-Security-I2CRJ45/",
             "/docs/hardware/input-devices/CBUS-to-RJ45/",
             "/docs/hardware/input-devices/rotary-encode-to-rj45/",
             "/docs/hardware/input-devices/rotary-encode/",

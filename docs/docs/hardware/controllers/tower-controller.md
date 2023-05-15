@@ -1,14 +1,12 @@
 ---
-tags: ["OXRS-AC-TOWERCONTROLLER"]
+tags: ["tower controller", "tower light"]
 ---
 
 # Tower Controller
 <p class="maker">by <b>Austin's Creations</b></p>
 
-> SKU: OXRS-AC-TOWERCONTROLLER
-
 <!-- Board Image -->
-![Austin's Creations Tower Controller](/images/oxrs-tower-controller.jpg)
+![Austin's Creations Tower Controller](/images/austins-creations/tower_controller.jpg)
 
 <!-- Board Description -->
 LED Light Tower Controller
@@ -17,11 +15,13 @@ This basic controller lets you control 12-24V analog common anode LED tower ligh
 
 ## Features
 
-- **ESP8266** microcontroller with **WiFi**
+- **ESP32** microcontroller with **WiFi**
 - **10/100Mbps** Ethernet
 - 2.1mm power jack
 - Screw terminals for power input and output for your light
 - 2x 4-pin JST SH connectors to match the Stemma/QWIIC connector I2C standard
+- usb c programming
+- 802.3af POE - outputs 12v 1A for powering a light
 
 ## Supported Firmware
  - OXRS-AC-TowerController-ESP-FW [Github](https://github.com/austinscreations/OXRS-AC-TowerController-ESP-FW)
