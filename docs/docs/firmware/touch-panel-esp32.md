@@ -1299,14 +1299,14 @@ When you press the tile button the controls screen will appear giving you the ab
 
 ### JSON parameters
 
-| Parameter |   Type   | Options | Description                          |
-| :-------- | :------: | :-----: | :----------------------------------- |
-| `screen`  | _Number_ |   n/a   | Screen number triggering state event |
-| `tile`    | _Number_ |   n/a   | Tile number triggering state event   |
-| `style`   | _String_ |   n/a   |                                      |
-| `type`    | _String_ |   n/a   |                                      |
-| `event`   | _String_ |   n/a   |                                      |
-| `state`   | _Number_ |   n/a   | Item number selected                 |
+| Parameter |   Type   | Options | Description                                     |
+| :-------- | :------: | :-----: | :---------------------------------------------- |
+| `screen`  | _Number_ |   n/a   | Screen number triggering state event            |
+| `tile`    | _Number_ |   n/a   | Tile number triggering state event              |
+| `style`   | _String_ |   n/a   |                                                 |
+| `type`    | _String_ |   n/a   |                                                 |
+| `event`   | _String_ |   n/a   |                                                 |
+| `state`   | _Number_ |   n/a   | Item selected (1-based index of `dropDownList`) |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -1342,7 +1342,7 @@ When you press the tile button the controls screen will appear giving you the ab
 | `screen`         | _Number_ |   n/a   | Screen number sending command to                                          | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `tile`           | _Number_ |   n/a   | Tile number sending command to                                            | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `dropDownList`   | _Array_  |   n/a   | List items Array of Strings `["Rock Album", "Dance Album", "Jazz Album"]` | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `dropDownSelect` | _Number_ |   n/a   | Update the selected item in the dropdown list                             | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `dropDownSelect` | _Number_ |   n/a   | Selected item in dropdown list (1-based index of `dropDownList`)          | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `subLabel`       | _String_ |   n/a   | String for additional tile information e.g. last updated `"playing now"`  | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -1818,7 +1818,7 @@ The thermostat tile style allows you to simply...
 | `type`              |       _String_       | `"button"` \| `"thermostat"` |                                                                                 |
 | `event`             |       _String_       |    `"hold"` \| `"change"`    | `hold` events only on type `button`. `change` events only on type `themrmostat` |
 | `state`             | _String_ \| _Object_ |  `"on"` \| `"off"` \| `{}`   | The current tile state                                                          |
-| `mode`              |       _Number_       |             n/a              | The current mode state                                                          |
+| `mode`              |       _Number_       |             n/a              | The current mode state (1-based index of `modeList`)                            |
 | `targetTemperature` |       _Number_       |             n/a              | The current target temperature                                                  |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -1867,8 +1867,8 @@ The thermostat tile style allows you to simply...
 | `subUnits`           | _String_ |       n/a       | Suffix/unit e.g. "°C"                                                        | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `state`              | _String_ | `"on"`\|`"off"` | Update the tile state                                                        | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `thermostat`         | _Object_ |       n/a       |                                                                              | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `modeList`           | _Array_  |       n/a       | Array of strings to populate modelist dropdown in thermostat popup           | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `mode`               | _Number_ |       n/a       | Set value in modelist dropdown in thermostat popup                           | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `modeList`           | _Array_  |       n/a       | Array of strings to populate mode dropdown in thermostat popup               | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `mode`               | _Number_ |       n/a       | Set value in mode dropdown in thermostat popup (1-based index of `modeList`) | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `targetTemperature`  | _Number_ |       n/a       | Integer increments by 0.5 in thermostat popup `155` = `15.5`                 | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `currentTemperature` | _Number_ |       n/a       | Integer in thermostat popup `138` = `13.8`                                   | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `units`              | _String_ |       n/a       | Suffix/unit in thermostat popup e.g. "°C"                                    | <Badge type="tip" text="Optional" vertical="bottom" />     |
