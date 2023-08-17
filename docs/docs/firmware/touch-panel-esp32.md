@@ -2357,7 +2357,8 @@ The backlight state can be set to on or off. Additionally a "Screen Sleep Timeou
 
 ## Show a message in modal pop-up
 
-This function can be used to display a message on the screen. A user can close the message or else sending a blank message payload ommiting title and text, will clear the message from the screen. Both actions will fire off a state event.
+This function can be used to display a message on the screen. A user can close the message or else sending a blank message payload ommiting title and text, will clear the message from the screen. Both actions will fire off a state event. 
+Note: The message payload will not wake up a sleeping screen
 
 [comment]: <> (START of JSON Example)
 :::: code-group
