@@ -2421,7 +2421,7 @@ To close a modal pop-up simply send the message property with an empty object:
 | :--------: | :------: | :-----: | :--------   |
 | `type`     | _String_ |   `message`                                  |              |
 | `event`    | _String_ |   `"close"` \| `"open"` \| `"button"`        | event type   |
-| `state`    | _String_ |   `"closed"` \| `"open"` \| `"button-text"`  | 'button-text' will be the string contained in your button 
+| `state`    | _String_ |   `"closed"` \| `"open"` \| `"button-text"`  | 'button-text' will be the string contained in your button |
 
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -2434,14 +2434,78 @@ To close a modal pop-up simply send the message property with an empty object:
 When employing an interactive message modal with a custom button and it is pressed, the state payload will capture the text value of the pressed button. Any text formatting incorporated into the button, such as "#FF000000 Update Now," will also be encompassed within the state property.
 :::
 
-::: tip Dynamic Button Layout Based on Text and Array Configuration
-
-The arrangement of buttons dynamically adapts based on the interplay between populated button text and the array, where blank entries are defined using "\n". The provided example illustrates achieving a layout with three vertically stacked full-width buttons. Experiment with different combinations to explore the range of possibilities and discover what suits your needs.
-:::
-
 ::: tip
 The message payload will not wake up a sleeping screen
 :::
+
+### Button Configuration Examples
+
+::: tip Dynamic Button Layout Based on Text and Array Configuration
+
+The arrangement of buttons dynamically adapts based on the interplay between populated button text and the array, where blank entries are defined using `\n`. The provided example illustrates achieving a layout with three vertically stacked full-width buttons. Experiment with different combinations to explore the range of possibilities and discover what suits your needs.
+:::
+
+![TP32 Image Alt Text](/images/modal-3.png) ![TP32 Image Alt Text](/images/modal-4.png) ![TP32 Image Alt Text](/images/modal-5.png)
+
+:::: code-group
+::: code-group-item Example 1
+```json
+{
+  "message": {
+    "title": "Attention",
+    "text": "Do you want coffee?",
+    "buttons": [
+      "yes",
+      "no"
+    ]
+  }
+}
+```
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::: code-group-item Example 2
+```json
+{
+  "message": {
+    "title": "Attention",
+    "text": "Do you want coffee?",
+    "buttons": [
+      "yes",
+      "no",
+      "\n",
+      "maybe"
+    ]
+  }
+}
+```
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::: code-group-item Example 3
+```json
+{
+  "message": {
+    "title": "#ff0000 Update Alert!#",
+    "text": "#00ff00 New Firmware update available.#\nWhat do you want to do?",
+    "buttons": [
+      "#ffff00 Update Now#",
+      "\n",
+      "Update All Devices",
+      "\n",
+      "Remind me later"
+    ]
+  }
+}
+```
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::::
+
 
 
 [comment]: <> (END of JSON Example)
