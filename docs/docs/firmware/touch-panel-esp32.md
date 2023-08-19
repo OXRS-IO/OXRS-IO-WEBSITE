@@ -2424,8 +2424,6 @@ To close a modal pop-up simply send the message property with an empty object:
 | `state`    | _String_ |   `"closed"` \| `"open"` \| `"button-text"`  | 'button-text' will be the string contained in your button 
 
 
-`"button"` \| `"thermostat"`
-
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 `stat/<device-client-id>`
