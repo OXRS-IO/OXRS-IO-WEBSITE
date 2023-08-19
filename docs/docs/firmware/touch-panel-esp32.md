@@ -2355,13 +2355,12 @@ The backlight level can be set via the slider on the settings screen or with an 
 
 The backlight state can be set to on or off. Additionally a "Screen Sleep Timeout" can be set via the Admin UI config page.
 
-## Show a message in modal pop-up
+## Popup Message Modal
 
-This function can be used to display a message on the screen. A user can close the message or else sending a blank message payload ommiting title and text, will clear the message from the screen. Both actions will fire off a state event.
+This feature can be used to display a message on the screen. Make the most of this function by enhancing its interactivity with custom buttons. When these buttons are pressed, their actions are reported back to the state topic, allowing for a more dynamic user experience. Additionally, users can still close the message or clear it by sending an empty message payload, triggering relevant state events.
 
-::: tip
-The message payload will not wake up a sleeping screen
-:::
+
+![TP32 Image Alt Text](/images/modal-2.png) ![TP32 Image Alt Text](/images/modal-1.png)
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -2370,11 +2369,30 @@ The message payload will not wake up a sleeping screen
 ```json
 {
   "message": {
-    "title": "<text>",
-    "text": " <text>"
+    "title": "Update Alert!",
+    "text": "New Firmware update available. \nWhat do you want to do?",
+    "buttons": [
+      "Update Now",
+      "\n",
+      "Update All Devices",
+      "\n",
+      "Remind me later"
+    ]
   }
 }
 ```
+
+### JSON parameters
+
+| Parameter |   Type   | Options | Description                                                                     |                                                            |
+| :--------:| :------: | :-----: | :----------------------------------------------------------------------------   | :--------------------------------------------------------- |
+| `message` | _Object_ |   n/a   |                                                                                 | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`    | _String_ |   n/a   | Message title text, supports text formatting syntax like colors etc             | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `text`    | _String_ |   n/a   | Message body text, supports text formatting syntax like new lines, colors etc   | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `buttons` | _Array_  |   n/a   | An array of strings, max 5 buttons. Each button has a max 40 character limit. Specifying "\n" defines that the button position is to be blank. See tip below for more details| <Badge type="tip" text="Optional" vertical="bottom" /> |
+
+
+### Dynamically Close Modal Pop-up
 To close a modal pop-up simply send the message property with an empty object:
 
 ```json
@@ -2386,23 +2404,48 @@ To close a modal pop-up simply send the message property with an empty object:
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 `cmnd/<device-client-id>`
+
 :::
 ::: code-group-item State
 
 ```json
 {
-  "screen": <number>,
   "type": "message",
-  "event": "close"|"open",
-  "state": "closed"|"open"
+  "event": "close"|"open"|"button",
+  "state": "closed"|"open"|"button-text"
 }
 ```
+### JSON parameters
+
+| Parameter  |   Type   | Options | Description  |
+| :--------: | :------: | :-----: | :--------   |
+| `type`     | _String_ |   `message`                                  |              |
+| `event`    | _String_ |   `"close"` \| `"open"` \| `"button"`        | event type   |
+| `state`    | _String_ |   `"closed"` \| `"open"` \| `"button-text"`  | 'button-text' will be the string contained in your button 
+
+
+`"button"` \| `"thermostat"`
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 `stat/<device-client-id>`
 :::
 ::::
+
+::: warning
+When employing an interactive message modal with a custom button and it is pressed, the state payload will capture the text value of the pressed button. Any text formatting incorporated into the button, such as "#FF000000 Update Now," will also be encompassed within the state property.
+:::
+
+::: tip Dynamic Button Layout Based on Text and Array Configuration
+
+The arrangement of buttons dynamically adapts based on the interplay between populated button text and the array, where blank entries are defined using "\n". The provided example illustrates achieving a layout with three vertically stacked full-width buttons. Experiment with different combinations to explore the range of possibilities and discover what suits your needs.
+:::
+
+::: tip
+The message payload will not wake up a sleeping screen
+:::
+
+
 [comment]: <> (END of JSON Example)
 
 ## Add a custom icon
