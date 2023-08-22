@@ -2355,7 +2355,7 @@ The backlight level can be set via the slider on the settings screen or with an 
 
 The backlight state can be set to on or off. Additionally a "Screen Sleep Timeout" can be set via the Admin UI config page.
 
-## Popup Message Modal
+## Popup Message Box Modal
 
 This feature can be used to display a message on the screen. Make the most of this function by enhancing its interactivity with custom buttons. When these buttons are pressed, their actions are reported back to the state topic, allowing for a more dynamic user experience. Additionally, users can still close the message or clear it by sending an empty message payload, triggering relevant state events.
 
@@ -2368,7 +2368,7 @@ This feature can be used to display a message on the screen. Make the most of th
 
 ```json
 {
-  "message": {
+  "messageBox": {
     "title": "Update Alert!",
     "text": "New Firmware update available. \nWhat do you want to do?",
     "buttons": [
@@ -2384,20 +2384,20 @@ This feature can be used to display a message on the screen. Make the most of th
 
 ### JSON parameters
 
-| Parameter |   Type   | Options | Description                                                                     |                                                            |
-| :--------:| :------: | :-----: | :----------------------------------------------------------------------------   | :--------------------------------------------------------- |
-| `message` | _Object_ |   n/a   |                                                                                 | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `tile`    | _String_ |   n/a   | Message title text, supports text formatting syntax like colors etc             | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `text`    | _String_ |   n/a   | Message body text, supports text formatting syntax like new lines, colors etc   | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `buttons` | _Array_  |   n/a   | An array of strings, max 5 buttons. Each button has a max 40 character limit. Specifying "\n" defines that the button position is to be blank. See tip below for more details| <Badge type="tip" text="Optional" vertical="bottom" /> |
+| Parameter    |   Type   | Options | Description                                                                     |                                                            |
+| :-----------:| :------: | :-----: | :----------------------------------------------------------------------------   | :--------------------------------------------------------- |
+| `messageBox` | _Object_ |   n/a   |                                                                                 | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`       | _String_ |   n/a   | Message title text, supports text formatting syntax like colors etc             | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `text`       | _String_ |   n/a   | Message body text, supports text formatting syntax like new lines, colors etc   | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `buttons`    | _Array_  |   n/a   | An array of strings, max 5 buttons. Each button has a max 40 character limit. Specifying "\n" defines that the button position is to be blank. See tip below for more details| <Badge type="tip" text="Optional" vertical="bottom" /> |
 
 
 ### Dynamically Close Modal Pop-up
-To close a modal pop-up simply send the message property with an empty object:
+To close a modal pop-up simply send the messageBox property with an empty object:
 
 ```json
 {
-  "message": {}
+  "messageBox": {}
 }
 ```
 
@@ -2410,18 +2410,18 @@ To close a modal pop-up simply send the message property with an empty object:
 
 ```json
 {
-  "type": "message",
-  "event": "close"|"open"|"button",
-  "state": "closed"|"open"|"button-text"
+  "type": "messageBox",
+  "event": "open"|"acknowledge"|"revoke"|"remove"|"button",
+  "state": "open"|"closed"|"button-text"
 }
 ```
 ### JSON parameters
 
 | Parameter  |   Type   | Options | Description  |
 | :--------: | :------: | :-----: | :--------   |
-| `type`     | _String_ |   `message`                                  |              |
-| `event`    | _String_ |   `"close"` \| `"open"` \| `"button"`        | event type   |
-| `state`    | _String_ |   `"closed"` \| `"open"` \| `"button-text"`  | 'button-text' will be the string contained in your button |
+| `type`     | _String_ |   `messageBox`                                                             |              |
+| `event`    | _String_ |   `"open"` \| `"acknowledge"` \| `"revoke"` \| `"remove"` \| `"button"`    | event type   |
+| `state`    | _String_ |   `"open"` \| `"closed"` \| `"open"` \| `"button-text"`                    | 'button-text' will be the string contained in your button |
 
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -2431,11 +2431,11 @@ To close a modal pop-up simply send the message property with an empty object:
 ::::
 
 ::: warning
-When employing an interactive message modal with a custom button and it is pressed, the state payload will capture the text value of the pressed button. Any text formatting incorporated into the button, such as "#FF000000 Update Now," will also be encompassed within the state property.
+When employing an interactive message box modal with a custom button and it is pressed, the state payload will capture the text value of the pressed button. Any text formatting incorporated into the button, such as "#FF000000 Update Now," will also be encompassed within the state property.
 :::
 
 ::: tip
-The message payload will not wake up a sleeping screen
+The messageBox payload will not wake up a sleeping screen
 :::
 
 ### Button Configuration Examples
@@ -2451,7 +2451,7 @@ The arrangement of buttons dynamically adapts based on the interplay between pop
 ::: code-group-item Example 1
 ```json
 {
-  "message": {
+  "messageBox": {
     "title": "Attention",
     "text": "Do you want coffee?",
     "buttons": [
@@ -2468,7 +2468,7 @@ The arrangement of buttons dynamically adapts based on the interplay between pop
 ::: code-group-item Example 2
 ```json
 {
-  "message": {
+  "messageBox": {
     "title": "Attention",
     "text": "Do you want coffee?",
     "buttons": [
@@ -2487,7 +2487,7 @@ The arrangement of buttons dynamically adapts based on the interplay between pop
 ::: code-group-item Example 3
 ```json
 {
-  "message": {
+  "messageBox": {
     "title": "#ff0000 Update Alert!#",
     "text": "#00ff00 New Firmware update available.#\nWhat do you want to do?",
     "buttons": [
