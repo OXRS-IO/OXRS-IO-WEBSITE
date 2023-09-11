@@ -53,28 +53,30 @@ Note that the 320x480px panels support a 2x3 tile configuration and the 480x480p
 - Automation software such as Node-RED [Read more](https://nodered.org)
 - MQTT Broker - e.g. Mosquitto, Mosca [Wiki](https://en.wikipedia.org/wiki/MQTT)
 
-### How does it work?
-
+### How to Communicate with your Touch Panel Over MQTT
 [comment]: <> ([TODO] How it works)
-More documentation to follow here...
+Broadly speaking, we split MQTT communications into three types:
+1. **Configuration messages**. Typically you send these from Node-RED to the panel each time it comes online. These are used to configure tiles and screens.
+   - _Send on the ```/conf/<device-client-id>``` topic._
+3. **Command messages**. Typically you send these from Node-RED to provide updates to tiles and screens (such as turning a tile on or off, or indicating the level of your lights or blinds within the tile), but they can also do things like dim the display, set screen timeouts, switch screens, handle menus, or update the footer bar.
+   - _Send on the ```/cmnd/<device-client-id>``` topic._
+5. **State messages**. These are the messages that your touch panel sends back over MQTT when you interact with the touch panel, and you can process them in Node-RED to achieve your various automations.
+   - _Listen to these on the ```/stat/<device-client-id>``` topic._
 
-Configuration, State and Commands
-
-<Badge type="warning" text="MQTT Configuration Topic" vertical="middle" />
-
-`conf/<device-client-id>`
-<Badge type="warning" text="MQTT State Topic" vertical="middle" />
-
-`stat/<device-client-id>`
-<Badge type="warning" text="MQTT Command Topic" vertical="middle" />
-
-`cmnd/<device-client-id>`
+A typical set of nodes or flows in Node-RED will therefore need to be set up to achieve the following:
+- Listen to ```/stat/<device-client-id/lwt``` to know when that panel came online, at which point you would
+  - Send out a ```/conf``` message to configure it with one or more screens, each with a set of tiles. 
+  - Optionally send out a ```/cmnd``` message with any custom icons or tile background images. 
+  - Optionally send out a ```/cmnd``` message with other data, for example updates to your footer (e.g. date / time / temperature) at startup, or MQTT payloads to configure tile contents with sub labels or other text that might change later.
+- Listen to the ```/stat``` topic, so when a user interacts with the touch panel;
+  - Respond accordingly to actuate your devices or automations within Node-RED
+- Depending on your actuators and sensors, listen to their feedback and send out a ```/cmnd``` message to update a tile's view to provide visual feedback to the user
 
 ::: tip Recommendation:
 [comment]: <> ([TODO] Explanation into the recommended Node-RED usage for the product)
 The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node-RED and MQTT. They are used to configure, manage state and recieve events.
 
-Further documentation and some example Node-RED Flows will be made available to get you started.
+Further documentation and some example Node-RED Flows will be made available in due course.
 :::
 
 ---
@@ -2629,30 +2631,66 @@ The parameters for the image can be updated if you have the image already on the
 - There are no size checks for custom images
 - angle is an integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg), + number rotates CW , - number rotates CCW
 
-## Firmware Installation
+## Setting Up your Touch Panel
 
-### Initial Set-up – Windows 10
+### Overview
+- Download and flash your device. See [flashing your device](/docs/firmware/touch-panel-esp32#flashing-your-device).
+- Connect the touch panel to your wired or wireless network. See [connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#connecting-to-wifi-ethernet).
+- Configure the touch panel to connect to your MQTT broker. See [initial MQTT configuration](/docs/firmware/touch-panel-esp32#initial-mqtt-configuration).
+- From now-on, you can do everything over MQTT. See [how to communicate with your touch panel over MQTT](/docs/firmware/touch-panel-esp32#how-to-communicate-with-your-touch-panel-over-mqtt).
 
-Workflow to commission a new Touch Panel:
+### Flashing Your Device
+- Download your firmware from [here](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases)
+- Choose the version according to
+  - What model of Touch Panel you are flashing (see [supported hardware](docs/firmware/touch-panel-esp32#supported-hardware))
+  - Whether you plan to use WiFi or Ethernet. WiFi is built-in to all touchpanel models so it's a great place to start or for demo purposes. An ethernet connection may offer more long term reliability, so you will need to add a compatible ethernet adapter, for example the PoE ethernet shield from https://www.austinscreations.ca/, open-source designs for which may be found [here](https://github.com/austinscreations/WT32-SC01_POE/tree/main/2023%20re-design/rev%206).
 
-1. [Download](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases) the most recent wifi or ethernet version of the compiled _OXRS-IO-TouchPanel-ESP32-FW_ firmware to a work folder created for the commissioning process.
-2. Connect the WT32-SC01 LCD dev board USB-C port to a USB connector on the Windows PC using a USB-C to USB-A cable (a USB-C to USB-C cable doesn’t appear to work).
-3. Ensure the LCD dev board power LED comes on and the screen displays the factory default page display sequence.
-4. Open the ‘Device Manager’ app (i.e. Invoke Windows logo key+R, type in “devmgmt.msc” and then press Enter), navigate down the devices list to Universal Serial Bus controllers and right click on the USB Root Hub icon.
-5. If the ‘Device status’ window in the USB Root Hub properties window shows “This device is working properly”, skip to step 8. below.
-6. If the ‘USB Root Hub properties’ window indicates the ‘CP210x driver is missing’, download the [CP210x_Universal_Windows_Driver.zip](https://www.silabs.com/documents/public/software/CP210x_Universal_Windows_Driver.zip) file to your work folder, and extract its contents.
-7. Locate the file `silabser.inf` within the extracted folder, right click on it and select _Install_ in the pop-up menu. Then repeat step 5. above.
-8. [Download](https://github.com/esphome/esphome-flasher/releases) the most recent Windows executable version of the _esphome-flasher_ app and run it. (No need to install, it simply runs as an executable)
-9. Use _esphome-flasher_ to install the compiled firmware.
-10. Assuming the _esphome-flasher_ log window has confirmed the flashing was successful; if you are intending to couple the LCD Touch Screen to an [Ethernet shield](https://www.austinscreations.ca/oxrs), skip now to step 15. below.
-11. Connect your computer to the LCD dev board's on-board wiFi Access Point (it appear with the ssid _OXRS-WiFi_), and connect using the password "superhouse".
-12. Using a _Chrome_ or _Microsoft Edge_ browser (_FireFox_ does not appear to handle the rendered html properly), navigate to the IP address [192.168.4.1](http://192.168.4.1), at which point a device set-up menu screen should be displayed.
-13. Clicking the [Configure WiFi](http://192.168.4.1/wifi) button will display a page enabling entry of your WiFi network _SSID_ and _Password_.
-14. Once configured clicking the [Save](http://192.168.4.1/wifisave) button will set the WiFi configuration and the LCD Touchscreen should then connect and appear on your WiFi network.
-15. At this point the screen of the LCD Touchscreen will display a default page. Touch the _Settings_ cog icon at the bottom right of the screen to display the LCD Touchscreen's MAC address and DHCP allocated IP address.
-16. If you have not already done so, [download](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP) the _OXRS Web based administrator UI_ `index.html` file onto to your local machine and open it using your favourite web browser.
-17. Using the displayed _OXRS Admin_ UI page, insert the IP address displayed on the LCD Touchscreen's _Settings_ screen in the _Device address_ field, then choose the _Setup MQTT_ menu option in the _Action_ field, and click the _Select_ button.
-18. Fill out the _MQTT Configuration_ fields displayed to input your MQTT broker settings, and click the _Submit_ button. The LCD Touchscreen _Settings_ page should now confirm the MQTT broker connection, and the yellow warning triangle displayed bottom right on the main default screen should now have disappeared.
+#### General notes on flashing the touch panels
+- The WT32-SC01 and WT32-SC01 Plus both have built-in USB and so you don't need an additional USB-TTL adapter. The instructions below include ensuring you have the correct Windows driver to flash the board directly.
+- The WT32S3-86V and 86S will require a separate USB-TTL adapter. See notes below.
+
+#### Instructions for flashing the WT32S3-86V (Windows 10/11)
+Note about what USB-TTL to use
+Use one of the cheap, ubiquitous USB-TTL adapters available on Amazon or Ebay, and don't purchase the unit with the supplied USB-TTL adapter. If you use the supplied one, it has a dedicated JST cable, the connector for which you will need to solder on to each panel. Being an SMD connector, it's a bit fiddly - but more to the point, once you've soldered it on, you can no longer re-attach the plastic rear panel! So avoid that one and use a standard USB-TTL adapter with normal hookup wires / dupont connectors.
+
+- Let's work on the assumption you have a standard USB-TTL adapter and, if the drivers didn't install to Windows automatically, you have sorted that out already.
+- No soldering is required: the touch panel already has a female header strip on the back which you can plug in to directly.
+- The female header strip is exposed even when the flat plastic rear panel is on, but to see the pinout labels, just pop-off the rear cover.
+- Connect GND and +5V to the header ports, labelled on the back of the panel
+- Connect RX and TX out of the USB-TTL to the female headers marked TX0 and RX0 respectively (i.e. RX to TX, and TX to RX)
+- With a spare hookup wire, connect between the panel's ground and the panel's IO0, then plug the USB adapter in; powering up with IO0 tied to ground puts the device into flash mode.
+- Use your preferred program to flash the firmware. If in doubt, download Espressif's flash download tool version 3.9.3 and launch it. Select chip type ESP32-S3 / Develop / UART, and OK. In the first row, click the triple dots to select a firmware, check the address is set to 0x00, SPI speed 40Mhz, SPI mode DIO, BAUD 1152000, and hit Start. When the process finishes, the Start button goes blue and changes to "finish".
+- Power cycle the device by unplugging the USB and plugging back in
+
+Continue to [Connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#connecting-to-wifi-ethernet).
+
+#### Instructions for flashing the WT32-SC01 and SC01 Plus (Windows 10/11)
+- Connect the WT32-SC01 LCD dev board USB-C port to a USB connector on the Windows PC using a USB-C to USB-A cable (a USB-C to USB-C cable doesn’t appear to work).
+- Ensure the LCD dev board power LED comes on and the screen displays the factory default page display sequence.
+- Open the ‘Device Manager’ app (i.e. Invoke Windows logo key+R, type in “devmgmt.msc” and then press Enter), navigate down the devices list to Universal Serial Bus controllers and right click on the USB Root Hub icon.
+- If the ‘Device status’ window in the USB Root Hub properties window shows “This device is working properly”, skip to step 8. below.
+- If the ‘USB Root Hub properties’ window indicates the ‘CP210x driver is missing’, download the [CP210x_Universal_Windows_Driver.zip](https://www.silabs.com/documents/public/software/CP210x_Universal_Windows_Driver.zip) file to your work folder, and extract its contents.
+- Locate the file `silabser.inf` within the extracted folder, right click on it and select _Install_ in the pop-up menu. Then repeat step 5. above.
+- [Download](https://github.com/esphome/esphome-flasher/releases) the most recent Windows executable version of the _esphome-flasher_ app and run it. (No need to install, it simply runs as an executable)
+- Use _esphome-flasher_ to install the compiled firmware.
+- Assuming the _esphome-flasher_ log window has confirmed the flashing was successful; power cycle the device by unplugging the USB and plugging back in.
+
+Continue to [Connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#connecting-to-wifi-ethernet).
+
+#### Connecting to WiFi / Ethernet
+- WiFi firmware
+  - Newly flashed panels (WiFi firmware) will broadcast their own SSID, (_OXRS-WiFi_). Connect to this wireless network from another wireless device.
+  - The password to connect to _OXRS-WiFi_ is ```superhouse```
+  - Browse to [192.168.4.1](http://192.168.4.1) using _Chrome_ or _Microsoft Edge_ browser (_FireFox_ does not appear to handle the rendered html properly) and then enter the details of your wireless network. Click the [Save](http://192.168.4.1/wifisave) button, and the touch panel should then connect and appear on your WiFi network.
+  - Incidentally, Windows has a helpful new feature that can automatically disconnect from a wireless network that doesn't appear to provide it with an internet connection. This gets annoying, because it will disconnect you from the SSID part-way through this process. Disable this in Windows registry by creating a new DWORD value "NoActiveProbe" set to 1, within HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator.
+- If the touch panel has connected to your WiFi network successfully, OR if you uploaded the ethernet firmware and are already physically connected to a switch;
+  - The panel's IP address and MAC address can be found on the panel itself under settings cog. Note down the IP address and continue to [initial MQTT configuration](/docs/firmware/touch-panel-esp32#initial-mqtt-configuration).
+
+#### Initial MQTT Configuration
+- If you have not already done so, [download](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP) the _OXRS Web based administrator UI_ `index.html` file onto to your local machine and open it using your favourite web browser.
+- Using the displayed _OXRS Admin_ UI page, insert the IP address displayed on the LCD Touchscreen's _Settings_ screen in the _Device address_ field, then choose the _Setup MQTT_ menu option in the _Action_ field, and click the _Select_ button.
+= Fill out the _MQTT Configuration_ fields displayed to input your MQTT broker settings, and click the _Submit_ button. The LCD Touchscreen _Settings_ page should now confirm the MQTT broker connection, and the yellow warning triangle displayed bottom right on the main default screen should now have disappeared.
+- Once you have completed these steps, you can either play with the Admin UI to set up some demo screens, tiles, and icons, or start using the panel in your automations; See [how to communicate with your touch panel over MQTT](/docs/firmware/touch-panel-esp32#how-to-communicate-with-your-touch-panel-over-mqtt).
 
 ## API
 
