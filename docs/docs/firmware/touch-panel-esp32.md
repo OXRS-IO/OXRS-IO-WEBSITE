@@ -16,9 +16,11 @@ tags: ["TAG1", "TAG2", "TAG3"]
 
 [comment]: <> ([TODO] Introduction)
 
-Touch Panel ESP32 is a firmware for the WT32-SC01, which is a low-cost device comprising a 3.5-inch touchscreen, ESP32, and options for hardware expansion. The firmware provides a user interface that complements your existing home or buildings automation system by providing elements such as tiles or keypads presented on a given "screen", and the user may switch between screens. The unit uses MQTT to provide control of your existing automation hub, and MQTT is used to provide feedback to UI elements, as well as to provide means of dynamic configuration of screens and other settings.
+Touch Panel ESP32 is a firmware for a series of smart capacitive LCD touchscreen devices. These low-cost devices typically comprise a small colour touchscreen of around 3.5 or 4 inches and in various aspect ratios, ESP32, and options for hardware expansion. The firmware provides a user interface that complements your existing home or buildings automation system by providing elements such as tiles or keypads presented on a given "screen", and the user may switch between screens.
 
-The W32-SC01 device may be flashed straight out of the box with the firmware available below, joined to wi-fi or wired ethernet, then configured remotely using OXRS Admin, which is a single HTML file that targets a given unit by IP address. The unit is then further configured by OXRS Admin or MQTT.
+The unit uses MQTT to provide control of your existing automation hub, and MQTT is used to provide feedback to UI elements, as well as to provide means of dynamic configuration of screens and other settings.
+
+Most of the supported devices may be flashed straight out of the box with the firmware available below, joined to wi-fi or wired ethernet, then configured remotely using OXRS Admin, which is a single HTML file that targets a given unit by IP address. The unit is then further configured by OXRS Admin or MQTT.
 
 Touch Panel ESP32 may best be described as a "thin client"; that is, it sends messages when buttons are pressed, and updates the UI when messages are received, but automation states are not stored within Touch Panel ESP32 itself.
 
@@ -34,18 +36,27 @@ Example applications include: a light switch to control dimming or colour for mu
 - [Screen Payloads](/docs/firmware/touch-panel-esp32.html#screen-payloads)
 - [Device Payloads](/docs/firmware/touch-panel-esp32.html#device-payloads)
 
+### Supported Hardware
+
+- WT32-SC01 ESP32 TFT: 3.5-inch 320x480px [Read more](/add-ons/touch-displays/wt32-sc01)
+- WT32-SC01 PLUS TFT: an improved version of the above 3.5-inch 320x480px
+- WT32S3-86V: 3.95-inch 480x480px touch panel comprising integrated backbox and suitable for UK size backboxes
+- WT32S3-86S: an improved version of the above 3.95-inch 480x480px
+
+Note that the 320x480px panels support a 2x3 tile configuration and the 480x480px variants support a 3x3 tile configuration. 
+
 ### Prerequisites:
 
-- WT32-SC01 ESP32 TFT [Read more](/add-ons/touch-displays/wt32-sc01)
-- OXRS-IO-TouchPanel-ESP32-FW [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases)
-- OXRS Admin UI [Github](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
-- Node-RED [Read more](https://nodered.org)
+- **A touch panel**: see above
+- **The firmware**: OXRS-IO-TouchPanel-ESP32-FW [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases)
+- **OXRS Admin UI**: for initial configuration [Github](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
+- Automation software such as Node-RED [Read more](https://nodered.org)
 - MQTT Broker - e.g. Mosquitto, Mosca [Wiki](https://en.wikipedia.org/wiki/MQTT)
 
 ### How does it work?
 
 [comment]: <> ([TODO] How it works)
-How it works text goes here...
+More documentation to follow here...
 
 Configuration, State and Commands
 
@@ -2664,10 +2675,6 @@ download a snapshot (approx. 60kB) of the selected tile (1-6) in the current dis
 ## Downloads
 
 Download the latest version of the firmware on [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases).
-
-## Supported Hardware
-
-- WT32-SC01 ESP32 TFT [Link](/add-ons/touch-displays/wt32-sc01)
 
 ### Credits
 
