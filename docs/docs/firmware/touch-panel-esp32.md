@@ -180,7 +180,7 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
 
 ::: code-group-item Config
 
-```json {7-14}
+```json {7-12}
 {
   "screens": [
     {
@@ -191,9 +191,7 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
           "tile": 1,
           "style": "button",
           "icon": "_bulb",
-          "label": "Lamps",
-          "levelBottom": 0,
-          "levelTop": 100
+          "label": "Lamps"
         }
       ]
     }
@@ -209,8 +207,6 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
 | `style`        | _String_ |   n/a   | Enter tile style name `button`                                                | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `icon`         | _String_ |   n/a   | Enter icon name e.g.`_bulb`                                                   | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `label`        | _String_ |   n/a   | Enter label text e.g.`Lamps`                                                  | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `levelBottom`  | _String_ |   n/a   | Defaults to `0` _Not usually required for this tile type, but supported._    | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `levelTop`     | _String_ |   n/a   | Defaults to `100` _Not usually required for this tile type, but supported._   | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -248,7 +244,7 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
 
 ::: code-group-item Command
 
-```json {3-9}
+```json {3-8}
 {
   "tiles": [
     {
@@ -256,7 +252,6 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
       "tile": 1,
       "state": "on",
       "subLabel": "on just now",
-      "level": 40
     }
   ]
 }
@@ -270,7 +265,6 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
 | `tile`     | _Number_ |       n/a       | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `state`    | _String_ | `"on"`\|`"off"` | Updated the tile state                                      | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `subLabel` | _String_ |       n/a       | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `level`    | _Number_ |       n/a       | Level indicator e.g. `40` to fill the tile up to 40%        | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -402,7 +396,9 @@ Don't forget that you can send `level` messages to any tile type, but this is th
 
 ![TP32 Image Alt Text](/images/buttonUpDown-tile.png) ![TP32 Image Alt Text](/images/buttonUpDown-tile-active.png)
 
-This tile type _buttonUpDown_ is similar to _buttonUpDownLevel_, except that it has no knowledge of states, and sends simple up/down messages rather than e.g. dimming values. Like all tiles, it's still possible to update the tile's visuals to show a level if desired.
+This tile type _buttonUpDown_ is similar to _buttonUpDownLevel_, except that it has no knowledge of states, and sends simple up/down messages rather than e.g. dimming values.
+
+Note that, although not shown here, it's still possible to update the tile's visuals to indicate a dimming level if desired; this is something common to all tile payloads.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -720,7 +716,7 @@ This tile type _buttonPrevNext_ is similar to _buttonLeftRight_, except the cont
 
 ![TP32 Image Alt Text](/images/indicator-tile.png) ![TP32 Image Alt Text](/images/indicator-tile-2.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type _indicator_ is typically used to provide sensor data. Although it's most suited to temperature / humidity readings, the units may be customised for other types of sensor data e.g. lux. As it's a display-only tile, no feedback state is associated with it.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -804,7 +800,7 @@ This tile type _buttonPrevNext_ is similar to _buttonLeftRight_, except the cont
 
 ![TP32 Image Alt Text](/images/colorPicker-tile.png) ![TP32 Image Alt Text](/images/colorPicker-tile-active.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type _colorPickerRgbCct_ may be used to facilitate changing the color of lights via both RGB wheel and CCT slider.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -948,7 +944,7 @@ When you press the tile button the controls screen will appear. The controls scr
 
 ![TP32 Image Alt Text](/images/colorPicker-tile.png) ![TP32 Image Alt Text](/images/colorPicker-tile-active.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type _colorPickerRgb_ may be used to facilitate changing the color of lights via an RGB wheel.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -1088,7 +1084,7 @@ When you press the tile button the controls screen will appear giving you the ab
 
 ![TP32 Image Alt Text](/images/colorPicker-tile.png) ![TP32 Image Alt Text](/images/colorPicker-tile-active.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type _colorPickerCct_ may be used to facilitate changing the color of lights via a CCT slider.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -1215,7 +1211,7 @@ When you press the tile button the controls screen will appear giving you the ab
 
 ![TP32 Image Alt Text](/images/dropdown-tile.png) ![TP32 Image Alt Text](/images/dropdown-tile-1.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type _dropDown_ may be used to present the user with a drop-down menu. The tile has no internal state management, so it's necessary to send the list of items in the drop-down to the tile via the /cmnd topic. Once a selection is made from the dropdown, it's sent back to the event parameter.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -1335,7 +1331,12 @@ When you press the tile button the dropdown list screen will appear giving you t
 
 ![TP32 Image Alt Text](/images/keypad-tile-1.png) ![TP32 Image Alt Text](/images/keypad-tile-2.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type _keyPad_ may be used to present the user with a keypad. The tile has no internal state management, so you will be required to store and verify valid pin codes for example using Node RED.
+
+Once you verify the pincode you can close the keypad control screen by sending a payload to the cmnd/ topic setting keypad state to 'close'. Then send a payload to the cmnd/ topic to load the desired screen. (See the Load Screen payload in [Device Commands](/docs/firmware/touch-panel-esp32/#device-commands) on how to load a screen)
+
+
+
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -1456,16 +1457,6 @@ When you press the keypad tile the keypad screen will appear giving you the abil
 ![TP32 Image Alt Text](/images/keypad-screen-1.png) ![TP32 Image Alt Text](/images/keypad-screen-2.png)
 
 
-::: warning Note:
-
-You will be required to store and verify valid pin codes for example using Node RED. 
-
-Once you verify the pincode you can close the keypad control screen by sending a payload to the cmnd/ topic setting keypad state to 'close'. Then send a payload to the cmnd/ topic to load the desired screen. 
-
-(See the [Load Screen payload](/docs/firmware/touch-panel-esp32/#load-screen) in Device Commands on how to load a screen)
-
-:::
-
 # keyPadBlocking
 
 If you wish to lock access to the screen and only allow access to users with a valid pin you are able to set this via a configuration payload. Note this is a 'Device' configuration payload.
@@ -1492,22 +1483,12 @@ If you wish to lock access to the screen and only allow access to users with a v
 :::
 ::::
 
-::: warning Note:
-
-You will be required to store and verify valid pin codes for example using Node RED. 
-
-Once you verify the pincode you can close the keypad control screen by sending a payload to the cmnd/ topic setting keypad state to 'close'. Then send a payload to the cmnd/ topic to load the desired screen. 
-
-(See the [Load Screen payload](/docs/firmware/touch-panel-esp32/#load-screen) in Device Commands on how to load a screen)
-
-:::
-
 
 ## remote
 
 ![TP32 Image Alt Text](/images/remote-tile.png) ![TP32 Image Alt Text](/images/remote-tile-active.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type _remote_ may be used to present the user with a media remote keypad. The tile has no internal state management.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -1617,7 +1598,7 @@ When you press the tile button the remote screen will appear giving you the abil
 
 ![TP32 Image Alt Text](/images/link-tile.png) ![TP32 Image Alt Text](/images/link-tile-active.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type _link_ may be used to switch to another screen when pressed. This can also be done with a simple button tile set to trigger a screen load command in Node-RED, but this tile has a little visual indicator and negates the need to handle screen switches outside of the touch panel.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -1652,7 +1633,7 @@ When you press the tile button the remote screen will appear giving you the abil
 | `style`   | _String_ |   n/a   | Enter tile style name `link`                      | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `icon`    | _String_ |   n/a   | Enter icon name e.g.`_music`                      | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `label`   | _String_ |   n/a   | Enter label text e.g.`HiFi Controls`              | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `link`    | _String_ |   n/a   | Number of screen which is loaded upon press event | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `link`    | _Number_ |   n/a   | Number of screen which is loaded upon press event | <Badge type="warning" text="Required" vertical="bottom" /> |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -1723,7 +1704,7 @@ When you press the tile button the remote screen will appear giving you the abil
 
 [comment]: <> ([TODO] Tile introduction text goes here)
 
-The thermostat tile style allows you to simply...
+The _thermostat_ tile style provides a function allowing the user to see the actual temperature and the target temperature, with the ability to control the target temperature. Two visual styles are possible, a dynamic arc tile and a digital display style.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -1860,10 +1841,52 @@ When you press the tile the thermostat popup screen will appear giving you the a
 
 ---
 
-## Common Payloads
+## Common Tile Payloads
 
 [comment]: <> ([TODO] Common Payloads explanation)
 These commands are common to all tile styles.
+
+## Display a level indicator
+
+A visual indicator of light or blind levels. Although this is more suited to the [buttonUpDownLevel](/docs/firmware/touch-panel-esp32#buttonupdownlevel) or [buttonUpDown](/docs/firmware/touch-panel-esp32#buttonupdown) styles, it works on all tile styles.
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+
+```json
+{
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "levelBottom": 0,
+      "levelTop": 100
+    }
+  ]
+}
+```
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+::: code-group-item Command
+
+```json
+{
+  "level": 50,
+  "state": on
+}
+```
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
 
 ## Set the background color
 
