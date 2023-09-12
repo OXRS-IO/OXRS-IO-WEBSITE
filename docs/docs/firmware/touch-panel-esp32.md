@@ -1930,6 +1930,66 @@ RGB color for a tile background (defaults to the parent screen background color)
 ::::
 [comment]: <> (END of JSON Example)
 
+## Add a background image
+
+It is possible to upload custom images to be used for the background of your tile. They can be sourced in the same way as the icons are but are also able to be in colour. This provides a great way to customise your touch panel.
+
+::: tip
+Background images are **not persistent** and have to be (re)loaded after restart and before they can be used in any configuration.
+
+Remove the image by sending a payload with a blank value for imageBase64
+
+The parameters for the image can be updated if you have the image already on the screen and leave out the imageBase64 key from the payload. 
+
+:::
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Command
+
+```json
+{
+  "tiles":[
+    {
+      "screen": <number>,
+      "tile": <number>,
+      "backgroundImage": 
+      {
+        "imageBase64": "<encodeBase64(.png)>",
+        "zoom": <number>,
+        "angle": <number>,
+        "offset": [<x number>,<y number>]
+      }
+    }
+  ]
+}
+```
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+### How to prepare an image for use
+
+- Background images need to be in .PNG format
+- To upload via MQTT the background image has to be Base64 encoded using one of the following methods;
+  - Use the [OXRS Icon Generator](/tools/icon-generator.html) which generates the required JSON payload ready-to-use
+  - Use an online converter like [base64encode.org](https://www.base64encode.org/)
+  - Use Node-RED [node-red-node-base64](https://flows.nodered.org/node/node-red-node-base64) for automated conversion
+- Ensure there is no extra information added to the Base64 encoded file
+- The encoded image should not exceed 4KB to avoid crashes - TBC
+
+### Image size and alignment
+
+- The tile layout is optimised for 60x60 pixel icons
+- Max image size is approx. 140x140 pixels (the tile size)
+- Images are aligned to the centre of the tile
+- There are no size checks for custom images
+- angle is an integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg), + number rotates CW , - number rotates CCW
+
 ## Set the icon color
 
 RGB color for a tile icon (defaults to white if the tile state is "off", or the configured device "on" icon color if the tile state is "on").
@@ -2551,66 +2611,6 @@ Custom icons are **not persistent** and have to be (re)loaded after restart and 
 - Max icon size is approx. 140x140 pixels (the tile size)
 - Icons are aligned top/left of a tile
 - There are no size checks for custom icons
-
-## Add a background image
-
-It is possible to upload custom images to be used for the background of your tile. They can be sourced in the same way as the icons are but are also able to be in colour. This provides a great way to customise your touch panel.
-
-::: tip
-Background images are **not persistent** and have to be (re)loaded after restart and before they can be used in any configuration.
-
-Remove the image by sending a payload with a blank value for imageBase64
-
-The parameters for the image can be updated if you have the image already on the screen and leave out the imageBase64 key from the payload. 
-
-:::
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-
-```json
-{
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "backgroundImage": 
-      {
-        "imageBase64": "<encodeBase64(.png)>",
-        "zoom": <number>,
-        "angle": <number>,
-        "offset": [<x number>,<y number>]
-      }
-    }
-  ]
-}
-```
-
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-`cmnd/<device-client-id>`
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-### How to prepare an image for use
-
-- Background images need to be in .PNG format
-- To upload via MQTT the background image has to be Base64 encoded using one of the following methods;
-  - Use the [OXRS Icon Generator](/tools/icon-generator.html) which generates the required JSON payload ready-to-use
-  - Use an online converter like [base64encode.org](https://www.base64encode.org/)
-  - Use Node-RED [node-red-node-base64](https://flows.nodered.org/node/node-red-node-base64) for automated conversion
-- Ensure there is no extra information added to the Base64 encoded file
-- The encoded image should not exceed 4KB to avoid crashes - TBC
-
-### Image size and alignment
-
-- The tile layout is optimised for 60x60 pixel icons
-- Max image size is approx. 140x140 pixels (the tile size)
-- Images are aligned to the centre of the tile
-- There are no size checks for custom images
-- angle is an integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg), + number rotates CW , - number rotates CCW
 
 ## Setting Up your Touch Panel
 
