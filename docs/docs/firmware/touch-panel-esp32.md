@@ -57,20 +57,20 @@ Note that the 320x480px panels support a 2x3 tile configuration and the 480x480p
 [comment]: <> ([TODO] How it works)
 Broadly speaking, we split MQTT communications into three types:
 1. **Configuration messages**. Typically you send these from Node-RED to the panel each time it comes online. These are used to configure tiles and screens.
-   - _Send on the ```/conf/<device-client-id>``` topic._
+   - _Send on the `conf/<device-client-id>` topic._
 3. **Command messages**. Typically you send these from Node-RED to provide updates to tiles and screens (such as turning a tile on or off, or indicating the level of your lights or blinds within the tile), but they can also do things like dim the display, set screen timeouts, switch screens, handle menus, or update the footer bar.
-   - _Send on the ```/cmnd/<device-client-id>``` topic._
+   - _Send on the `cmnd/<device-client-id>` topic._
 5. **State messages**. These are the messages that your touch panel sends back over MQTT when you interact with the touch panel, and you can process them in Node-RED to achieve your various automations.
-   - _Listen to these on the ```/stat/<device-client-id>``` topic._
+   - _Listen to these on the `stat/<device-client-id>` topic._
 
 A typical set of nodes or flows in Node-RED will therefore need to be set up to achieve the following:
-- Listen to ```/stat/<device-client-id/lwt``` to know when that panel came online, at which point you would
-  - Send out a ```/conf``` message to configure it with one or more screens, each with a set of tiles. 
-  - Optionally send out a ```/cmnd``` message with any custom icons or tile background images. 
-  - Optionally send out a ```/cmnd``` message with other data, for example updates to your footer (e.g. date / time / temperature) at startup, or MQTT payloads to configure tile contents with sub labels or other text that might change later.
-- Listen to the ```/stat``` topic, so when a user interacts with the touch panel;
+- Listen to `stat/<device-client-id/lwt` to know when that panel came online, at which point you would
+  - Send out a `conf/` message to configure it with one or more screens, each with a set of tiles. 
+  - Optionally send out a `cmnd/` message with any custom icons or tile background images. 
+  - Optionally send out a `cmnd/` message with other data, for example updates to your footer (e.g. date / time / temperature) at startup, or MQTT payloads to configure tile contents with sub labels or other text that might change later.
+- Listen to the `stat/` topic, so when a user interacts with the touch panel;
   - Respond accordingly to actuate your devices or automations within Node-RED
-- Depending on your actuators and sensors, listen to their feedback and send out a ```/cmnd``` message to update a tile's view to provide visual feedback to the user
+- Depending on your actuators and sensors, listen to their feedback and send out a `cmnd/` message to update a tile's view to provide visual feedback to the user
 
 ::: tip Recommendation:
 [comment]: <> ([TODO] Explanation into the recommended Node-RED usage for the product)
@@ -90,14 +90,14 @@ Tiles typically have three sets of parameters documented below, corresponding to
 - `command` parameters, for updating the tile
 - `state` parameters, for reporting back the user's interaction with that tile.
 
-To re-cap, parameters of each of these types are sent to the `/conf`, `/cmnd`, and received on the `/stat` MQTT message topics respectively.
+To re-cap, parameters of each of these types are sent to the `conf/`, `cmnd/`, and received on the `stat/` MQTT message topics respectively.
 
 Tile payloads are described below in terms of these three parameter types.
 
 ### General principles - interacting with tiles
 **Tap or hold** - all tiles support these user actions, except the indicator, which doesn't accept user input at all. If you tap a tile, a "single" event is registered immediately. If you press-and-hold, a "hold" event is registered after a certain time has elapsed (approx. just under 1 second) and then no further events are registered even if the button continues to be held. This press-and-hold behaviour also applies to other tile types; although some tiles feature additional controls that send repeated messages when held. (Namely the up/down or left/right tile controls.) Tapping or holding a tile will cause the tile to light up for the duration of touch.
 
-**State management** - don't forget that the touch panel has no knowledge of the state of your IoT device. If you want the tile to indicate that you turned on a light, you then need to send a "state": "on" command back to the tile. This provides excellent flexibility, for example you may have different buttons for different lighting scenes. When a scene is changed, you would then turn on the tile corresponding to the scene that was set (and of course, turn off the tile that was previously turned on). This concept applies to all other tile types that accept an on/off state as well. There is a notable exception to this rule; there's a tile type called ```buttonUpDownLevel``` that allows you to control a level such as a light dimming level or blinds level. This has a very basic state management built-in.
+**State management** - don't forget that the touch panel has no knowledge of the state of your IoT device. If you want the tile to indicate that you turned on a light, you then need to send a "state": "on" command back to the tile. This provides excellent flexibility, for example you may have different buttons for different lighting scenes. When a scene is changed, you would then turn on the tile corresponding to the scene that was set (and of course, turn off the tile that was previously turned on). This concept applies to all other tile types that accept an on/off state as well. There is a notable exception to this rule; there's a tile type called `buttonUpDownLevel` that allows you to control a level such as a light dimming level or blinds level. This has a very basic state management built-in.
 
 ### Parameters common to all tiles
 #### Labels and Sub-Labels
@@ -110,25 +110,25 @@ All tiles allow you to set a **label** and a **subLabel**, these are short texts
 ---
 ![Icon element](/images/tp-element-icon.png)
 
-**Icons** are considered part of the tile's initial configuration (/conf), but a tile icon can of course be swapped-out for a different one later during use as well. There is a limited set of built-in icons available in firmware, but you are free to upload your own, see [add a custom icon](/docs/firmware/touch-panel-esp32#add-a-custom-icon). Icons are generally vector-like graphics for clear indication of button function. 
+**Icons** are considered part of the tile's initial configuration (conf/), but a tile icon can of course be swapped-out for a different one later during use as well. There is a limited set of built-in icons available in firmware, but you are free to upload your own, see [add a custom icon](/docs/firmware/touch-panel-esp32#add-a-custom-icon). Icons are generally vector-like graphics for clear indication of button function. 
 
 #### Text
 ---
 ![Plain text element](/images/tp-element-plaintext.png) ![Rich text element](/images/tp-element-richtext.png)
 
-If you send ```"text": "abc"``` to the /cmnd topic then this text will appear in place of any icon, if you've set one. You can set text colour as follows: "text": "#RRGGBB <your_text_here>#", and if you remove the text by sending "text": "", this will restore the original icon in its place.
+If you send `"text": "abc"` to the cmnd/ topic then this text will appear in place of any icon, if you've set one. You can set text colour as follows: "text": "#RRGGBB <your_text_here>#", and if you remove the text by sending "text": "", this will restore the original icon in its place.
 
 #### Level display
 ---
 ![Level display element](/images/tp-element-leveldisplay.png)
 
-A **level command** can be sent to any tile with a /cmnd message. Imagine you wanted to indicate the water level in a tank. Sending "level": 50 to a basic tile with a custom icon or background picture of a water tank will light that tile up from the bottom, to the level you specified. For displaying window blinds or light levels that can actually be controlled, you would use the buttonUpDownLevel tile type, which has additional control buttons to actually change the levels.
+A **level command** can be sent to any tile with a cmnd/ message. Imagine you wanted to indicate the water level in a tank. Sending "level": 50 to a basic tile with a custom icon or background picture of a water tank will light that tile up from the bottom, to the level you specified. For displaying window blinds or light levels that can actually be controlled, you would use the buttonUpDownLevel tile type, which has additional control buttons to actually change the levels.
 
 #### Background image
 ---
 ![Background image example 1](/images/tp-element-background01.png) ![Background image example 2](/images/tp-element-background02.png) ![Background image example 3](/images/tp-element-background03.png)
 
-A **background image** can be sent to any tile. If that tile previously had an icon, you can clear the icon temporarily by sending `"text": ""` to the /cmnd topic.
+A **background image** can be sent to any tile. If that tile previously had an icon, you can clear the icon temporarily by sending `"text": ""` to the cmnd/ topic.
 
 #### Combining elements
 ---
@@ -1211,7 +1211,7 @@ When you press the tile button the controls screen will appear giving you the ab
 
 ![TP32 Image Alt Text](/images/dropdown-tile.png) ![TP32 Image Alt Text](/images/dropdown-tile-1.png)
 
-This tile type _dropDown_ may be used to present the user with a drop-down menu. The tile has no internal state management, so it's necessary to send the list of items in the drop-down to the tile via the /cmnd topic. Once a selection is made from the dropdown, it's sent back to the event parameter.
+This tile type _dropDown_ may be used to present the user with a drop-down menu. The tile has no internal state management, so it's necessary to send the list of items in the drop-down to the tile via the cmnd/ topic. Once a selection is made from the dropdown, it's sent back to the event parameter.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
