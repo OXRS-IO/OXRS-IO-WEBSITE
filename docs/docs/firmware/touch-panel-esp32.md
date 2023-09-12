@@ -83,7 +83,9 @@ Further documentation and some example Node-RED Flows will be made available in 
 ---
 Each touch panel can be configured with a set of screens, and each screen with a set of tiles. Imagine your screen as a grid on which tiles can be placed at any location, where tile position 1 is at the top left, tile position 2 is the next tile along to the right, and so on.
 
-![3x3 Tile Grid](/images/tp-tilegrid-3x3.png)
+| 3x3 Tile Layout                                | 2x3 Tile Layout                                                 |
+|:---------------------------------------------- |:----------------------------------------------------------------|
+| ![3x3 Tile Grid](/images/tp-tilegrid-3x3.png)  | ![3x3 Tile Grid](/images/tp-tilegrid-2x3.png)                   |
 
 Tiles typically have three sets of parameters documented below, corresponding to the three message types discussed above:
 - `configuration` parameters, for setting up the tile
@@ -158,13 +160,14 @@ The other tile types provide you with additional types of control:
 | buttonLeftRight                                                   | ![TP32 Image Alt Text](/images/buttonLeftRight-tile.png)   | [Get Started](/docs/firmware/touch-panel-esp32/#buttonleftright)                                                                                                                                                 |
 | buttonPrevNext                                                    | ![TP32 Image Alt Text](/images/buttonPrevNext.png)         | [Get Started](/docs/firmware/touch-panel-esp32/#buttonprevnext)                                                                                                                                                  |
 | indicator                                                         | ![TP32 Image Alt Text](/images/indicator-tile.png)         | [Get Started](/docs/firmware/touch-panel-esp32/#indicator)                                                                                                                                                       |
+| feed                                                              | ![TP32 Image Alt Text](/images/feed-tile.png)              | [Get Started](/docs/firmware/touch-panel-esp32/#feed)                                                                                                                                                       |
 | colorPickerRgbCct <br><br> colorPickerRgb <br><br> colorPickerCct | ![TP32 Image Alt Text](/images/colorPicker-tile.png)       | [Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgbcct)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgb)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickercct) |
 | dropDown                                                          | ![TP32 Image Alt Text](/images/dropdown-tile.png)          | [Get Started](/docs/firmware/touch-panel-esp32/#dropdown)                                                                                                                                                        |
-| buttonSelector                                                    | ![TP32 Image Alt Text](/images/buttonSelector-tile.png)    | [Get Started](/docs/firmware/touch-panel-esp32/#buttonSelector)                                                                                                                                                  |
+| buttonSelector                                                    | ![TP32 Image Alt Text](/images/buttonSelector-tile.png)    | [Get Started](/docs/firmware/touch-panel-esp32/#buttonselector)                                                                                                                                                  |
 | remote                                                            | ![TP32 Image Alt Text](/images/remote-tile.png)            | [Get Started](/docs/firmware/touch-panel-esp32/#remote)                                                                                                                                                          |
 | link                                                              | ![TP32 Image Alt Text](/images/link-tile.png)              | [Get Started](/docs/firmware/touch-panel-esp32/#link)                                                                                                                                                            |
 | thermostat                                                        | ![TP32 Image Alt Text](/images/thermostat-arc-tile.png)    | [Get Started](/docs/firmware/touch-panel-esp32/#thermostat)                                                                                                                                                      |
-| keyPad                                                    | ![TP32 Image Alt Text](/images/keypad-tile-2.png)                  | [Get Started](/docs/firmware/touch-panel-esp32/#keypad)                                                                                 |
+| keyPad                                                          | ![TP32 Image Alt Text](/images/keypad-tile-2.png)                  | [Get Started](/docs/firmware/touch-panel-esp32/#keypad)                                                                                 |
 
 # Tile Payloads
 
@@ -710,6 +713,116 @@ This tile type _buttonPrevNext_ is similar to _buttonLeftRight_, except the cont
 :::
 ::::
 [comment]: <> (END of JSON Example)
+
+---
+
+## feed
+
+![TP32 Image Alt Text](/images/feed-tile.png) ![TP32 Image Alt Text](/images/feed-tile-active.png)
+
+This tile type _feed_ when pressed presents a full screen, vertically scrollable list of messages. Up to 5 messages are retained, with any new message(s) replacing older messages. The newest message is displayed at the top.
+
+This tile has no status feedback; tapping the tile itself only presents the feed screen.
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+
+::: code-group-item Config
+
+```json {7-12}
+{
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "feed",
+          "icon": "_news",
+          "label": "Messages"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter |   Type   | Options | Description                             |                                                            |
+| :-------- | :------: | :-----: | :-------------------------------------- | :--------------------------------------------------------- |
+| `tile`    | _Number_ |   n/a   | Enter your tile number e.g. `1`         | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `style`   | _String_ |   n/a   | Enter tile style name `feed`            | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `icon`    | _String_ |   n/a   | Enter icon name e.g.`_news`             | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `label`   | _String_ |   n/a   | Enter label text e.g.`Messages`         | <Badge type="tip" text="Optional" vertical="bottom" />     |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+
+::: code-group-item Command
+
+```json {3-28}
+{
+  "tiles": [
+    {
+      "screen": "1",
+      "tile": "2",
+      "state": "off",
+      "subLabel": "2 Unread",
+      "messageFeed": {
+        "addPost": {
+          "id": 1,
+          "head": "#ff0000 Taffic Announcement#",
+          "body": "Route 66 closed for motorcycles\nUse public transportation"
+        }
+      }
+    },
+    {
+      "screen": "1",
+      "tile": "2",
+      "state":"off",
+      "subLabel": "2 Unread",
+      "messageFeed": {
+        "addPost": {
+          "id": 2,
+          "head": "This is a #0000ff Heading# which can span multiple lines",
+          "body": "Feed content goes here\nAnd a second line \n#00ff00 Third# line"
+        }
+      }
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter     |   Type   |     Options     | Description                                                 |                                                            |
+| :---------    | :------: | :-------------: | :---------------------------------------------------------- | :--------------------------------------------------------- |
+| `screen`      | _Number_ |       n/a       | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`        | _Number_ |       n/a       | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `state`       | _String_ | `"on"`\|`"off"` | Update the tile state                                       | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `sublabel`    | _String_ |       n/a       | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `messageFeed` | _Object_ |       n/a       | An object containing keys `id`, `head`, and `body`          | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `id`          | _Number_ |       n/a       | Message ID                                                  | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `head`        | _String_ |       n/a       | String containing the message heading                       | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `body`        | _String_ |       n/a       | String containing the message text                          | <Badge type="tip" text="Optional" vertical="bottom" />     |
+
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+### Feed screen:
+
+The feed screen is not clickable, but it's possible to drag the finger to scroll up and down if the message list extends beyond the bottom of the screen. To return to the previous screen, use the back button bottom-left.
+
+![Feed Screen](/images/feed-screen.png)
 
 ---
 
