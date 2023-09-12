@@ -105,7 +105,7 @@ Tile payloads are described below in terms of these three parameter types.
 ---
 ![Label and Sub-Label elements](/images/tp-element-label-sublabel.png)
 
-All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically descibe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that labels are set in the tile's config, and subLabels are set by command; both can be configured at bootup or changed during use.</div>
+All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically descibe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that labels are set in the tile's config, and subLabels are set by command; both can be configured at bootup or changed during use.
 
 #### Icons
 ---
@@ -139,7 +139,7 @@ A **background image** can be sent to any tile. If that tile previously had an i
 Of course, the above can be combined to create visually rich elements. Here are some examples. More to follow.
 
 ![Example element combination 01 - pump level](/images/tp-element-combination-example01-pumplevel.png)
-![Example element combination 02 - blinds level](tp-element-combination-example02-blindslevel.png)
+![Example element combination 02 - blinds level](/images/tp-element-combination-example02-blindslevel.png)
 
 [comment]: <> ([TODO] Add more nice examples of visually rich tiles)
 
