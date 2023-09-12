@@ -79,9 +79,8 @@ The recommended way to use the firmware and interact with the Touch Panel and yo
 Further documentation and some example Node-RED Flows will be made available in due course.
 :::
 
----
 # General Overview of Tile Styles, Payloads, and Behaviours
-
+---
 Each touch panel can be configured with a set of screens, and each screen with a set of tiles. Imagine your screen as a grid on which tiles can be placed at any location, where tile position 1 is at the top left, tile position 2 is the next tile along to the right, and so on.
 
 ![3x3 Tile Grid](/images/tp-tilegrid-3x3.png)
@@ -115,8 +114,7 @@ All tiles allow you to set a **label** and a **subLabel**, these are short texts
 
 #### Text
 ---
-![Plain text element](/images/tp-element-plaintext.png)
-![Rich text element](/images/tp-element-richtext.png)
+![Plain text element](/images/tp-element-plaintext.png) ![Rich text element](/images/tp-element-richtext.png)
 
 If you send ```"text": "abc"``` to the /cmnd topic then this text will appear in place of any icon, if you've set one. You can set text colour as follows: "text": "#RRGGBB <your_text_here>#", and if you remove the text by sending "text": "", this will restore the original icon in its place.
 
@@ -128,18 +126,15 @@ A **level command** can be sent to any tile with a /cmnd message. Imagine you wa
 
 #### Background image
 ---
-![Background image example 1](/images/tp-element-background01.png)
-![Background image example 2](/images/tp-element-background02.png)
-![Background image example 3](/images/tp-element-background03.png)
+![Background image example 1](/images/tp-element-background01.png) ![Background image example 2](/images/tp-element-background02.png) ![Background image example 3](/images/tp-element-background03.png)
 
-A **background image** can be sent to any tile. If that tile previously had an icon, you can clear the icon temporarily by sending ```"text": ""``` to the /cmnd topic.
+A **background image** can be sent to any tile. If that tile previously had an icon, you can clear the icon temporarily by sending `"text": ""` to the /cmnd topic.
 
 #### Combining elements
 ---
 Of course, the above can be combined to create visually rich elements. Here are some examples. More to follow.
 
-![Example element combination 01 - pump level](/images/tp-element-combination-example01-pumplevel.png)
-![Example element combination 02 - blinds level](/images/tp-element-combination-example02-blindslevel.png)
+![Example element combination 01 - pump level](/images/tp-element-combination-example01-pumplevel.png) ![Example element combination 02 - blinds level](/images/tp-element-combination-example02-blindslevel.png)
 
 [comment]: <> ([TODO] Add more nice examples of visually rich tiles)
 
@@ -158,8 +153,7 @@ The other tile types provide you with additional types of control:
 | Tile Style                                                        | Tile Example                                               | Get Started                                                                                                                                                                                                      |
 | :---------------------------------------------------------------- | :--------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | button                                                            | ![TP32 Image Alt Text](/images/button-tile-not-active.png) | [Get Started](/docs/firmware/touch-panel-esp32/#button)                                                                                                                                                          |
-| buttonLevelUp                                                     | ![TP32 Image Alt Text](/images/buttonLevelUp-tile.png)     | [Get Started](/docs/firmware/touch-panel-esp32/#buttonlevelup)                                                                                                                                                   |
-| buttonLevelDown                                                   | ![TP32 Image Alt Text](/images/buttonLevelDown-tile.png)   | [Get Started](/docs/firmware/touch-panel-esp32/#buttonleveldown)                                                                                                                                                 |
+| buttonUpDownLevel                                                 | ![TP32 Image Alt Text](/images/buttonLevelUp-tile.png)     | [Get Started](/docs/firmware/touch-panel-esp32/#buttonupdownlevel)                                                                                                                                                   |
 | buttonUpDown                                                      | ![TP32 Image Alt Text](/images/buttonUpDown-tile.png)      | [Get Started](/docs/firmware/touch-panel-esp32/#buttonupdown)                                                                                                                                                    |
 | buttonLeftRight                                                   | ![TP32 Image Alt Text](/images/buttonLeftRight-tile.png)   | [Get Started](/docs/firmware/touch-panel-esp32/#buttonleftright)                                                                                                                                                 |
 | buttonPrevNext                                                    | ![TP32 Image Alt Text](/images/buttonPrevNext.png)         | [Get Started](/docs/firmware/touch-panel-esp32/#buttonprevnext)                                                                                                                                                  |
@@ -179,14 +173,14 @@ The other tile types provide you with additional types of control:
 
 ![TP32 Image Alt Text](/images/button-tile-not-active.png) ![TP32 Image Alt Text](/images/button-tile-active.png)
 
-The _button_ is the most basic tile type. It supports only press, and press-and-hold events to trigger actions, although like other buttons, its display and feedback options are much more varied (see [parameters common to all tiles](/docs/firmware/touch-panel-esp32#parameters-common-to-all-tiles)
+The _button_ is the most basic tile type, in terms of interactivity. It only supports tap or hold events, but like other buttons, its display and feedback options are much more varied (see [parameters common to all tiles](/docs/firmware/touch-panel-esp32#parameters-common-to-all-tiles)).
 
 [comment]: <> (START of JSON Example)
 :::: code-group
 
 ::: code-group-item Config
 
-```json {7-12}
+```json {7-14}
 {
   "screens": [
     {
@@ -215,7 +209,7 @@ The _button_ is the most basic tile type. It supports only press, and press-and-
 | `style`        | _String_ |   n/a   | Enter tile style name `button`                                                | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `icon`         | _String_ |   n/a   | Enter icon name e.g.`_bulb`                                                   | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `label`        | _String_ |   n/a   | Enter label text e.g.`Lamps`                                                  | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `levelBottom`  | _String_ |   n/a   | Defaults to `0`. _Not usually required for this tile type, but supported._    | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `levelBottom`  | _String_ |   n/a   | Defaults to `0` _Not usually required for this tile type, but supported._    | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `levelTop`     | _String_ |   n/a   | Defaults to `100` _Not usually required for this tile type, but supported._   | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -254,7 +248,7 @@ The _button_ is the most basic tile type. It supports only press, and press-and-
 
 ::: code-group-item Command
 
-```json {3-8}
+```json {3-9}
 {
   "tiles": [
     {
@@ -275,7 +269,7 @@ The _button_ is the most basic tile type. It supports only press, and press-and-
 | `screen`   | _Number_ |       n/a       | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `tile`     | _Number_ |       n/a       | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `state`    | _String_ | `"on"`\|`"off"` | Updated the tile state                                      | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `sublabel` | _String_ |       n/a       | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `subLabel` | _String_ |       n/a       | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `level`    | _Number_ |       n/a       | Level indicator e.g. `40` to fill the tile up to 40%        | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
@@ -288,14 +282,13 @@ The _button_ is the most basic tile type. It supports only press, and press-and-
 ---
 
 ## buttonUpDownLevel
-![buttonUpDownLevel Tile Style - Off](/images/tp-tilestyle-buttonUpDown-off.png)
-![buttonUpDownLevel Tile Style - On](/images/tp-tilestyle-buttonUpDown-on.png)
+![buttonUpDownLevel Tile Style - Off](/images/tp-tilestyle-buttonUpDown-off.png) ![buttonUpDownLevel Tile Style - On](/images/tp-tilestyle-buttonUpDown-on.png)
 
-_buttonUpDownLevel_ allows the user to control the a device with a "level" type, such as blinds or single colour dimmable lights. When the tile is set to the `on` state, the tile's background indicates the light or blinds level. The `/conf` parameters `levelTop` and `levelBottom` are used to specify dimming or positional limits. For example, if you want to display a bulb's dimming status (0-100%) visually, you would set `levelTop` to 100 and `levelBottom` to 0. If you had roller blinds that drop from 0 to 10, where 10 is fully closed, you would set `levelTop` to 0 and `levelBottom` to 10, thus inverting the level to fill down from the top - so it's more intuitive for blinds positions. The actual level or position is set using the command parameter `level`.
+_buttonUpDownLevel_ provides up/down control with visual feedback, and an internally stored state. As such the output of an up/down button press (or hold) transmits not only the direction of change, but also the new value. A tap will increment or decrement that value by one, and a hold will repeatedly send states in 20 steps across the whole range of the limits you configured. So for a tile configured to dim 0-100, the quickly repeating values would be sent in steps of 5, for example.
 
-This tile type is slightly different from the rest because it stores an internal value which is then sent out when updated. If the window blinds or dimmable light was changed via other means, you can of course update the `level` to reflect this external change.
+The parameters `levelTop` and `levelBottom` are used to specify dimming or positional limits. To display a bulb's dimming status (0-100%) visually, you would set `levelTop` to 100 and `levelBottom` to 0. To display a roller blind's position visually, where it can be controlled in e.g. 10 steps, you would set `levelTop` to 0 and `levelBottom` to 10, thus inverting the level to fill down from the top.
 
-Tapping up/down buttons will send out a new `state` value. If you press-and-hold, events will be sent out repeatedly in 20 steps across the whole range of the limits you configured. So if you configured the tile to dim 0-100, it would send out repeated messages in steps of 5. If your dimming limits were 0-20, it would send repeated messages in steps of 1.
+You can update the tile's level, e.g. if something was changed externally, by sending a `level` payload on the command topic, as with all other tiles.
 
 Don't forget that you can send `level` messages to any tile type, but this is the correct tile to use if you need to be able to control levels using up/down buttons.
 
@@ -360,10 +353,10 @@ Don't forget that you can send `level` messages to any tile type, but this is th
 | :-------- | :------: | :------------------------------------------: | :----------------------------------------------------------------------------------------- |
 | `screen`  | _Number_ |                     n/a                      | Screen number triggering state event                                                       |
 | `tile`    | _Number_ |                     n/a                      | Tile number triggering state event                                                         |
-| `style`   | _String_ |                     n/a                      | Tile style `buttonUpDownLevel`                                                                 |
+| `style`   | _String_ |                     n/a                      | Tile style `buttonUpDownLevel`                                                             |
 | `type`    | _String_ |            `"button"`\|`"level"`             | Indicates if touch event was a button press or level change                                |
 | `event`   | _String_ | `"single"` \| `"hold"` \| `"up"` \| `"down"` | Indicates if a button press was `short` or `long`, or if a level change was `up` or `down` |
-| `state`   | _Number_ |                     n/a                      | The current level state (prior to this event)                                              |
+| `state`   | _Number_ |                     n/a                      | The new level state (value after level was changed)                                        |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -409,7 +402,7 @@ Don't forget that you can send `level` messages to any tile type, but this is th
 
 ![TP32 Image Alt Text](/images/buttonUpDown-tile.png) ![TP32 Image Alt Text](/images/buttonUpDown-tile-active.png)
 
-This tile type _buttonUpDown_ is similar to _buttonUpDownLevel_, except that it has no knowledge of states, and sends simple up/down messages rather than e.g. dimming values. Like all tiles, it's still possible to update the tile's visuals to show a level if desired. Similar to _buttonUpDownLevel_, this tile type _buttonUpDown_ will register a press-and-hold on the up/down controls as repeated messages for the duration that you press down. If you press and hold on the button portion of the tile, this will only send a single hold event - like a standard button tile.
+This tile type _buttonUpDown_ is similar to _buttonUpDownLevel_, except that it has no knowledge of states, and sends simple up/down messages rather than e.g. dimming values. Like all tiles, it's still possible to update the tile's visuals to show a level if desired.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -515,7 +508,7 @@ This tile type _buttonUpDown_ is similar to _buttonUpDownLevel_, except that it 
 
 ![TP32 Image Alt Text](/images/buttonLeftRight-tile.png) ![TP32 Image Alt Text](/images/buttonLeftRight-tile-active.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type _buttonLeftRight_ is similar to _buttonUpDown_, except the control buttons face left and right, with corresponding event strings.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -621,7 +614,7 @@ This tile type _buttonUpDown_ is similar to _buttonUpDownLevel_, except that it 
 
 ![TP32 Image Alt Text](/images/buttonPrevNext.png) ![TP32 Image Alt Text](/images/buttonPrevNext-active.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type _buttonPrevNext_ is similar to _buttonLeftRight_, except the control buttons are customised for playlist control, with corresponding event strings.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
