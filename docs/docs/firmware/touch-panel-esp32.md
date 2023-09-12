@@ -47,7 +47,7 @@ Note that the 320x480px panels support a 2x3 tile configuration and the 480x480p
 
 ### Prerequisites:
 
-- **A touch panel**: see above
+- **A touch panel**: see above.
 - **The firmware**: OXRS-IO-TouchPanel-ESP32-FW [Github](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases)
 - **OXRS Admin UI**: for initial configuration [Github](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
 - Automation software such as Node-RED [Read more](https://nodered.org)
