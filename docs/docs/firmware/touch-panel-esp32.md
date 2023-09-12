@@ -160,6 +160,7 @@ The other tile types provide you with additional types of control:
 | indicator                                                         | ![TP32 Image Alt Text](/images/indicator-tile.png)         | [Get Started](/docs/firmware/touch-panel-esp32/#indicator)                                                                                                                                                       |
 | colorPickerRgbCct <br><br> colorPickerRgb <br><br> colorPickerCct | ![TP32 Image Alt Text](/images/colorPicker-tile.png)       | [Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgbcct)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgb)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickercct) |
 | dropDown                                                          | ![TP32 Image Alt Text](/images/dropdown-tile.png)          | [Get Started](/docs/firmware/touch-panel-esp32/#dropdown)                                                                                                                                                        |
+| buttonSelector                                                    | ![TP32 Image Alt Text](/images/buttonSelector-tile.png)    | [Get Started](/docs/firmware/touch-panel-esp32/#buttonSelector)                                                                                                                                                  |
 | remote                                                            | ![TP32 Image Alt Text](/images/remote-tile.png)            | [Get Started](/docs/firmware/touch-panel-esp32/#remote)                                                                                                                                                          |
 | link                                                              | ![TP32 Image Alt Text](/images/link-tile.png)              | [Get Started](/docs/firmware/touch-panel-esp32/#link)                                                                                                                                                            |
 | thermostat                                                        | ![TP32 Image Alt Text](/images/thermostat-arc-tile.png)    | [Get Started](/docs/firmware/touch-panel-esp32/#thermostat)                                                                                                                                                      |
@@ -1324,6 +1325,119 @@ This tile type _dropDown_ may be used to present the user with a drop-down menu.
 When you press the tile button the dropdown list screen will appear giving you the ability to select from the list of items.
 
 ![TP32 Image Alt Text](/images/dropdown-list-screen.png)
+
+---
+
+## buttonSelector
+
+![TP32 Image Alt Text](/images/buttonSelector-tile.png)
+
+This tile type _buttonSelector_ acts in much the same way as the _dropDown_ tile style, except that the options are displayed within the tile itself rather than on a control screen. It's useful for quickly seeing options without leaving the main screen.
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+
+::: code-group-item Config
+
+```json {7-12}
+{
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "buttonSelector",
+          "icon": "_ceilingfan",
+          "label": "Fan Speed"
+        }
+      ]
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter |   Type   | Options | Description                            |                                                            |
+| :-------- | :------: | :-----: | :------------------------------------- | :--------------------------------------------------------- |
+| `tile`    | _Number_ |   n/a   | Enter your tile number e.g. `1`        | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `style`   | _String_ |   n/a   | Enter tile style name `buttonSelector` | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `icon`    | _String_ |   n/a   | Enter icon name e.g.`_music`           | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `label`   | _String_ |   n/a   | Enter label text e.g.`Fan Speed`       | <Badge type="tip" text="Optional" vertical="bottom" />     |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+
+::: code-group-item State
+
+```json
+{
+  "screen": 1,
+  "tile": 1,
+  "style": "buttonSelector",
+  "type": "buttonSelector",
+  "event": "selection",
+  "state": 2
+}
+```
+
+### JSON parameters
+
+| Parameter |   Type   | Options                      | Description                                     |
+| :-------- | :------: | :--------------------------: | :---------------------------------------------- |
+| `screen`  | _Number_ |   n/a                        | Screen number triggering state event            |
+| `tile`    | _Number_ |   n/a                        | Tile number triggering state event              |
+| `style`   | _String_ |   n/a                        |                                                 |
+| `type`    | _String_ |   `"selector"`\|`"button"`   |                                                 |
+| `event`   | _String_ |   `"selection"`\|`"single"`  |                                                 |
+| `state`   | _Number_ |   n/a                        | Item selected (1-based index of `buttonSelector`) |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`stat/<device-client-id>`
+:::
+
+::: code-group-item Command
+
+```json {3-14}
+{
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "selectorList": [
+          "off",
+          "low",
+          "medium",
+          "full"
+      ],
+      "selectorSelect": 1,
+      "subLabel": "Level"
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter        |   Type   | Options | Description                                                               |                                                            |
+| :--------------- | :------: | :-----: | :------------------------------------------------------------------------ | :--------------------------------------------------------- |
+| `screen`         | _Number_ |   n/a   | Screen number sending command to                                          | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`           | _Number_ |   n/a   | Tile number sending command to                                            | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `selectorList`   | _Array_  |   n/a   | List items Array of Strings `["off", "low", "medium", "full"]`            | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `selectorSelect` | _Number_ |   n/a   | Selected item in dropdown list (1-based index of `selectorList`)          | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `subLabel`       | _String_ |   n/a   | String for additional tile information e.g. last updated `"Level"`        | <Badge type="tip" text="Optional" vertical="bottom" />     |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
 
 ---
 
