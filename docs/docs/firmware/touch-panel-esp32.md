@@ -80,7 +80,77 @@ Further documentation and some example Node-RED Flows will be made available in 
 :::
 
 ---
+# General Overview of Tile Styles, Payloads, and Behaviours
 
+Each touch panel can be configured with a set of screens, and each screen with a set of tiles. Imagine your screen as a grid on which tiles can be placed at any location, where tile position 1 is at the top left, tile position 2 is the next tile along to the right, and so on.
+
+![3x3 Tile Grid](/images/tp-tilegrid-3x3.png)
+
+Tiles typically have three sets of parameters documented below, corresponding to the three message types discussed above:
+- `configuration` parameters, for setting up the tile
+- `command` parameters, for updating the tile
+- `state` parameters, for reporting back the user's interaction with that tile.
+
+To re-cap, parameters of each of these types are sent to the `/conf`, `/cmnd`, and received on the `/stat` MQTT message topics respectively.
+
+Tile payloads are described below in terms of these three parameter types.
+
+### General principles - interacting with tiles
+**Tap or hold** - all tiles support these user actions, except the indicator, which doesn't accept user input at all. If you tap a tile, a "single" event is registered immediately. If you press-and-hold, a "hold" event is registered after a certain time has elapsed (approx. just under 1 second) and then no further events are registered even if the button continues to be held. This press-and-hold behaviour also applies to other tile types; although some tiles feature additional controls that send repeated messages when held. (Namely the up/down or left/right tile controls.) Tapping or holding a tile will cause the tile to light up for the duration of touch.
+
+**State management** - don't forget that the touch panel has no knowledge of the state of your IoT device. If you want the tile to indicate that you turned on a light, you then need to send a "state": "on" command back to the tile. This provides excellent flexibility, for example you may have different buttons for different lighting scenes. When a scene is changed, you would then turn on the tile corresponding to the scene that was set (and of course, turn off the tile that was previously turned on). This concept applies to all other tile types that accept an on/off state as well. There is a notable exception to this rule; there's a tile type called ```buttonUpDownLevel``` that allows you to control a level such as a light dimming level or blinds level. This has a very basic state management built-in.
+
+### Parameters common to all tiles
+#### Labels and Sub-Labels
+---
+![Label and Sub-Label elements](/images/tp-element-label-sublabel.png)
+
+All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically descibe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that labels are set in the tile's config, and subLabels are set by command; both can be configured at bootup or changed during use.
+
+#### Icons
+---
+![Icon element](/images/tp-element-icon.png)
+
+**Icons** are considered part of the tile's initial configuration (/conf), but a tile icon can of course be swapped-out for a different one later during use as well. There is a limited set of built-in icons available in firmware, but you are free to upload your own, see [add a custom icon](/docs/firmware/touch-panel-esp32#add-a-custom-icon). Icons are generally vector-like graphics for clear indication of button function. 
+
+#### Text
+---
+![Plain text element](/images/tp-element-plaintext.png)
+![Rich text element](/images/tp-element-richtext.png)
+
+If you send ```"text": "abc"``` to the /cmnd topic then this text will appear in place of any icon, if you've set one. You can set text colour as follows: "text": "#RRGGBB <your_text_here>#", and if you remove the text by sending "text": "", this will restore the original icon in its place.
+
+#### Level display
+---
+![Level display element](/images/tp-element-leveldisplay.png)
+
+A **level command** can be sent to any tile with a /cmnd message. Imagine you wanted to indicate the water level in a tank. Sending "level": 50 to a basic tile with a custom icon or background picture of a water tank will light that tile up from the bottom, to the level you specified. For displaying window blinds or light levels that can actually be controlled, you would use the buttonUpDownLevel tile type, which has additional control buttons to actually change the levels.
+
+#### Background image
+---
+![Background image example 1](/images/tp-element-background01.png)
+![Background image example 2](/images/tp-element-background02.png)
+![Background image example 3](/images/tp-element-background03.png)
+
+A **background image** can be sent to any tile. If that tile previously had an icon, you can clear the icon temporarily by sending ```"text": ""``` to the /cmnd topic.
+
+#### Combining elements
+---
+Of course, the above can be combined to create visually rich elements. Here are some examples. More to follow.
+
+![Example element combination 01 - pump level](/images/tp-element-combination-example01-pumplevel.png)
+![Example element combination 02 - blinds level](/images/tp-element-combination-example02-blindslevel.png)
+
+[comment]: <> ([TODO] Add more nice examples of visually rich tiles)
+
+### Understanding differences between tile types
+If we use the basic _button_ tile as a basis for our understanding, this tile type has a lot of options for displaying different elements, but is limited in how you can interact with it; it only accepts tap or hold.
+
+The other tile types provide you with additional types of control:
+- controls **within** the tile (to turn things up and down, link to other screens, etc.)
+- controls **behind** the tile, such that when you press the tile, the screen is taken over by the control screen in question. This is useful for color pickers, menu items, keypads, and more.
+
+---
 # Tile Styles
 
 [comment]: <> ([TODO] Tile Styles explanation)
@@ -99,12 +169,9 @@ Further documentation and some example Node-RED Flows will be made available in 
 | remote                                                            | ![TP32 Image Alt Text](/images/remote-tile.png)            | [Get Started](/docs/firmware/touch-panel-esp32/#remote)                                                                                                                                                          |
 | link                                                              | ![TP32 Image Alt Text](/images/link-tile.png)              | [Get Started](/docs/firmware/touch-panel-esp32/#link)                                                                                                                                                            |
 | thermostat                                                        | ![TP32 Image Alt Text](/images/thermostat-arc-tile.png)    | [Get Started](/docs/firmware/touch-panel-esp32/#thermostat)                                                                                                                                                      |
-| keyPad                                     | ![TP32 Image Alt Text](/images/keypad-tile-2.png)          | [Get Started](/docs/firmware/touch-panel-esp32/#keypad)                                                                                 |
+| keyPad                                                    | ![TP32 Image Alt Text](/images/keypad-tile-2.png)                  | [Get Started](/docs/firmware/touch-panel-esp32/#keypad)                                                                                 |
 
 # Tile Payloads
-
-[comment]: <> ([TODO] Explanation)
-Explanation text goes here...
 
 ---
 
@@ -112,7 +179,7 @@ Explanation text goes here...
 
 ![TP32 Image Alt Text](/images/button-tile-not-active.png) ![TP32 Image Alt Text](/images/button-tile-active.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+The _button_ is the most basic tile type. It supports only press, and press-and-hold events to trigger actions, although like other buttons, its display and feedback options are much more varied (see [parameters common to all tiles](/docs/firmware/touch-panel-esp32#parameters-common-to-all-tiles)
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -130,7 +197,9 @@ Explanation text goes here...
           "tile": 1,
           "style": "button",
           "icon": "_bulb",
-          "label": "Lamps"
+          "label": "Lamps",
+          "levelBottom": 0,
+          "levelTop": 100
         }
       ]
     }
@@ -140,12 +209,14 @@ Explanation text goes here...
 
 ### JSON parameters
 
-| Parameter |   Type   | Options | Description                     |                                                            |
-| :-------- | :------: | :-----: | :------------------------------ | :--------------------------------------------------------- |
-| `tile`    | _Number_ |   n/a   | Enter your tile number e.g. `1` | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `style`   | _String_ |   n/a   | Enter tile style name `button`  | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `icon`    | _String_ |   n/a   | Enter icon name e.g.`_bulb`     | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `label`   | _String_ |   n/a   | Enter label text e.g.`Lamps`    | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| Parameter      |   Type   | Options | Description                                                                   |                                                            |
+| :------------- | :------: | :-----: | :---------------------------------------------------------------------------- | :--------------------------------------------------------- |
+| `tile`         | _Number_ |   n/a   | Enter your tile number e.g. `1`                                               | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `style`        | _String_ |   n/a   | Enter tile style name `button`                                                | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `icon`         | _String_ |   n/a   | Enter icon name e.g.`_bulb`                                                   | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `label`        | _String_ |   n/a   | Enter label text e.g.`Lamps`                                                  | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `levelBottom`  | _String_ |   n/a   | Defaults to `0`. _Not usually required for this tile type, but supported._    | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `levelTop`     | _String_ |   n/a   | Defaults to `100` _Not usually required for this tile type, but supported._   | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -190,7 +261,8 @@ Explanation text goes here...
       "screen": 1,
       "tile": 1,
       "state": "on",
-      "subLabel": "on just now"
+      "subLabel": "on just now",
+      "level": 40
     }
   ]
 }
@@ -202,8 +274,9 @@ Explanation text goes here...
 | :--------- | :------: | :-------------: | :---------------------------------------------------------- | :--------------------------------------------------------- |
 | `screen`   | _Number_ |       n/a       | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `tile`     | _Number_ |       n/a       | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `state`    | _String_ | `"on"`\|`"off"` | Updated the tile state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `state`    | _String_ | `"on"`\|`"off"` | Updated the tile state                                      | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `sublabel` | _String_ |       n/a       | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `level`    | _Number_ |       n/a       | Level indicator e.g. `40` to fill the tile up to 40%        | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -214,12 +287,17 @@ Explanation text goes here...
 
 ---
 
-## buttonLevelUp
+## buttonUpDownLevel
+![buttonUpDownLevel Tile Style - Off](/images/tp-tilestyle-buttonUpDown-off.png)
+![buttonUpDownLevel Tile Style - On](/images/tp-tilestyle-buttonUpDown-on.png)
 
-![TP32 Image Alt Text](/images/buttonLevelUp-tile.png) ![TP32 Image Alt Text](/images/buttonLevelUp-tile-toggle.png)
-![TP32 Image Alt Text](/images/buttonLevelUp-tile-active.png) ![TP32 Image Alt Text](/images/buttonLevelUp-tile-active-toggle.png)
+_buttonUpDownLevel_ allows the user to control the a device with a "level" type, such as blinds or single colour dimmable lights. When the tile is set to the `on` state, the tile's background indicates the light or blinds level. The `/conf` parameters `levelTop` and `levelBottom` are used to specify dimming or positional limits. For example, if you want to display a bulb's dimming status (0-100%) visually, you would set `levelTop` to 100 and `levelBottom` to 0. If you had roller blinds that drop from 0 to 10, where 10 is fully closed, you would set `levelTop` to 0 and `levelBottom` to 10, thus inverting the level to fill down from the top - so it's more intuitive for blinds positions. The actual level or position is set using the command parameter `level`.
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type is slightly different from the rest because it stores an internal value which is then sent out when updated. If the window blinds or dimmable light was changed via other means, you can of course update the `level` to reflect this external change.
+
+Tapping up/down buttons will send out a new `state` value. If you press-and-hold, events will be sent out repeatedly in 20 steps across the whole range of the limits you configured. So if you configured the tile to dim 0-100, it would send out repeated messages in steps of 5. If your dimming limits were 0-20, it would send repeated messages in steps of 1.
+
+Don't forget that you can send `level` messages to any tile type, but this is the correct tile to use if you need to be able to control levels using up/down buttons.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -235,11 +313,11 @@ Explanation text goes here...
       "tiles": [
         {
           "tile": 1,
-          "style": "buttonLevelUp",
+          "style": "buttonUpDownLevel",
           "icon": "_bulb",
           "label": "Light",
-          "levelStart": 0,
-          "levelStop": 10
+          "levelBottom": 0,
+          "levelTop": 100
         }
       ]
     }
@@ -249,14 +327,14 @@ Explanation text goes here...
 
 ### JSON parameters
 
-| Parameter    |   Type   | Options | Description                           |                                                            |
-| :----------- | :------: | :-----: | :------------------------------------ | :--------------------------------------------------------- |
-| `tile`       | _Number_ |   n/a   | Enter your tile number e.g. `1`       | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `style`      | _String_ |   n/a   | Enter tile style name `buttonLevelUp` | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `icon`       | _String_ |   n/a   | Enter icon name e.g.`_bulb`           | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `label`      | _String_ |   n/a   | Enter label text e.g.`Lamps`          | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `levelStart` | _String_ |   n/a   | Defaults to `0`                       | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `levelStop`  | _String_ |   n/a   | Defaults to `100`                     | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| Parameter     |   Type   | Options | Description                               |                                                            |
+| :------------ | :------: | :-----: | :---------------------------------------- | :--------------------------------------------------------- |
+| `tile`        | _Number_ |   n/a   | Enter your tile number e.g. `1`           | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `style`       | _String_ |   n/a   | Enter tile style name `buttonUpDownLevel` | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `icon`        | _String_ |   n/a   | Enter icon name e.g.`_bulb`               | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `label`       | _String_ |   n/a   | Enter label text e.g.`Ceiling Lamp`       | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `levelBottom` | _String_ |   n/a   | Defaults to `0`                           | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `levelTop`    | _String_ |   n/a   | Defaults to `100`                         | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -269,10 +347,10 @@ Explanation text goes here...
 {
   "screen": 1,
   "tile": 1,
-  "style": "buttonLevelUp",
+  "style": "buttonUpDownLevel",
   "type": "level",
   "event": "up",
-  "state": 5
+  "state": 10
 }
 ```
 
@@ -282,7 +360,7 @@ Explanation text goes here...
 | :-------- | :------: | :------------------------------------------: | :----------------------------------------------------------------------------------------- |
 | `screen`  | _Number_ |                     n/a                      | Screen number triggering state event                                                       |
 | `tile`    | _Number_ |                     n/a                      | Tile number triggering state event                                                         |
-| `style`   | _String_ |                     n/a                      | Tile style `buttonLevelUp`                                                                 |
+| `style`   | _String_ |                     n/a                      | Tile style `buttonUpDownLevel`                                                                 |
 | `type`    | _String_ |            `"button"`\|`"level"`             | Indicates if touch event was a button press or level change                                |
 | `event`   | _String_ | `"single"` \| `"hold"` \| `"up"` \| `"down"` | Indicates if a button press was `short` or `long`, or if a level change was `up` or `down` |
 | `state`   | _Number_ |                     n/a                      | The current level state (prior to this event)                                              |
@@ -327,124 +405,11 @@ Explanation text goes here...
 
 ---
 
-## buttonLevelDown
-
-![TP32 Image Alt Text](/images/buttonLevelDown-tile.png) ![TP32 Image Alt Text](/images/buttonLevelDown-tile-toggle.png)
-![TP32 Image Alt Text](/images/buttonLevelDown-tile-active.png) ![TP32 Image Alt Text](/images/buttonLevelDown-tile-active-toggle.png)
-
-[comment]: <> ([TODO] Tile introduction text goes here)
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-
-::: code-group-item Config
-
-```json {7-14}
-{
-  "screens": [
-    {
-      "screen": 1,
-      "label": "Demo",
-      "tiles": [
-        {
-          "tile": 1,
-          "style": "buttonLevelDown",
-          "icon": "_blind",
-          "label": "Blinds",
-          "levelStart": 0,
-          "levelStop": 10
-        }
-      ]
-    }
-  ]
-}
-```
-
-### JSON parameters
-
-| Parameter    |   Type   | Options | Description                             |                                                            |
-| :----------- | :------: | :-----: | :-------------------------------------- | :--------------------------------------------------------- |
-| `tile`       | _Number_ |   n/a   | Enter your tile number e.g. `1`         | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `style`      | _String_ |   n/a   | Enter tile style name `buttonLevelDown` | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `icon`       | _String_ |   n/a   | Enter icon name e.g.`_blind`            | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `label`      | _String_ |   n/a   | Enter label text e.g.`Blinds`           | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `levelStart` | _String_ |   n/a   | Defaults to `0`                         | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `levelStop`  | _String_ |   n/a   | Defaults to `100`                       | <Badge type="tip" text="Optional" vertical="bottom" />     |
-
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-`conf/<device-client-id>`
-:::
-
-::: code-group-item State
-
-```json
-{
-  "screen": 1,
-  "tile": 1,
-  "style": "buttonLevelDown",
-  "type": "level",
-  "event": "up",
-  "state": 5
-}
-```
-
-### JSON parameters
-
-| Parameter |   Type   |                   Options                    | Description                                                                                |
-| :-------- | :------: | :------------------------------------------: | :----------------------------------------------------------------------------------------- |
-| `screen`  | _Number_ |                     n/a                      | Screen number triggering state event                                                       |
-| `tile`    | _Number_ |                     n/a                      | Tile number triggering state event                                                         |
-| `style`   | _String_ |                     n/a                      | Tile style `buttonLevelDown`                                                               |
-| `type`    | _String_ |            `"button"`\|`"level"`             | Indicates if touch event was a button press or level change                                |
-| `event`   | _String_ | `"single"` \| `"hold"` \| `"up"` \| `"down"` | Indicates if a button press was `short` or `long`, or if a level change was `up` or `down` |
-| `state`   | _Number_ |                     n/a                      | The current level state (prior to this event)                                              |
-
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-`stat/<device-client-id>`
-:::
-
-::: code-group-item Command
-
-```json{3-9}
-{
-  "tiles": [
-    {
-      "screen": 1,
-      "tile": 1,
-      "state": "on",
-      "level": 5,
-      "subLabel": "on just now"
-    }
-  ]
-}
-```
-
-### JSON parameters
-
-| Parameter  |   Type   |     Options     | Description                                                 |                                                            |
-| :--------- | :------: | :-------------: | :---------------------------------------------------------- | :--------------------------------------------------------- |
-| `screen`   | _Number_ |       n/a       | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `tile`     | _Number_ |       n/a       | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `state`    | _String_ | `"on"`\|`"off"` | Updated the tile state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `level`    | _Number_ |       n/a       | Update the level state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `sublabel` | _String_ |       n/a       | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |
-
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-`cmnd/<device-client-id>`
-:::
-::::
-[comment]: <> (END of JSON Example)
-
----
-
 ## buttonUpDown
 
 ![TP32 Image Alt Text](/images/buttonUpDown-tile.png) ![TP32 Image Alt Text](/images/buttonUpDown-tile-active.png)
 
-[comment]: <> ([TODO] Tile introduction text goes here)
+This tile type _buttonUpDown_ is similar to _buttonUpDownLevel_, except that it has no knowledge of states, and sends simple up/down messages rather than e.g. dimming values. Like all tiles, it's still possible to update the tile's visuals to show a level if desired. Similar to _buttonUpDownLevel_, this tile type _buttonUpDown_ will register a press-and-hold on the up/down controls as repeated messages for the duration that you press down. If you press and hold on the button portion of the tile, this will only send a single hold event - like a standard button tile.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
