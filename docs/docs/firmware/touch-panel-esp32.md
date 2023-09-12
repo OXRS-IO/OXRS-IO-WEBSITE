@@ -1930,7 +1930,7 @@ RGB color for a tile background (defaults to the parent screen background color)
 ::::
 [comment]: <> (END of JSON Example)
 
-## Add a background image
+## Add a tile background image
 
 It is possible to upload custom images to be used for the background of your tile. They can be sourced in the same way as the icons are but are also able to be in colour. This provides a great way to customise your touch panel.
 
