@@ -2842,7 +2842,7 @@ Custom icons are **not persistent** and have to be (re)loaded after restart and 
 ## Setting Up your Touch Panel
 
 ### Overview
-- Download and flash your device. See [flashing your device](/docs/firmware/touch-panel-esp32#flashing-your-device).
+- Download firmware and flash your device. See [flashing your device](/docs/firmware/touch-panel-esp32#flashing-your-device).
 - Connect the touch panel to your wired or wireless network. See [connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#connecting-to-wifi-ethernet).
 - Configure the touch panel to connect to your MQTT broker. See [initial MQTT configuration](/docs/firmware/touch-panel-esp32#initial-mqtt-configuration).
 - From now-on, you can do everything over MQTT. See [how to communicate with your touch panel over MQTT](/docs/firmware/touch-panel-esp32#how-to-communicate-with-your-touch-panel-over-mqtt).
@@ -2858,7 +2858,7 @@ Custom icons are **not persistent** and have to be (re)loaded after restart and 
 - The WT32S3-86V and 86S will require a separate USB-TTL adapter. See notes below.
 
 #### Instructions for flashing the WT32S3-86V (Windows 10/11)
-Note about what USB-TTL to use
+##### Note about what USB-TTL to use
 Use one of the cheap, ubiquitous USB-TTL adapters available on Amazon or Ebay, and don't purchase the unit with the supplied USB-TTL adapter. If you use the supplied one, it has a dedicated JST cable, the connector for which you will need to solder on to each panel. Being an SMD connector, it's a bit fiddly - but more to the point, once you've soldered it on, you can no longer re-attach the plastic rear panel! So avoid that one and use a standard USB-TTL adapter with normal hookup wires / dupont connectors.
 
 - Let's work on the assumption you have a standard USB-TTL adapter and, if the drivers didn't install to Windows automatically, you have sorted that out already.
