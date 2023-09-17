@@ -739,7 +739,7 @@ This tile has no status feedback; tapping the tile itself only presents the feed
         {
           "tile": 1,
           "style": "feed",
-          "icon": "_news",
+          "icon": "_feed",
           "label": "Messages"
         }
       ]
