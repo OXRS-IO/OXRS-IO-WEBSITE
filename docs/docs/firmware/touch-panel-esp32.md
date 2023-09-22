@@ -209,20 +209,20 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "button",
-					"icon": "_bulb",
-					"label": "Lamps"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "button",
+          "icon": "_bulb",
+          "label": "Lamps"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -244,12 +244,12 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "button",
-	"type": "button",
-	"event": "single",
-	"state": "off"
+  "screen": 1,
+  "tile": 1,
+  "style": "button",
+  "type": "button",
+  "event": "single",
+  "state": "off"
 }
 ```
 
@@ -273,14 +273,14 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
 
 ```json {3-8}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"state": "on",
-			"subLabel": "on just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
 
@@ -321,22 +321,22 @@ Don't forget that you can send `level` messages to any tile type, but this is th
 
 ```json {7-14}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "buttonUpDownLevel",
-					"icon": "_bulb",
-					"label": "Light",
-					"levelBottom": 0,
-					"levelTop": 100
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "buttonUpDownLevel",
+          "icon": "_bulb",
+          "label": "Light",
+          "levelBottom": 0,
+          "levelTop": 100
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -360,12 +360,12 @@ Don't forget that you can send `level` messages to any tile type, but this is th
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "buttonUpDownLevel",
-	"type": "level",
-	"event": "up",
-	"state": 10
+  "screen": 1,
+  "tile": 1,
+  "style": "buttonUpDownLevel",
+  "type": "level",
+  "event": "up",
+  "state": 10
 }
 ```
 
@@ -389,15 +389,15 @@ Don't forget that you can send `level` messages to any tile type, but this is th
 
 ```json {3-9}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"state": "on",
-			"level": 5,
-			"subLabel": "on just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "level": 5,
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
 
@@ -435,20 +435,20 @@ Note that, although not shown here, it's still possible to update the tile's vis
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "buttonUpDown",
-					"icon": "_speaker",
-					"label": "Speakers"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "buttonUpDown",
+          "icon": "_speaker",
+          "label": "Speakers"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -470,12 +470,12 @@ Note that, although not shown here, it's still possible to update the tile's vis
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "buttonUpDown",
-	"type": "button",
-	"event": "single",
-	"state": "on"
+  "screen": 1,
+  "tile": 1,
+  "style": "buttonUpDown",
+  "type": "button",
+  "event": "single",
+  "state": "on"
 }
 ```
 
@@ -499,14 +499,14 @@ Note that, although not shown here, it's still possible to update the tile's vis
 
 ```json {3-8}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"state": "on",
-			"subLabel": "on just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
 
@@ -541,20 +541,20 @@ This tile type _buttonLeftRight_ is similar to _buttonUpDown_, except the contro
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "buttonLeftRight",
-					"icon": "_slider",
-					"label": "Audio Balance"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "buttonLeftRight",
+          "icon": "_slider",
+          "label": "Audio Balance"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -576,12 +576,12 @@ This tile type _buttonLeftRight_ is similar to _buttonUpDown_, except the contro
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "buttonLeftRight",
-	"type": "button",
-	"event": "single",
-	"state": "on"
+  "screen": 1,
+  "tile": 1,
+  "style": "buttonLeftRight",
+  "type": "button",
+  "event": "single",
+  "state": "on"
 }
 ```
 
@@ -605,14 +605,14 @@ This tile type _buttonLeftRight_ is similar to _buttonUpDown_, except the contro
 
 ```json {3-8}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"state": "on",
-			"subLabel": "on just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
 
@@ -647,20 +647,20 @@ This tile type _buttonPrevNext_ is similar to _buttonLeftRight_, except the cont
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "buttonPrevNext",
-					"icon": "_music",
-					"label": "Skip track"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "buttonPrevNext",
+          "icon": "_music",
+          "label": "Skip track"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -682,12 +682,12 @@ This tile type _buttonPrevNext_ is similar to _buttonLeftRight_, except the cont
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "buttonLeftRight",
-	"type": "button",
-	"event": "single",
-	"state": "on"
+  "screen": 1,
+  "tile": 1,
+  "style": "buttonLeftRight",
+  "type": "button",
+  "event": "single",
+  "state": "on"
 }
 ```
 
@@ -711,14 +711,14 @@ This tile type _buttonPrevNext_ is similar to _buttonLeftRight_, except the cont
 
 ```json {3-8}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"state": "on",
-			"subLabel": "on just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
 
@@ -755,20 +755,20 @@ This tile has no status feedback; tapping the tile itself only presents the feed
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "feed",
-					"icon": "_news",
-					"label": "Messages"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "feed",
+          "icon": "_news",
+          "label": "Messages"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -790,34 +790,34 @@ This tile has no status feedback; tapping the tile itself only presents the feed
 
 ```json {3-28}
 {
-	"tiles": [
-		{
-			"screen": "1",
-			"tile": "2",
-			"state": "off",
-			"subLabel": "2 Unread",
-			"messageFeed": {
-				"addPost": {
-					"id": 1,
-					"head": "#ff0000 Taffic Announcement#",
-					"body": "Route 66 closed for motorcycles\nUse public transportation"
-				}
-			}
-		},
-		{
-			"screen": "1",
-			"tile": "2",
-			"state": "off",
-			"subLabel": "2 Unread",
-			"messageFeed": {
-				"addPost": {
-					"id": 2,
-					"head": "This is a #0000ff Heading# which can span multiple lines",
-					"body": "Feed content goes here\nAnd a second line \n#00ff00 Third# line"
-				}
-			}
-		}
-	]
+  "tiles": [
+    {
+      "screen": "1",
+      "tile": "2",
+      "state": "off",
+      "subLabel": "2 Unread",
+      "messageFeed": {
+        "addPost": {
+          "id": 1,
+          "head": "#ff0000 Taffic Announcement#",
+          "body": "Route 66 closed for motorcycles\nUse public transportation"
+        }
+      }
+    },
+    {
+      "screen": "1",
+      "tile": "2",
+      "state": "off",
+      "subLabel": "2 Unread",
+      "messageFeed": {
+        "addPost": {
+          "id": 2,
+          "head": "This is a #0000ff Heading# which can span multiple lines",
+          "body": "Feed content goes here\nAnd a second line \n#00ff00 Third# line"
+        }
+      }
+    }
+  ]
 }
 ```
 
@@ -862,19 +862,19 @@ This tile type _indicator_ is typically used to provide sensor data. Although it
 
 ```json {7-11}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "indicator",
-					"label": "Temp / Hum"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "indicator",
+          "label": "Temp / Hum"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -895,19 +895,19 @@ This tile type _indicator_ is typically used to provide sensor data. Although it
 
 ```json {3-13}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"number": {
-				"value": "22.9",
-				"units": "°C",
-				"subValue": "56.8",
-				"subUnits": "%"
-			},
-			"subLabel": "updated just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "number": {
+        "value": "22.9",
+        "units": "°C",
+        "subValue": "56.8",
+        "subUnits": "%"
+      },
+      "subLabel": "updated just now"
+    }
+  ]
 }
 ```
 
@@ -946,20 +946,20 @@ This tile type _colorPickerRgbCct_ may be used to facilitate changing the color 
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "colorPickerRgbCct",
-					"icon": "_bulb",
-					"label": "Office light"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "colorPickerRgbCct",
+          "icon": "_bulb",
+          "label": "Office light"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -981,20 +981,20 @@ This tile type _colorPickerRgbCct_ may be used to facilitate changing the color 
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "colorPickerRgbCct",
-	"type": "colorPicker",
-	"event": "change",
-	"state": {
-		"colorRgb": {
-			"r": 255,
-			"g": 124,
-			"b": 208
-		},
-		"colorKelvin": 0,
-		"brightness": 0
-	}
+  "screen": 1,
+  "tile": 1,
+  "style": "colorPickerRgbCct",
+  "type": "colorPicker",
+  "event": "change",
+  "state": {
+    "colorRgb": {
+      "r": 255,
+      "g": 124,
+      "b": 208
+    },
+    "colorKelvin": 0,
+    "brightness": 0
+  }
 }
 ```
 
@@ -1024,24 +1024,24 @@ This tile type _colorPickerRgbCct_ may be used to facilitate changing the color 
 
 ```json {3-18}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"state": "on",
-			"colorPicker": {
-				"mode": "colorRgb",
-				"colorRgb": {
-					"r": 255,
-					"g": 0,
-					"b": 0
-				},
-				"colorKelvin": 0,
-				"brightness": 50
-			},
-			"subLabel": "on just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "colorPicker": {
+        "mode": "colorRgb",
+        "colorRgb": {
+          "r": 255,
+          "g": 0,
+          "b": 0
+        },
+        "colorKelvin": 0,
+        "brightness": 50
+      },
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
 
@@ -1090,20 +1090,20 @@ This tile type _colorPickerRgb_ may be used to facilitate changing the color of 
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "colorPickerRgb",
-					"icon": "_bulb",
-					"label": "Office light"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "colorPickerRgb",
+          "icon": "_bulb",
+          "label": "Office light"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -1125,19 +1125,19 @@ This tile type _colorPickerRgb_ may be used to facilitate changing the color of 
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "colorPickerRgb",
-	"type": "colorPicker",
-	"event": "change",
-	"state": {
-		"colorRgb": {
-			"r": 255,
-			"g": 124,
-			"b": 208
-		},
-		"brightness": 0
-	}
+  "screen": 1,
+  "tile": 1,
+  "style": "colorPickerRgb",
+  "type": "colorPicker",
+  "event": "change",
+  "state": {
+    "colorRgb": {
+      "r": 255,
+      "g": 124,
+      "b": 208
+    },
+    "brightness": 0
+  }
 }
 ```
 
@@ -1166,23 +1166,23 @@ This tile type _colorPickerRgb_ may be used to facilitate changing the color of 
 
 ```json {3-18}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"state": "on",
-			"colorPicker": {
-				"mode": "colorRgb",
-				"colorRgb": {
-					"r": 255,
-					"g": 0,
-					"b": 0
-				},
-				"brightness": 50
-			},
-			"subLabel": "on just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "colorPicker": {
+        "mode": "colorRgb",
+        "colorRgb": {
+          "r": 255,
+          "g": 0,
+          "b": 0
+        },
+        "brightness": 50
+      },
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
 
@@ -1230,20 +1230,20 @@ This tile type _colorPickerCct_ may be used to facilitate changing the color of 
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "colorPickerCct",
-					"icon": "_bulb",
-					"label": "Office light"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "colorPickerCct",
+          "icon": "_bulb",
+          "label": "Office light"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -1265,17 +1265,17 @@ This tile type _colorPickerCct_ may be used to facilitate changing the color of 
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "colorPickerCct",
-	"type": "colorPicker",
-	"event": "change",
-	"state": {
-		"colorRgb": {
-			"colorKelvin": 2000,
-			"brightness": 50
-		}
-	}
+  "screen": 1,
+  "tile": 1,
+  "style": "colorPickerCct",
+  "type": "colorPicker",
+  "event": "change",
+  "state": {
+    "colorRgb": {
+      "colorKelvin": 2000,
+      "brightness": 50
+    }
+  }
 }
 ```
 
@@ -1302,18 +1302,18 @@ This tile type _colorPickerCct_ may be used to facilitate changing the color of 
 
 ```json {3-12}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"state": "on",
-			"colorPicker": {
-				"colorKelvin": 2000,
-				"brightness": 50
-			},
-			"subLabel": "on just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "colorPicker": {
+        "colorKelvin": 2000,
+        "brightness": 50
+      },
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
 
@@ -1357,20 +1357,20 @@ This tile type _dropDown_ may be used to present the user with a drop-down menu.
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "dropDown",
-					"icon": "_music",
-					"label": "Select Album"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "dropDown",
+          "icon": "_music",
+          "label": "Select Album"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -1392,12 +1392,12 @@ This tile type _dropDown_ may be used to present the user with a drop-down menu.
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "dropDown",
-	"type": "dropDown",
-	"event": "selection",
-	"state": 2
+  "screen": 1,
+  "tile": 1,
+  "style": "dropDown",
+  "type": "dropDown",
+  "event": "selection",
+  "state": 2
 }
 ```
 
@@ -1421,15 +1421,15 @@ This tile type _dropDown_ may be used to present the user with a drop-down menu.
 
 ```json {3-15}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"dropDownList": ["Rock Album", "Dance Album", "Jazz Album", "Soul Album", "Classical Album"],
-			"dropDownSelect": 2,
-			"subLabel": "playing now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "dropDownList": ["Rock Album", "Dance Album", "Jazz Album", "Soul Album", "Classical Album"],
+      "dropDownSelect": 2,
+      "subLabel": "playing now"
+    }
+  ]
 }
 ```
 
@@ -1471,20 +1471,20 @@ This tile type _buttonSelector_ acts in much the same way as the _dropDown_ tile
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "buttonSelector",
-					"icon": "_ceilingfan",
-					"label": "Fan Speed"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "buttonSelector",
+          "icon": "_ceilingfan",
+          "label": "Fan Speed"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -1506,12 +1506,12 @@ This tile type _buttonSelector_ acts in much the same way as the _dropDown_ tile
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "buttonSelector",
-	"type": "buttonSelector",
-	"event": "selection",
-	"state": 2
+  "screen": 1,
+  "tile": 1,
+  "style": "buttonSelector",
+  "type": "buttonSelector",
+  "event": "selection",
+  "state": 2
 }
 ```
 
@@ -1535,15 +1535,15 @@ This tile type _buttonSelector_ acts in much the same way as the _dropDown_ tile
 
 ```json {3-14}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"selectorList": ["off", "low", "medium", "full"],
-			"selectorSelect": 1,
-			"subLabel": "Level"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "selectorList": ["off", "low", "medium", "full"],
+      "selectorSelect": 1,
+      "subLabel": "Level"
+    }
+  ]
 }
 ```
 
@@ -1581,20 +1581,20 @@ Once you verify the pincode you can close the keypad control screen by sending a
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "keyPad",
-					"icon": "_locked",
-					"label": "House Alarm"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "keyPad",
+          "icon": "_locked",
+          "label": "House Alarm"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -1616,13 +1616,13 @@ Once you verify the pincode you can close the keypad control screen by sending a
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "keyPad",
-	"type": "button",
-	"event": "key",
-	"state": "on",
-	"keyCode": "1234"
+  "screen": 1,
+  "tile": 1,
+  "style": "keyPad",
+  "type": "button",
+  "event": "key",
+  "state": "on",
+  "keyCode": "1234"
 }
 ```
 
@@ -1647,23 +1647,23 @@ Once you verify the pincode you can close the keypad control screen by sending a
 
 ```json {3-17}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"icon": "_locked",
-			"keyPad": {
-				"state": "failed",
-				"text": "Failed",
-				"icon": "_locked",
-				"iconColorRgb": {
-					"r": 255,
-					"g": 0,
-					"b": 0
-				}
-			}
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "icon": "_locked",
+      "keyPad": {
+        "state": "failed",
+        "text": "Failed",
+        "icon": "_locked",
+        "iconColorRgb": {
+          "r": 255,
+          "g": 0,
+          "b": 0
+        }
+      }
+    }
+  ]
 }
 ```
 
@@ -1702,7 +1702,7 @@ If you wish to lock access to the screen and only allow access to users with a v
 
 ```json {7-12}
 {
-	"noActivitySecondsToLock": 60
+  "noActivitySecondsToLock": 60
 }
 ```
 
@@ -1731,20 +1731,20 @@ This tile type _remote_ may be used to present the user with a media remote keyp
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "remote",
-					"icon": "_remote",
-					"label": "Kodi TV"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "remote",
+          "icon": "_remote",
+          "label": "Kodi TV"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -1766,11 +1766,11 @@ This tile type _remote_ may be used to present the user with a media remote keyp
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "remote",
-	"type": "up",
-	"event": "single"
+  "screen": 1,
+  "tile": 1,
+  "style": "remote",
+  "type": "up",
+  "event": "single"
 }
 ```
 
@@ -1793,14 +1793,14 @@ This tile type _remote_ may be used to present the user with a media remote keyp
 
 ```json {3-8}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"state": "on",
-			"subLabel": "on just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
 
@@ -1841,21 +1841,21 @@ This tile type _link_ may be used to switch to another screen when pressed. This
 
 ```json {7-13}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "link",
-					"icon": "_music",
-					"label": "HiFi Controls",
-					"link": 2
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "link",
+          "icon": "_music",
+          "label": "HiFi Controls",
+          "link": 2
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -1878,10 +1878,10 @@ This tile type _link_ may be used to switch to another screen when pressed. This
 
 ```json
 {
-	"screen": 1,
-	"type": "screen",
-	"event": "change",
-	"state": "loaded"
+  "screen": 1,
+  "type": "screen",
+  "event": "change",
+  "state": "loaded"
 }
 ```
 
@@ -1903,14 +1903,14 @@ This tile type _link_ may be used to switch to another screen when pressed. This
 
 ```json {3-8}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"state": "on",
-			"subLabel": "on just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "subLabel": "on just now"
+    }
+  ]
 }
 ```
 
@@ -1947,20 +1947,20 @@ The _thermostat_ tile style provides a function allowing the user to see the act
 
 ```json {7-12}
 {
-	"screens": [
-		{
-			"screen": 1,
-			"label": "Demo",
-			"tiles": [
-				{
-					"tile": 1,
-					"style": "thermostat",
-					"label": "Heating",
-					"icon": "_thermostat"
-				}
-			]
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "thermostat",
+          "label": "Heating",
+          "icon": "_thermostat"
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -1982,15 +1982,15 @@ The _thermostat_ tile style provides a function allowing the user to see the act
 
 ```json
 {
-	"screen": 1,
-	"tile": 1,
-	"style": "thermostat",
-	"type": "thermostat",
-	"event": "change",
-	"state": {
-		"mode": 3,
-		"targetTemperature": 155
-	}
+  "screen": 1,
+  "tile": 1,
+  "style": "thermostat",
+  "type": "thermostat",
+  "event": "change",
+  "state": {
+    "mode": 3,
+    "targetTemperature": 155
+  }
 }
 ```
 
@@ -2016,27 +2016,27 @@ The _thermostat_ tile style provides a function allowing the user to see the act
 
 ```json {3-21}
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"number": {
-				"value": "15.5",
-				"units": "°C",
-				"subValue": "13.8",
-				"subUnits": "°C"
-			},
-			"state": "off",
-			"thermostat": {
-				"modeList": ["Off", "On", "Auto", "Maunal"],
-				"mode": 1,
-				"targetTemperature": 155,
-				"currentTemperature": 138,
-				"units": "°C"
-			},
-			"subLabel": "off just now"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "number": {
+        "value": "15.5",
+        "units": "°C",
+        "subValue": "13.8",
+        "subUnits": "°C"
+      },
+      "state": "off",
+      "thermostat": {
+        "modeList": ["Off", "On", "Auto", "Maunal"],
+        "mode": 1,
+        "targetTemperature": 155,
+        "currentTemperature": 138,
+        "units": "°C"
+      },
+      "subLabel": "off just now"
+    }
+  ]
 }
 ```
 
@@ -2090,14 +2090,14 @@ A visual indicator of light or blind levels. Although this is more suited to the
 
 ```json
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"levelBottom": 0,
-			"levelTop": 100
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "levelBottom": 0,
+      "levelTop": 100
+    }
+  ]
 }
 ```
 
@@ -2131,17 +2131,17 @@ RGB color for a tile background (defaults to the parent screen background color)
 
 ```json
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"backgroundColorRgb": {
-				"r": 255,
-				"g": 0,
-				"b": 0
-			}
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "backgroundColorRgb": {
+        "r": 255,
+        "g": 0,
+        "b": 0
+      }
+    }
+  ]
 }
 ```
 
@@ -2173,17 +2173,17 @@ RGB color for a tile icon (defaults to white if the tile state is "off", or the 
 
 ```json
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"iconColorRgb": {
-				"r": 255,
-				"g": 0,
-				"b": 0
-			}
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "iconColorRgb": {
+        "r": 255,
+        "g": 0,
+        "b": 0
+      }
+    }
+  ]
 }
 ```
 
@@ -2216,13 +2216,13 @@ RGB color for a tile icon (defaults to white if the tile state is "off", or the 
 
 ```json
 {
-	"tiles": [
-		{
-			"screen": 1,
-			"tile": 1,
-			"action": "remove"
-		}
-	]
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "action": "remove"
+    }
+  ]
 }
 ```
 
@@ -2256,12 +2256,12 @@ Removes a screen from the configuration.
 
 ```json
 {
-	"screens": [
-		{
-			"screen": 2,
-			"action": "remove"
-		}
-	]
+  "screens": [
+    {
+      "screen": 2,
+      "action": "remove"
+    }
+  ]
 }
 ```
 
@@ -2297,16 +2297,16 @@ RGB color for a screen background (defaults to the configured device background 
 
 ```json
 {
-	"screens": [
-		{
-			"screen": 1,
-			"backgroundColorRgb": {
-				"r": 255,
-				"g": 0,
-				"b": 0
-			}
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "backgroundColorRgb": {
+        "r": 255,
+        "g": 0,
+        "b": 0
+      }
+    }
+  ]
 }
 ```
 
@@ -2339,16 +2339,16 @@ RGB color for a screen background (defaults to the configured device background 
 
 ```json
 {
-	"screens": [
-		{
-			"screen": 1,
-			"footer": {
-				"left": "Wed 07 Sep",
-				"center": "",
-				"right": "20:49pm"
-			}
-		}
-	]
+  "screens": [
+    {
+      "screen": 1,
+      "footer": {
+        "left": "Wed 07 Sep",
+        "center": "",
+        "right": "20:49pm"
+      }
+    }
+  ]
 }
 ```
 
@@ -2391,9 +2391,9 @@ This command gives you the ability to load a specific screen on a device.
 
 ```json
 {
-	"screen": {
-		"load": 2
-	}
+  "screen": {
+    "load": 2
+  }
 }
 ```
 
@@ -2423,11 +2423,11 @@ The configured background color has the lowest precendence and will only be used
 
 ```json
 {
-	"backgroundColorRgb": {
-		"r": 255,
-		"g": 0,
-		"b": 0
-	}
+  "backgroundColorRgb": {
+    "r": 255,
+    "g": 0,
+    "b": 0
+  }
 }
 ```
 
@@ -2457,11 +2457,11 @@ RGB color of icon when 'on' (defaults to light green - R91, G190, B91).
 
 ```json
 {
-	"iconOnColorRgb": {
-		"r": 255,
-		"g": 0,
-		"b": 0
-	}
+  "iconOnColorRgb": {
+    "r": 255,
+    "g": 0,
+    "b": 0
+  }
 }
 ```
 
@@ -2491,7 +2491,7 @@ Return to home screen after a period of in-activity (defaults to 0 which disable
 
 ```json
 {
-	"noActivitySecondsToHome": 60
+  "noActivitySecondsToHome": 60
 }
 ```
 
@@ -2518,7 +2518,7 @@ Turn off screen backlight after a period of in-activity (defaults to 0 which dis
 
 ```json
 {
-	"noActivitySecondsToSleep": 60
+  "noActivitySecondsToSleep": 60
 }
 ```
 
@@ -2592,22 +2592,22 @@ This feature can be used to display a message on the screen. Make the most of th
 
 ```json
 {
-	"messageBox": {
-		"title": "Update Alert!",
-		"text": "New Firmware update available. \nWhat do you want to do?",
-		"buttons": ["Update Now", "\n", "Update All Devices", "\n", "Remind me later"]
-	}
+  "messageBox": {
+    "title": "Update Alert!",
+    "text": "New Firmware update available. \nWhat do you want to do?",
+    "buttons": ["Update Now", "\n", "Update All Devices", "\n", "Remind me later"]
+  }
 }
 ```
 
 ### JSON parameters
 
-|  Parameter   |   Type   | Options | Description                                                                                                                                                                   |                                                            |
-| :----------: | :------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------- |
+| Parameter    |   Type   | Options | Description                                                                                                                                                                   |                                                            |
+| :----------- | :------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------- |
 | `messageBox` | _Object_ |   n/a   |                                                                                                                                                                               | <Badge type="warning" text="Required" vertical="bottom" /> |
-|    `tile`    | _String_ |   n/a   | Message title text, supports text formatting syntax like colors etc                                                                                                           | <Badge type="warning" text="Required" vertical="bottom" /> |
-|    `text`    | _String_ |   n/a   | Message body text, supports text formatting syntax like new lines, colors etc                                                                                                 | <Badge type="warning" text="Required" vertical="bottom" /> |
-|  `buttons`   | _Array_  |   n/a   | An array of strings, max 5 buttons. Each button has a max 40 character limit. Specifying "\n" defines that the button position is to be blank. See tip below for more details | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `tile`       | _String_ |   n/a   | Message title text, supports text formatting syntax like colors etc                                                                                                           | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `text`       | _String_ |   n/a   | Message body text, supports text formatting syntax like new lines, colors etc                                                                                                 | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `buttons`    | _Array_  |   n/a   | An array of strings, max 5 buttons. Each button has a max 40 character limit. Specifying "\n" defines that the button position is to be blank. See tip below for more details | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 ### Dynamically Close Modal Pop-up
 
@@ -2615,7 +2615,7 @@ To close a modal pop-up simply send the messageBox property with an empty object
 
 ```json
 {
-	"messageBox": {}
+  "messageBox": {}
 }
 ```
 
@@ -2637,10 +2637,10 @@ To close a modal pop-up simply send the messageBox property with an empty object
 ### JSON parameters
 
 | Parameter |   Type   |                                Options                                | Description                                               |
-| :-------: | :------: | :-------------------------------------------------------------------: | :-------------------------------------------------------- |
-|  `type`   | _String_ |                             `messageBox`                              |                                                           |
-|  `event`  | _String_ | `"open"` \| `"acknowledge"` \| `"revoke"` \| `"remove"` \| `"button"` | event type                                                |
-|  `state`  | _String_ |         `"open"` \| `"closed"` \| `"open"` \| `"button-text"`         | 'button-text' will be the string contained in your button |
+| :-------- | :------: | :-------------------------------------------------------------------: | :-------------------------------------------------------- |
+| `type`    | _String_ |                             `messageBox`                              |                                                           |
+| `event`   | _String_ | `"open"` \| `"acknowledge"` \| `"revoke"` \| `"remove"` \| `"button"` | event type                                                |
+| `state`   | _String_ |         `"open"` \| `"closed"` \| `"open"` \| `"button-text"`         | 'button-text' will be the string contained in your button |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -2670,11 +2670,11 @@ The arrangement of buttons dynamically adapts based on the interplay between pop
 
 ```json
 {
-	"messageBox": {
-		"title": "Attention",
-		"text": "Do you want coffee?",
-		"buttons": ["yes", "no"]
-	}
+  "messageBox": {
+    "title": "Attention",
+    "text": "Do you want coffee?",
+    "buttons": ["yes", "no"]
+  }
 }
 ```
 
@@ -2686,11 +2686,11 @@ The arrangement of buttons dynamically adapts based on the interplay between pop
 
 ```json
 {
-	"messageBox": {
-		"title": "Attention",
-		"text": "Do you want coffee?",
-		"buttons": ["yes", "no", "\n", "maybe"]
-	}
+  "messageBox": {
+    "title": "Attention",
+    "text": "Do you want coffee?",
+    "buttons": ["yes", "no", "\n", "maybe"]
+  }
 }
 ```
 
@@ -2702,11 +2702,11 @@ The arrangement of buttons dynamically adapts based on the interplay between pop
 
 ```json
 {
-	"messageBox": {
-		"title": "#ff0000 Update Alert!#",
-		"text": "#00ff00 New Firmware update available.#\nWhat do you want to do?",
-		"buttons": ["#ffff00 Update Now#", "\n", "Update All Devices", "\n", "Remind me later"]
-	}
+  "messageBox": {
+    "title": "#ff0000 Update Alert!#",
+    "text": "#00ff00 New Firmware update available.#\nWhat do you want to do?",
+    "buttons": ["#ffff00 Update Now#", "\n", "Update All Devices", "\n", "Remind me later"]
+  }
 }
 ```
 
@@ -2732,10 +2732,10 @@ Custom icons are **not persistent** and have to be (re)loaded after restart and 
 
 ```json
 {
-	"addIcon": {
-		"name": "<text>",
-		"imageBase64": "<encodeBase64(.png)>"
-	}
+  "addIcon": {
+    "name": "<text>",
+    "imageBase64": "<encodeBase64(.png)>"
+  }
 }
 ```
 
@@ -2776,20 +2776,20 @@ It is possible to upload custom images to be used for the background of your til
 
 ```json
 {
-	"addImage": {
-		"name": "myCustomImage",
-		"imageBase64": "iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABP0lEQVR4nO3WTUoDQRCG4Rf8iXvjIOgN9ATiCQI5Qg4gIp7CpSh6FxciCCrERBf+IN4iII4iEmkZqJZOMyPpproX4gdFwiRTz0yniwn8Z7qsA/vAA/AClMATcASskSALwAEwBkxDfQHHQEsLbQEnv4B+nQHzsVgXOJel/AhAbVVLH5y9CMivcehv3lFAbR2GwKeK8N00YLWBdoB3RfhTejZutFXgXhGsu/OVuvlMiRoHn5jv3QyokaqW/SfDiAYbwGbEedcu/BbRwCb0vFcXLjPCpQsPMsJ9F97OCG+58FzEBouB+8CsP8tt4CohfAks0pAZoCfP0pECPJJePemtEv8CssX8efgCuAWKGriQzyZmVCtDgR4FsnAhx4x8Rz2FA9hX9729oCRZkj/x/tg8A8upUBrwLKhNtaQ3UlHL+w2p26ZRV2/CNAAAAABJRU5ErkJggg=="
-	}
+  "addImage": {
+    "name": "myCustomImage",
+    "imageBase64": "iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABP0lEQVR4nO3WTUoDQRCG4Rf8iXvjIOgN9ATiCQI5Qg4gIp7CpSh6FxciCCrERBf+IN4iII4iEmkZqJZOMyPpproX4gdFwiRTz0yniwn8Z7qsA/vAA/AClMATcASskSALwAEwBkxDfQHHQEsLbQEnv4B+nQHzsVgXOJel/AhAbVVLH5y9CMivcehv3lFAbR2GwKeK8N00YLWBdoB3RfhTejZutFXgXhGsu/OVuvlMiRoHn5jv3QyokaqW/SfDiAYbwGbEedcu/BbRwCb0vFcXLjPCpQsPMsJ9F97OCG+58FzEBouB+8CsP8tt4CohfAks0pAZoCfP0pECPJJePemtEv8CssX8efgCuAWKGriQzyZmVCtDgR4FsnAhx4x8Rz2FA9hX9729oCRZkj/x/tg8A8upUBrwLKhNtaQ3UlHL+w2p26ZRV2/CNAAAAABJRU5ErkJggg=="
+  }
 }
 ```
 
 ### JSON parameters
 
-|   Parameter   |   Type   | Options | Description                    |
-| :-----------: | :------: | :-----: | :----------------------------- |
-|  `addImage`   | _Object_ |         |                                |
-|    `name`     | _String_ |         | name of image                  |
-| `imageBase64` | _String_ |         | base64 encoded string of image |
+| Parameter     |   Type   | Description                    |
+| :------------ | :------: | :----------------------------- |
+| `addImage`    | _Object_ |                                |
+| `name`        | _String_ | name of image                  |
+| `imageBase64` | _String_ | base64 encoded string of image |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -2817,7 +2817,7 @@ Background images are **not persistent** and have to be (re)loaded after restart
       "backgroundImage": {
         "name": "myCustomImage",
         "zoom": <number>,
-        "angle": <number>,
+        "angle": 90,
         "offset": [<x number>,<y number>]
       }
     }
@@ -2827,13 +2827,13 @@ Background images are **not persistent** and have to be (re)loaded after restart
 
 ### JSON parameters
 
-|   Parameter          |   Type                  | Description                    |
-| :-----------:        | :------:                | :----------------------------- |
-| `backgroundImage`    | _Object_                |                                |
-| `name`               | _String_                | name of image                  |
-| `zoom`               | _Number_                | ...                            |
-| `angle`              | _Number_                | integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg). A positive number rotates the image CW , a negative number rotates it CCW |
-| `offset`             | _Array[Number, Number]_ | ...                            |
+| Parameter         |          Type           | Description                                                                                                                                                   |
+| :---------------- | :---------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `backgroundImage` |        _Object_         |                                                                                                                                                               |
+| `name`            |        _String_         | name of image                                                                                                                                                 |
+| `zoom`            |        _Number_         | ...                                                                                                                                                           |
+| `angle`           |        _Number_         | integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg). A positive number rotates the image CW , a negative number rotates it CCW |
+| `offset`          | _Array[Number, Number]_ | ...                                                                                                                                                           |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -2850,11 +2850,11 @@ Background images are **not persistent** and have to be (re)loaded after restart
 
 ```json
 {
-  "tiles":[
+  "tiles": [
     {
       "screen": 1,
       "tile": 1,
-      "backgroundImage": { }
+      "backgroundImage": {}
     }
   ]
 }
