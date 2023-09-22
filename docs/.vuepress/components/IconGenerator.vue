@@ -1,23 +1,39 @@
 <template>
 	<div class="container">
 		<div class="sub-container">
-        <label for="icon">Icon Name:</label><br><br>
-        <input v-bind:class="{ 'text-danger': hasError }" type="text" id="icon-name" name="icon" v-model="iconName" @input="inputHandler" placeholder="enter icon" required ><br><br>
-				<label for="selectAvatar">Upload Image:</label><br><br>
-        <input id="selectAvatar" type="file" @change="onChange($event)"/><br><br>
+			<label for="icon">Type:</label><br><br>
+			<select v-model="selected">
+				<option>Icon</option>
+				<option>Background Image</option>
+			</select><br><br>
+			<label for="icon">Name:</label><br><br>
+			<input v-bind:class="{ 'text-danger': hasError }"
+						 type="text"
+						 id="icon-name"
+						 name="icon"
+						 v-model="iconName"
+						 @input="inputHandler"
+						 placeholder="enter icon"
+						 required><br><br>
+			<label for="selectAvatar">Upload Image:</label><br><br>
+			<input id="selectAvatar"
+						 type="file"
+						 @change="onChange($event)" /><br><br>
 		</div>
 		<div class="sub-container output">
-				<label for="avatar">Image Preview:</label><br>
-				<img class="img" id="avatar" />
+			<label for="avatar">Image Preview:</label><br>
+			<img class="img"
+					 id="avatar" />
 		</div>
-	</div>	
+	</div>
 	<div class="container code">
 		<div class="language-json ext-json code-container">
-			<button class="copy" @click="copy($event)">copy</button>
+			<button class="copy"
+							@click="copy($event)">copy</button>
 			<pre class="language-js">
 				<span class="lang"></span>
 				<pre><code>{{ iconJson }}</code></pre>
-			</pre>
+		</pre>
 		</div>
 	</div>
 </template>
@@ -27,6 +43,7 @@ export default {
 	name: 'app',
 	data() {
 		return {
+			selected: "Icon",
 			iconName: "",
 			iconJson: "",
 			hasError: false,
@@ -34,7 +51,7 @@ export default {
 	},
 	methods: {
 		async onChange(event) {
-			if(this.iconName === ""){
+			if (this.iconName === "") {
 				this.hasError = true
 				event.target.value = '';
 				return
@@ -42,11 +59,21 @@ export default {
 			const file = event.target.files[0];
 			const base64 = await this.convertBase64(file);
 			avatar.src = base64;
-			this.iconJson = {
-				"addIcon": { 
-					"name": this.iconName, 
-					"imageBase64": base64.split(",")[1]
+			if (this.selected === "Icon") {
+				this.iconJson = {
+					"addIcon": {
+						"name": this.iconName,
+						"imageBase64": base64.split(",")[1]
 					}
+				}
+			}
+			if (this.selected === "Background Image") {
+				this.iconJson = {
+					"addImage": {
+						"name": this.iconName,
+						"imageBase64": base64.split(",")[1]
+					}
+				}
 			}
 		},
 
@@ -70,15 +97,15 @@ export default {
 			navigator.clipboard.writeText(data)
 		},
 
-		inputHandler(e){
-			if(this.iconName == "" && selectAvatar.files.length == 1){
-				let poo = JSON.parse(JSON.stringify(this.iconJson)) 
+		inputHandler(e) {
+			if (this.iconName == "" && selectAvatar.files.length == 1) {
+				let poo = JSON.parse(JSON.stringify(this.iconJson))
 				this.hasError = true
 				poo.addIcon.name = ""
 				this.iconJson = poo
 			}
-			if(this.iconName !== "" && selectAvatar.files.length !== 0){
-				let poo = JSON.parse(JSON.stringify(this.iconJson)) 
+			if (this.iconName !== "" && selectAvatar.files.length !== 0) {
+				let poo = JSON.parse(JSON.stringify(this.iconJson))
 				this.hasError = false
 				poo.addIcon.name = this.iconName
 				this.iconJson = poo
@@ -90,7 +117,7 @@ export default {
 
 <style scoped>
 body {
-	color: #e6e7e8!important;
+	color: #e6e7e8 !important;
 }
 
 .container {
@@ -135,5 +162,4 @@ body {
 	border-radius: 2px;
 	padding: 2px;
 }
-
 </style>

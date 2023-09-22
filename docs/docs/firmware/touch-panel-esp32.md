@@ -43,7 +43,7 @@ Example applications include: a light switch to control dimming or colour for mu
 - WT32S3-86V: 3.95-inch 480x480px touch panel comprising integrated backbox and suitable for UK size backboxes
 - WT32S3-86S: an improved version of the above 3.95-inch 480x480px
 
-Note that the 320x480px panels support a 2x3 tile configuration and the 480x480px variants support a 3x3 tile configuration. 
+Note that the 320x480px panels support a 2x3 tile configuration and the 480x480px variants support a 3x3 tile configuration.
 
 ### Prerequisites:
 
@@ -54,19 +54,22 @@ Note that the 320x480px panels support a 2x3 tile configuration and the 480x480p
 - MQTT Broker - e.g. Mosquitto, Mosca [Wiki](https://en.wikipedia.org/wiki/MQTT)
 
 ### How to Communicate with your Touch Panel Over MQTT
+
 [comment]: <> ([TODO] How it works)
 Broadly speaking, we split MQTT communications into three types:
+
 1. **Configuration messages**. Typically you send these from Node-RED to the panel each time it comes online. These are used to configure tiles and screens.
    - _Send on the `conf/<device-client-id>` topic._
-3. **Command messages**. Typically you send these from Node-RED to provide updates to tiles and screens (such as turning a tile on or off, or indicating the level of your lights or blinds within the tile), but they can also do things like dim the display, set screen timeouts, switch screens, handle menus, or update the footer bar.
+2. **Command messages**. Typically you send these from Node-RED to provide updates to tiles and screens (such as turning a tile on or off, or indicating the level of your lights or blinds within the tile), but they can also do things like dim the display, set screen timeouts, switch screens, handle menus, or update the footer bar.
    - _Send on the `cmnd/<device-client-id>` topic._
-5. **State messages**. These are the messages that your touch panel sends back over MQTT when you interact with the touch panel, and you can process them in Node-RED to achieve your various automations.
+3. **State messages**. These are the messages that your touch panel sends back over MQTT when you interact with the touch panel, and you can process them in Node-RED to achieve your various automations.
    - _Listen to these on the `stat/<device-client-id>` topic._
 
 A typical set of nodes or flows in Node-RED will therefore need to be set up to achieve the following:
+
 - Listen to `stat/<device-client-id/lwt` to know when that panel came online, at which point you would
-  - Send out a `conf/` message to configure it with one or more screens, each with a set of tiles. 
-  - Optionally send out a `cmnd/` message with any custom icons or tile background images. 
+  - Send out a `conf/` message to configure it with one or more screens, each with a set of tiles.
+  - Optionally send out a `cmnd/` message with any custom icons or tile background images.
   - Optionally send out a `cmnd/` message with other data, for example updates to your footer (e.g. date / time / temperature) at startup, or MQTT payloads to configure tile contents with sub labels or other text that might change later.
 - Listen to the `stat/` topic, so when a user interacts with the touch panel;
   - Respond accordingly to actuate your devices or automations within Node-RED
@@ -80,14 +83,17 @@ Further documentation and some example Node-RED Flows will be made available in 
 :::
 
 # General Overview of Tile Styles, Payloads, and Behaviours
+
 ---
+
 Each touch panel can be configured with a set of screens, and each screen with a set of tiles. Imagine your screen as a grid on which tiles can be placed at any location, where tile position 1 is at the top left, tile position 2 is the next tile along to the right, and so on.
 
-| 3x3 Tile Layout                                | 2x3 Tile Layout                                                 |
-|:---------------------------------------------- |:----------------------------------------------------------------|
-| ![3x3 Tile Grid](/images/tp-tilegrid-3x3.png)  | ![3x3 Tile Grid](/images/tp-tilegrid-2x3.png)                   |
+| 3x3 Tile Layout                               | 2x3 Tile Layout                               |
+| :-------------------------------------------- | :-------------------------------------------- |
+| ![3x3 Tile Grid](/images/tp-tilegrid-3x3.png) | ![3x3 Tile Grid](/images/tp-tilegrid-2x3.png) |
 
 Tiles typically have three sets of parameters documented below, corresponding to the three message types discussed above:
+
 - `configuration` parameters, for setting up the tile
 - `command` parameters, for updating the tile
 - `state` parameters, for reporting back the user's interaction with that tile.
@@ -97,43 +103,57 @@ To re-cap, parameters of each of these types are sent to the `conf/`, `cmnd/`, a
 Tile payloads are described below in terms of these three parameter types.
 
 ### General principles - interacting with tiles
+
 **Tap or hold** - all tiles support these user actions, except the indicator, which doesn't accept user input at all. If you tap a tile, a "single" event is registered immediately. If you press-and-hold, a "hold" event is registered after a certain time has elapsed (approx. just under 1 second) and then no further events are registered even if the button continues to be held. This press-and-hold behaviour also applies to other tile types; although some tiles feature additional controls that send repeated messages when held. (Namely the up/down or left/right tile controls.) Tapping or holding a tile will cause the tile to light up for the duration of touch.
 
 **State management** - don't forget that the touch panel has no knowledge of the state of your IoT device. If you want the tile to indicate that you turned on a light, you then need to send a "state": "on" command back to the tile. This provides excellent flexibility, for example you may have different buttons for different lighting scenes. When a scene is changed, you would then turn on the tile corresponding to the scene that was set (and of course, turn off the tile that was previously turned on). This concept applies to all other tile types that accept an on/off state as well. There is a notable exception to this rule; there's a tile type called `buttonUpDownLevel` that allows you to control a level such as a light dimming level or blinds level. This has a very basic state management built-in.
 
 ### Parameters common to all tiles
+
 #### Labels and Sub-Labels
+
 ---
+
 ![Label and Sub-Label elements](/images/tp-element-label-sublabel.png)
 
 All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically descibe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that labels are set in the tile's config, and subLabels are set by command; both can be configured at bootup or changed during use.
 
 #### Icons
+
 ---
+
 ![Icon element](/images/tp-element-icon.png)
 
-**Icons** are considered part of the tile's initial configuration (conf/), but a tile icon can of course be swapped-out for a different one later during use as well. There is a limited set of built-in icons available in firmware, but you are free to upload your own, see [add a custom icon](/docs/firmware/touch-panel-esp32#add-a-custom-icon). Icons are generally vector-like graphics for clear indication of button function. 
+**Icons** are considered part of the tile's initial configuration (conf/), but a tile icon can of course be swapped-out for a different one later during use as well. There is a limited set of built-in icons available in firmware, but you are free to upload your own, see [add a custom icon](/docs/firmware/touch-panel-esp32#add-a-custom-icon). Icons are generally vector-like graphics for clear indication of button function.
 
 #### Text
+
 ---
+
 ![Plain text element](/images/tp-element-plaintext.png) ![Rich text element](/images/tp-element-richtext.png)
 
 If you send `"text": "abc"` to the cmnd/ topic then this text will appear in place of any icon, if you've set one. You can set text colour as follows: "text": "#RRGGBB <your_text_here>#", and if you remove the text by sending "text": "", this will restore the original icon in its place.
 
 #### Level display
+
 ---
+
 ![Level display element](/images/tp-element-leveldisplay.png)
 
 A **level command** can be sent to any tile with a cmnd/ message. Imagine you wanted to indicate the water level in a tank. Sending "level": 50 to a basic tile with a custom icon or background picture of a water tank will light that tile up from the bottom, to the level you specified. For displaying window blinds or light levels that can actually be controlled, you would use the buttonUpDownLevel tile type, which has additional control buttons to actually change the levels.
 
 #### Background image
+
 ---
+
 ![Background image example 1](/images/tp-element-background01.png) ![Background image example 2](/images/tp-element-background02.png) ![Background image example 3](/images/tp-element-background03.png)
 
 A **background image** can be sent to any tile. If that tile previously had an icon, you can clear the icon temporarily by sending `"text": ""` to the cmnd/ topic.
 
 #### Combining elements
+
 ---
+
 Of course, the above can be combined to create visually rich elements. Here are some examples. More to follow.
 
 ![Example element combination 01 - pump level](/images/tp-element-combination-example01-pumplevel.png) ![Example element combination 02 - blinds level](/images/tp-element-combination-example02-blindslevel.png)
@@ -141,13 +161,16 @@ Of course, the above can be combined to create visually rich elements. Here are 
 [comment]: <> ([TODO] Add more nice examples of visually rich tiles)
 
 ### Understanding differences between tile types
+
 If we use the basic _button_ tile as a basis for our understanding, this tile type has a lot of options for displaying different elements, but is limited in how you can interact with it; it only accepts tap or hold.
 
 The other tile types provide you with additional types of control:
+
 - controls **within** the tile (to turn things up and down, link to other screens, etc.)
 - controls **behind** the tile, such that when you press the tile, the screen is taken over by the control screen in question. This is useful for color pickers, menu items, keypads, and more.
 
 ---
+
 # Tile Styles
 
 [comment]: <> ([TODO] Tile Styles explanation)
@@ -155,19 +178,19 @@ The other tile types provide you with additional types of control:
 | Tile Style                                                        | Tile Example                                               | Get Started                                                                                                                                                                                                      |
 | :---------------------------------------------------------------- | :--------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | button                                                            | ![TP32 Image Alt Text](/images/button-tile-not-active.png) | [Get Started](/docs/firmware/touch-panel-esp32/#button)                                                                                                                                                          |
-| buttonUpDownLevel                                                 | ![TP32 Image Alt Text](/images/buttonLevelUp-tile.png)     | [Get Started](/docs/firmware/touch-panel-esp32/#buttonupdownlevel)                                                                                                                                                   |
+| buttonUpDownLevel                                                 | ![TP32 Image Alt Text](/images/buttonLevelUp-tile.png)     | [Get Started](/docs/firmware/touch-panel-esp32/#buttonupdownlevel)                                                                                                                                               |
 | buttonUpDown                                                      | ![TP32 Image Alt Text](/images/buttonUpDown-tile.png)      | [Get Started](/docs/firmware/touch-panel-esp32/#buttonupdown)                                                                                                                                                    |
 | buttonLeftRight                                                   | ![TP32 Image Alt Text](/images/buttonLeftRight-tile.png)   | [Get Started](/docs/firmware/touch-panel-esp32/#buttonleftright)                                                                                                                                                 |
 | buttonPrevNext                                                    | ![TP32 Image Alt Text](/images/buttonPrevNext.png)         | [Get Started](/docs/firmware/touch-panel-esp32/#buttonprevnext)                                                                                                                                                  |
 | indicator                                                         | ![TP32 Image Alt Text](/images/indicator-tile.png)         | [Get Started](/docs/firmware/touch-panel-esp32/#indicator)                                                                                                                                                       |
-| feed                                                              | ![TP32 Image Alt Text](/images/feed-tile.png)              | [Get Started](/docs/firmware/touch-panel-esp32/#feed)                                                                                                                                                       |
+| feed                                                              | ![TP32 Image Alt Text](/images/feed-tile.png)              | [Get Started](/docs/firmware/touch-panel-esp32/#feed)                                                                                                                                                            |
 | colorPickerRgbCct <br><br> colorPickerRgb <br><br> colorPickerCct | ![TP32 Image Alt Text](/images/colorPicker-tile.png)       | [Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgbcct)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickerrgb)<br><br>[Get Started](/docs/firmware/touch-panel-esp32/#colorpickercct) |
 | dropDown                                                          | ![TP32 Image Alt Text](/images/dropdown-tile.png)          | [Get Started](/docs/firmware/touch-panel-esp32/#dropdown)                                                                                                                                                        |
 | buttonSelector                                                    | ![TP32 Image Alt Text](/images/buttonSelector-tile.png)    | [Get Started](/docs/firmware/touch-panel-esp32/#buttonselector)                                                                                                                                                  |
 | remote                                                            | ![TP32 Image Alt Text](/images/remote-tile.png)            | [Get Started](/docs/firmware/touch-panel-esp32/#remote)                                                                                                                                                          |
 | link                                                              | ![TP32 Image Alt Text](/images/link-tile.png)              | [Get Started](/docs/firmware/touch-panel-esp32/#link)                                                                                                                                                            |
 | thermostat                                                        | ![TP32 Image Alt Text](/images/thermostat-arc-tile.png)    | [Get Started](/docs/firmware/touch-panel-esp32/#thermostat)                                                                                                                                                      |
-| keyPad                                                          | ![TP32 Image Alt Text](/images/keypad-tile-2.png)                  | [Get Started](/docs/firmware/touch-panel-esp32/#keypad)                                                                                 |
+| keyPad                                                            | ![TP32 Image Alt Text](/images/keypad-tile-2.png)          | [Get Started](/docs/firmware/touch-panel-esp32/#keypad)                                                                                                                                                          |
 
 # Tile Payloads
 
@@ -205,12 +228,12 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
 
 ### JSON parameters
 
-| Parameter      |   Type   | Options | Description                                                                   |                                                            |
-| :------------- | :------: | :-----: | :---------------------------------------------------------------------------- | :--------------------------------------------------------- |
-| `tile`         | _Number_ |   n/a   | Enter your tile number e.g. `1`                                               | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `style`        | _String_ |   n/a   | Enter tile style name `button`                                                | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `icon`         | _String_ |   n/a   | Enter icon name e.g.`_bulb`                                                   | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `label`        | _String_ |   n/a   | Enter label text e.g.`Lamps`                                                  | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| Parameter |   Type   | Options | Description                     |                                                            |
+| :-------- | :------: | :-----: | :------------------------------ | :--------------------------------------------------------- |
+| `tile`    | _Number_ |   n/a   | Enter your tile number e.g. `1` | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `style`   | _String_ |   n/a   | Enter tile style name `button`  | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `icon`    | _String_ |   n/a   | Enter icon name e.g.`_bulb`     | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `label`   | _String_ |   n/a   | Enter label text e.g.`Lamps`    | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -255,7 +278,7 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
       "screen": 1,
       "tile": 1,
       "state": "on",
-      "subLabel": "on just now",
+      "subLabel": "on just now"
     }
   ]
 }
@@ -280,6 +303,7 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
 ---
 
 ## buttonUpDownLevel
+
 ![buttonUpDownLevel Tile Style - Off](/images/tp-tilestyle-buttonUpDown-off.png) ![buttonUpDownLevel Tile Style - On](/images/tp-tilestyle-buttonUpDown-on.png)
 
 _buttonUpDownLevel_ provides up/down control with visual feedback, and an internally stored state. As such the output of an up/down button press (or hold) transmits not only the direction of change, but also the new value. A tap will increment or decrement that value by one, and a hold will repeatedly send states in 20 steps across the whole range of the limits you configured. So for a tile configured to dim 0-100, the quickly repeating values would be sent in steps of 5, for example.
@@ -750,12 +774,12 @@ This tile has no status feedback; tapping the tile itself only presents the feed
 
 ### JSON parameters
 
-| Parameter |   Type   | Options | Description                             |                                                            |
-| :-------- | :------: | :-----: | :-------------------------------------- | :--------------------------------------------------------- |
-| `tile`    | _Number_ |   n/a   | Enter your tile number e.g. `1`         | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `style`   | _String_ |   n/a   | Enter tile style name `feed`            | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `icon`    | _String_ |   n/a   | Enter icon name e.g.`_news`             | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `label`   | _String_ |   n/a   | Enter label text e.g.`Messages`         | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| Parameter |   Type   | Options | Description                     |                                                            |
+| :-------- | :------: | :-----: | :------------------------------ | :--------------------------------------------------------- |
+| `tile`    | _Number_ |   n/a   | Enter your tile number e.g. `1` | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `style`   | _String_ |   n/a   | Enter tile style name `feed`    | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `icon`    | _String_ |   n/a   | Enter icon name e.g.`_news`     | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `label`   | _String_ |   n/a   | Enter label text e.g.`Messages` | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -783,7 +807,7 @@ This tile has no status feedback; tapping the tile itself only presents the feed
     {
       "screen": "1",
       "tile": "2",
-      "state":"off",
+      "state": "off",
       "subLabel": "2 Unread",
       "messageFeed": {
         "addPost": {
@@ -800,7 +824,7 @@ This tile has no status feedback; tapping the tile itself only presents the feed
 ### JSON parameters
 
 | Parameter     |   Type   |     Options     | Description                                                 |                                                            |
-| :---------    | :------: | :-------------: | :---------------------------------------------------------- | :--------------------------------------------------------- |
+| :------------ | :------: | :-------------: | :---------------------------------------------------------- | :--------------------------------------------------------- |
 | `screen`      | _Number_ |       n/a       | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `tile`        | _Number_ |       n/a       | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `state`       | _String_ | `"on"`\|`"off"` | Update the tile state                                       | <Badge type="warning" text="Required" vertical="bottom" /> |
@@ -809,7 +833,6 @@ This tile has no status feedback; tapping the tile itself only presents the feed
 | `id`          | _Number_ |       n/a       | Message ID                                                  | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `head`        | _String_ |       n/a       | String containing the message heading                       | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `body`        | _String_ |       n/a       | String containing the message text                          | <Badge type="tip" text="Optional" vertical="bottom" />     |
-
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -1402,13 +1425,7 @@ This tile type _dropDown_ may be used to present the user with a drop-down menu.
     {
       "screen": 1,
       "tile": 1,
-      "dropDownList": [
-        "Rock Album",
-        "Dance Album",
-        "Jazz Album",
-        "Soul Album",
-        "Classical Album"
-      ],
+      "dropDownList": ["Rock Album", "Dance Album", "Jazz Album", "Soul Album", "Classical Album"],
       "dropDownSelect": 2,
       "subLabel": "playing now"
     }
@@ -1500,14 +1517,14 @@ This tile type _buttonSelector_ acts in much the same way as the _dropDown_ tile
 
 ### JSON parameters
 
-| Parameter |   Type   | Options                      | Description                                     |
-| :-------- | :------: | :--------------------------: | :---------------------------------------------- |
-| `screen`  | _Number_ |   n/a                        | Screen number triggering state event            |
-| `tile`    | _Number_ |   n/a                        | Tile number triggering state event              |
-| `style`   | _String_ |   n/a                        |                                                 |
-| `type`    | _String_ |   `"selector"`\|`"button"`   |                                                 |
-| `event`   | _String_ |   `"selection"`\|`"single"`  |                                                 |
-| `state`   | _Number_ |   n/a                        | Item selected (1-based index of `buttonSelector`) |
+| Parameter |   Type   |          Options          | Description                                       |
+| :-------- | :------: | :-----------------------: | :------------------------------------------------ |
+| `screen`  | _Number_ |            n/a            | Screen number triggering state event              |
+| `tile`    | _Number_ |            n/a            | Tile number triggering state event                |
+| `style`   | _String_ |            n/a            |                                                   |
+| `type`    | _String_ | `"selector"`\|`"button"`  |                                                   |
+| `event`   | _String_ | `"selection"`\|`"single"` |                                                   |
+| `state`   | _Number_ |            n/a            | Item selected (1-based index of `buttonSelector`) |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -1522,12 +1539,7 @@ This tile type _buttonSelector_ acts in much the same way as the _dropDown_ tile
     {
       "screen": 1,
       "tile": 1,
-      "selectorList": [
-          "off",
-          "low",
-          "medium",
-          "full"
-      ],
+      "selectorList": ["off", "low", "medium", "full"],
       "selectorSelect": 1,
       "subLabel": "Level"
     }
@@ -1537,13 +1549,13 @@ This tile type _buttonSelector_ acts in much the same way as the _dropDown_ tile
 
 ### JSON parameters
 
-| Parameter        |   Type   | Options | Description                                                               |                                                            |
-| :--------------- | :------: | :-----: | :------------------------------------------------------------------------ | :--------------------------------------------------------- |
-| `screen`         | _Number_ |   n/a   | Screen number sending command to                                          | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `tile`           | _Number_ |   n/a   | Tile number sending command to                                            | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `selectorList`   | _Array_  |   n/a   | List items Array of Strings `["off", "low", "medium", "full"]`            | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `selectorSelect` | _Number_ |   n/a   | Selected item in dropdown list (1-based index of `selectorList`)          | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `subLabel`       | _String_ |   n/a   | String for additional tile information e.g. last updated `"Level"`        | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| Parameter        |   Type   | Options | Description                                                        |                                                            |
+| :--------------- | :------: | :-----: | :----------------------------------------------------------------- | :--------------------------------------------------------- |
+| `screen`         | _Number_ |   n/a   | Screen number sending command to                                   | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`           | _Number_ |   n/a   | Tile number sending command to                                     | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `selectorList`   | _Array_  |   n/a   | List items Array of Strings `["off", "low", "medium", "full"]`     | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `selectorSelect` | _Number_ |   n/a   | Selected item in dropdown list (1-based index of `selectorList`)   | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `subLabel`       | _String_ |   n/a   | String for additional tile information e.g. last updated `"Level"` | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -1561,9 +1573,6 @@ This tile type _buttonSelector_ acts in much the same way as the _dropDown_ tile
 This tile type _keyPad_ may be used to present the user with a keypad. The tile has no internal state management, so you will be required to store and verify valid pin codes for example using Node RED.
 
 Once you verify the pincode you can close the keypad control screen by sending a payload to the cmnd/ topic setting keypad state to 'close'. Then send a payload to the cmnd/ topic to load the desired screen. (See the Load Screen payload in [Device Commands](/docs/firmware/touch-panel-esp32/#device-commands) on how to load a screen)
-
-
-
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -1636,7 +1645,7 @@ Once you verify the pincode you can close the keypad control screen by sending a
 
 ::: code-group-item Command
 
-```json  {3-17}
+```json {3-17}
 {
   "tiles": [
     {
@@ -1683,7 +1692,6 @@ When you press the keypad tile the keypad screen will appear giving you the abil
 
 ![TP32 Image Alt Text](/images/keypad-screen-1.png) ![TP32 Image Alt Text](/images/keypad-screen-2.png)
 
-
 # keyPadBlocking
 
 If you wish to lock access to the screen and only allow access to users with a valid pin you are able to set this via a configuration payload. Note this is a 'Device' configuration payload.
@@ -1709,7 +1717,6 @@ If you wish to lock access to the screen and only allow access to users with a v
 `conf/<device-client-id>`
 :::
 ::::
-
 
 ## remote
 
@@ -2114,7 +2121,6 @@ A visual indicator of light or blind levels. Although this is more suited to the
 ::::
 [comment]: <> (END of JSON Example)
 
-
 ## Set the background color
 
 RGB color for a tile background (defaults to the parent screen background color).
@@ -2156,66 +2162,6 @@ RGB color for a tile background (defaults to the parent screen background color)
 :::
 ::::
 [comment]: <> (END of JSON Example)
-
-## Add a tile background image
-
-It is possible to upload custom images to be used for the background of your tile. They can be sourced in the same way as the icons are but are also able to be in colour. This provides a great way to customise your touch panel.
-
-::: tip
-Background images are **not persistent** and have to be (re)loaded after restart and before they can be used in any configuration.
-
-Remove the image by sending a payload with a blank value for imageBase64
-
-The parameters for the image can be updated if you have the image already on the screen and leave out the imageBase64 key from the payload. 
-
-:::
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-
-```json
-{
-  "tiles":[
-    {
-      "screen": <number>,
-      "tile": <number>,
-      "backgroundImage": 
-      {
-        "imageBase64": "<encodeBase64(.png)>",
-        "zoom": <number>,
-        "angle": <number>,
-        "offset": [<x number>,<y number>]
-      }
-    }
-  ]
-}
-```
-
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-`cmnd/<device-client-id>`
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-### How to prepare an image for use
-
-- Background images need to be in .PNG format
-- To upload via MQTT the background image has to be Base64 encoded using one of the following methods;
-  - Use the [OXRS Icon Generator](/tools/icon-generator.html) which generates the required JSON payload ready-to-use
-  - Use an online converter like [base64encode.org](https://www.base64encode.org/)
-  - Use Node-RED [node-red-node-base64](https://flows.nodered.org/node/node-red-node-base64) for automated conversion
-- Ensure there is no extra information added to the Base64 encoded file
-- The encoded image should not exceed 4KB to avoid crashes - TBC
-
-### Image size and alignment
-
-- The tile layout is optimised for 60x60 pixel icons
-- Max image size is approx. 140x140 pixels (the tile size)
-- Images are aligned to the centre of the tile
-- There are no size checks for custom images
-- angle is an integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg), + number rotates CW , - number rotates CCW
 
 ## Set the icon color
 
@@ -2441,29 +2387,27 @@ This command gives you the ability to load a specific screen on a device.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
-::: code-group-item Config
+::: code-group-item Command
 
 ```json
 {
   "screen": {
-      "load": 2
+    "load": 2
   }
 }
 ```
 
 ### JSON parameters
 
-| Parameter            |   Type   | Options | Description                       |                                                            |
-| :------------------- | :------: | :-----: | :-------------------------------- | :--------------------------------------------------------- |
-| `screen` | _Object_ |   n/a   |                                   | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `load`                  | _Number_ |   n/a   | specify screen number you wish to load 1-32   | <Badge type="warning" text="Required" vertical="bottom" /> |
-
+| Parameter |   Type   | Options | Description                                 |                                                            |
+| :-------- | :------: | :-----: | :------------------------------------------ | :--------------------------------------------------------- |
+| `screen`  | _Object_ |   n/a   |                                             | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `load`    | _Number_ |   n/a   | specify screen number you wish to load 1-32 | <Badge type="warning" text="Required" vertical="bottom" /> |
 
 `cmnd/<device-client-id>`
 :::
 ::::
 [comment]: <> (END of JSON Example)
-
 
 ## Set the background color
 
@@ -2640,7 +2584,6 @@ The backlight state can be set to on or off. Additionally a "Screen Sleep Timeou
 
 This feature can be used to display a message on the screen. Make the most of this function by enhancing its interactivity with custom buttons. When these buttons are pressed, their actions are reported back to the state topic, allowing for a more dynamic user experience. Additionally, users can still close the message or clear it by sending an empty message payload, triggering relevant state events.
 
-
 ![TP32 Image Alt Text](/images/modal-2.png) ![TP32 Image Alt Text](/images/modal-1.png)
 
 [comment]: <> (START of JSON Example)
@@ -2652,28 +2595,22 @@ This feature can be used to display a message on the screen. Make the most of th
   "messageBox": {
     "title": "Update Alert!",
     "text": "New Firmware update available. \nWhat do you want to do?",
-    "buttons": [
-      "Update Now",
-      "\n",
-      "Update All Devices",
-      "\n",
-      "Remind me later"
-    ]
+    "buttons": ["Update Now", "\n", "Update All Devices", "\n", "Remind me later"]
   }
 }
 ```
 
 ### JSON parameters
 
-| Parameter    |   Type   | Options | Description                                                                     |                                                            |
-| :-----------:| :------: | :-----: | :----------------------------------------------------------------------------   | :--------------------------------------------------------- |
-| `messageBox` | _Object_ |   n/a   |                                                                                 | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `tile`       | _String_ |   n/a   | Message title text, supports text formatting syntax like colors etc             | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `text`       | _String_ |   n/a   | Message body text, supports text formatting syntax like new lines, colors etc   | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `buttons`    | _Array_  |   n/a   | An array of strings, max 5 buttons. Each button has a max 40 character limit. Specifying "\n" defines that the button position is to be blank. See tip below for more details| <Badge type="tip" text="Optional" vertical="bottom" /> |
-
+|  Parameter   |   Type   | Options | Description                                                                                                                                                                   |                                                            |
+| :----------: | :------: | :-----: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------- |
+| `messageBox` | _Object_ |   n/a   |                                                                                                                                                                               | <Badge type="warning" text="Required" vertical="bottom" /> |
+|    `tile`    | _String_ |   n/a   | Message title text, supports text formatting syntax like colors etc                                                                                                           | <Badge type="warning" text="Required" vertical="bottom" /> |
+|    `text`    | _String_ |   n/a   | Message body text, supports text formatting syntax like new lines, colors etc                                                                                                 | <Badge type="warning" text="Required" vertical="bottom" /> |
+|  `buttons`   | _Array_  |   n/a   | An array of strings, max 5 buttons. Each button has a max 40 character limit. Specifying "\n" defines that the button position is to be blank. See tip below for more details | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 ### Dynamically Close Modal Pop-up
+
 To close a modal pop-up simply send the messageBox property with an empty object:
 
 ```json
@@ -2696,14 +2633,14 @@ To close a modal pop-up simply send the messageBox property with an empty object
   "state": "open"|"closed"|"button-text"
 }
 ```
+
 ### JSON parameters
 
-| Parameter  |   Type   | Options | Description  |
-| :--------: | :------: | :-----: | :--------   |
-| `type`     | _String_ |   `messageBox`                                                             |              |
-| `event`    | _String_ |   `"open"` \| `"acknowledge"` \| `"revoke"` \| `"remove"` \| `"button"`    | event type   |
-| `state`    | _String_ |   `"open"` \| `"closed"` \| `"open"` \| `"button-text"`                    | 'button-text' will be the string contained in your button |
-
+| Parameter |   Type   |                                Options                                | Description                                               |
+| :-------: | :------: | :-------------------------------------------------------------------: | :-------------------------------------------------------- |
+|  `type`   | _String_ |                             `messageBox`                              |                                                           |
+|  `event`  | _String_ | `"open"` \| `"acknowledge"` \| `"revoke"` \| `"remove"` \| `"button"` | event type                                                |
+|  `state`  | _String_ |         `"open"` \| `"closed"` \| `"open"` \| `"button-text"`         | 'button-text' will be the string contained in your button |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -2730,64 +2667,54 @@ The arrangement of buttons dynamically adapts based on the interplay between pop
 
 :::: code-group
 ::: code-group-item Example 1
+
 ```json
 {
   "messageBox": {
     "title": "Attention",
     "text": "Do you want coffee?",
-    "buttons": [
-      "yes",
-      "no"
-    ]
+    "buttons": ["yes", "no"]
   }
 }
 ```
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 `cmnd/<device-client-id>`
 :::
 ::: code-group-item Example 2
+
 ```json
 {
   "messageBox": {
     "title": "Attention",
     "text": "Do you want coffee?",
-    "buttons": [
-      "yes",
-      "no",
-      "\n",
-      "maybe"
-    ]
+    "buttons": ["yes", "no", "\n", "maybe"]
   }
 }
 ```
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 `cmnd/<device-client-id>`
 :::
 ::: code-group-item Example 3
+
 ```json
 {
   "messageBox": {
     "title": "#ff0000 Update Alert!#",
     "text": "#00ff00 New Firmware update available.#\nWhat do you want to do?",
-    "buttons": [
-      "#ffff00 Update Now#",
-      "\n",
-      "Update All Devices",
-      "\n",
-      "Remind me later"
-    ]
+    "buttons": ["#ffff00 Update Now#", "\n", "Update All Devices", "\n", "Remind me later"]
   }
 }
 ```
+
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 `cmnd/<device-client-id>`
 :::
 ::::
-
-
 
 [comment]: <> (END of JSON Example)
 
@@ -2825,7 +2752,7 @@ Custom icons are **not persistent** and have to be (re)loaded after restart and 
 - Custom icons appear in alphabetical order after the built-in icons (which are preceded with "\_")
 - Icon upload is performed using the [`addIcon`](/docs/firmware/touch-panel-esp32.html#add-a-custom-icon) command
 - To upload via MQTT the icon has to be Base64 encoded using one of the following methods;
-  - Use the [OXRS Icon Generator](/tools/icon-generator.html) which generates the required JSON payload ready-to-use
+  - Use the [OXRS Asset Generator](/tools/asset-generator.html) which generates the required JSON payload ready-to-use
   - Use an online converter like [base64encode.org](https://www.base64encode.org/)
   - Use Node-RED [node-red-node-base64](https://flows.nodered.org/node/node-red-node-base64) for automated conversion
 - Ensure there is no extra information added to the Base64 encoded file
@@ -2839,25 +2766,134 @@ Custom icons are **not persistent** and have to be (re)loaded after restart and 
 - Icons are aligned top/left of a tile
 - There are no size checks for custom icons
 
+## Add a tile background image
+
+It is possible to upload custom images to be used for the background of your tile. They can be sourced in the same way as the icons are but are also able to be in colour. This provides a great way to customise your touch panel.
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Command
+
+```json
+{
+  "addImage": {
+    "name": "<text>",
+    "imageBase64": "<encodeBase64(.png)>"
+  }
+}
+```
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+::: tip
+Background images are **not persistent** and have to be (re)loaded after restart and before they can be used in any configuration.
+:::
+
+### Setting a tile background image
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+
+```json
+{
+  "tiles":[
+    {
+      "screen": <number>,
+      "tile": <number>,
+      "backgroundImage":
+      {
+        "imageBase64": "<encodeBase64(.png)>",
+        "zoom": <number>,
+        "angle": <number>,
+        "offset": [<x number>,<y number>]
+      }
+    }
+  ]
+}
+```
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+### Removing a tile background image
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+
+```json
+{
+  "tiles":[
+    {
+      "screen": <number>,
+      "tile": <number>,
+      "backgroundImage": { }
+    }
+  ]
+}
+```
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+::: tip
+Remove the image by sending a payload with a blank value for imageBase64
+:::
+
+### How to prepare an image for use
+
+- Background images need to be in .PNG format converted into a Base64 encoded string
+  - Use the [OXRS Asset Generator](/tools/asset-generator.html) which generates the required JSON payload ready-to-use, just change the property addIcon to addImage.
+  - Use an online converter like [base64encode.org](https://www.base64encode.org/)
+  - Use Node-RED [node-red-node-base64](https://flows.nodered.org/node/node-red-node-base64) for automated conversion
+- Ensure there is no extra information added to the Base64 encoded file
+- The encoded image should not exceed 4KB to avoid crashes - TBC
+
+### Image size and alignment
+
+- The tile layout is optimised for 60x60 pixel icons
+- Max image size is approx. 140x140 pixels (the tile size)
+- Images are aligned to the centre of the tile
+- There are no size checks for custom images
+- angle is an integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg), + number rotates CW , - number rotates CCW
+
 ## Setting Up your Touch Panel
 
 ### Overview
+
 - Download and flash your device. See [flashing your device](/docs/firmware/touch-panel-esp32#flashing-your-device).
 - Connect the touch panel to your wired or wireless network. See [connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#connecting-to-wifi-ethernet).
 - Configure the touch panel to connect to your MQTT broker. See [initial MQTT configuration](/docs/firmware/touch-panel-esp32#initial-mqtt-configuration).
 - From now-on, you can do everything over MQTT. See [how to communicate with your touch panel over MQTT](/docs/firmware/touch-panel-esp32#how-to-communicate-with-your-touch-panel-over-mqtt).
 
 ### Flashing Your Device
+
 - Download your firmware from [here](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases)
 - Choose the version according to
   - What model of Touch Panel you are flashing (see [supported hardware](docs/firmware/touch-panel-esp32#supported-hardware))
   - Whether you plan to use WiFi or Ethernet. WiFi is built-in to all touchpanel models so it's a great place to start or for demo purposes. An ethernet connection may offer more long term reliability, so you will need to add a compatible ethernet adapter, for example the PoE ethernet shield from https://www.austinscreations.ca/, open-source designs for which may be found [here](https://github.com/austinscreations/WT32-SC01_POE/tree/main/2023%20re-design/rev%206).
 
 #### General notes on flashing the touch panels
+
 - The WT32-SC01 and WT32-SC01 Plus both have built-in USB and so you don't need an additional USB-TTL adapter. The instructions below include ensuring you have the correct Windows driver to flash the board directly.
 - The WT32S3-86V and 86S will require a separate USB-TTL adapter. See notes below.
 
 #### Instructions for flashing the WT32S3-86V (Windows 10/11)
+
 Note about what USB-TTL to use
 Use one of the cheap, ubiquitous USB-TTL adapters available on Amazon or Ebay, and don't purchase the unit with the supplied USB-TTL adapter. If you use the supplied one, it has a dedicated JST cable, the connector for which you will need to solder on to each panel. Being an SMD connector, it's a bit fiddly - but more to the point, once you've soldered it on, you can no longer re-attach the plastic rear panel! So avoid that one and use a standard USB-TTL adapter with normal hookup wires / dupont connectors.
 
@@ -2873,6 +2909,7 @@ Use one of the cheap, ubiquitous USB-TTL adapters available on Amazon or Ebay, a
 Continue to [Connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#connecting-to-wifi-ethernet).
 
 #### Instructions for flashing the WT32-SC01 and SC01 Plus (Windows 10/11)
+
 - Connect the WT32-SC01 LCD dev board USB-C port to a USB connector on the Windows PC using a USB-C to USB-A cable (a USB-C to USB-C cable doesn’t appear to work).
 - Ensure the LCD dev board power LED comes on and the screen displays the factory default page display sequence.
 - Open the ‘Device Manager’ app (i.e. Invoke Windows logo key+R, type in “devmgmt.msc” and then press Enter), navigate down the devices list to Universal Serial Bus controllers and right click on the USB Root Hub icon.
@@ -2886,18 +2923,20 @@ Continue to [Connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#con
 Continue to [Connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#connecting-to-wifi-ethernet).
 
 #### Connecting to WiFi / Ethernet
+
 - WiFi firmware
   - Newly flashed panels (WiFi firmware) will broadcast their own SSID, (_OXRS-WiFi_). Connect to this wireless network from another wireless device.
-  - The password to connect to _OXRS-WiFi_ is ```superhouse```
+  - The password to connect to _OXRS-WiFi_ is `superhouse`
   - Browse to [192.168.4.1](http://192.168.4.1) using _Chrome_ or _Microsoft Edge_ browser (_FireFox_ does not appear to handle the rendered html properly) and then enter the details of your wireless network. Click the [Save](http://192.168.4.1/wifisave) button, and the touch panel should then connect and appear on your WiFi network.
   - Incidentally, Windows has a helpful new feature that can automatically disconnect from a wireless network that doesn't appear to provide it with an internet connection. This gets annoying, because it will disconnect you from the SSID part-way through this process. Disable this in Windows registry by creating a new DWORD value "NoActiveProbe" set to 1, within HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkConnectivityStatusIndicator.
 - If the touch panel has connected to your WiFi network successfully, OR if you uploaded the ethernet firmware and are already physically connected to a switch;
   - The panel's IP address and MAC address can be found on the panel itself under settings cog. Note down the IP address and continue to [initial MQTT configuration](/docs/firmware/touch-panel-esp32#initial-mqtt-configuration).
 
 #### Initial MQTT Configuration
+
 - If you have not already done so, [download](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP) the _OXRS Web based administrator UI_ `index.html` file onto to your local machine and open it using your favourite web browser.
 - Using the displayed _OXRS Admin_ UI page, insert the IP address displayed on the LCD Touchscreen's _Settings_ screen in the _Device address_ field, then choose the _Setup MQTT_ menu option in the _Action_ field, and click the _Select_ button.
-= Fill out the _MQTT Configuration_ fields displayed to input your MQTT broker settings, and click the _Submit_ button. The LCD Touchscreen _Settings_ page should now confirm the MQTT broker connection, and the yellow warning triangle displayed bottom right on the main default screen should now have disappeared.
+  = Fill out the _MQTT Configuration_ fields displayed to input your MQTT broker settings, and click the _Submit_ button. The LCD Touchscreen _Settings_ page should now confirm the MQTT broker connection, and the yellow warning triangle displayed bottom right on the main default screen should now have disappeared.
 - Once you have completed these steps, you can either play with the Admin UI to set up some demo screens, tiles, and icons, or start using the panel in your automations; See [how to communicate with your touch panel over MQTT](/docs/firmware/touch-panel-esp32#how-to-communicate-with-your-touch-panel-over-mqtt).
 
 ## API
