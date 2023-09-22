@@ -169,7 +169,7 @@ Below are some examples of how you could integrate with various home automation 
 
 
 #### License
-Copyright 2020-2022 Austin's Creations [https://www.austinscreations.ca](https://www.austinscreations.ca)
+Copyright 2020-present Austin's Creations [https://www.austinscreations.ca](https://www.austinscreations.ca)
 
 The software portion of this project is licensed under the Simplified
 BSD License. The "licence" folder within this project contains a

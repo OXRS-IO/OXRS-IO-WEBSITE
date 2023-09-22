@@ -104,7 +104,7 @@ Is designed to run as part of the [OXRS](https://oxrs.io) eco-system.
 
 
 #### License
-Copyright 2020-2023 SuperHouse Automation Pty Ltd [www.superhouse.tv](www.superhouse.tv)
+Copyright 2020-present SuperHouse Automation Pty Ltd [www.superhouse.tv](www.superhouse.tv)
 
 The software portion of this project is licensed under the Simplified
 BSD License. The "licence" folder within this project contains a

@@ -294,7 +294,7 @@ More information:
 
 
 #### License
-Copyright 2020-2021 Bedrock Media Designs Ltd [bmdesigns.com.au](https://bmdesigns.com.au/)
+Copyright 2020-present Bedrock Media Designs Ltd [bmdesigns.com.au](https://bmdesigns.com.au/)
 
 The software portion of this project is licensed under the Simplified
 BSD License. The "licence" folder within this project contains a

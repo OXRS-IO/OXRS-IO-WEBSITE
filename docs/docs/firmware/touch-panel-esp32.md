@@ -2988,6 +2988,6 @@ Download the latest version of the firmware on [Github](https://github.com/OXRS-
 
 #### License
 
-Copyright 2020-2022 SuperHouse Automation Pty Ltd www.superhouse.tv
+Copyright 2020-present SuperHouse Automation Pty Ltd www.superhouse.tv
 
 The software portion of this project is licensed under the Simplified BSD License. The "licence" folder within this project contains a copy of this license in plain text format.
