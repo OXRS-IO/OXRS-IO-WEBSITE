@@ -32,9 +32,9 @@ Example applications include: a light switch to control dimming or colour for mu
 
 - [Firmware Installation](/docs/firmware/touch-panel-esp32.html#firmware-installation)
 
-- [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
-- [Screen Payloads](/docs/firmware/touch-panel-esp32.html#screen-payloads)
-- [Device Payloads](/docs/firmware/touch-panel-esp32.html#device-payloads)
+- Sending [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
+- Sending [Screen Payloads](/docs/firmware/touch-panel-esp32.html#screen-payloads)
+- Sending [Device Payloads](/docs/firmware/touch-panel-esp32.html#device-payloads)
 
 ### Supported Hardware
 
@@ -1571,7 +1571,7 @@ This tile type _buttonSelector_ acts in much the same way as the _dropDown_ tile
 
 This tile type _keyPad_ may be used to present the user with a keypad. The tile has no internal state management, so you will be required to store and verify valid pin codes for example using Node RED.
 
-Once you verify the pincode you can close the keypad control screen by sending a payload to the cmnd/ topic setting keypad state to 'close'. Then send a payload to the cmnd/ topic to load the desired screen. (See the Load Screen payload in [Device Commands](/docs/firmware/touch-panel-esp32/#device-commands) on how to load a screen)
+Once you verify the pincode you can close the keypad control screen by sending a payload to the cmnd/ topic setting keypad state to 'close'. Then send a payload to the cmnd/ topic to load the desired screen. (See the Load Screen payload in [Device Payloads](/docs/firmware/touch-panel-esp32/#device-payloads) on how to load a screen)
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -2286,6 +2286,48 @@ Removing screen 1 (Home Screen) technically removes screen 1 and creates an empt
 
 :::
 
+## Hide a screen
+
+Hiding a screen prevents it from being shown in the footer selection menu. The screen can still be shown with a `cmnd`, or a tile linked to that screen within the `conf`.
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Command
+
+
+```json
+{
+  "screens": [
+    {
+      "screen": 3,
+      "hidden ": true
+    }
+  ]
+}```
+
+### JSON parameters
+
+| Parameter |   Type    |  Options    | Description                 |                                                            |
+| :-------- | :------:  | :--------:  | :-------------------------- | :--------------------------------------------------------- |
+| `screen`  | _Number_  |    n/a      | Screen number to be hidden  | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `hidden`  | _Boolean_ | true\|false | Command to hide screen      | <Badge type="warning" text="Required" vertical="bottom" /> |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+::: tip
+
+A hidden screen can be useful for scenarios where you only want a screen to be displayed when reacting to some kind of internal logic (e.g. a tile pressed) or external logic (e.g. a sensor receives a command).
+
+Either way, the best way to show the screen which is hidden from the screen selection menu on the touch panel is to load the screen, see [Load Screen](/docs/firmware/touch-panel-esp32.html#load-screen).
+
+:::
+
+
 ## Set the background color
 
 RGB color for a screen background (defaults to the configured device background color).
@@ -2870,6 +2912,7 @@ Background images are **not persistent** and have to be (re)loaded after restart
 Remove the image by sending a payload with a blank value for imageBase64
 :::
 
+
 ### How to prepare an image for use
 
 - Background images need to be in .PNG format converted into a Base64 encoded string
@@ -2886,6 +2929,33 @@ Remove the image by sending a payload with a blank value for imageBase64
 - Images are aligned to the centre of the tile
 - There are no size checks for custom images
 - angle is an integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg), + number rotates CW , - number rotates CCW
+
+### Restarting the device
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Command
+
+```json
+{
+  "restart": true
+}
+```
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+::: tip
+The device may also be restarted;
+- by pressing the "Hold to restart..." button on its settings screen
+- from the downloadable [Admin UI](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
+
+:::
+
 
 ## Setting Up your Touch Panel
 
