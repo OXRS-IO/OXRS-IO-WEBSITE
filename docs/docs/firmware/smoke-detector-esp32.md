@@ -80,10 +80,6 @@ Each INPUT can be configured via the following properties;
 |`type`|Optional|Either `button`, `contact`, `press`, `switch` or `toggle`|
 |`invert`|Optional|Either `true` or `false`|
 
-::: warning
-Inverting a normally-open (NO) button input will result in a constant stream of `hold` events!
-:::
-
 ### Output Config
 Each OUTPUT can be configured via the following properties;
 
@@ -201,7 +197,7 @@ The message payload is JSON and contains:
 ### Input Events
 |Event Type|Event|
 |:---------|:----|
-|`button`  | `single`, `double`, `triple`, `quad`, `penta`, or `hold` |
+|`button`  | `single`, `double`, `triple`, `quad`, `penta`, `hold`, or `release` |
 |`contact` | `open` or `closed` |
 |`press`   | `press` |
 |`switch`  | `on` or `off` |

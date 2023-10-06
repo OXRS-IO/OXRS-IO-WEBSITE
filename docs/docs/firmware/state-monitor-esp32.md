@@ -105,10 +105,6 @@ Each INPUT can be configured via the following properties;
 |`disabled`|Optional|Either `true` or `false`|
 
 ::: warning
-Inverting a normally-open (NO) button input will result in a constant stream of `hold` events!
-:::
-
-::: warning
 Disabling an input will stop any events being emitted!
 :::
 
@@ -163,7 +159,7 @@ The message payload is JSON and contains:
 
 |Event Type|Event|
 |:---------|:----|
-|`button`  | `single`, `double`, `triple`, `quad`, `penta`, or `hold` |
+|`button`  | `single`, `double`, `triple`, `quad`, `penta`, `hold`, or `release` |
 |`contact` | `open` or `closed` |
 |`press`   | `press` |
 |`rotary`  | `up` or `down` |

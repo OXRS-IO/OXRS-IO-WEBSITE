@@ -63,15 +63,15 @@ To configure inputs `index: 1` and `index: 2`  as `buttons` publish :
  -t conf/58391f  -m '{"inputs": [{"index": 2, "type": "button"},{"index": 1, "type": "button" }]}'
 ```
 This is a more complex automation. It uses the `single` and `hold` events from each of the 2 involved buttons.
-The `single` event is used to control the state of the light bulb and the `hold` event for brightness control.
+The `single` event is used for brightness control, and the `hold` event for turning the light on/off.
 
 
 |index|event   |function
 |:----|:-------|:-------|
-|1    |single  |turn off |
-|1    |hold    |decrease brightness  |
-|2    |single  |turn on |
-|2    |hold    |increase brightness  |
+|1    |single  |decrease brightness  |
+|1    |hold    |turn off  |
+|2    |single  |increase brightness  |
+|2    |hold    |turn on  |
 
 ```
 
