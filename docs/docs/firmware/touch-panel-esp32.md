@@ -109,7 +109,6 @@ Tile payloads are described below in terms of these three parameter types.
 **State management** - don't forget that the touch panel has no knowledge of the state of your IoT device. If you want the tile to indicate that you turned on a light, you then need to send a "state": "on" command back to the tile. This provides excellent flexibility, for example you may have different buttons for different lighting scenes. When a scene is changed, you would then turn on the tile corresponding to the scene that was set (and of course, turn off the tile that was previously turned on). This concept applies to all other tile types that accept an on/off state as well. There is a notable exception to this rule; there's a tile type called `buttonUpDownLevel` that allows you to control a level such as a light dimming level or blinds level. This has a very basic state management built-in.
 
 ### Parameters common to all tiles
-
 #### Labels and Sub-Labels
 
 ---
@@ -763,7 +762,7 @@ This tile has no status feedback; tapping the tile itself only presents the feed
         {
           "tile": 1,
           "style": "feed",
-          "icon": "_news",
+          "icon": "_feed",
           "label": "Messages"
         }
       ]
@@ -2891,7 +2890,6 @@ Remove the image by sending a payload with a blank value for imageBase64
 ## Setting Up your Touch Panel
 
 ### Overview
-
 - Download and flash your device. See [flashing your device](/docs/firmware/touch-panel-esp32#flashing-your-device).
 - Connect the touch panel to your wired or wireless network. See [connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#connecting-to-wifi-ethernet).
 - Configure the touch panel to connect to your MQTT broker. See [initial MQTT configuration](/docs/firmware/touch-panel-esp32#initial-mqtt-configuration).
@@ -2910,7 +2908,6 @@ Remove the image by sending a payload with a blank value for imageBase64
 - The WT32S3-86V and 86S will require a separate USB-TTL adapter. See notes below.
 
 #### Instructions for flashing the WT32S3-86V (Windows 10/11)
-
 Note about what USB-TTL to use
 Use one of the cheap, ubiquitous USB-TTL adapters available on Amazon or Ebay, and don't purchase the unit with the supplied USB-TTL adapter. If you use the supplied one, it has a dedicated JST cable, the connector for which you will need to solder on to each panel. Being an SMD connector, it's a bit fiddly - but more to the point, once you've soldered it on, you can no longer re-attach the plastic rear panel! So avoid that one and use a standard USB-TTL adapter with normal hookup wires / dupont connectors.
 
