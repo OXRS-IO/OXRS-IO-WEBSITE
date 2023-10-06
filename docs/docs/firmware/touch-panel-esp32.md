@@ -32,9 +32,9 @@ Example applications include: a light switch to control dimming or colour for mu
 
 - [Firmware Installation](/docs/firmware/touch-panel-esp32.html#firmware-installation)
 
-- [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
-- [Screen Payloads](/docs/firmware/touch-panel-esp32.html#screen-payloads)
-- [Device Payloads](/docs/firmware/touch-panel-esp32.html#device-payloads)
+- Sending [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
+- Sending [Screen Payloads](/docs/firmware/touch-panel-esp32.html#screen-payloads)
+- Sending [Device Payloads](/docs/firmware/touch-panel-esp32.html#device-payloads)
 
 ### Supported Hardware
 
