@@ -2912,6 +2912,7 @@ Background images are **not persistent** and have to be (re)loaded after restart
 Remove the image by sending a payload with a blank value for imageBase64
 :::
 
+
 ### How to prepare an image for use
 
 - Background images need to be in .PNG format converted into a Base64 encoded string
@@ -2928,6 +2929,33 @@ Remove the image by sending a payload with a blank value for imageBase64
 - Images are aligned to the centre of the tile
 - There are no size checks for custom images
 - angle is an integer that defines the rotation angle in increments of 0.1 deg (eg 900 = 90 deg), + number rotates CW , - number rotates CCW
+
+### Restarting the device
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Command
+
+```json
+{
+  "restart": true
+}
+```
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+::: tip
+The device may also be restarted;
+- by pressing the "Hold to restart..." button on its settings screen
+- from the downloadable [Admin UI](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
+
+:::
+
 
 ## Setting Up your Touch Panel
 
