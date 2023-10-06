@@ -102,6 +102,9 @@ Tile payloads are described below in terms of these three parameter types.
 **State management** - don't forget that the touch panel has no knowledge of the state of your IoT device. If you want the tile to indicate that you turned on a light, you then need to send a "state": "on" command back to the tile. This provides excellent flexibility, for example you may have different buttons for different lighting scenes. When a scene is changed, you would then turn on the tile corresponding to the scene that was set (and of course, turn off the tile that was previously turned on). This concept applies to all other tile types that accept an on/off state as well. There is a notable exception to this rule; there's a tile type called `buttonUpDownLevel` that allows you to control a level such as a light dimming level or blinds level. This has a very basic state management built-in.
 
 ### Parameters common to all tiles
+
+Below is a list of parameters that apply to all tiles, regardless of the tile type. For the exact syntax please refer to individual tile types.
+
 #### Labels and Sub-Labels
 ---
 ![Label and Sub-Label elements](/images/tp-element-label-sublabel.png)
