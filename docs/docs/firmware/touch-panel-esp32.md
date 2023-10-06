@@ -1571,7 +1571,7 @@ This tile type _buttonSelector_ acts in much the same way as the _dropDown_ tile
 
 This tile type _keyPad_ may be used to present the user with a keypad. The tile has no internal state management, so you will be required to store and verify valid pin codes for example using Node RED.
 
-Once you verify the pincode you can close the keypad control screen by sending a payload to the cmnd/ topic setting keypad state to 'close'. Then send a payload to the cmnd/ topic to load the desired screen. (See the Load Screen payload in [Device Commands](/docs/firmware/touch-panel-esp32/#device-commands) on how to load a screen)
+Once you verify the pincode you can close the keypad control screen by sending a payload to the cmnd/ topic setting keypad state to 'close'. Then send a payload to the cmnd/ topic to load the desired screen. (See the Load Screen payload in [Device Payloads](/docs/firmware/touch-panel-esp32/#device-payloads) on how to load a screen)
 
 [comment]: <> (START of JSON Example)
 :::: code-group
