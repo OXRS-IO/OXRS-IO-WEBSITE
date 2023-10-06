@@ -104,41 +104,41 @@ To configure inputs `index: 1` and `index: 2`  as `buttons` publish :
  -t conf/58391f  -m '{"inputs": [{"index": 2, "type": "button"},{"index": 1, "type": "button" }]}'
 ```
 This is a more complex automation. It uses the `single` and `hold` events from each of the 2 involved buttons.
-The `single` event is used to control the state of the light bulb and the `hold` event for brightness control.
+The `single` event is used for brightness control, and the `hold` event for turning the light on/off.
 
 
 |index|event   |function
 |:----|:-------|:-------|
-|1    |single  |turn off |
-|1    |hold    |decrease brightness  |
-|2    |single  |turn on |
-|2    |hold    |increase brightness  |
+|1    |single  |decrease brightness  |
+|1    |hold    |turn off  |
+|2    |single  |increase brightness  |
+|2    |hold    |turn on  |
 
 ```
 # on / off automations
 
 automation:
   - id: OX003
-    alias: OXRS idx 1 single off
+    alias: OXRS idx 1 hold
     trigger:
     - platform: mqtt
       topic: stat/58391f
     condition:
     - condition: template
-      value_template: '{{trigger.payload_json.index == 1 and trigger.payload_json.event == "single"}}'
+      value_template: '{{trigger.payload_json.index == 1 and trigger.payload_json.event == "hold"}}'
     action:
     - service: light.turn_off
       target:
         entity_id: light.light_bulb
         
   - id: OX004
-    alias: OXRS idx 2 single on
+    alias: OXRS idx 2 hold
     trigger:
     - platform: mqtt
       topic: stat/58391f
     condition:
     - condition: template
-      value_template: '{{trigger.payload_json.index == 2 and trigger.payload_json.event == "single"}}'
+      value_template: '{{trigger.payload_json.index == 2 and trigger.payload_json.event == "hold"}}'
     action:
     - service: light.turn_on
       target:
@@ -148,13 +148,13 @@ automation:
 
 automation:
   - id: OX005
-    alias: OXRS idx 1 hold
+    alias: OXRS idx 1 single
     trigger:
     - platform: mqtt
       topic: stat/58391f
     condition:
     - condition: template
-      value_template: '{{trigger.payload_json.index == 1 and trigger.payload_json.event == "hold"}}'
+      value_template: '{{trigger.payload_json.index == 1 and trigger.payload_json.event == "single"}}'
     action:
     - service: light.turn_on
       target:
@@ -163,13 +163,13 @@ automation:
         brightness_step_pct: -5
         
   - id: OX006
-    alias: OXRS idx 2 hold
+    alias: OXRS idx 2 single
     trigger:
     - platform: mqtt
       topic: stat/58391f
     condition:
     - condition: template
-      value_template: '{{trigger.payload_json.index == 2 and trigger.payload_json.event == "hold"}}'
+      value_template: '{{trigger.payload_json.index == 2 and trigger.payload_json.event == "single"}}'
     action:
     - service: light.turn_on
       target:

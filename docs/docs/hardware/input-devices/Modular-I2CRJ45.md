@@ -58,7 +58,6 @@ VDD is your system voltage; AKA the power being feed by the Screw Terminals (12-
 ## Supported Firmware
 - OXRS-SHA-StateController-ESP32-FW  [Github](https://github.com/SuperHouse/OXRS-SHA-StateController-ESP32-FW)
 - OXRS-SHA-StateMonitor-ESP32-FW [Github](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW)
-- OXRS-BMD-SmokeDetector-ESP32-FW [Github](https://github.com/Bedrock-Media-Designs/OXRS-BMD-SmokeDetector-ESP32-FW)
 - OXRS-IO-SecurityMonitor-ESP32-FW [Github](https://github.com/austinscreations/OXRS-AC-SecurityMonitor-ESP32-FW)
 
 ## Additional Resources

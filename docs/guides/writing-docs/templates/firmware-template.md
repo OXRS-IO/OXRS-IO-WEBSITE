@@ -107,7 +107,7 @@ Beef ribs hamburger sirloin brisket, capicola drumstick cupim sausage shank burg
 
 
 #### License
-Copyright 2020-2021 Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. 
+Copyright 2020-present Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. 
 
 ---
 # Get started creating or editing your first Firmware Page.
@@ -222,7 +222,7 @@ Beef ribs hamburger sirloin brisket, capicola drumstick cupim sausage shank burg
 
 
 #### License
-Copyright 2020-2021 Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. 
+Copyright 2020-present Sirloin chislic beef ribs turkey biltong. Ground round fatback frankfurter meatball, venison jowl capicola ham hock meatloaf. Buffalo boudin meatball ball tip spare ribs. Venison cow pig shank pastrami, chislic ham. 
 
 ---
 
