@@ -2286,6 +2286,48 @@ Removing screen 1 (Home Screen) technically removes screen 1 and creates an empt
 
 :::
 
+## Hide a screen
+
+Hiding a screen prevents it from being shown in the footer selection menu. The screen can still be shown with a `cmnd`, or a tile linked to that screen within the `conf`.
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Command
+
+
+```json
+{
+  "screens": [
+    {
+      "screen": 3,
+      "hidden ": true
+    }
+  ]
+}```
+
+### JSON parameters
+
+| Parameter |   Type    |  Options    | Description                 |                                                            |
+| :-------- | :------:  | :--------:  | :-------------------------- | :--------------------------------------------------------- |
+| `screen`  | _Number_  |    n/a      | Screen number to be hidden  | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `hidden`  | _Boolean_ | true\|false | Command to hide screen      | <Badge type="warning" text="Required" vertical="bottom" /> |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+::: tip
+
+A hidden screen can be useful for scenarios where you only want a screen to be displayed when reacting to some kind of internal logic (e.g. a tile pressed) or external logic (e.g. a sensor receives a command).
+
+Either way, the best way to show the screen which is hidden from the screen selection menu on the touch panel is to load the screen, see [Load Screen](/docs/firmware/touch-panel-esp32.html#load-screen).
+
+:::
+
+
 ## Set the background color
 
 RGB color for a screen background (defaults to the configured device background color).
