@@ -54,6 +54,11 @@ Note that the 320x480px panels support a 2x3 tile configuration and the 480x480p
 - Automation software such as Node-RED [Read more](https://nodered.org)
 - MQTT Broker - e.g. Mosquitto, Mosca [Wiki](https://en.wikipedia.org/wiki/MQTT)
 
+### Optional downloads:
+
+- Windows Touchpanel Emulator App [OXRS-IO-Touchpanel-WIN-APP](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/tree/main/OXRS-IO-TouchPanel-WIN-APP). Comes in two variants to emulate the two different aspect ratios currently supported by the physical hardware.
+- Web App [OXRS-IO-TouchPanel-WEB-APP](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-WEB-APP). Emulate OXRS Touch Panel in a browser.
+
 ### How to Communicate with your Touch Panel Over MQTT
 
 [comment]: <> ([TODO] How it works)
