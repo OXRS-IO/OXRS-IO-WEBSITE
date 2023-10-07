@@ -35,6 +35,7 @@ Example applications include: a light switch to control dimming or colour for mu
 - Sending [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
 - Sending [Screen Payloads](/docs/firmware/touch-panel-esp32.html#screen-payloads)
 - Sending [Device Payloads](/docs/firmware/touch-panel-esp32.html#device-payloads)
+- [Receiving MQTT Payloads](/docs/firmware/touch-panel-esp32.html#receiving-mqtt-payloads)
 
 ### Supported Hardware
 
@@ -2955,6 +2956,26 @@ The device may also be restarted;
 - by pressing the "Hold to restart..." button on its settings screen
 - from the downloadable [Admin UI](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
 
+:::
+
+## Receiving MQTT Payloads
+
+For many of the MQTT payloads you send to your touch panel, it responds by sending a payload back out on the `stat/<device-client-id>` topic; these are documented above individually for each [Tile](/docs/firmware/touch-panel-esp32.html#tile-payloads), [Screen](/docs/firmware/touch-panel-esp32.html#screen-payloads), or [Device](/docs/firmware/touch-panel-esp32.html#device-payloads) payload.
+
+
+In addition to these payloads, touch panel sends the following types of payload:
+
+|  On event                        |          Type               | Topic                            | Note                                                                                                                                                                                             |
+| :------------------------------- | :-------------------------: | :-------------------------------:| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| When touch panel comes online    | LWT payload                 | `stat/<device-client-id>/lwt`     | commonly used to signal to Node-RED when your device comes online, so it can be configured. Don't forget that most of the touch panel's configuration is done at startup                        |
+| When touch panel comes online    | Adopt payload               | `stat/<device-client-id>/adopt`   | useful diagnostic data such as firmware and hardware versions, IP and MAC address, a memory object detailing used memory on the touchpanel's microcontroller, plus a config and command schema  |
+| After screen timeout             | Backlight payload           | `stat/<device-client-id>`         | to inform you when the backlight comes on or goes off as a result of the sleep timer                                                                                                            |
+| When screen is changed           | Screen load / unload event payload | `stat/<device-client-id>`  | to inform you when a screen was changed either by MQTT or by someone touching the panel                                                                                                         |
+| Periodically                     | Climate events              | `tele/<device-client-id>`         | temp / humidity data on supported hardware versions (currently 86S)                                                                                                                             |
+
+
+::: tip
+In Node-RED, hook up a couple of MQTT-in nodes, and wire them both to a debug node. Set one MQTT-in node to listen to `stat/<device-client-id>/#` and the other to `tele/<device-client-id>/#`, and you can then examine more fully what your device is sending out and when.
 :::
 
 
