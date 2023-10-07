@@ -2303,7 +2303,8 @@ Hiding a screen prevents it from being shown in the footer selection menu. The s
       "hidden ": true
     }
   ]
-}```
+}
+```
 
 ### JSON parameters
 
