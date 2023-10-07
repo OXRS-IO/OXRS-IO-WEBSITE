@@ -2979,7 +2979,7 @@ The device may also be restarted;
 - The WT32S3-86V and 86S will require a separate USB-TTL adapter. See notes below.
 
 #### Instructions for flashing the WT32S3-86V (Windows 10/11)
-Note about what USB-TTL to use
+##### Note about what USB-TTL to use
 Use one of the cheap, ubiquitous USB-TTL adapters available on Amazon or Ebay, and don't purchase the unit with the supplied USB-TTL adapter. If you use the supplied one, it has a dedicated JST cable, the connector for which you will need to solder on to each panel. Being an SMD connector, it's a bit fiddly - but more to the point, once you've soldered it on, you can no longer re-attach the plastic rear panel! So avoid that one and use a standard USB-TTL adapter with normal hookup wires / dupont connectors.
 
 - Let's work on the assumption you have a standard USB-TTL adapter and, if the drivers didn't install to Windows automatically, you have sorted that out already.
