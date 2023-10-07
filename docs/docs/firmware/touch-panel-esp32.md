@@ -35,6 +35,7 @@ Example applications include: a light switch to control dimming or colour for mu
 - Sending [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
 - Sending [Screen Payloads](/docs/firmware/touch-panel-esp32.html#screen-payloads)
 - Sending [Device Payloads](/docs/firmware/touch-panel-esp32.html#device-payloads)
+- [Receiving MQTT Payloads](/docs/firmware/touch-panel-esp32.html#receiving-mqtt-payloads)
 
 ### Supported Hardware
 
@@ -52,6 +53,11 @@ Note that the 320x480px panels support a 2x3 tile configuration and the 480x480p
 - **OXRS Admin UI**: for initial configuration [Github](https://github.com/OXRS-IO/OXRS-IO-AdminUI-WEB-APP)
 - Automation software such as Node-RED [Read more](https://nodered.org)
 - MQTT Broker - e.g. Mosquitto, Mosca [Wiki](https://en.wikipedia.org/wiki/MQTT)
+
+### Optional downloads:
+
+- Windows Touchpanel Emulator App [OXRS-IO-Touchpanel-WIN-APP](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/tree/main/OXRS-IO-TouchPanel-WIN-APP). Comes in two variants to emulate the two different aspect ratios currently supported by the physical hardware.
+- Web App [OXRS-IO-TouchPanel-WEB-APP](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-WEB-APP). Emulate OXRS Touch Panel in a browser.
 
 ### How to Communicate with your Touch Panel Over MQTT
 
@@ -115,7 +121,7 @@ Tile payloads are described below in terms of these three parameter types.
 
 ![Label and Sub-Label elements](/images/tp-element-label-sublabel.png)
 
-All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically descibe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that labels are set in the tile's config, and subLabels are set by command; both can be configured at bootup or changed during use.
+All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically descibe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that labels are set in the tile's config, and subLabels are set by command; both can be configured at bootup (via the `conf/` topic) or changed during use (via the `cmnd/` topic).
 
 #### Icons
 
@@ -131,7 +137,7 @@ All tiles allow you to set a **label** and a **subLabel**, these are short texts
 
 ![Plain text element](/images/tp-element-plaintext.png) ![Rich text element](/images/tp-element-richtext.png)
 
-If you send `"text": "abc"` to the cmnd/ topic then this text will appear in place of any icon, if you've set one. You can set text colour as follows: "text": "#RRGGBB <your_text_here>#", and if you remove the text by sending "text": "", this will restore the original icon in its place.
+If you send `"text": "abc"` to the cmnd/ topic then this text will appear in place of any icon, if you've set one. You can set text colour as follows: `"text": "#RRGGBB <your_text_here>#"`, and if you remove the text by sending `"text": ""`, this will restore the original icon in its place.
 
 #### Level display
 
@@ -2303,7 +2309,8 @@ Hiding a screen prevents it from being shown in the footer selection menu. The s
       "hidden ": true
     }
   ]
-}```
+}
+```
 
 ### JSON parameters
 
@@ -2956,6 +2963,26 @@ The device may also be restarted;
 
 :::
 
+## Receiving MQTT Payloads
+
+For many of the MQTT payloads you send to your touch panel, it responds by sending a payload back out on the `stat/<device-client-id>` topic; these are documented above individually for each [Tile](/docs/firmware/touch-panel-esp32.html#tile-payloads), [Screen](/docs/firmware/touch-panel-esp32.html#screen-payloads), or [Device](/docs/firmware/touch-panel-esp32.html#device-payloads) payload.
+
+
+In addition to these payloads, touch panel sends the following types of payload:
+
+|  On event                        |          Type               | Topic                            | Note                                                                                                                                                                                             |
+| :------------------------------- | :-------------------------: | :-------------------------------:| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| When touch panel comes online    | LWT payload                 | `stat/<device-client-id>/lwt`     | commonly used to signal to Node-RED when your device comes online, so it can be configured. Don't forget that most of the touch panel's configuration is done at startup                        |
+| When touch panel comes online    | Adopt payload               | `stat/<device-client-id>/adopt`   | useful diagnostic data such as firmware and hardware versions, IP and MAC address, a memory object detailing used memory on the touchpanel's microcontroller, plus a config and command schema  |
+| After screen timeout             | Backlight payload           | `stat/<device-client-id>`         | to inform you when the backlight comes on or goes off as a result of the sleep timer                                                                                                            |
+| When screen is changed           | Screen load / unload event payload | `stat/<device-client-id>`  | to inform you when a screen was changed either by MQTT or by someone touching the panel                                                                                                         |
+| Periodically                     | Climate events              | `tele/<device-client-id>`         | temp / humidity data on supported hardware versions (currently 86S)                                                                                                                             |
+
+
+::: tip
+In Node-RED, hook up a couple of MQTT-in nodes, and wire them both to a debug node. Set one MQTT-in node to listen to `stat/<device-client-id>/#` and the other to `tele/<device-client-id>/#`, and you can then examine more fully what your device is sending out and when.
+:::
+
 
 ## Setting Up your Touch Panel
 
@@ -2978,7 +3005,7 @@ The device may also be restarted;
 - The WT32S3-86V and 86S will require a separate USB-TTL adapter. See notes below.
 
 #### Instructions for flashing the WT32S3-86V (Windows 10/11)
-Note about what USB-TTL to use
+##### Note about what USB-TTL to use
 Use one of the cheap, ubiquitous USB-TTL adapters available on Amazon or Ebay, and don't purchase the unit with the supplied USB-TTL adapter. If you use the supplied one, it has a dedicated JST cable, the connector for which you will need to solder on to each panel. Being an SMD connector, it's a bit fiddly - but more to the point, once you've soldered it on, you can no longer re-attach the plastic rear panel! So avoid that one and use a standard USB-TTL adapter with normal hookup wires / dupont connectors.
 
 - Let's work on the assumption you have a standard USB-TTL adapter and, if the drivers didn't install to Windows automatically, you have sorted that out already.
