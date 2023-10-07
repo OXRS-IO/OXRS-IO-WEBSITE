@@ -132,7 +132,7 @@ All tiles allow you to set a **label** and a **subLabel**, these are short texts
 
 ![Plain text element](/images/tp-element-plaintext.png) ![Rich text element](/images/tp-element-richtext.png)
 
-If you send `"text": "abc"` to the cmnd/ topic then this text will appear in place of any icon, if you've set one. You can set text colour as follows: "text": "#RRGGBB <your_text_here>#", and if you remove the text by sending "text": "", this will restore the original icon in its place.
+If you send `"text": "abc"` to the cmnd/ topic then this text will appear in place of any icon, if you've set one. You can set text colour as follows: `"text": "#RRGGBB <your_text_here>#"`, and if you remove the text by sending `"text": ""`, this will restore the original icon in its place.
 
 #### Level display
 
