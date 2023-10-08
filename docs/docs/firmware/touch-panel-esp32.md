@@ -311,13 +311,11 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
 
 ![buttonUpDownLevel Tile Style - Off](/images/tp-tilestyle-buttonUpDown-off.png) ![buttonUpDownLevel Tile Style - On](/images/tp-tilestyle-buttonUpDown-on.png)
 
-_buttonUpDownLevel_ provides up/down control with visual feedback, and an internally stored state. As such the output of an up/down button press (or hold) transmits not only the direction of change, but also the new value. A tap will increment or decrement that value by one, and a hold will repeatedly send states in 20 steps across the whole range of the limits you configured. So for a tile configured to dim 0-100, the quickly repeating values would be sent in steps of 5, for example.
+When the tile state is set to `on`, _buttonUpDownLevel_ provides up/down control with visual feedback, and an internally stored state. As such the output of an up/down button press (or hold) transmits not only the direction of change, but also the new value. A tap will increment or decrement that value by one, and a hold will repeatedly send states in 20 steps across the whole range of the limits you configured. So for a tile configured to dim 0-100, the quickly repeating values would be sent in steps of 5, for example.
 
 The parameters `levelTop` and `levelBottom` are used to specify dimming or positional limits. To display a bulb's dimming status (0-100%) visually, you would set `levelTop` to 100 and `levelBottom` to 0. To display a roller blind's position visually, where it can be controlled in e.g. 10 steps, you would set `levelTop` to 0 and `levelBottom` to 10, thus inverting the level to fill down from the top.
 
 You can update the tile's level, e.g. if something was changed externally, by sending a `level` payload on the command topic, as with all other tiles.
-
-Don't forget that you can send `level` messages to any tile type, but this is the correct tile to use if you need to be able to control levels using up/down buttons.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -419,6 +417,12 @@ Don't forget that you can send `level` messages to any tile type, but this is th
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
 `cmnd/<device-client-id>`
+
+::: tip
+
+Don't forget that you can send `level` messages to any tile type, but this is the correct tile to use if you need to be able to control levels using up/down buttons.
+
+:::
 :::
 ::::
 [comment]: <> (END of JSON Example)
