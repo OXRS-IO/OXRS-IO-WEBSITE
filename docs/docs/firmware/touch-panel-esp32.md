@@ -442,7 +442,7 @@ Note that, although not shown here, it's still possible to update the tile's vis
 
 ::: code-group-item Config
 
-```json {7-12}
+```json {7-14}
 {
   "screens": [
     {
@@ -453,7 +453,9 @@ Note that, although not shown here, it's still possible to update the tile's vis
           "tile": 1,
           "style": "buttonUpDown",
           "icon": "_speaker",
-          "label": "Speakers"
+          "label": "Speakers",
+          "levelBottom": 0,
+          "levelTop": 100
         }
       ]
     }
@@ -463,12 +465,14 @@ Note that, although not shown here, it's still possible to update the tile's vis
 
 ### JSON parameters
 
-| Parameter |   Type   | Options | Description                          |                                                            |
-| :-------- | :------: | :-----: | :----------------------------------- | :--------------------------------------------------------- |
-| `tile`    | _Number_ |   n/a   | Enter your tile number e.g. `1`      | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `style`   | _String_ |   n/a   | Enter tile style name `buttonUpDown` | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `icon`    | _String_ |   n/a   | Enter icon name e.g.`_speaker`       | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `label`   | _String_ |   n/a   | Enter label text e.g.`Speakers`      | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| Parameter     |   Type   | Options | Description                          |                                                            |
+| :--------     | :------: | :-----: | :----------------------------------- | :--------------------------------------------------------- |
+| `tile`        | _Number_ |   n/a   | Enter your tile number e.g. `1`      | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `style`       | _String_ |   n/a   | Enter tile style name `buttonUpDown` | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `icon`        | _String_ |   n/a   | Enter icon name e.g.`_speaker`       | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `label`       | _String_ |   n/a   | Enter label text e.g.`Speakers`      | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `levelBottom` | _String_ |   n/a   | Defaults to `0`                           | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `levelTop`    | _String_ |   n/a   | Defaults to `100`                         | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
