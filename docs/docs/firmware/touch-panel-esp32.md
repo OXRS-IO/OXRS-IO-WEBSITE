@@ -30,8 +30,7 @@ Example applications include: a light switch to control dimming or colour for mu
 
 [comment]: <> ([TODO] Getting started text)
 
-- [Firmware Installation](/docs/firmware/touch-panel-esp32.html#firmware-installation)
-
+- [Firmware Installation](/docs/firmware/touch-panel-esp32.html#flashing-your-device)
 - Sending [Tile Payloads](/docs/firmware/touch-panel-esp32.html#tile-payloads)
 - Sending [Screen Payloads](/docs/firmware/touch-panel-esp32.html#screen-payloads)
 - Sending [Device Payloads](/docs/firmware/touch-panel-esp32.html#device-payloads)
