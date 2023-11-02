@@ -100,9 +100,6 @@ module.exports = {
             "/docs/hardware/input-devices/I2CRJ45/",
             "/docs/hardware/input-devices/Modular-I2CRJ45/",
             "/docs/hardware/input-devices/Modular-Security-I2CRJ45/",
-            "/docs/hardware/input-devices/CBUS-to-RJ45/",
-            "/docs/hardware/input-devices/rotary-encode-to-rj45/",
-            "/docs/hardware/input-devices/rotary-encode/",
             //'/docs/hardware/input-devices/hardware-template',
           ],
         },
@@ -110,15 +107,12 @@ module.exports = {
           text: "Output Devices",
           children: [
             "/docs/hardware/output-devices/pwm-controllers/",
-            "/docs/hardware/output-devices/DIN-Relay-Driver-4ch/",
             //'/docs/hardware/output-devices/hardware-template',
           ],
         },
         {
           text: "Input & Output Devices",
           children: [
-            "/docs/hardware/input-output-devices/smoke-detector-sd-16port/",
-            "/docs/hardware/input-output-devices/SenseRJ45/",
           ],
         },
         {
