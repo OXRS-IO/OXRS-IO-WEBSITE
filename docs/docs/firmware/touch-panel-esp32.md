@@ -2861,7 +2861,7 @@ Background images are **not persistent** and have to be (re)loaded after restart
 
 [comment]: <> (START of JSON Example)
 :::: code-group
-::: code-group-item Config
+::: code-group-item Command
 
 ```json
 {
@@ -2892,7 +2892,7 @@ Background images are **not persistent** and have to be (re)loaded after restart
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-`conf/<device-client-id>`
+`cmnd/<device-client-id>`
 :::
 ::::
 [comment]: <> (END of JSON Example)
@@ -2901,7 +2901,7 @@ Background images are **not persistent** and have to be (re)loaded after restart
 
 [comment]: <> (START of JSON Example)
 :::: code-group
-::: code-group-item Config
+::: code-group-item Command
 
 ```json
 {
@@ -2917,7 +2917,7 @@ Background images are **not persistent** and have to be (re)loaded after restart
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
-`conf/<device-client-id>`
+`cmnd/<device-client-id>`
 :::
 ::::
 [comment]: <> (END of JSON Example)
