@@ -91,7 +91,26 @@ Further documentation and some example Node-RED Flows will be made available in 
 
 ---
 
-Each touch panel can be configured with a set of screens, and each screen with a set of tiles. Imagine your screen as a grid on which tiles can be placed at any location, where tile position 1 is at the top left, tile position 2 is the next tile along to the right, and so on.
+## Screens
+
+Each touch panel can be configured with a set of screens. The configured name of the active screen is shown in the footer.
+
+### Navigation thru screens
+
+Swipe gestures are used to navigate thru the screens.
+
+| Gesture | active screen | behavior                                                         |
+| :------ | :------------ | :--------------------------------------------------------------- |
+| left    | tile screen   | show next (higher screen number), no action when at last screen  |
+| right   | tile screen   | show previous (lower screen number),  no action when at screen 1 |
+| up      | tile screen   | show drop down screen select list (including `Settings` screen   |
+| down    | tile screen   | show screen 1                                                    |
+|         |               |                                                                  |
+| down    | pop-up screen | close pop-up, return to caller screen                            |
+
+## Tiles
+
+ Each screen can be configured with a set of tiles. Imagine your screen as a grid on which tiles can be placed at any location, where tile position 1 is at the top left, tile position 2 is the next tile along to the right, and so on.
 
 | 3x3 Tile Layout                               | 2x3 Tile Layout                               |
 | :-------------------------------------------- | :-------------------------------------------- |
@@ -855,7 +874,7 @@ This tile has no status feedback; tapping the tile itself only presents the feed
 
 ### Feed screen:
 
-The feed screen is not clickable, but it's possible to drag the finger to scroll up and down if the message list extends beyond the bottom of the screen. To return to the previous screen, use the back button bottom-left.
+The feed screen is not clickable, but it's possible to drag the finger to scroll up and down if the message list extends beyond the bottom of the screen. Swipe down to return to the previous screen.
 
 ![Feed Screen](/images/feed-screen.png)
 
@@ -1083,7 +1102,7 @@ This tile type _colorPickerRgbCct_ may be used to facilitate changing the color 
 
 ### Control Screen:
 
-When you press the tile button the controls screen will appear. The controls screen has two tabs to choose from `Color` and `Temperature`. The color tab gives you the ability to adjust the `RGB Color` via the color wheel and `Brightness Color` via the slider. The temperature tab gives you the ability to adjust the `Color Temperature` and `Brightness White` via the sliders. You can also toggle the tile `on` \| `off` by pressing the light bulb button in thr bottom right of the popup.
+When you press the tile button the controls screen will appear. The controls screen has two tabs to choose from `Color` and `Temperature`. The color tab gives you the ability to adjust the `RGB Color` via the color wheel and `Brightness Color` via the slider. The temperature tab gives you the ability to adjust the `Color Temperature` and `Brightness White` via the sliders. You can also toggle the tile `on` \| `off` by pressing the light bulb button at the bottom of the popup.
 
 ![TP32 Image Alt Text](/images/colorPicker-both-color-tab.png) ![TP32 Image Alt Text](/images/colorPicker-both-temp-tab.png)
 
@@ -1225,7 +1244,7 @@ This tile type _colorPickerRgb_ may be used to facilitate changing the color of 
 
 ### Control Screen:
 
-When you press the tile button the controls screen will appear giving you the ability to adjust the `RGB Color` via the color wheel and `Brightness Color` via the slider. You can also toggle the tile `on` \| `off` by pressing the light bulb button in thr bottom right of the popup.
+When you press the tile button the controls screen will appear giving you the ability to adjust the `RGB Color` via the color wheel and `Brightness Color` via the slider. You can also toggle the tile `on` \| `off` by pressing the light bulb button at the bottom of the popup.
 
 ![TP32 Image Alt Text](/images/colorPicker-color-tab.png)
 
@@ -1358,7 +1377,7 @@ This tile type _colorPickerCct_ may be used to facilitate changing the color of 
 
 ### Control Screen:
 
-When you press the tile button the controls screen will appear giving you the ability to adjust the `Color Temperature` and `Brightness White` via the sliders. You can also toggle the tile `on` \| `off` by pressing the light bulb button in thr bottom right of the popup.
+When you press the tile button the controls screen will appear giving you the ability to adjust the `Color Temperature` and `Brightness White` via the sliders. You can also toggle the tile `on` \| `off` by pressing the light bulb button at the bottom of the popup.
 
 ![TP32 Image Alt Text](/images/colorPicker-temp-tab.png)
 
