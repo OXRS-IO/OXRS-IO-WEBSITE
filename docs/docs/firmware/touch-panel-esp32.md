@@ -43,7 +43,7 @@ Example applications include: a light switch to control dimming or colour for mu
 - WT32S3-86V: 3.95-inch 480x480px touch panel comprising integrated backbox and suitable for UK size backboxes
 - WT32S3-86S: an improved version of the above 3.95-inch 480x480px
 
-Note that the 320x480px panels support a 2x3 tile configuration and the 480x480px variants support a 3x3 tile configuration.
+Note that the 320x480px panels support a deault 2x3 tile configuration and the 480x480px variants support a default 3x3 tile configuration.
 
 ### Prerequisites:
 
@@ -110,11 +110,14 @@ Swipe gestures are used to navigate thru the screens.
 
 ## Tiles
 
- Each screen can be configured with a set of tiles. Imagine your screen as a grid on which tiles can be placed at any location, where tile position 1 is at the top left, tile position 2 is the next tile along to the right, and so on.
+Each screen can be configured with a set of tiles. Imagine your screen as a grid on which tiles can be placed at any location, where tile position 1 is at the top left, tile position 2 is the next tile along to the right, and so on.
 
-| 3x3 Tile Layout                               | 2x3 Tile Layout                               |
-| :-------------------------------------------- | :-------------------------------------------- |
-| ![3x3 Tile Grid](/images/tp-tilegrid-3x3.png) | ![3x3 Tile Grid](/images/tp-tilegrid-2x3.png) |
+The default tile layout can be changed per screen with the [screen configuration](/docs/firmware/touch-panel-esp32.html#screen-conf-payloads)
+
+| 3x3 Tile Layout (default for 480x480px screens)  | 2x3 Tile Layout (default for 320x480px screens)  |
+| :----------------------------------------------- | :----------------------------------------------- |
+| ![3x3 Tile Grid](/images/tp-tilegrid-3x3.png)    | ![3x3 Tile Grid](/images/tp-tilegrid-2x3.png)    |
+
 
 Tiles typically have three sets of parameters documented below, corresponding to the three message types discussed above:
 
@@ -2280,7 +2283,82 @@ RGB color for a tile icon (defaults to white if the tile state is "off", or the 
 ::::
 [comment]: <> (END of JSON Example)
 
-# Screen Payloads
+
+# Screen `conf/`Payloads
+
+Each individual screen can be configured by adding one ore more of the following options to the conf/ payload.
+
+| Parameter            |  Description                                                                                    | 
+| :------------------- | :---------------------------------------------------------------------------------------------- | 
+| `label`              | The label that will be shown in the footer of the screen and in the screen selection drop-down  |
+| `hidden`             | Hiding a screen prevents it from being shown when swiping or in the screen selection drop-down. The screen can still be shown with a `cmnd`, or a tile linked to that screen within the `conf`.|
+| `backgroundColorRgb` | Defines the background color for this screen                                                    | 
+| `screenLayout`       | Defines the the grid that serves space for the tiles                                            | 
+| `horizontal`         | Size of the grid (tile count) in horizontal direction  (max 10)                                 | 
+| `vertical`           | Size of the grid (tile count) in vertical direction  (max 10)                                   | 
+
+## Properties to configure a screen
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+
+```json
+{
+  "screens": [
+    {
+      "screen": 5,
+      "label": "Demo",
+	  "hidden": false,
+      "backgroundColorRgb": {
+        "r": 255,
+        "g": 0,
+        "b": 0
+      },
+      "screenLayout": {
+        "horizontal": 2,
+        "vertical": 2
+      },
+	  "tiles" [
+	    .....
+	  ]
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter            |   Type    |  Options      | Description                                               |                                                            |
+| :------------------- | :-------: | :-----------: | :-------------------------------------------------------- | :--------------------------------------------------------- |
+| `screen`             | _Number_  |    n/a        | Screen number to be configured                            | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `label`              | _String_  | `"Demo"`      | Label to be shown in the footer (defaults to "Screen nn") | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `hidden`             | _Boolean_ | true \| false | Config to hide screen (defaults to "false")               | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `backgroundColorRgb` | _Object_  |   n/a         |                                                           |<Badge type="tip" text="Optional" vertical="bottom" />      |
+| `r`                  | _Number_  |   n/a         | Red colour Number between 0-255                           |<Badge type="tip" text="Optional" vertical="bottom" />      |
+| `g`                  | _Number_  |   n/a         | Green colour Number between 0-255                         | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `b`                  | _Number_  |   n/a         | Blue colour Number between 0-255                          | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `screenLayout`       | _Object_  |   n/a         |                                                           |<Badge type="tip" text="Optional" vertical="bottom" />      |
+| `horizontal`         | _Number_  |   n/a         | Tiles (grid) horizontal Number between 1-10               |<Badge type="tip" text="Optional" vertical="bottom" />      |
+| `vertical`           | _Number_  |   n/a         | Tiles (grid) vertical Number between 1-10                 | <Badge type="tip" text="Optional" vertical="bottom" />     |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+::: tip
+
+A hidden screen can be useful for scenarios where you only want a screen to be displayed when reacting to some kind of internal logic (e.g. a tile pressed) or external logic (e.g. a sensor receives a command).
+
+Either way, the best way to show the screen which is flagged as `hidden` is to load the screen, see [Load Screen](/docs/firmware/touch-panel-esp32.html#load-screen).
+
+:::
+
+
+# Screen `cmnd/`Payloads
 
 [comment]: <> ([TODO] Screen Payloads explanation)
 These commands are specific to an individual screen.
@@ -2323,48 +2401,6 @@ Removes a screen from the configuration.
 Removing a screen removes all tiles on this screen as well.
 
 Removing screen 1 (Home Screen) technically removes screen 1 and creates an empty screen 1 (Home Screen)
-
-:::
-
-## Hide a screen
-
-Hiding a screen prevents it from being shown in the footer selection menu. The screen can still be shown with a `cmnd`, or a tile linked to that screen within the `conf`.
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-
-
-```json
-{
-  "screens": [
-    {
-      "screen": 3,
-      "hidden ": true
-    }
-  ]
-}
-```
-
-### JSON parameters
-
-| Parameter |   Type    |  Options    | Description                 |                                                            |
-| :-------- | :------:  | :--------:  | :-------------------------- | :--------------------------------------------------------- |
-| `screen`  | _Number_  |    n/a      | Screen number to be hidden  | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `hidden`  | _Boolean_ | true\|false | Command to hide screen      | <Badge type="warning" text="Required" vertical="bottom" /> |
-
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-`cmnd/<device-client-id>`
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-::: tip
-
-A hidden screen can be useful for scenarios where you only want a screen to be displayed when reacting to some kind of internal logic (e.g. a tile pressed) or external logic (e.g. a sensor receives a command).
-
-Either way, the best way to show the screen which is hidden from the screen selection menu on the touch panel is to load the screen, see [Load Screen](/docs/firmware/touch-panel-esp32.html#load-screen).
 
 :::
 
