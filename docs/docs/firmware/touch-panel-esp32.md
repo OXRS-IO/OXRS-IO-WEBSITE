@@ -43,7 +43,7 @@ Example applications include: a light switch to control dimming or colour for mu
 - WT32S3-86V: 3.95-inch 480x480px touch panel comprising integrated backbox and suitable for UK size backboxes
 - WT32S3-86S: an improved version of the above 3.95-inch 480x480px
 
-Note that the 320x480px panels support a 2x3 tile configuration and the 480x480px variants support a 3x3 tile configuration.
+Note that the 320x480px panels support a deault 2x3 tile configuration and the 480x480px variants support a default 3x3 tile configuration.
 
 ### Prerequisites:
 
@@ -87,15 +87,37 @@ The recommended way to use the firmware and interact with the Touch Panel and yo
 Further documentation and some example Node-RED Flows will be made available in due course.
 :::
 
-# General Overview of Tile Styles, Payloads, and Behaviours
+# General Overview of Screens, Tile Styles, Payloads, and Behaviours
 
 ---
 
-Each touch panel can be configured with a set of screens, and each screen with a set of tiles. Imagine your screen as a grid on which tiles can be placed at any location, where tile position 1 is at the top left, tile position 2 is the next tile along to the right, and so on.
+## Screens
 
-| 3x3 Tile Layout                               | 2x3 Tile Layout                               |
-| :-------------------------------------------- | :-------------------------------------------- |
-| ![3x3 Tile Grid](/images/tp-tilegrid-3x3.png) | ![3x3 Tile Grid](/images/tp-tilegrid-2x3.png) |
+Each touch panel can be configured with a set of screens. Configuration options can be found [here](/docs/firmware/touch-panel-esp32.html#screen-conf-payloads)
+
+### Navigation thru screens
+
+Swipe gestures are used to navigate thru the screens.
+
+| Gesture | active screen | behavior                                                         |
+| :------ | :------------ | :--------------------------------------------------------------- |
+| left    | tile screen   | show next (higher screen number), no action when at last screen  |
+| right   | tile screen   | show previous (lower screen number),  no action when at screen 1 |
+| up      | tile screen   | show drop down screen select list (including `Settings` screen   |
+| down    | tile screen   | show screen 1                                                    |
+|         |               |                                                                  |
+| down    | pop-up screen | close pop-up, return to caller screen                            |
+
+## Tiles
+
+Each screen can be configured with a set of tiles. Imagine your screen as a grid on which tiles can be placed at any location, where tile position 1 is at the top left, tile position 2 is the next tile along to the right, and so on.
+
+The default tile layout can be changed per screen with the [screen configuration](/docs/firmware/touch-panel-esp32.html#screen-conf-payloads)
+
+| 3x3 Tile Layout (default for 480x480px screens)  | 2x3 Tile Layout (default for 320x480px screens)  |
+| :----------------------------------------------- | :----------------------------------------------- |
+| ![3x3 Tile Grid](/images/tp-tilegrid-3x3.png)    | ![3x3 Tile Grid](/images/tp-tilegrid-2x3.png)    |
+
 
 Tiles typically have three sets of parameters documented below, corresponding to the three message types discussed above:
 
@@ -109,7 +131,7 @@ Tile payloads are described below in terms of these three parameter types.
 
 ### General principles - interacting with tiles
 
-**Tap or hold** - all tiles support these user actions, except the indicator, which doesn't accept user input at all. If you tap a tile, a "single" event is registered immediately. If you press-and-hold, a "hold" event is registered after a certain time has elapsed (approx. just under 1 second) and then no further events are registered even if the button continues to be held. This press-and-hold behaviour also applies to other tile types; although some tiles feature additional controls that send repeated messages when held. (Namely the up/down or left/right tile controls.) Tapping or holding a tile will cause the tile to light up for the duration of touch.
+**Tap or hold** - all tiles support these user actions, except the indicator, which doesn't accept user input at all. If you tap a tile, a "single" event is registered immediately. If you press-and-hold, a "hold" event is registered after a certain time has elapsed (approx. just under 1 second) and then when you release the button, a "release" event is registered. No further events are registered during the button continues to be held. This press-and-hold behaviour also applies to other tile types; although some tiles feature additional controls that send repeated messages when held. (Namely the up/down or left/right tile controls.) Tapping or holding a tile will cause the tile to light up for the duration of touch.
 
 **State management** - don't forget that the touch panel has no knowledge of the state of your IoT device. If you want the tile to indicate that you turned on a light, you then need to send a "state": "on" command back to the tile. This provides excellent flexibility, for example you may have different buttons for different lighting scenes. When a scene is changed, you would then turn on the tile corresponding to the scene that was set (and of course, turn off the tile that was previously turned on). This concept applies to all other tile types that accept an on/off state as well. There is a notable exception to this rule; there's a tile type called `buttonUpDownLevel` that allows you to control a level such as a light dimming level or blinds level. This has a very basic state management built-in.
 
@@ -120,7 +142,7 @@ Tile payloads are described below in terms of these three parameter types.
 
 ![Label and Sub-Label elements](/images/tp-element-label-sublabel.png)
 
-All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically descibe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that labels are set in the tile's config, and subLabels are set by command; both can be configured at bootup (via the `conf/` topic) or changed during use (via the `cmnd/` topic).
+All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically descibe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that only labels are set in the tile's config; both can be updated during use via the `cmnd/` topic.
 
 #### Icons
 
@@ -259,14 +281,14 @@ The _button_ is the most basic tile type, in terms of interactivity. It only sup
 
 ### JSON parameters
 
-| Parameter |         Type         |        Options         | Description                                     |
-| :-------- | :------------------: | :--------------------: | :---------------------------------------------- |
-| `screen`  |       _Number_       |          n/a           | Screen number triggering state event            |
-| `tile`    |       _Number_       |          n/a           | Tile number triggering state event              |
-| `style`   |       _String_       |          n/a           | Tile style `_thermostat`                        |
-| `type`    |       _String_       |       `"button"`       |                                                 |
-| `event`   |       _String_       | `"single"` \| `"hold"` | Indicates if the button press was short or long |
-| `state`   | _String_ \| _Object_ |   `"on"` \| `"off"`    | The current tile state (prior to this event)    |
+| Parameter |         Type         |        Options                        | Description                                                        |
+| :-------- | :------------------: | :-----------------------------------: | :----------------------------------------------------------------- |
+| `screen`  |       _Number_       |          n/a                          | Screen number triggering state event                               |
+| `tile`    |       _Number_       |          n/a                          | Tile number triggering state event                                 |
+| `style`   |       _String_       |          n/a                          | Tile style `_thermostat`                                           |
+| `type`    |       _String_       |       `"button"`                      |                                                                    |
+| `event`   |       _String_       | `"single"` \| `"hold"` \| `"release"` | Indicates if the button was pressed `short` or `long`, or `released`|
+| `state`   | _String_ \| _Object_ |   `"on"` \| `"off"`                   | The current tile state (prior to this event)                       |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -373,14 +395,14 @@ You can update the tile's level, e.g. if something was changed externally, by se
 
 ### JSON parameters
 
-| Parameter |   Type   |                   Options                    | Description                                                                                |
-| :-------- | :------: | :------------------------------------------: | :----------------------------------------------------------------------------------------- |
-| `screen`  | _Number_ |                     n/a                      | Screen number triggering state event                                                       |
-| `tile`    | _Number_ |                     n/a                      | Tile number triggering state event                                                         |
-| `style`   | _String_ |                     n/a                      | Tile style `buttonUpDownLevel`                                                             |
-| `type`    | _String_ |            `"button"`\|`"level"`             | Indicates if touch event was a button press or level change                                |
-| `event`   | _String_ | `"single"` \| `"hold"` \| `"up"` \| `"down"` | Indicates if a button press was `short` or `long`, or if a level change was `up` or `down` |
-| `state`   | _Number_ |                     n/a                      | The new level state (value after level was changed)                                        |
+| Parameter |   Type   |                   Options                                   | Description                                                                                                 |
+| :-------- | :------: | :---------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------- |
+| `screen`  | _Number_ |                     n/a                                     | Screen number triggering state event                                                                        |
+| `tile`    | _Number_ |                     n/a                                     | Tile number triggering state event                                                                          |
+| `style`   | _String_ |                     n/a                                     | Tile style `buttonUpDownLevel`                                                                              |
+| `type`    | _String_ |            `"button"`\|`"level"`                            | Indicates if touch event was a button press or level change                                                 |
+| `event`   | _String_ | `"single"` \| `"hold"` \| `"release"` \| `"up"` \| `"down"` | Indicates if a button was pressed `short` or `long`, or `released`, or if a level change was `up` or `down` |
+| `state`   | _Number_ |                     n/a                                     | The new level state (value after level was changed)                                                         |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -493,14 +515,14 @@ Note that, although not shown here, it's still possible to update the tile's vis
 
 ### JSON parameters
 
-| Parameter |   Type   |           Options            | Description                                                                         |
-| :-------- | :------: | :--------------------------: | :---------------------------------------------------------------------------------- |
-| `screen`  | _Number_ |             n/a              | Screen number triggering state event                                                |
-| `tile`    | _Number_ |             n/a              | Tile number triggering state event                                                  |
-| `style`   | _String_ |             n/a              | Tile style `buttonLevelDown`                                                        |
-| `type`    | _String_ | `"up"`\|`"down"`\|`"button"` | Indicates if touch event was a button press or up/down                              |
-| `event`   | _String_ |    `"single"` \| `"hold"`    | Indicates if a button press was `short` or `long`                                   |
-| `state`   | _String_ |      `"on"` \| `"off"`       | The current tile state (prior to this event), only included for button press events |
+| Parameter |   Type   |           Options                | Description                                                                         |
+| :-------- | :------: | :------------------------------: | :---------------------------------------------------------------------------------- |
+| `screen`  | _Number_ |             n/a                  | Screen number triggering state event                                                |
+| `tile`    | _Number_ |             n/a                  | Tile number triggering state event                                                  |
+| `style`   | _String_ |             n/a                  | Tile style `buttonLevelDown`                                                        |
+| `type`    | _String_ |   `"button"`\|`"up"`\|`"down"`   | Indicates if touch event was a `button` press or `up`/`down`                        |
+| `event`   | _String_ | `"single"`\|`"hold"`\|`"release"`| Indicates if a button was pressed `short` or `long`, or the tile was `released`     |
+| `state`   | _String_ |      `"on"` \| `"off"`           | The current tile state (prior to this event), only included for button press events |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -599,14 +621,14 @@ This tile type _buttonLeftRight_ is similar to _buttonUpDown_, except the contro
 
 ### JSON parameters
 
-| Parameter |   Type   |             Options             | Description                                                                         |
-| :-------- | :------: | :-----------------------------: | :---------------------------------------------------------------------------------- |
-| `screen`  | _Number_ |               n/a               | Screen number triggering state event                                                |
-| `tile`    | _Number_ |               n/a               | Tile number triggering state event                                                  |
-| `style`   | _String_ |               n/a               | Tile style `buttonLeftRight`                                                        |
-| `type`    | _String_ | `"left"`\|`"right"`\|`"button"` | Indicates if touch event was a button press or left/right press                     |
-| `event`   | _String_ |     `"single"` \| `"hold"`      | Indicates if a button press was `short` or `long`                                   |
-| `state`   | _String_ |        `"on"` \| `"off"`        | The current tile state (prior to this event), only included for button press events |
+| Parameter |   Type   |             Options               | Description                                                                         |
+| :-------- | :------: | :-------------------------------: | :---------------------------------------------------------------------------------- |
+| `screen`  | _Number_ |               n/a                 | Screen number triggering state event                                                |
+| `tile`    | _Number_ |               n/a                 | Tile number triggering state event                                                  |
+| `style`   | _String_ |               n/a                 | Tile style `buttonLeftRight`                                                        |
+| `type`    | _String_ |  `"button"`\|`"left"`\|`"right"`  | Indicates if touch event was a `button` press or `left`/`right` press               |
+| `event`   | _String_ | `"single"`\|`"hold"`\|`"release"` | Indicates if a button was pressed `short` or `long`, or the tile was `released`     |
+| `state`   | _String_ |        `"on"` \| `"off"`          | The current tile state (prior to this event), only included for button press events |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -705,14 +727,14 @@ This tile type _buttonPrevNext_ is similar to _buttonLeftRight_, except the cont
 
 ### JSON parameters
 
-| Parameter |   Type   |            Options             | Description                                                                         |
-| :-------- | :------: | :----------------------------: | :---------------------------------------------------------------------------------- |
-| `screen`  | _Number_ |              n/a               | Screen number triggering state event                                                |
-| `tile`    | _Number_ |              n/a               | Tile number triggering state event                                                  |
-| `style`   | _String_ |              n/a               | Tile style `buttonPrevNext`                                                         |
-| `type`    | _String_ | `"prev"`\|`"next"`\|`"button"` | Indicates if touch event was a button press or prev/next press                      |
-| `event`   | _String_ |     `"single"` \| `"hold"`     | Indicates if a button press was `short` or `long`                                   |
-| `state`   | _String_ |       `"on"` \| `"off"`        | The current tile state (prior to this event), only included for button press events |
+| Parameter |   Type   |            Options                | Description                                                                         |
+| :-------- | :------: | :-------------------------------: | :---------------------------------------------------------------------------------- |
+| `screen`  | _Number_ |              n/a                  | Screen number triggering state event                                                |
+| `tile`    | _Number_ |              n/a                  | Tile number triggering state event                                                  |
+| `style`   | _String_ |              n/a                  | Tile style `buttonPrevNext`                                                         |
+| `type`    | _String_ |  `"button"`\|`"prev"`\|`"next"`   |  Indicates if touch event was a `button` press or `prev`/`next`                     |
+| `event`   | _String_ | `"single"`\|`"hold"`\|`"release"` | Indicates if a button was pressed `short` or `long`, or the tile was `released`     |
+| `state`   | _String_ |        `"on"` \| `"off"`          | The current tile state (prior to this event), only included for button press events |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -855,7 +877,7 @@ This tile has no status feedback; tapping the tile itself only presents the feed
 
 ### Feed screen:
 
-The feed screen is not clickable, but it's possible to drag the finger to scroll up and down if the message list extends beyond the bottom of the screen. To return to the previous screen, use the back button bottom-left.
+The feed screen is not clickable, but it's possible to drag the finger to scroll up and down if the message list extends beyond the bottom of the screen. Swipe down to return to the previous screen.
 
 ![Feed Screen](/images/feed-screen.png)
 
@@ -1012,20 +1034,20 @@ This tile type _colorPickerRgbCct_ may be used to facilitate changing the color 
 
 ### JSON parameters
 
-| Parameter     |         Type         |               Options                | Description                                                                                 |
-| :------------ | :------------------: | :----------------------------------: | :------------------------------------------------------------------------------------------ |
-| `screen`      |       _Number_       |                 n/a                  | Screen number triggering state event                                                        |
-| `tile`        |       _Number_       |                 n/a                  | Tile number triggering state event                                                          |
-| `style`       |       _String_       |                 n/a                  | Tile style `colorPickerRgbCct`                                                              |
-| `type`        |       _String_       |    `"button"` \| `"colorPicker"`     | Indicates if touch event was a button press or long-press to launch the color picker popup  |
-| `event`       |       _String_       | `"single"` \| `"hold"` \| `"change"` | `single` \| `hold` events only on type `button`. `change` events only on type `colorPicker` |
-| `state`       | _String_ \| _Object_ |      `"on"` \| `"off"` \| `{}`       | The current tile state                                                                      |
-| `colorRgb`    |       _Object_       |                 n/a                  |                                                                                             |
-| `r`           |       _Number_       |                 n/a                  | Red colour Number between `0-255`                                                           |
-| `g`           |       _Number_       |                 n/a                  | Green colour Number between `0-255`                                                         |
-| `b`           |       _Number_       |                 n/a                  | Blue colour Number between `0-255`                                                          |
-| `colorKelvin` |       _Number_       |                 n/a                  | For temperature mode, color temp (in kelvin)                                                |
-| `brightness`  |       _Number_       |                 n/a                  | For either mode, color brightness                                                           |
+| Parameter     |         Type         |               Options                         | Description                                                                                            |
+| :------------ | :------------------: | :-------------------------------------------: | :----------------------------------------------------------------------------------------------------- |
+| `screen`      |       _Number_       |                 n/a                           | Screen number triggering state event                                                                   |
+| `tile`        |       _Number_       |                 n/a                           | Tile number triggering state event                                                                     |
+| `style`       |       _String_       |         `"colorPickerRgbCct"`                 | Tile style `colorPickerRgbCct`                                                                         |
+| `type`        |       _String_       |    `"button"` \| `"colorPicker"`              | Indicates if touch event was a `button` press or a change on the `colorPicker` control screen          |
+| `event`       |       _String_       | `"single"`\|`"hold"`\|`"release"`\|`"change"` | `single` , `hold` , `release` events only on type `button`. `change` events only on type `colorPicker` |
+| `state`       | _String_ \| _Object_ |      `"on"` \| `"off"` \| `{}`                | The current tile state                                                                                 |
+| `colorRgb`    |       _Object_       |                 n/a                           |                                                                                                        |
+| `r`           |       _Number_       |                 n/a                           | Red colour Number between `0-255`                                                                      |
+| `g`           |       _Number_       |                 n/a                           | Green colour Number between `0-255`                                                                    |
+| `b`           |       _Number_       |                 n/a                           | Blue colour Number between `0-255`                                                                     |
+| `colorKelvin` |       _Number_       |                 n/a                           | For temperature mode, color temp (in kelvin)                                                           |
+| `brightness`  |       _Number_       |                 n/a                           | For temperature mode, white brightness                                                                 |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -1083,7 +1105,7 @@ This tile type _colorPickerRgbCct_ may be used to facilitate changing the color 
 
 ### Control Screen:
 
-When you press the tile button the controls screen will appear. The controls screen has two tabs to choose from `Color` and `Temperature`. The color tab gives you the ability to adjust the `RGB Color` via the color wheel and `Brightness Color` via the slider. The temperature tab gives you the ability to adjust the `Color Temperature` and `Brightness White` via the sliders. You can also toggle the tile `on` \| `off` by pressing the light bulb button in thr bottom right of the popup.
+When you press the tile button the controls screen will appear. The controls screen has two tabs to choose from `Color` and `Temperature`. The color tab gives you the ability to adjust the `RGB Color` via the color wheel and `Brightness Color` via the slider. The temperature tab gives you the ability to adjust the `Color Temperature` and `Brightness White` via the sliders. You can also toggle the tile `on` \| `off` by pressing the light bulb button at the bottom of the popup.
 
 ![TP32 Image Alt Text](/images/colorPicker-both-color-tab.png) ![TP32 Image Alt Text](/images/colorPicker-both-temp-tab.png)
 
@@ -1148,6 +1170,7 @@ This tile type _colorPickerRgb_ may be used to facilitate changing the color of 
       "g": 124,
       "b": 208
     },
+    "colorKelvin": 0,
     "brightness": 0
   }
 }
@@ -1155,19 +1178,20 @@ This tile type _colorPickerRgb_ may be used to facilitate changing the color of 
 
 ### JSON parameters
 
-| Parameter    |         Type         |               Options                | Description                                                                                 |
-| :----------- | :------------------: | :----------------------------------: | :------------------------------------------------------------------------------------------ |
-| `screen`     |       _Number_       |                 n/a                  | Screen number triggering state event                                                        |
-| `tile`       |       _Number_       |                 n/a                  | Tile number triggering state event                                                          |
-| `style`      |       _String_       |                 n/a                  | Tile style `colorPickerRgb`                                                                 |
-| `type`       |       _String_       |    `"button"` \| `"colorPicker"`     | Indicates if touch event was a button press or long-press to launch the color picker popup  |
-| `event`      |       _String_       | `"single"` \| `"hold"` \| `"change"` | `single` \| `hold` events only on type `button`. `change` events only on type `colorPicker` |
-| `state`      | _String_ \| _Object_ |      `"on"` \| `"off"` \| `{}`       | The current tile state                                                                      |
-| `colorRgb`   |       _Object_       |                 n/a                  |                                                                                             |
-| `r`          |       _Number_       |                 n/a                  | Red colour Number between `0-255`                                                           |
-| `g`          |       _Number_       |                 n/a                  | Green colour Number between `0-255`                                                         |
-| `b`          |       _Number_       |                 n/a                  | Blue colour Number between `0-255`                                                          |
-| `brightness` |       _Number_       |                 n/a                  | For either mode, color brightness                                                           |
+| Parameter     |         Type         |               Options                         | Description                                                                                            |
+| :------------ | :------------------: | :-------------------------------------------: | :----------------------------------------------------------------------------------------------------- |
+| `screen`      |       _Number_       |                 n/a                           | Screen number triggering state event                                                                   |
+| `tile`        |       _Number_       |                 n/a                           | Tile number triggering state event                                                                     |
+| `style`       |       _String_       |          `"colorPickerRgb"`                   | Tile style `colorPickerRgb`                                                                            |
+| `type`        |       _String_       |    `"button"` \| `"colorPicker"`              | Indicates if touch event was a `button` press or a change on the `colorPicker` control screen          |
+| `event`       |       _String_       | `"single"`\|`"hold"`\|`"release"`\|`"change"` | `single` , `hold` , `release` events only on type `button`. `change` events only on type `colorPicker` |
+| `state`       | _String_ \| _Object_ |      `"on"` \| `"off"` \| `{}`                | The current tile state                                                                                 |
+| `colorRgb`    |       _Object_       |                 n/a                           |                                                                                                        |
+| `r`           |       _Number_       |                 n/a                           | Red colour Number between `0-255`                                                                      |
+| `g`           |       _Number_       |                 n/a                           | Green colour Number between `0-255`                                                                    |
+| `b`           |       _Number_       |                 n/a                           | Blue colour Number between `0-255`                                                                     |
+| `colorKelvin` |       _Number_       |                  0                            | For temperature mode, color temp (in kelvin) `0`                                                       |
+| `brightness`  |       _Number_       |                  0                            | For temperature mode, brightness white        `0`                                                      |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -1223,7 +1247,7 @@ This tile type _colorPickerRgb_ may be used to facilitate changing the color of 
 
 ### Control Screen:
 
-When you press the tile button the controls screen will appear giving you the ability to adjust the `RGB Color` via the color wheel and `Brightness Color` via the slider. You can also toggle the tile `on` \| `off` by pressing the light bulb button in thr bottom right of the popup.
+When you press the tile button the controls screen will appear giving you the ability to adjust the `RGB Color` via the color wheel and `Brightness Color` via the slider. You can also toggle the tile `on` \| `off` by pressing the light bulb button at the bottom of the popup.
 
 ![TP32 Image Alt Text](/images/colorPicker-color-tab.png)
 
@@ -1284,26 +1308,32 @@ This tile type _colorPickerCct_ may be used to facilitate changing the color of 
   "event": "change",
   "state": {
     "colorRgb": {
-      "colorKelvin": 2000,
-      "brightness": 50
-    }
+      "r": 0,
+      "g": 0,
+      "b": 0
+    },
+    "colorKelvin": 4000,
+    "brightness": 50
   }
 }
 ```
 
 ### JSON parameters
+| Parameter     |         Type         |               Options                         | Description                                                                                            |
+| :------------ | :------------------: | :-------------------------------------------: | :----------------------------------------------------------------------------------------------------- |
+| `screen`      |       _Number_       |                 n/a                           | Screen number triggering state event                                                                   |
+| `tile`        |       _Number_       |                 n/a                           | Tile number triggering state event                                                                     |
+| `style`       |       _String_       |           `"colorPickerCct"`                  | Tile style `colorPickerCct`                                                                            |
+| `type`        |       _String_       |    `"button"` \| `"colorPicker"`              | Indicates if touch event was a `button` press or a change on the `colorPicker` control screen          |
+| `event`       |       _String_       | `"single"`\|`"hold"`\|`"release"`\|`"change"` | `single` , `hold` , `release` events only on type `button`. `change` events only on type `colorPicker` |
+| `state`       | _String_ \| _Object_ |      `"on"` \| `"off"` \| `{}`                | The current tile state                                                                                 |
+| `colorRgb`    |       _Object_       |                 n/a                           |                                                                                                        |
+| `r`           |       _Number_       |                  0                            | Red colour Number   `0`                                                                                |
+| `g`           |       _Number_       |                  0                            | Green colour Number `0`                                                                                |
+| `b`           |       _Number_       |                  0                            | Blue colour Number  `0`                                                                                |
+| `colorKelvin` |       _Number_       |                 n/a                           | For temperature mode, color temp (in kelvin)                                                           |
+| `brightness`  |       _Number_       |                 n/a                           | For temperature mode, brightness white                                                                 |
 
-| Parameter     |         Type         |               Options                | Description                                                                                 |
-| :------------ | :------------------: | :----------------------------------: | :------------------------------------------------------------------------------------------ |
-| `screen`      |       _Number_       |                 n/a                  | Screen number triggering state event                                                        |
-| `tile`        |       _Number_       |                 n/a                  | Tile number triggering state event                                                          |
-| `style`       |       _String_       |                 n/a                  | Tile style `colorPickerCct`                                                                 |
-| `type`        |       _String_       |    `"button"` \| `"colorPicker"`     | Indicates if touch event was a button press or long-press to launch the color picker popup  |
-| `event`       |       _String_       | `"single"` \| `"hold"` \| `"change"` | `single` \| `hold` events only on type `button`. `change` events only on type `colorPicker` |
-| `state`       | _String_ \| _Object_ |      `"on"` \| `"off"` \| `{}`       | The current tile state                                                                      |
-| `colorRgb`    |       _Object_       |                 n/a                  |                                                                                             |
-| `colorKelvin` |       _Number_       |                 n/a                  | For temperature mode, color temp (in kelvin)                                                |
-| `brightness`  |       _Number_       |                 n/a                  | For either mode, color brightness                                                           |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -1350,7 +1380,7 @@ This tile type _colorPickerCct_ may be used to facilitate changing the color of 
 
 ### Control Screen:
 
-When you press the tile button the controls screen will appear giving you the ability to adjust the `Color Temperature` and `Brightness White` via the sliders. You can also toggle the tile `on` \| `off` by pressing the light bulb button in thr bottom right of the popup.
+When you press the tile button the controls screen will appear giving you the ability to adjust the `Color Temperature` and `Brightness White` via the sliders. You can also toggle the tile `on` \| `off` by pressing the light bulb button at the bottom of the popup.
 
 ![TP32 Image Alt Text](/images/colorPicker-temp-tab.png)
 
@@ -2008,16 +2038,16 @@ The _thermostat_ tile style provides a function allowing the user to see the act
 
 ### JSON parameters
 
-| Parameter           |         Type         |           Options            | Description                                                                     |
-| :------------------ | :------------------: | :--------------------------: | :------------------------------------------------------------------------------ |
-| `screen`            |       _Number_       |             n/a              | Screen number triggering state event                                            |
-| `tile`              |       _Number_       |             n/a              | Tile number triggering state event                                              |
-| `style`             |       _String_       |             n/a              | Tile style `_thermostat`                                                        |
-| `type`              |       _String_       | `"button"` \| `"thermostat"` |                                                                                 |
-| `event`             |       _String_       |    `"hold"` \| `"change"`    | `hold` events only on type `button`. `change` events only on type `themrmostat` |
-| `state`             | _String_ \| _Object_ |  `"on"` \| `"off"` \| `{}`   | The current tile state                                                          |
-| `mode`              |       _Number_       |             n/a              | The current mode state (1-based index of `modeList`)                            |
-| `targetTemperature` |       _Number_       |             n/a              | The current target temperature                                                  |
+| Parameter           |         Type         |           Options                 | Description                                                                                |
+| :------------------ | :------------------: | :-------------------------------: | :----------------------------------------------------------------------------------------- |
+| `screen`            |       _Number_       |             n/a                   | Screen number triggering state event                                                       |
+| `tile`              |       _Number_       |             n/a                   | Tile number triggering state event                                                         |
+| `style`             |       _String_       |             n/a                   | Tile style `_thermostat`                                                                   |
+| `type`              |       _String_       | `"button"` \| `"thermostat"`      |                                                                                            |
+| `event`             |       _String_       | `"hold"`\|`"release"`\|`"change"` | `hold` ,`release` events only on type `button`. `change` events only on type `themrmostat` |
+| `state`             | _String_ \| _Object_ |  `"on"` \| `"off"` \| `{}`        | The current tile state                                                                     |
+| `mode`              |       _Number_       |             n/a                   | The current mode state (1-based index of `modeList`)                                       |
+| `targetTemperature` |       _Number_       |             n/a                   | The current target temperature                                                             |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -2090,7 +2120,48 @@ When you press the tile the thermostat popup screen will appear giving you the a
 ## Common Tile Payloads
 
 [comment]: <> ([TODO] Common Payloads explanation)
-These commands are common to all tile styles.
+These commands and configs are common to all tile styles.
+
+## Set the size of a tile (appearance on screen) 
+
+The size of a tile can be changed in increments of grid cells (tiles) by spanning the tile to the right and / or down. The referenced tile acts as the parent tile and all payloads are addressed to and from it. The user has to make sure that spanned grid cells aren't used by other tiles (possible collision with other tiles is not checked by the FW)
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+
+```json
+{
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "span": {
+	    "right": 2,
+		"down": 2
+	  }
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter  |   Type   | Options | Description                                        |                                                            |
+| :--------- | :------: | :-----: | :------------------------------------------------- | :--------------------------------------------------------- |
+| `screen`   | _Number_ |   n/a   | Screen number sending command                      | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`     | _Number_ |   n/a   | Tile number sending command                        | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `span`     | _Object_ |   n/a   |                                                    | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `right`    | _Number_ |   n/a   | number of grid cells to span right (defaults to 1) | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `left`     | _Number_ |   n/a   | number of grid cells to span down (defaults to 1)  | <Badge type="warning" text="Required" vertical="bottom" /> |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
 
 ## Display a level indicator
 
@@ -2253,7 +2324,82 @@ RGB color for a tile icon (defaults to white if the tile state is "off", or the 
 ::::
 [comment]: <> (END of JSON Example)
 
-# Screen Payloads
+
+# Screen `conf/`Payloads
+
+Each individual screen can be configured by adding one ore more of the following options to the conf/ payload.
+
+| Parameter            |  Description                                                                                    | 
+| :------------------- | :---------------------------------------------------------------------------------------------- | 
+| `label`              | The label that will be shown in the footer of the screen and in the screen selection drop-down  |
+| `hidden`             | Hiding a screen prevents it from being shown when swiping or in the screen selection drop-down. The screen can still be shown with a `cmnd`, or a tile linked to that screen within the `conf`.|
+| `backgroundColorRgb` | Defines the background color for this screen                                                    | 
+| `screenLayout`       | Defines the the grid that serves space for the tiles                                            | 
+| `horizontal`         | Size of the grid (tile count) in horizontal direction  (max 10)                                 | 
+| `vertical`           | Size of the grid (tile count) in vertical direction  (max 10)                                   | 
+
+## Properties to configure a screen
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+
+```json
+{
+  "screens": [
+    {
+      "screen": 5,
+      "label": "Demo",
+	  "hidden": false,
+      "backgroundColorRgb": {
+        "r": 255,
+        "g": 0,
+        "b": 0
+      },
+      "screenLayout": {
+        "horizontal": 2,
+        "vertical": 2
+      },
+	  "tiles" [
+	    .....
+	  ]
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter            |   Type    |  Options      | Description                                               |                                                            |
+| :------------------- | :-------: | :-----------: | :-------------------------------------------------------- | :--------------------------------------------------------- |
+| `screen`             | _Number_  |    n/a        | Screen number to be configured                            | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `label`              | _String_  | `"Demo"`      | Label to be shown in the footer (defaults to "Screen nn") | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `hidden`             | _Boolean_ | true \| false | Config to hide screen (defaults to "false")               | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `backgroundColorRgb` | _Object_  |   n/a         |                                                           |<Badge type="tip" text="Optional" vertical="bottom" />      |
+| `r`                  | _Number_  |   n/a         | Red colour Number between 0-255                           |<Badge type="tip" text="Optional" vertical="bottom" />      |
+| `g`                  | _Number_  |   n/a         | Green colour Number between 0-255                         | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `b`                  | _Number_  |   n/a         | Blue colour Number between 0-255                          | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `screenLayout`       | _Object_  |   n/a         |                                                           |<Badge type="tip" text="Optional" vertical="bottom" />      |
+| `horizontal`         | _Number_  |   n/a         | Tiles (grid) horizontal Number between 1-10               |<Badge type="tip" text="Optional" vertical="bottom" />      |
+| `vertical`           | _Number_  |   n/a         | Tiles (grid) vertical Number between 1-10                 | <Badge type="tip" text="Optional" vertical="bottom" />     |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+::: tip
+
+A hidden screen can be useful for scenarios where you only want a screen to be displayed when reacting to some kind of internal logic (e.g. a tile pressed) or external logic (e.g. a sensor receives a command).
+
+Either way, the best way to show the screen which is flagged as `hidden` is to load the screen, see [Load Screen](/docs/firmware/touch-panel-esp32.html#load-screen).
+
+:::
+
+
+# Screen `cmnd/`Payloads
 
 [comment]: <> ([TODO] Screen Payloads explanation)
 These commands are specific to an individual screen.
@@ -2296,48 +2442,6 @@ Removes a screen from the configuration.
 Removing a screen removes all tiles on this screen as well.
 
 Removing screen 1 (Home Screen) technically removes screen 1 and creates an empty screen 1 (Home Screen)
-
-:::
-
-## Hide a screen
-
-Hiding a screen prevents it from being shown in the footer selection menu. The screen can still be shown with a `cmnd`, or a tile linked to that screen within the `conf`.
-
-[comment]: <> (START of JSON Example)
-:::: code-group
-::: code-group-item Command
-
-
-```json
-{
-  "screens": [
-    {
-      "screen": 3,
-      "hidden ": true
-    }
-  ]
-}
-```
-
-### JSON parameters
-
-| Parameter |   Type    |  Options    | Description                 |                                                            |
-| :-------- | :------:  | :--------:  | :-------------------------- | :--------------------------------------------------------- |
-| `screen`  | _Number_  |    n/a      | Screen number to be hidden  | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `hidden`  | _Boolean_ | true\|false | Command to hide screen      | <Badge type="warning" text="Required" vertical="bottom" /> |
-
-<Badge type="warning" text="MQTT Topic" vertical="middle" />
-
-`cmnd/<device-client-id>`
-:::
-::::
-[comment]: <> (END of JSON Example)
-
-::: tip
-
-A hidden screen can be useful for scenarios where you only want a screen to be displayed when reacting to some kind of internal logic (e.g. a tile pressed) or external logic (e.g. a sensor receives a command).
-
-Either way, the best way to show the screen which is hidden from the screen selection menu on the touch panel is to load the screen, see [Load Screen](/docs/firmware/touch-panel-esp32.html#load-screen).
 
 :::
 
@@ -2535,6 +2639,36 @@ RGB color of icon when 'on' (defaults to light green - R91, G190, B91).
 :::
 ::::
 [comment]: <> (END of JSON Example)
+
+## Change the state dependent brightness of a tile 
+
+Per default the background of a tile appears with a brightness level of 10 when in `off` state and with 100 when in `on`. In some configurations , eg. when a lighter color schema is used, these defaults don't let the tile stand out nicely from the background or the `on` state appreas too bright. To get a nicer contrast between tile and screen background the brightness for the two states are configurable. Note: make sure this configuration has been set before tiles are configured.
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+
+```json
+{
+  "tileBrightnessOff": 10,
+  "tileBrightnessOn": 80
+}
+```
+
+### JSON parameters
+
+| Parameter          |   Type    | Options | Description                       |                                                             |
+| :----------------- | :------:  | :-----: | :-------------------------------- | :---------------------------------------------------------- |
+| `tileBrightnessOff`|  _Number_ |   n/a   | brightness in `off` between 0-25  |  <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tileBrightnessOn` |  _Number_ |   n/a   | brightness in `on` between 75-100 |  <Badge type="warning" text="Required" vertical="bottom" /> |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
 
 ## Home screen timeout
 
