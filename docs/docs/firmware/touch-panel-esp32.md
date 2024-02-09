@@ -142,7 +142,7 @@ Tile payloads are described below in terms of these three parameter types.
 
 ![Label and Sub-Label elements](/images/tp-element-label-sublabel.png)
 
-All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically descibe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that labels are set in the tile's config, and subLabels are set by command; both can be configured at bootup (via the `conf/` topic) or changed during use (via the `cmnd/` topic).
+All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically descibe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that only labels are set in the tile's config; both can be updated during use via the `cmnd/` topic.
 
 #### Icons
 
