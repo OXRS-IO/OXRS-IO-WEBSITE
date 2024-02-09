@@ -87,13 +87,13 @@ The recommended way to use the firmware and interact with the Touch Panel and yo
 Further documentation and some example Node-RED Flows will be made available in due course.
 :::
 
-# General Overview of Tile Styles, Payloads, and Behaviours
+# General Overview of Screens, Tile Styles, Payloads, and Behaviours
 
 ---
 
 ## Screens
 
-Each touch panel can be configured with a set of screens. The configured name of the active screen is shown in the footer.
+Each touch panel can be configured with a set of screens. Configuration options can be found [here](/docs/firmware/touch-panel-esp32.html#screen-conf-payloads)
 
 ### Navigation thru screens
 
@@ -2120,7 +2120,48 @@ When you press the tile the thermostat popup screen will appear giving you the a
 ## Common Tile Payloads
 
 [comment]: <> ([TODO] Common Payloads explanation)
-These commands are common to all tile styles.
+These commands and configs are common to all tile styles.
+
+## Set the size of a tile (appearance on screen) 
+
+The size of a tile can be changed in increments of grid cells (tiles) by spanning the tile to the right and / or down. The referenced tile acts as the parent tile and all payloads are addressed to and from it. The user has to make sure that spanned grid cells aren't used by other tiles (possible collision with other tiles is not checked by the FW)
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+
+```json
+{
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "span": {
+	    "right": 2,
+		"down": 2
+	  }
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter  |   Type   | Options | Description                                        |                                                            |
+| :--------- | :------: | :-----: | :------------------------------------------------- | :--------------------------------------------------------- |
+| `screen`   | _Number_ |   n/a   | Screen number sending command                      | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`     | _Number_ |   n/a   | Tile number sending command                        | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `span`     | _Object_ |   n/a   |                                                    | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `right`    | _Number_ |   n/a   | number of grid cells to span right (defaults to 1) | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `left`     | _Number_ |   n/a   | number of grid cells to span down (defaults to 1)  | <Badge type="warning" text="Required" vertical="bottom" /> |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
 
 ## Display a level indicator
 
