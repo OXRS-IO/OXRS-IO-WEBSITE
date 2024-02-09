@@ -2640,6 +2640,36 @@ RGB color of icon when 'on' (defaults to light green - R91, G190, B91).
 ::::
 [comment]: <> (END of JSON Example)
 
+## Change the state dependent brightness of a tile 
+
+Per default the background of a tile appears with a brightness level of 10 when in `off` state and with 100 when in `on`. In some configurations , eg. when a lighter color schema is used, these defaults don't let the tile stand out nicely from the background or the `on` state appreas too bright. To get a nicer contrast between tile and screen background the brightness for the two states are configurable. Note: make sure this configuration has been set before tiles are configured.
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+
+```json
+{
+  "tileBrightnessOff": 10,
+  "tileBrightnessOn": 80
+}
+```
+
+### JSON parameters
+
+| Parameter          |   Type    | Options | Description                       |                                                             |
+| :----------------- | :------:  | :-----: | :-------------------------------- | :---------------------------------------------------------- |
+| `tileBrightnessOff`|  _Number_ |   n/a   | brightness in `off` between 0-25  |  <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tileBrightnessOn` |  _Number_ |   n/a   | brightness in `on` between 75-100 |  <Badge type="warning" text="Required" vertical="bottom" /> |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+
 ## Home screen timeout
 
 Return to home screen after a period of in-activity (defaults to 0 which disables the timeout). Must be a number between 0 and 600 (i.e. 10 minutes).
