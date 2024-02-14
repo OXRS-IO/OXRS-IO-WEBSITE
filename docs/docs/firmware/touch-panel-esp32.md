@@ -2290,6 +2290,74 @@ RGB color for a tile icon (defaults to white if the tile state is "off", or the 
 ::::
 [comment]: <> (END of JSON Example)
 
+## Add a `"tag"` to the tile configuration
+
+The `"tag"` can be added to the tile properties via `conf\` or `cmnd\`payloads. If exists, it wil be reported back as `"tag"` as part of the tile event. This feature can be used by the backend (NR) to further customize the tile and create specific reactions depending on the  `"tag"` content.
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Config
+
+```json
+{
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "tag": {
+	    "Any text"
+	  }
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter  |   Type   | Options | Description                                        |                                                            |
+| :--------- | :------: | :-----: | :------------------------------------------------- | :--------------------------------------------------------- |
+| `screen`   | _Number_ |   n/a   | Screen number sending command                      | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`     | _Number_ |   n/a   | Tile number sending command                        | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tag`      | _String_ |   n/a   | Any text (plain or formatted (JSON))               | <Badge type="tip" text="Optional" vertical="bottom" />     |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+:::
+
+::: code-group-item Command
+
+```json
+{
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "tag": {
+	    "Any text"
+	  }
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter  |   Type   | Options | Description                                        |                                                            |
+| :--------- | :------: | :-----: | :------------------------------------------------- | :--------------------------------------------------------- |
+| `screen`   | _Number_ |   n/a   | Screen number sending command                      | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`     | _Number_ |   n/a   | Tile number sending command                        | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tag`      | _String_ |   n/a   | Any text (plain or formatted (JSON))               | <Badge type="tip" text="Optional" vertical="bottom" />     |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+
+::::
+[comment]: <> (END of JSON Example)
+
+
 ## Actions to remove or disable a tile
 
 - Removes a tile from the configuration.
@@ -2377,12 +2445,12 @@ Each individual screen can be configured by adding one ore more of the following
 | `screen`             | _Number_  |    n/a        | Screen number to be configured                            | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `label`              | _String_  | `"Demo"`      | Label to be shown in the footer (defaults to "Screen nn") | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `hidden`             | _Boolean_ | true \| false | Config to hide screen (defaults to "false")               | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `backgroundColorRgb` | _Object_  |   n/a         |                                                           |<Badge type="tip" text="Optional" vertical="bottom" />      |
-| `r`                  | _Number_  |   n/a         | Red colour Number between 0-255                           |<Badge type="tip" text="Optional" vertical="bottom" />      |
+| `backgroundColorRgb` | _Object_  |   n/a         |                                                           | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `r`                  | _Number_  |   n/a         | Red colour Number between 0-255                           | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `g`                  | _Number_  |   n/a         | Green colour Number between 0-255                         | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `b`                  | _Number_  |   n/a         | Blue colour Number between 0-255                          | <Badge type="tip" text="Optional" vertical="bottom" />     |
-| `screenLayout`       | _Object_  |   n/a         |                                                           |<Badge type="tip" text="Optional" vertical="bottom" />      |
-| `horizontal`         | _Number_  |   n/a         | Tiles (grid) horizontal Number between 1-10               |<Badge type="tip" text="Optional" vertical="bottom" />      |
+| `screenLayout`       | _Object_  |   n/a         |                                                           | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `horizontal`         | _Number_  |   n/a         | Tiles (grid) horizontal Number between 1-10               | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `vertical`           | _Number_  |   n/a         | Tiles (grid) vertical Number between 1-10                 | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
