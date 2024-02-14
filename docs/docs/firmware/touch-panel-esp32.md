@@ -2726,7 +2726,7 @@ Turn off screen backlight after a period of in-activity (defaults to 0 which dis
 ::::
 [comment]: <> (END of JSON Example)
 
-## Control the backlight
+## Control the backlight brightness
 
 [comment]: <> ([TODO] Explanation)
 The backlight level can be set via the slider on the settings screen or with an MQTT Payload.
@@ -2770,6 +2770,67 @@ The backlight level can be set via the slider on the settings screen or with an 
 :::
 
 The backlight state can be set to on or off. Additionally a "Screen Sleep Timeout" can be set via the Admin UI config page.
+
+## Control the backlight state
+
+[comment]: <> ([TODO] Explanation)
+The backlight state can be set with an MQTT Payload.
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+::: code-group-item Command
+
+```json
+{
+  "backlight":{
+    "state": "awake"
+  }
+}
+```
+
+### JSON parameters
+
+| Parameter   |   Type   | Options                | Description                      |                                                            |
+| :---------- | :------: | :--------------------: | :------------------------------- | :--------------------------------------------------------- |
+| `backlight` | _Object_ |   n/a                  | control the backlight            | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `state`     | _String_ | `"awake"` \| `"sleep"` | force the backlight state        |  <Badge type="tip" text="Optional" vertical="bottom" />    |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::: code-group-item State
+
+```json
+{
+  "type": "backlight",
+  "event": "change",
+  "state": "sleep"|"awake",
+  "brightness": <number>
+}
+```
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`stat/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+::: tip
+Setting the `"awake"` state by a `cmnd/` can be usefull when there is a NR controled screen change or pop-up message that the user shall be made aware of independent of the recent backlight state. The following sequence should be used:
+```json
+{
+  "messageBox": {
+    "title": "Attention!"
+	},
+  "backlight": {
+    "state":"awake"
+	}
+}
+```
+
+:::
 
 ## Popup Message Box Modal
 
