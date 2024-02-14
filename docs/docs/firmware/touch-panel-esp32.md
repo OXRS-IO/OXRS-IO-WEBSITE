@@ -2912,7 +2912,12 @@ The arrangement of buttons dynamically adapts based on the interplay between pop
 There are a limited set of built-in icons available, but it is possible to upload custom icons for use in your tile configuration. The built-in icons are sourced from [icons8.com](https://icons8.com/icon/set/ios/ios) but you can use any icon you want. This provides a great way to customise your touch panel.
 
 ::: tip
-Custom icons are **not persistent** and have to be (re)loaded after restart and before they can be used in any configuration.
+Custom icons
+- are **not persistent** and have to be (re)loaded after restart.
+- are referenced by their name.
+- name CAN NOT begin with and underscore '_' (reserved).
+- are shown after they are loaded (before or after configured).
+- reloading an existing image with new content will update all tiles.
 :::
 
 [comment]: <> (START of JSON Example)
@@ -2988,7 +2993,12 @@ It is possible to upload custom images to be used for the background of your til
 [comment]: <> (END of JSON Example)
 
 ::: tip
-Background images are **not persistent** and have to be (re)loaded after restart and before they can be used in any configuration.
+Background images 
+- are **not persistent** and have to be (re)loaded after restart.
+- are referenced by their name.
+- name CAN NOT begin with and underscore '_' (reserved).
+- are shown after they are loaded (before or after configured).
+- reloading an existing image with new content will update all tiles.
 :::
 
 ### Setting a tile background image
