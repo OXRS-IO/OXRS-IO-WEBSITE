@@ -1392,6 +1392,8 @@ When you press the tile button the controls screen will appear giving you the ab
 
 This tile type _dropDown_ may be used to present the user with a drop-down menu. The tile has no internal state management, so it's necessary to send the list of items in the drop-down to the tile via the cmnd/ topic. Once a selection is made from the dropdown, it's sent back to the event parameter.
 
+To clear a selection from the parent tile an empty `"dropDownList": [] ` can be sent. This reverts to the previously configured icon.
+
 [comment]: <> (START of JSON Example)
 :::: code-group
 
