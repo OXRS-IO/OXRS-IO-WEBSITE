@@ -3269,24 +3269,20 @@ In Node-RED, hook up a couple of MQTT-in nodes, and wire them both to a debug no
 ## Setting Up your Touch Panel
 
 ### Overview
-- Download and flash your device. See [flashing your device](/docs/firmware/touch-panel-esp32#flashing-your-device).
+- Prepare your Touch Panel and connect it to an USB port. Depending on your device type follow the instructions here
+  - [WT32-SC01 / PLUS](/docs/firmware/touch-panel-esp32#preparations-for-flashing-the-wt32-sc01-and-sc01-plus)
+  - [WT323-86V ](/docs/firmware/touch-panel-esp32#preparations-for-flashing-the-wt32s3-86v)
+- Flash your device using the OXRS-WEB-Flasher. See [flashing your device](/docs/firmware/touch-panel-esp32#flashing-your-device).
 - Connect the touch panel to your wired or wireless network. See [connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#connecting-to-wifi-ethernet).
 - Configure the touch panel to connect to your MQTT broker. See [initial MQTT configuration](/docs/firmware/touch-panel-esp32#initial-mqtt-configuration).
 - From now-on, you can do everything over MQTT. See [how to communicate with your touch panel over MQTT](/docs/firmware/touch-panel-esp32#how-to-communicate-with-your-touch-panel-over-mqtt).
-
-### Flashing Your Device
-
-- Download your firmware from [here](https://github.com/OXRS-IO/OXRS-IO-TouchPanel-ESP32-FW/releases)
-- Choose the version according to
-  - What model of Touch Panel you are flashing (see [supported hardware](docs/firmware/touch-panel-esp32#supported-hardware))
-  - Whether you plan to use WiFi or Ethernet. WiFi is built-in to all touchpanel models so it's a great place to start or for demo purposes. An ethernet connection may offer more long term reliability, so you will need to add a compatible ethernet adapter, for example the PoE ethernet shield from https://www.austinscreations.ca/, open-source designs for which may be found [here](https://github.com/austinscreations/WT32-SC01_POE/tree/main/2023%20re-design/rev%206).
 
 #### General notes on flashing the touch panels
 
 - The WT32-SC01 and WT32-SC01 Plus both have built-in USB and so you don't need an additional USB-TTL adapter. The instructions below include ensuring you have the correct Windows driver to flash the board directly.
 - The WT32S3-86V and 86S will require a separate USB-TTL adapter. See notes below.
 
-#### Instructions for flashing the WT32S3-86V (Windows 10/11)
+#### Preparations for flashing the WT32S3-86V
 ##### Note about what USB-TTL to use
 Use one of the cheap, ubiquitous USB-TTL adapters available on Amazon or Ebay, and don't purchase the unit with the supplied USB-TTL adapter. If you use the supplied one, it has a dedicated JST cable, the connector for which you will need to solder on to each panel. Being an SMD connector, it's a bit fiddly - but more to the point, once you've soldered it on, you can no longer re-attach the plastic rear panel! So avoid that one and use a standard USB-TTL adapter with normal hookup wires / dupont connectors.
 
@@ -3296,12 +3292,8 @@ Use one of the cheap, ubiquitous USB-TTL adapters available on Amazon or Ebay, a
 - Connect GND and +5V to the header ports, labelled on the back of the panel
 - Connect RX and TX out of the USB-TTL to the female headers marked TX0 and RX0 respectively (i.e. RX to TX, and TX to RX)
 - With a spare hookup wire, connect between the panel's ground and the panel's IO0, then plug the USB adapter in; powering up with IO0 tied to ground puts the device into flash mode.
-- Use your preferred program to flash the firmware. If in doubt, download Espressif's flash download tool version 3.9.3 and launch it. Select chip type ESP32-S3 / Develop / UART, and OK. In the first row, click the triple dots to select a firmware, check the address is set to 0x00, SPI speed 40Mhz, SPI mode DIO, BAUD 1152000, and hit Start. When the process finishes, the Start button goes blue and changes to "finish".
-- Power cycle the device by unplugging the USB and plugging back in
 
-Continue to [Connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#connecting-to-wifi-ethernet).
-
-#### Instructions for flashing the WT32-SC01 and SC01 Plus (Windows 10/11)
+#### Preparations for flashing the WT32-SC01 and SC01 Plus
 
 - Connect the WT32-SC01 LCD dev board USB-C port to a USB connector on the Windows PC using a USB-C to USB-A cable (a USB-C to USB-C cable doesn’t appear to work).
 - Ensure the LCD dev board power LED comes on and the screen displays the factory default page display sequence.
@@ -3309,11 +3301,19 @@ Continue to [Connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#con
 - If the ‘Device status’ window in the USB Root Hub properties window shows “This device is working properly”, skip to step 8. below.
 - If the ‘USB Root Hub properties’ window indicates the ‘CP210x driver is missing’, download the [CP210x_Universal_Windows_Driver.zip](https://www.silabs.com/documents/public/software/CP210x_Universal_Windows_Driver.zip) file to your work folder, and extract its contents.
 - Locate the file `silabser.inf` within the extracted folder, right click on it and select _Install_ in the pop-up menu. Then repeat step 5. above.
-- [Download](https://github.com/esphome/esphome-flasher/releases) the most recent Windows executable version of the _esphome-flasher_ app and run it. (No need to install, it simply runs as an executable)
-- Use _esphome-flasher_ to install the compiled firmware.
-- Assuming the _esphome-flasher_ log window has confirmed the flashing was successful; power cycle the device by unplugging the USB and plugging back in.
 
-Continue to [Connecting to WiFi / Ethernet](/docs/firmware/touch-panel-esp32#connecting-to-wifi-ethernet).
+### Flashing Your Device
+
+- Go to the [OXRS WEB Flasher](https://flash.oxrs.io/)
+<!-- oxrs web flasher Image -->
+
+![OXRS TP32 Firmware](/images/oxrs-web-flasher.png)
+- For `Firmware` select from the drop down `OXRS_IO_TouchPanel-ESP32-FW`
+- For `Version` Choose the version according to
+  - What model of Touch Panel you are flashing (see [supported hardware](docs/firmware/touch-panel-esp32#supported-hardware))
+  - Whether you plan to use WiFi or Ethernet. WiFi is built-in to all touchpanel models so it's a great place to start or for demo purposes. An ethernet connection may offer more long term reliability, so you will need to add a compatible ethernet adapter, for example the PoE ethernet shield from https://www.austinscreations.ca/, open-source designs for which may be found [here](https://github.com/austinscreations/WT32-SC01_POE/tree/main/2023%20re-design/rev%206).
+- continue with `CONNECT` and follow the instructions. 
+  - in the later following dialog Check the `Erase device` option for a clean start.
 
 #### Connecting to WiFi / Ethernet
 
