@@ -3347,8 +3347,41 @@ HTTP <Badge type="tip" text="GET" vertical="middle" />
 `/api/snapshot.bmp`
 download a snapshot (approx. 450kB) of the current display, to your computer
 
-`/api/snapshot.bmp?tile=<1-6>`
-download a snapshot (approx. 60kB) of the selected tile (1-6) in the current display, to your computer
+`/api/snapshot.bmp?tile=<1-n>`
+download a snapshot (approx. 60kB) of the selected tile (1-n) in the current display, to your computer. `<n>` is the largest tile number available on the sreen depending on your screen specific configuration. If tile number is out of range, the whole current display will be returned.
+
+## Climate Sensor Support
+
+### ESP32-S3 based panels
+
+The ESP32-S3 chip family has an integrated temerature sensor. This is supported by the FW for all ESP32-S3 based panels. Temperature values are published to the `tele/` topic 
+
+```json
+{
+  "esp32Temp":<number> 
+}
+``` 
+`<number>` = ESP32-S3 internal temperature in °C
+
+### WT32S3-86S panels with built-in SHT20
+
+The WT32S3-86S panel has a built-in SHT20 sensor which measures tempwrature and humidity. This is supported by the FW for this panel. Temperature and humidity values are published to the `tele/` topic 
+
+```json
+{
+  "temperature": <number>,
+  "humidity": <number>
+}
+
+``` 
+`temperature` is reported in `°C` and `humidity` in `%RH`
+
+These values are also shown on the `Settings` screen as `Climate`
+
+::: tip Tip
+Some paneles have the I2C pins broken out to accessible connectors. A SHT20 sensor connected to these pins will automatically detected by the FW and supported as a built-in one.
+:::
+
 
 ## Downloads
 
