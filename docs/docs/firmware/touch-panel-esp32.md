@@ -205,6 +205,7 @@ The other tile types provide you with additional types of control:
 | :---------------------------------------------------------------- | :--------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | button                                                            | ![TP32 Image Alt Text](/images/button-tile-not-active.png) | [Get Started](/docs/firmware/touch-panel-esp32/#button)                                                                                                                                                          |
 | buttonUpDownLevel                                                 | ![TP32 Image Alt Text](/images/buttonLevelUp-tile.png)     | [Get Started](/docs/firmware/touch-panel-esp32/#buttonupdownlevel)                                                                                                                                               |
+| buttonSlider                                                      | ![TP32 Image Alt Text](/images/buttonSlider-slide.png)     | [Get Started](/docs/firmware/touch-panel-esp32/#buttonslider)                                                                                                                                               |
 | buttonUpDown                                                      | ![TP32 Image Alt Text](/images/buttonUpDown-tile.png)      | [Get Started](/docs/firmware/touch-panel-esp32/#buttonupdown)                                                                                                                                                    |
 | buttonLeftRight                                                   | ![TP32 Image Alt Text](/images/buttonLeftRight-tile.png)   | [Get Started](/docs/firmware/touch-panel-esp32/#buttonleftright)                                                                                                                                                 |
 | buttonPrevNext                                                    | ![TP32 Image Alt Text](/images/buttonPrevNext.png)         | [Get Started](/docs/firmware/touch-panel-esp32/#buttonprevnext)                                                                                                                                                  |
@@ -442,6 +443,138 @@ You can update the tile's level, e.g. if something was changed externally, by se
 ::: tip
 
 Don't forget that you can send `level` messages to any tile type, but this is the correct tile to use if you need to be able to control levels using up/down buttons.
+
+:::
+:::
+::::
+[comment]: <> (END of JSON Example)
+
+---
+
+## buttonSlider
+
+![buttonSlider Tile Style - Off](/images/buttonSlider-off.png) ![buttonSlider Tile Style - On](/images/buttonSlider-on.png) ![buttonSlider Tile Style - Slide](/images/buttonSlider-slide.png)
+
+This type is very similar to the `buttonUpDownLevel` except that the up/down buttons are replaced by a slider.
+
+When the tile state is set to `on`, _buttonSlider_ provides a slider interface with visual feedback, and an internally stored state. When the tile is touched the top of the level bar shows a green handle to indicate `ready for sliding`. Moving the handle changes the level which wil be reported as a `stat/` payload until the tile is released. Touching the tile without moving will publish `single`or `hold` events as a standard button.
+
+The parameters `levelTop` and `levelBottom` are used to specify dimming or positional limits. To display a bulb's dimming status (0-100%) visually, you would set `levelTop` to 100 and `levelBottom` to 0. To display a roller blind's position visually, where it can be controlled in e.g. 10 steps, you would set `levelTop` to 0 and `levelBottom` to 10, thus inverting the level to fill down from the top.
+
+You can update the tile's level, e.g. if something was changed externally, by sending a `level` payload on the command topic, as with all other tiles.
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+
+::: code-group-item Config
+
+```json {7-14}
+{
+  "screens": [
+    {
+      "screen": 1,
+      "label": "Demo",
+      "tiles": [
+        {
+          "tile": 1,
+          "style": "buttonSlider",
+          "icon": "_bulb",
+          "label": "Light",
+          "levelBottom": 0,
+          "levelTop": 100
+        }
+      ]
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter     |   Type   | Options | Description                               |                                                            |
+| :------------ | :------: | :-----: | :---------------------------------------- | :--------------------------------------------------------- |
+| `tile`        | _Number_ |   n/a   | Enter your tile number e.g. `1`           | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `style`       | _String_ |   n/a   | Enter tile style name `buttonSlider`      | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `icon`        | _String_ |   n/a   | Enter icon name e.g.`_bulb`               | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `label`       | _String_ |   n/a   | Enter label text e.g.`Ceiling Lamp`       | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `levelBottom` | _String_ |   n/a   | Defaults to `0`                           | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `levelTop`    | _String_ |   n/a   | Defaults to `100`                         | <Badge type="tip" text="Optional" vertical="bottom" />     |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`conf/<device-client-id>`
+
+::: tip Tip
+
+The slider works best if a larger tile is used (see [spanning tile](/docs/firmware/touch-panel-esp32/#set-the-size-of-a-tile-appearance-on-screen)).
+
+The horizontal/vertical orientation of the bar depends on the width/height ratio of the tile. (wider tiles : horizontal, higher tiles vertical).     
+
+:::
+:::
+
+::: code-group-item State
+
+```json
+{
+  "screen": 1,
+  "tile": 1,
+  "style": "buttonSlider",
+  "type": "level",
+  "event": "slide",
+  "state": 10
+}
+```
+
+### JSON parameters
+
+| Parameter |   Type   |                   Options                                   | Description                                                                                                 |
+| :-------- | :------: | :---------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------- |
+| `screen`  | _Number_ |                     n/a                                     | Screen number triggering state event                                                                        |
+| `tile`    | _Number_ |                     n/a                                     | Tile number triggering state event                                                                          |
+| `style`   | _String_ |                     n/a                                     | Tile style `buttonUpDownLevel`                                                                              |
+| `type`    | _String_ |            `"button"`\|`"level"`                            | Indicates if touch event was a button press or level change                                                 |
+| `event`   | _String_ |     `"single"` \| `"hold"` \| `"release"` \| `"slide"`      | Indicates if a button was pressed `short` or `long`, or `released`, or if a level was changed by `slide`    |
+| `state`   | _Number_ |                     n/a                                     | The new level state (value after level was changed)                                                         |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`stat/<device-client-id>`
+:::
+
+::: code-group-item Command
+
+```json {3-9}
+{
+  "tiles": [
+    {
+      "screen": 1,
+      "tile": 1,
+      "state": "on",
+      "level": 5,
+      "subLabel": "on just now"
+    }
+  ]
+}
+```
+
+### JSON parameters
+
+| Parameter  |   Type   |     Options     | Description                                                 |                                                            |
+| :--------- | :------: | :-------------: | :---------------------------------------------------------- | :--------------------------------------------------------- |
+| `screen`   | _Number_ |       n/a       | Screen number sending command to                            | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `tile`     | _Number_ |       n/a       | Tile number sending command to                              | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `state`    | _String_ | `"on"`\|`"off"` | Updated the tile state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `level`    | _Number_ |       n/a       | Update the level state                                      | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `sublabel` | _String_ |       n/a       | String for additional tile information e.g. `"on just now"` | <Badge type="tip" text="Optional" vertical="bottom" />     |
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+
+::: tip
+
+Don't forget that you can send `level` messages to any tile type, but this is the correct tile to use if you need to be able to control levels using a slider.
 
 :::
 :::
