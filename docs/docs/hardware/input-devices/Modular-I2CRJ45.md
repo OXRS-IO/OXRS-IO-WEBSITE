@@ -36,9 +36,9 @@ The other three positions on those 4 position DIP switches are for setting the M
 
 | Position | 0X20 | 0X21 | 0X22 | 0X23 | 0X24 | 0X25 | 0X26 | 0X27 |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| 0 | off | on | off | off | on | on | off | on |
-| 1 | off | off | on | off | on | off | on | on |
-| 2 | off | off | off | on | off | on | on | on |
+| 0 | off | on | off | on | off | on | off | on |
+| 1 | off | off | on | on | off | off | on | on |
+| 2 | off | off | off | off | on | on | on | on |
 
 The ports are numbered:
 |||||||
