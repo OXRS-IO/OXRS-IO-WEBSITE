@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-a57e09f2","path":"/docs/cases/","title":"Cases","lang":"en-US","frontmatter":{"tags":[""]},"excerpt":"","headers":[],"git":{"updatedTime":1637554465000,"contributors":[{"name":"austinscreations","email":"70245481+austinscreations@users.noreply.github.com","commits":2}]},"filePathRelative":"docs/cases/README.md"}');export{e as data};
