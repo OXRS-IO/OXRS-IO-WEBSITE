@@ -42,9 +42,15 @@ The PoE bypass jumper headers are 'Red' for a reason. **DO NOT** insert these ju
 :::
 
 ## Supported Firmware
-- OXRS-SHA-SmokeDetector-ESP32-FW [Github](https://github.com/SuperHouse/OXRS-SHA-SmokeDetector-ESP32-FW)
-- OXRS-SHA-StateController-ESP32-FW  [Github](https://github.com/SuperHouse/OXRS-SHA-StateController-ESP32-FW)
-- OXRS-SHA-StateMonitor-ESP32-FW [Github](https://github.com/SuperHouse/OXRS-SHA-StateMonitor-ESP32-FW)
+- OXRS State Monitor ESP32 [OXRS-SHA-StateMonitor-ESP32](/docs/firmware/state-monitor-esp32.md)
+- OXRS State Controller ESP32  [OXRS-SHA-StateController-ESP32](/docs/firmware/state-controller-esp32.md)
+- OXRS State IO ESP32 [OXRS-SHA-StateIO-ESP32-FW](/docs/firmware/state-io-esp32.md)
+
+::: tip
+The State IO ESP32 firmware combines the functionality of both the [OXRS-SHA-StateMonitor-ESP32](/docs/firmware/state-monitor-esp32.md) and [OXRS-SHA-StateController-ESP32](/docs/firmware/state-controller-esp32.md) firmware in the one package.
+:::
+
+- OXRS Smoke Detector ESP32 [OXRS-SHA-SmokeDetector-ESP32-FW](/docs/firmware/smoke-detector-esp32.md)
 
 ## Supported Libraries
 - OXRS-SHA-Rack32-ESP32-LIB [Github](https://github.com/SuperHouse/OXRS-SHA-Rack32-ESP32-LIB)
