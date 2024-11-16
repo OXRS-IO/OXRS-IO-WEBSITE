@@ -77,4 +77,4 @@ Input/Output devices
 * [I2CRJ45 / Light Switch Controller](/docs/hardware/input-devices/I2CRJ45.md) by SuperHouse
 
 Shields
-* [Rack32 KNX Shield] (/docs/hardware/shields/rack32-knx-shield.md) by Frank McAlinden
+* [Rack32 KNX Shield](/docs/hardware/shields/rack32-knx-shield.md) by Frank McAlinden
