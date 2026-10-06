@@ -3483,11 +3483,40 @@ download a snapshot (approx. 450kB) of the current display, to your computer
 `/api/snapshot.bmp?tile=<1-n>`
 download a snapshot (approx. 60kB) of the selected tile (1-n) in the current display, to your computer. `<n>` is the largest tile number available on the screen depending on your screen specific configuration. If tile number is out of range, the whole current display will be returned.
 
+## Telemetry (tele/) Messages
+
+### Update interval
+
+Telemetry is published periodically, on a timer configurable via the device's config (`conf/<device-client-id>`):
+
+```json
+{
+  "teleUpdateSeconds": <number>
+}
+```
+
+Defaults to `60` seconds. Set to `0` to disable telemetry entirely. Must be between `0` and `86400` (1 day).
+
+### Device health
+
+Basic device health metadata is published on every telemetry cycle, on all panels regardless of sensor hardware:
+
+```json
+{
+  "uptimeSeconds": <number>,
+  "heapFreeBytes": <number>,
+  "heapUsedBytes": <number>,
+  "wifiRssi": <number>
+}
+```
+
+`uptimeSeconds` is time since boot - useful for spotting a reboot that didn't trigger an LWT `offline` event. `wifiRssi` (WiFi panels only) is signal strength in dBm.
+
 ## Climate Sensor Support
 
 ### ESP32-S3 based panels
 
-The ESP32-S3 chip family has an integrated temerature sensor. This is supported by the FW for all ESP32-S3 based panels. Temperature values are published to the `tele/` topic 
+The ESP32-S3 chip family has an integrated temperature sensor. This is supported by the FW for all ESP32-S3 based panels. Temperature values are published to the `tele/` topic 
 
 ```json
 {
@@ -3498,7 +3527,7 @@ The ESP32-S3 chip family has an integrated temerature sensor. This is supported 
 
 ### WT32S3-86S panels with built-in SHT20
 
-The WT32S3-86S panel has a built-in SHT20 sensor which measures tempwrature and humidity. This is supported by the FW for this panel. Temperature and humidity values are published to the `tele/` topic 
+The WT32S3-86S panel has a built-in SHT20 sensor which measures temperature and humidity. This is supported by the FW for this panel. Temperature and humidity values are published to the `tele/` topic 
 
 ```json
 {
@@ -3512,9 +3541,8 @@ The WT32S3-86S panel has a built-in SHT20 sensor which measures tempwrature and 
 These values are also shown on the `Settings` screen as `Climate`
 
 ::: tip Tip
-Some paneles have the I2C pins broken out to accessible connectors. A SHT20 sensor connected to these pins will automatically detected by the FW and supported as a built-in one.
+Some panels have the I2C pins broken out to accessible connectors. A SHT20 sensor connected to these pins will automatically detected by the FW and supported as a built-in one.
 :::
-
 
 ## Downloads
 
