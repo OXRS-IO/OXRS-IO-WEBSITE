@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-78f96b36","path":"/add-ons/sensors/","title":"Sensors","lang":"en-US","frontmatter":{"tags":[""]},"excerpt":"","headers":[],"git":{"updatedTime":1637545394000,"contributors":[{"name":"austinscreations","email":"70245481+austinscreations@users.noreply.github.com","commits":1}]},"filePathRelative":"add-ons/sensors/README.md"}');export{e as data};
