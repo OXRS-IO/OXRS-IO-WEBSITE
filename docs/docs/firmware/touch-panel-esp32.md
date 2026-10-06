@@ -43,7 +43,7 @@ Example applications include: a light switch to control dimming or colour for mu
 - WT32S3-86V: 3.95-inch 480x480px touch panel comprising integrated backbox and suitable for UK size backboxes
 - WT32S3-86S: an improved version of the above 3.95-inch 480x480px
 
-Note that the 320x480px panels support a deault 2x3 tile configuration and the 480x480px variants support a default 3x3 tile configuration.
+Note that the 320x480px panels support a default 2x3 tile configuration and the 480x480px variants support a default 3x3 tile configuration.
 
 ### Prerequisites:
 
@@ -82,7 +82,7 @@ A typical set of nodes or flows in Node-RED will therefore need to be set up to 
 
 ::: tip Recommendation:
 [comment]: <> ([TODO] Explanation into the recommended Node-RED usage for the product)
-The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node-RED and MQTT. They are used to configure, manage state and recieve events.
+The recommended way to use the firmware and interact with the Touch Panel and your IoT Devices is via Node-RED and MQTT. They are used to configure, manage state and receive events.
 
 Further documentation and some example Node-RED Flows will be made available in due course.
 :::
@@ -142,7 +142,7 @@ Tile payloads are described below in terms of these three parameter types.
 
 ![Label and Sub-Label elements](/images/tp-element-label-sublabel.png)
 
-All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically descibe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that only labels are set in the tile's config; both can be updated during use via the `cmnd/` topic.
+All tiles allow you to set a **label** and a **subLabel**, these are short texts at the bottom of each tile. The label may typically describe the tile's function, and the subLabel might provide additional information such as when the tile was last pressed ("5 mins ago" / "Yesterday" etc) or other metadata you choose. Note that only labels are set in the tile's config; both can be updated during use via the `cmnd/` topic.
 
 #### Icons
 
@@ -457,7 +457,7 @@ Don't forget that you can send `level` messages to any tile type, but this is th
 
 This type is very similar to the `buttonUpDownLevel` except that the up/down buttons are replaced by a slider.
 
-When the tile state is set to `on`, _buttonSlider_ provides a slider interface with visual feedback, and an internally stored state. When the tile is touched the top of the level bar shows a green handle to indicate `ready for sliding`. Moving the handle changes the level which wil be reported as a `stat/` payload until the tile is released. Touching the tile without moving will publish `single`or `hold` events as a standard button.
+When the tile state is set to `on`, _buttonSlider_ provides a slider interface with visual feedback, and an internally stored state. When the tile is touched the top of the level bar shows a green handle to indicate `ready for sliding`. Moving the handle changes the level which will be reported as a `stat/` payload until the tile is released. Touching the tile without moving will publish `single`or `hold` events as a standard button.
 
 The parameters `levelTop` and `levelBottom` are used to specify dimming or positional limits. To display a bulb's dimming status (0-100%) visually, you would set `levelTop` to 100 and `levelBottom` to 0. To display a roller blind's position visually, where it can be controlled in e.g. 10 steps, you would set `levelTop` to 0 and `levelBottom` to 10, thus inverting the level to fill down from the top.
 
@@ -966,7 +966,7 @@ This tile has no status feedback; tapping the tile itself only presents the feed
       "messageFeed": {
         "addPost": {
           "id": 1,
-          "head": "#ff0000 Taffic Announcement#",
+          "head": "#ff0000 Traffic Announcement#",
           "body": "Route 66 closed for motorcycles\nUse public transportation"
         }
       }
@@ -2242,7 +2242,7 @@ The _thermostat_ tile style provides a function allowing the user to see the act
 | `tile`              |       _Number_       |             n/a                   | Tile number triggering state event                                                         |
 | `style`             |       _String_       |             n/a                   | Tile style `_thermostat`                                                                   |
 | `type`              |       _String_       | `"button"` \| `"thermostat"`      |                                                                                            |
-| `event`             |       _String_       | `"hold"`\|`"release"`\|`"change"` | `hold` ,`release` events only on type `button`. `change` events only on type `themrmostat` |
+| `event`             |       _String_       | `"hold"`\|`"release"`\|`"change"` | `hold` ,`release` events only on type `button`. `change` events only on type `thermostat` |
 | `state`             | _String_ \| _Object_ |  `"on"` \| `"off"` \| `{}`        | The current tile state                                                                     |
 | `mode`              |       _Number_       |             n/a                   | The current mode state (1-based index of `modeList`)                                       |
 | `targetTemperature` |       _Number_       |             n/a                   | The current target temperature                                                             |
@@ -2268,7 +2268,7 @@ The _thermostat_ tile style provides a function allowing the user to see the act
       },
       "state": "off",
       "thermostat": {
-        "modeList": ["Off", "On", "Auto", "Maunal"],
+        "modeList": ["Off", "On", "Auto", "Manual"],
         "mode": 1,
         "targetTemperature": 155,
         "currentTemperature": 138,
@@ -2488,7 +2488,7 @@ RGB color for a tile icon (defaults to white if the tile state is "off", or the 
 
 ## Add a `"tag"` to the tile configuration
 
-The `"tag"` can be added to the tile properties via `conf\` or `cmnd\`payloads. If exists, it wil be reported back as `"tag"` as part of the tile event. This feature can be used by the backend (NR) to further customize the tile and create specific reactions depending on the  `"tag"` content.
+The `"tag"` can be added to the tile properties via `conf\` or `cmnd\`payloads. If exists, it will be reported back as `"tag"` as part of the tile event. This feature can be used by the backend (NR) to further customize the tile and create specific reactions depending on the  `"tag"` content.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -2839,7 +2839,7 @@ This command gives you the ability to load a specific screen on a device.
 Default RGB color for screen backgrounds (defaults to black - R0, G0, B0). If there is no explicit screen or tile background color defined then this is the fallback color used to render a screen or tile.
 
 ::: tip
-The configured background color has the lowest precendence and will only be used if no background color has been set for the screen or tile being displayed.
+The configured background color has the lowest precedence and will only be used if no background color has been set for the screen or tile being displayed.
 :::
 
 [comment]: <> (START of JSON Example)
@@ -2908,7 +2908,7 @@ RGB color of icon when 'on' (defaults to light green - R91, G190, B91).
 
 ## Change the state dependent brightness of a tile 
 
-Per default the background of a tile appears with a brightness level of 10 when in `off` state and with 100 when in `on`. In some configurations , eg. when a lighter color schema is used, these defaults don't let the tile stand out nicely from the background or the `on` state appreas too bright. To get a nicer contrast between tile and screen background the brightness for the two states are configurable. Note: make sure this configuration has been set before tiles are configured.
+Per default the background of a tile appears with a brightness level of 10 when in `off` state and with 100 when in `on`. In some configurations , eg. when a lighter color schema is used, these defaults don't let the tile stand out nicely from the background or the `on` state appears too bright. To get a nicer contrast between tile and screen background the brightness for the two states are configurable. Note: make sure this configuration has been set before tiles are configured.
 
 [comment]: <> (START of JSON Example)
 :::: code-group
@@ -3082,7 +3082,7 @@ The backlight state can be set with an MQTT Payload.
 [comment]: <> (END of JSON Example)
 
 ::: tip
-Setting the `"awake"` state by a `cmnd/` can be usefull when there is a NR controled screen change or pop-up message that the user shall be made aware of independent of the recent backlight state. The following sequence should be used:
+Setting the `"awake"` state by a `cmnd/` can be useful when there is a NR controlled screen change or pop-up message that the user shall be made aware of independent of the recent backlight state. The following sequence should be used:
 ```json
 {
   "messageBox": {
@@ -3544,13 +3544,42 @@ HTTP <Badge type="tip" text="GET" vertical="middle" />
 download a snapshot (approx. 450kB) of the current display, to your computer
 
 `/api/snapshot.bmp?tile=<1-n>`
-download a snapshot (approx. 60kB) of the selected tile (1-n) in the current display, to your computer. `<n>` is the largest tile number available on the sreen depending on your screen specific configuration. If tile number is out of range, the whole current display will be returned.
+download a snapshot (approx. 60kB) of the selected tile (1-n) in the current display, to your computer. `<n>` is the largest tile number available on the screen depending on your screen specific configuration. If tile number is out of range, the whole current display will be returned.
+
+## Telemetry (tele/) Messages
+
+### Update interval
+
+Telemetry is published periodically, on a timer configurable via the device's config (`conf/<device-client-id>`):
+
+```json
+{
+  "teleUpdateSeconds": <number>
+}
+```
+
+Defaults to `60` seconds. Set to `0` to disable telemetry entirely. Must be between `0` and `86400` (1 day).
+
+### Device health
+
+Basic device health metadata is published on every telemetry cycle, on all panels regardless of sensor hardware:
+
+```json
+{
+  "uptimeSeconds": <number>,
+  "heapFreeBytes": <number>,
+  "heapUsedBytes": <number>,
+  "wifiRssi": <number>
+}
+```
+
+`uptimeSeconds` is time since boot - useful for spotting a reboot that didn't trigger an LWT `offline` event. `wifiRssi` (WiFi panels only) is signal strength in dBm.
 
 ## Climate Sensor Support
 
 ### ESP32-S3 based panels
 
-The ESP32-S3 chip family has an integrated temerature sensor. This is supported by the FW for all ESP32-S3 based panels. Temperature values are published to the `tele/` topic 
+The ESP32-S3 chip family has an integrated temperature sensor. This is supported by the FW for all ESP32-S3 based panels. Temperature values are published to the `tele/` topic 
 
 ```json
 {
@@ -3561,7 +3590,7 @@ The ESP32-S3 chip family has an integrated temerature sensor. This is supported 
 
 ### WT32S3-86S panels with built-in SHT20
 
-The WT32S3-86S panel has a built-in SHT20 sensor which measures tempwrature and humidity. This is supported by the FW for this panel. Temperature and humidity values are published to the `tele/` topic 
+The WT32S3-86S panel has a built-in SHT20 sensor which measures temperature and humidity. This is supported by the FW for this panel. Temperature and humidity values are published to the `tele/` topic 
 
 ```json
 {
@@ -3575,9 +3604,8 @@ The WT32S3-86S panel has a built-in SHT20 sensor which measures tempwrature and 
 These values are also shown on the `Settings` screen as `Climate`
 
 ::: tip Tip
-Some paneles have the I2C pins broken out to accessible connectors. A SHT20 sensor connected to these pins will automatically detected by the FW and supported as a built-in one.
+Some panels have the I2C pins broken out to accessible connectors. A SHT20 sensor connected to these pins will automatically detected by the FW and supported as a built-in one.
 :::
-
 
 ## Downloads
 
