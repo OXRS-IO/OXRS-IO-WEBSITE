@@ -983,10 +983,21 @@ This tile has no status feedback; tapping the tile itself only presents the feed
           "body": "Feed content goes here\nAnd a second line \n#00ff00 Third# line"
         }
       }
+    },
+    {
+      "screen": "1",
+      "tile": "2",
+      "messageFeed": {
+        "removePost": {
+          "id": 1
+        }
+      }
     }
   ]
 }
 ```
+
+Sending `"removePost": {"id": 0}` clears the entire feed rather than removing a single post.
 
 ### JSON parameters
 
@@ -1000,6 +1011,8 @@ This tile has no status feedback; tapping the tile itself only presents the feed
 | `id`          | _Number_ |       n/a       | Message ID                                                  | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `head`        | _String_ |       n/a       | String containing the message heading                       | <Badge type="tip" text="Optional" vertical="bottom" />     |
 | `body`        | _String_ |       n/a       | String containing the message text                          | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `removePost`  | _Object_ |       n/a       | An object containing the `id` of the post to remove         | <Badge type="tip" text="Optional" vertical="bottom" />     |
+| `id`          | _Number_ |       n/a       | Message ID to remove. `0` clears the entire feed             | <Badge type="tip" text="Optional" vertical="bottom" />     |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
@@ -1895,6 +1908,52 @@ If you wish to lock access to the screen and only allow access to users with a v
 :::
 ::::
 
+When the lock timeout fires, the panel automatically shows a device-level keypad and publishes a status event:
+
+[comment]: <> (START of JSON Example)
+:::: code-group
+
+::: code-group-item State
+
+```json
+{
+  "style": "keyPad",
+  "state": "locked"
+}
+```
+
+`state` is `"locked"` when the timeout fires, and `"unlocked"` once a valid code closes the keypad (see Command below).
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`stat/<device-client-id>`
+:::
+
+::: code-group-item Command
+
+```json
+{
+  "keyPad": {
+    "state": "failed",
+    "text": "Incorrect code",
+    "iconColorRgb": {
+      "r": 255,
+      "g": 0,
+      "b": 0
+    }
+  }
+}
+```
+
+This is a top-level `cmnd/` payload (not nested under `"tiles"`) - use it to respond to the auto-lock keypad, independently of any tile. Accepts the same `state`/`text`/`icon`/`iconColorRgb` fields as the [keyPad](/docs/firmware/touch-panel-esp32.html#keypad) tile's Command payload. Send `{"keyPad": {"state": "close"}}` once you've validated the entered code (via the `keyCode` on the tile's State topic) to dismiss the keypad and publish the `"unlocked"` event above.
+
+<Badge type="warning" text="MQTT Topic" vertical="middle" />
+
+`cmnd/<device-client-id>`
+:::
+::::
+[comment]: <> (END of JSON Example)
+
 ## remote
 
 ![TP32 Image Alt Text](/images/remote-tile.png) ![TP32 Image Alt Text](/images/remote-tile-active.png)
@@ -2122,7 +2181,7 @@ The _thermostat_ tile style provides a function allowing the user to see the act
 
 ::: code-group-item Config
 
-```json {7-12}
+```json {7-14}
 {
   "screens": [
     {
@@ -2133,7 +2192,9 @@ The _thermostat_ tile style provides a function allowing the user to see the act
           "tile": 1,
           "style": "thermostat",
           "label": "Heating",
-          "icon": "_thermostat"
+          "icon": "_thermostat",
+          "levelBottom": 100,
+          "levelTop": 300
         }
       ]
     }
@@ -2148,7 +2209,9 @@ The _thermostat_ tile style provides a function allowing the user to see the act
 | `tile`    | _Number_ |   n/a   | Enter your tile number e.g. `1`                                    | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `style`   | _String_ |   n/a   | Enter tile style name `thermostat`                                 | <Badge type="warning" text="Required" vertical="bottom" /> |
 | `label`   | _String_ |   n/a   | Enter label text e.g.`Heating`                                     | <Badge type="warning" text="Required" vertical="bottom" /> |
-| `icon`    | _String_ |   n/a   | Set to `_thermostat` for dynamic Arc tile, don't specify for digits | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `icon`    | _String_ |   n/a   | Set to `_thermostat` for dynamic Arc tile, dont specify for digits | <Badge type="warning" text="Required" vertical="bottom" /> |
+| `levelBottom` | _Number_ | n/a | Minimum of the target temperature range, in tenths of a degree e.g. `100` = 10.0°C. Defaults to `100` (10.0°C) | <Badge type="tip" text="Optional" vertical="bottom" /> |
+| `levelTop`    | _Number_ | n/a | Maximum of the target temperature range, in tenths of a degree e.g. `300` = 30.0°C. Defaults to `300` (30.0°C) | <Badge type="tip" text="Optional" vertical="bottom" /> |
 
 <Badge type="warning" text="MQTT Topic" vertical="middle" />
 
